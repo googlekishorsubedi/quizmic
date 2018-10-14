@@ -1,0 +1,25 @@
+[debug] [2018-10-14T21:06:28.890Z] ----------------------------------------------------------------------
+[debug] [2018-10-14T21:06:28.892Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-10-14T21:06:28.892Z] CLI Version:   5.0.1
+[debug] [2018-10-14T21:06:28.892Z] Platform:      darwin
+[debug] [2018-10-14T21:06:28.892Z] Node Version:  v10.10.0
+[debug] [2018-10-14T21:06:28.893Z] Time:          Sun Oct 14 2018 14:06:28 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-10-14T21:06:28.893Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-14T21:06:28.904Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-14T21:06:28.905Z] > authorizing via signed-in user
+[debug] [2018-10-14T21:06:28.905Z] [iam] checking project kitomake for permissions ["firebase.projects.get"]
+[debug] [2018-10-14T21:06:28.908Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/kitomake:testIamPermissions  
+
+[debug] [2018-10-14T21:06:29.653Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-14T21:06:29.654Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/kitomake  
+ 
+[debug] [2018-10-14T21:06:29.924Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/kristalys/WebstormProjects/quizmic'...
+[info] 
+[debug] [2018-10-14T21:06:29.926Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/425008773756/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-14T21:06:30.158Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
