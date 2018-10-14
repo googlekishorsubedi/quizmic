@@ -22,6 +22,79 @@
     </div>
 
     <div id="dashmain">
+      <div id="createchallengebox">
+        <h1>Create a challenge</h1>
+        <form id="createchallengeform" action="" method="post">
+          <label class="straightinputs" for="">
+            <div class="textforinput">URL: </div>
+            <input type="url" name="url" value="">
+          </label>
+
+          <div class="straightinputs" >
+            <label class="straightinputs" for="">
+              <input type="radio" name="options" value="options">
+              <div class="textforinput"> Options</div>
+            </label>
+            <label class="straightinputs" for="">
+              <input type="radio" name="options" value="freeform">
+              <div class="textforinput"> Freeform</div>
+            </label>
+          </div>
+
+          <label class="straightinputs" for="">
+            <div class="textforinput">Answer: </div>
+            <input type="text" name="answer" value="">
+          </label>
+
+          <label class="straightinputs" for="">
+            <div class="textforinput">Option 1: </div>
+            <input type="text" name="option1" value="">
+          </label>
+
+          <label class="straightinputs" for="">
+            <div class="textforinput">Option 2: </div>
+            <input type="text" name="option2" value="">
+          </label>
+
+          <label class="straightinputs" for="">
+            <div class="textforinput">Option 3: </div>
+            <input type="text" name="otpion3" value="">
+          </label>
+
+          <label class="straightinputs" for="">
+            <input type="checkbox" name="hintsenabled" value="">
+            <div class="textforinput"> Enable Hints </div>
+          </label>
+
+          <label class="straightinputs" for="">
+            <div class="textforinput">Hint: </div>
+            <input type="url" name="url" value="">
+          </label>
+
+          <input type="submit" name="submit" value="submit">
+        </form>
+      </div>
+
+      <div id="elachallengebox">
+        <div id="elaboxnav">
+          <button class="dashbuttons" type="button" name="button"
+          onclick="">Edit</button>
+          <button class="dashbuttons" type="button" name="button"
+          onclick="">Link</button>
+          <button class="dashbuttons" type="button" name="button"
+          onclick="">Assign</button>
+        </div>
+
+        <div id="listofchallenges">
+          <p>This will be populated with the list of challenges that a user owns</p>
+        </div>
+        <div id="dropboxforfriends">
+          <p>This will be populated with all the friends that a person has.</p>
+          <select class="" name="">
+
+          </select>
+        </div>
+      </div>
 
     </div>
   </div>
