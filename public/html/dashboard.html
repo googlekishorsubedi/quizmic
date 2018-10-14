@@ -2,20 +2,25 @@
 <html>
 <head>
   <title></title>
-  <link rel="stylesheet" type="text/css" href="./dashboard.css">
+  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
 </head>
 <body>
+<script src="../js/firebase.js"></script>
+<script src="../js/pageHandler.js"></script>
   <div class="dashbox">
     <div class="dashbuttonholder">
       <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='./profile.html';">Profile</button>
+      onclick="location.href='profile.html';">Profile</button>
       <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='./create.html';">Create</button>
+      onclick="location.href='create.html';">Create</button>
       <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='./play.html';">Play</button>
+      onclick="location.href='play.html';">Play</button>
       <button class="dashbuttons" type="button" name="button"
       onclick="location.href='./dashboard.html';">Dash</button>
+      <button class="dashbuttons" type="button" name="button"
+              onclick="signOut()">Sign Out</button>
     </div>
+
 
     <div id="dashmain">
       <div id="quickplaymake">
@@ -26,7 +31,7 @@
           <!-- this is the form field for all the information that the
             user has to put inside of the quick make fieldset
             which will be sent to a function that makes the challenge. -->
-          <form id="quickmakefield" action="index.html" method="post">
+          <form id="quickmakefield" action="../index.html" method="post">
             <label class="inputs" for="">
               <div class="textforinput">
                 URL:
@@ -64,19 +69,19 @@
 
 
         <div class= "quickpm" id="quickplay">
-          <div class="quickplayitem" onclick="location.href='./challenge.html';">
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
             <p>Placeholder for a quick challenge</p>
           </div>
-          <div class="quickplayitem" onclick="location.href='./challenge.html';">
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
             <p>Placeholder for a quick challenge</p>
           </div>
-          <div class="quickplayitem" onclick="location.href='./challenge.html';">
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
             <p>Placeholder for a quick challenge</p>
           </div>
-          <div class="quickplayitem" onclick="location.href='./challenge.html';">
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
             <p>Placeholder for a quick challenge</p>
           </div>
-          <div class="quickplayitem" onclick="location.href='./challenge.html';">
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
             <p>Placeholder for a quick challenge</p>
           </div>
         </div>

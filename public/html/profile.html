@@ -2,25 +2,29 @@
 <html>
 <head>
   <title></title>
-  <link rel="stylesheet" type="text/css" href="./profile.css">
+  <link rel="stylesheet" type="text/css" href="../css/profile.css">
 </head>
 <body>
+<script src="../js/firebase.js"></script>
+<script src="../js/pageHandler.js"></script>
   <div class="dashbox">
     <div class="dashbuttonholder">
       <button class="dashbuttons" type="button" name="button"
       onclick="location.href='./profile.html';">Profile</button>
       <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='./create.html';">Create</button>
+      onclick="location.href='create.html';">Create</button>
       <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='./play.html';">Play</button>
+      onclick="location.href='play.html';">Play</button>
       <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='./dashboard.html';">Dash</button>
+      onclick="location.href='dashboard.html';">Dash</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="signOut()">Sign Out</button>
     </div>
 
     <div id="dashmain">
       <div class="mainboxes">
         <h2>Friends</h2>
-        <form class="addfriends" action="index.html" method="post">
+        <form class="addfriends" action="../index.html" method="post">
           <div class="">Add Friends:   </div>
           <input type="search" name="search" value="search">
           <input type="submit" name="submit" value="submit">
@@ -43,17 +47,17 @@
 
         <div class="textforinput">Friend Requests</div>
         <div id="friendrequestsbox">
-          <form class="friendrequests" action="index.html" method="post">
+          <form class="friendrequests" action="../index.html" method="post">
             <div class="">User's name</div>
             <button type="button" name="accept">accept</button>
             <button type="button" name="decline">decline</button>
           </form>
-          <form class="friendrequests" action="index.html" method="post">
+          <form class="friendrequests" action="../index.html" method="post">
             <div class="">User's name</div>
             <button type="button" name="accept">accept</button>
             <button type="button" name="decline">decline</button>
           </form>
-          <form class="friendrequests" action="index.html" method="post">
+          <form class="friendrequests" action="../index.html" method="post">
             <div class="">User's name</div>
             <button type="button" name="accept">accept</button>
             <button type="button" name="decline">decline</button>
@@ -72,7 +76,7 @@
         </div>
 
         <p>Invite Friend to Group</p>
-        <form id="invitetogroup" action="index.html" method="post">
+        <form id="invitetogroup" action="../index.html" method="post">
           <div class="invitetogroupsection">
             <div class="textforinput">Find Friend: </div>
             <input type="search" name="friend" value="friend">
@@ -85,7 +89,7 @@
         </form>
 
         <p>Create Group</p>
-        <form id="creategroup" action="index.html" method="post">
+        <form id="creategroup" action="../index.html" method="post">
           <div class="creategroupsection">
             <div class="textforinput">Name</div>
             <input type="text" name="" value="">
