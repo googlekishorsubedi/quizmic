@@ -1,3 +1,4 @@
+
 var User;
 
 firebase.auth().onAuthStateChanged(function(user){
@@ -5,7 +6,20 @@ firebase.auth().onAuthStateChanged(function(user){
     if(user){
         printName(user);
     }
-        
+    var user = firebase.auth().currentUser;
+    var emailRef = firestore.collection("users").doc(user.uid);
+    emailRef.get().then(function(doc) {
+        if (doc.exists) {
+            document.getElementById("name").innerHTML = doc.data().username;
+        } else {
+            // doc.data() will be undefined in this case
+            alert("User not found");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+
+    // var username = firebase.collection("users").doc(user.uid).get()
 })
 
 function printName(user){
@@ -21,26 +35,20 @@ function linkGoogleAccount()
         var user = result.user;
         alert("linking successful");
         // ...
-      }).catch(function(error) {
-          alert("Error linking");
+    }).catch(function(error) {
+        alert("Error linking");
         // Handle Errors here.
         // ...
-      });
+    });
 }
 
-//another way to do it
-//sign_out.addEventListener('click', function(){});
-
 function signOut(){
+    console.log("Llama el metodo");
     firebase.auth().signOut().then(function() {
         document.location.href = "index.html";
         // Sign-out successful.
     }).catch(function(error) {
         // An error happened.
-        console.log("The sign out was not done");
     });
-}
 
-function redirectToPage(){
-    document.location.href = "../html/dashboard.html"
 }
