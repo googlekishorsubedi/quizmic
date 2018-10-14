@@ -51,3 +51,30 @@ dash buttons */
   width: 90%;
   height: 85%;
 }
+
+.challengelists{
+  width: 20%;
+  height: 95%;
+  background: red;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#bygenre{
+
+}
+
+#byartist{
+
+}
+
+#bypopular{
+
+}
+
+#bypersonallyassigned{
+
+}
