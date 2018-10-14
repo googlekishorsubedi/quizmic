@@ -5,27 +5,34 @@
   <link rel="stylesheet" type="text/css" href="../css/play.css">
 </head>
 <body>
-<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
-<script src="../js/firebase.js"></script>
-<script src="../js/pageHandler.js"></script>
-  <div class="dashbox">
-    <div class="dashbuttonholder">
-      <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='profile.html';">Profile</button>
-      <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='create.html';">Create</button>
-      <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='./play.html';">Play</button>
-      <button class="dashbuttons" type="button" name="button"
-      onclick="location.href='dashboard.html';">Dash</button>
-      <button class="dashbuttons" type="button" name="button"
-              onclick="signOut()">Sign Out</button>
-    </div>
-
-    <div id="dashmain">
-
-    </div>
+<div class="dashbox">
+  <div class="dashbuttonholder">
+    <button class="dashbuttons" type="button" name="button"
+            onclick="location.href='./profile.html';">Profile</button>
+    <button class="dashbuttons" type="button" name="button"
+            onclick="location.href='./create.html';">Create</button>
+    <button class="dashbuttons" type="button" name="button"
+            onclick="location.href='./play.html';">Play</button>
+    <button class="dashbuttons" type="button" name="button"
+            onclick="location.href='./dashboard.html';">Dash</button>
   </div>
+
+  <div id="dashmain">
+    <div class="challengelists" id="bygenre">
+      <h1>By Genre</h1>
+    </div>
+    <div class="challengelists" id="byartist">
+      <h1>By Artist</h1>
+    </div>
+    <div class="challengelists" id="bypopular">
+      <h1>By Popular</h1>
+    </div>
+    <div class="challengelists" id="bypersonallyassigned">
+      <h1>Personally assigned</h1>
+    </div>
+
+  </div>
+</div>
 
 </body>
 </html>
