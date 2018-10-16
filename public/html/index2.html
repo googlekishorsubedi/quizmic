@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quizmic</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/loginHandler.js"></script>
+
+</head>
+<body>
+  <header>
+    <!-- <div class="row" style="height: 35px"> </div> -->
+
+      <div class="row" style="text-align: center; margin-top:35px" >
+        <div class="col-lg-4" style="height: 100px"></div>
+        <div class="col-lg-4" >
+          <img id="logo" src="../images/QuizmicLogo7.png" alt="Quizmiclogo">
+        </div>
+        <div class="col-lg-4" style=""></div>
+      </div>
+  </header>
+
+  <!-- <div class="row" style="text-align:center">
+    <div class="col-lg-4"> </div>
+     <div class="col-lg-4" style="display: inline-block">
+       <img id="arch" src="../images/arch10.png" alt="arch">
+     </div>
+    <div class="col-lg-4"> </div>
+  </div> -->
+
+
+  <div class="row" style="height: 500px; margin-top: 80px">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4" style="background:#efefefff; border-radius:15px; border: 1px solid #999999 ">
+
+      <!-- <div class="row" style="height: 45px;" > </div> -->
+
+        <div class="row" style="height: 480px; padding-top: 45px">
+            <div class="col-lg-1" ></div>
+            <div class="col-lg-10" style="padding: 0">
+
+               <ul id= "tabs" class="nav nav-tabs" >
+                <li class="nav-item">
+                    <a id="loginLink" class="nav-link active" href="#" style="text-align:center; font-weight: bold">
+                      Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a id="signUpLink" class="nav-link" href="#" style="text-align:center; font-weight: bold"> Sign Up</a>
+                </li>
+              </ul>
+              <div id="loginFragment" class="" style="height: 418px">
+                <div class="row social-media" style="margin-top: 5%; margin-bottom: 5%">
+                      <div class="col-lg-5" style="text-align:right; padding:0">
+                         <img class="socialsize" src="../images/icons8-facebook-480.png" alt="facebook icon">
+
+                      </div>
+                      <div class="col-lg-2">
+                        <a onclick="loginWithGoogle()">
+                          <img class="socialsize" src="../images/icons8-google-plus-48.png" alt="googleplus">
+                        </a>
+
+                      </div>
+                      <div class="col-lg-5" style="text-align:left; padding:0">
+                        <img src="../images/icons8-twitter.png" alt="twitterlogo">
+                      </div>
+               </div>
+               <div class="row input-field" style="height: 45px">
+                     <div class="col-lg-2"></div>
+                     <div class="col-lg-8" style="padding: 0">
+                       <input id= "input" type="text" name="email" placeholder="Email">
+                     </div>
+                     <div class="col-lg-2"></div>
+               </div>
+
+               <div class="row input-field" style="height: 45px">
+                     <div class="col-lg-2"></div>
+                     <div class="col-lg-8" style="padding: 0">
+                       <input id= "input" type="password" name="password" placeholder="Password">
+                     </div>
+                     <div class="col-lg-2"></div>
+               </div>
+
+               <div class="row" style="height: 50px; margin-top:7% ">
+                       <div class="col-lg-4"></div>
+                       <div id="submit" class="col-lg-4" >
+                         Submit
+                       </div>
+                       <div class="col-lg-4"></div>
+               </div>
+
+              </div>
+              <div id="signupFragment" class="" style="height: 418px; display: none">
+                <div class="row social-media" style="margin-top: 5%; margin-bottom: 5%">
+                      <div class="col-lg-5" style="text-align:right; padding:0">
+                         <img class="socialsize" src="../images/icons8-facebook-480.png" alt="facebook icon">
+
+                      </div>
+                      <div class="col-lg-2">
+                        <a onclick="loginWithGoogle()">
+                          <img class="socialsize" src="../images/icons8-google-plus-48.png" alt="googleplus">
+                        </a>
+
+                      </div>
+                      <div class="col-lg-5" style="text-align:left; padding:0">
+                        <img src="../images/icons8-twitter.png" alt="twitterlogo">
+                      </div>
+               </div>
+               <div class="row input-field" style:"height: 45px">
+                     <div class="col-lg-2"></div>
+                     <div class="col-lg-8" style="padding: 0">
+                       <input id= "input" type="text" name="email" placeholder="Email">
+                     </div>
+                     <div class="col-lg-2"></div>
+               </div>
+
+               <div class="row input-field" style="height: 45px">
+                     <div class="col-lg-2"></div>
+                     <div class="col-lg-8" style="padding: 0">
+                       <input id= "input" type="password" name="password" placeholder="Password">
+                     </div>
+                     <div class="col-lg-2"></div>
+               </div>
+
+               <div class="row input-field" style="height: 45px">
+                     <div class="col-lg-2"></div>
+                     <div class="col-lg-8" style="padding: 0">
+                         <input id= "input" type="text" name="username" placeholder="Username">
+                     </div>
+                     <div class="col-lg-2"></div>
+               </div>
+
+               <div class="row" style="height: 50px; margin-top: 7%">
+                       <div class="col-lg-4"></div>
+                       <div id="submit" class="col-lg-4" >
+                         Submit
+                       </div>
+                       <div class="col-lg-4"></div>
+               </div>
+
+              </div>
+            </div>
+            <div class="col-lg-1"></div>
+          </div>
+    <div class="col-lg-4"></div>
+ </div>
+
+ <div class="row" style="height:300px"> </div>
+
+<script type="text/javascript">
+  document.getElementById('signUpLink').addEventListener("click", function(){
+    document.getElementById('signupFragment').style.display = "block";
+    document.getElementById('signUpLink').classList.add("active");
+    document.getElementById('loginFragment').style.display = "none";
+    document.getElementById('loginLink').classList.remove("active");
+  });
+  document.getElementById('loginLink').addEventListener("click", function(){
+    document.getElementById('loginFragment').style.display = "block";
+    document.getElementById('loginLink').classList.add("active");
+    document.getElementById('signupFragment').style.display = "none";
+    document.getElementById('signUpLink').classList.remove("active");
+  });
+</script>
+</body>
+</html>

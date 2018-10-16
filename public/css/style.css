@@ -1,0 +1,90 @@
+body {
+  background: url("../images/microphoneback2.jpg") no-repeat;
+  background-size: cover;
+  /* -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  filter: blur(20px); */
+}
+
+.border
+{
+border:1px solid black;
+}
+
+#logo{
+height:85px;
+}
+
+#arch
+{
+  margin-left: 40px;
+  margin-right: 0;
+}
+
+#signUp
+{
+  padding-top: 10px;
+  height: 60px;
+  border:1px solid black;
+  background: #ffffffff;
+  text-align:center;
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+}
+
+#logIn
+{
+  padding-top: 10px;
+  font-family: 'Pacifico', cursive;
+  height: 60px;
+  border:1px solid black;
+  background: #b7b7b7ff;
+  text-align:center;
+  font-size: 25px;
+
+}
+#input
+{
+  padding: 0;
+  width:inherit;
+  border:1px
+  solid black;
+  background: #ffffffff;
+  height: 45px;
+  text-align: center;
+}
+#tabs
+{
+width:inherit;
+border: 1px solid #999999;
+height: 57px;
+background: #b7b7b7ff;
+
+}
+#submit{
+  border: 1px solid #999999;
+  padding-top: 10px;
+  background: #93c47dff;
+  height: 50px;
+  font-size: 20px;
+  font-family: 'Pacifico', cursive;
+  text-align:center;
+}
+.socialsize
+{
+  height:45px;
+  width:45px;
+}
+::placeholder
+{
+  text-align: center;
+  letter-spacing:3px;
+}
+.nav-item {
+  width: 50%;
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+}
+.input-field {
+  margin-bottom: 5%;
+}
