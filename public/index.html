@@ -10,6 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
     <script src="js/firebase.js"></script>
     <script src="js/loginHandler.js"></script>
+    <script src="js/database_management.js"></script>
 
   </head>
   <body>
@@ -25,6 +26,20 @@
     <input type="text" id="username" placeholder="username">
     <br>
     <input type="button" value="SignUp" onclick="createNewUser(document.getElementById('username').value, document.getElementById('signupemail').value, document.getElementById('signuppassword').value);">
+
+
+    <button onclick="createUserQUERY('kristalys', 'kristalys@yahoo.com', 'hola', 123 )">Create User</button>
+    <button onclick="createGroupQUERY('HOLlA', 'kristalys')">Create Group</button>
+    <button onclick="setChallengeQuery()">Just a try</button>
+    <button onclick="setChallengeQuery()">Just a try</button>
+    <button onclick="setChallengeQuery()">Just a try</button>
+    <button onclick="setChallengeQuery()">Just a try</button>
+    <button onclick="setChallengeQuery()">Just a try</button>
+    <button onclick="setChallengeQuery()">Just a try</button>
+    <button onclick="setChallengeQuery()">Just a try</button>
+    <button onclick="setChallengeQuery()">Just a try</button>
+
+
 
   </body>
 </html>
