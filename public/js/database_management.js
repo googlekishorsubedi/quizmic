@@ -34,6 +34,7 @@ function createGroupQUERY(groupName, groupOwnerUsername){
         }).catch(err => {
             console.log('Transaction failure:', err);
         });
+        addToGroup(groupOwnerUsername, e.id)
     });
 
 
@@ -67,6 +68,34 @@ function getUserbyUsernameQUERY(username){
         console.log("Error getting documents:", error);
     });
 
+}
+function addContact(username, contactUsername){
+    var transaction = firestore.runTransaction(t => {
+        return t.get(users.doc(username))
+            .then(doc => {
+                const contactArray = doc.data().contactList;
+                contactArray.push(users.doc(contactUsername));
+                t.update(users.doc(username), {contactList: contactArray});
+            });
+    }).then(result => {
+        console.log('Transaction success!');
+    }).catch(err => {
+        console.log('Transaction failure:', err);
+    });
+}
+function addToGroup(username, groupID){
+    var transaction = firestore.runTransaction(t => {
+        return t.get(groups.doc(groupID))
+            .then(doc => {
+                const membersArray = doc.data().members;
+                membersArray.push(users.doc(username));
+                t.update(groups.doc(groupID), {members: membersArray});
+            });
+    }).then(result => {
+        console.log('Transaction success!');
+    }).catch(err => {
+        console.log('Transaction failure:', err);
+    });
 }
 function getUserChallengesQUERY(username){
     var query = users.ownChallenges;
