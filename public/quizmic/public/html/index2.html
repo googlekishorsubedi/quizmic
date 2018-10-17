@@ -19,28 +19,36 @@
 </head>
 <body>
   <header>
- <!--The formating for the Logo -->
-      </div>
-      <div class="row" id="logosize">
-          <div class="col-lg-5">
-            <img id="logo" src="../images/QuizmicLogo7.png" alt="Quizmiclogo">
-          </div>
-          <div class="col-lg-2" ></div>
-          <div class="col-lg-5"></div>
+
+
+      <div class="row" style="text-align: center; margin-top:35px" >
+        <div class="col-lg-4" style="height: 100px"></div>
+        <div class="col-lg-4" >
+          <img id="logo" src="../images/QuizmicLogo7.png" alt="Quizmiclogo">
+        </div>
+        <div class="col-lg-4" style=""></div>
       </div>
   </header>
 
-<!--The formatting for the gray box  -->
-  <div class="row" id="middlesection">
+  <!-- <div class="row" style="text-align:center">
+    <div class="col-lg-4"> </div>
+     <div class="col-lg-4" style="display: inline-block">
+       <img id="arch" src="../images/arch10.png" alt="arch">
+     </div>
+    <div class="col-lg-4"> </div>
+  </div> -->
+
+
+  <div class="row" style="height: 500px; margin-top: 80px">
     <div class="col-lg-4"></div>
-    <div class="col-lg-4" style="background:#efefefff; border-radius:15px; ">
-      
-      <!--  gray box specifics-->
+    <div class="col-lg-4" style="background:#efefefff; border-radius:15px; border: 1px solid #999999 ">
+
+      <!-- <div class="row" style="height: 45px;" > </div> -->
+
         <div class="row" style="height: 480px; padding-top: 45px">
             <div class="col-lg-1" ></div>
             <div class="col-lg-10" style="padding: 0">
 
-              <!-- tabs for the gray box -->
                <ul id= "tabs" class="nav nav-tabs" >
                 <li class="nav-item">
                     <a id="loginLink" class="nav-link active" href="#" style="text-align:center; font-weight: bold">
@@ -52,13 +60,15 @@
                 </li>
               </ul>
               <div id="loginFragment" class="" style="height: 418px">
-                <div class="row social-media" style="margin-top: 7%; margin-bottom: 7%">
+                <div class="row social-media" style="margin-top: 5%; margin-bottom: 5%">
                       <div class="col-lg-5" style="text-align:right; padding:0">
                          <img class="socialsize" src="../images/icons8-facebook-480.png" alt="facebook icon">
 
                       </div>
                       <div class="col-lg-2">
-                        <button id="login" onclick="loginWithGoogle()">  <img class="socialsize" src="../images/icons8-google-plus-48.png" alt="googleplus"> </button>
+                        <a onclick="loginWithGoogle()">
+                          <img class="socialsize" src="../images/icons8-google-plus-48.png" alt="googleplus">
+                        </a>
 
                       </div>
                       <div class="col-lg-5" style="text-align:left; padding:0">
@@ -68,23 +78,23 @@
                <div class="row input-field" style="height: 45px">
                      <div class="col-lg-2"></div>
                      <div class="col-lg-8" style="padding: 0">
-                       <input id= "loginusername" type="text" name="email" placeholder="Email/Username">
+                       <input id= "input" type="text" name="email" placeholder="Email/Username">
                      </div>
                      <div class="col-lg-2"></div>
                </div>
 
                <div class="row input-field" style="height: 45px">
                      <div class="col-lg-2"></div>
-                     <div class="col-lg-8" style="padding:0">
-                       <input id= "loginpassword" type="password" name="password" placeholder="Password">
+                     <div class="col-lg-8" style="padding: 0">
+                       <input id= "input" type="password" name="password" placeholder="Password">
                      </div>
                      <div class="col-lg-2"></div>
                </div>
 
                <div class="row" style="height: 50px; margin-top:7% ">
                        <div class="col-lg-4"></div>
-                       <div class="col-lg-4" >
-                         <input id="submit"type="button" value="Submit" onclick="signUser(document.getElementById('loginusername').value, document.getElementById('loginpassword').value);">
+                       <div id="submit" class="col-lg-4" >
+                         Submit
                        </div>
                        <div class="col-lg-4"></div>
                </div>
@@ -97,8 +107,9 @@
 
                       </div>
                       <div class="col-lg-2">
-                          <button id="login" onclick="loginWithGoogle()">  <img class="socialsize" src="../images/icons8-google-plus-48.png" alt="googleplus"> </button>
-
+                        <a onclick="loginWithGoogle()">
+                          <img class="socialsize" src="../images/icons8-google-plus-48.png" alt="googleplus">
+                        </a>
 
                       </div>
                       <div class="col-lg-5" style="text-align:left; padding:0">
@@ -108,7 +119,7 @@
                <div class="row input-field" style:"height: 45px">
                      <div class="col-lg-2"></div>
                      <div class="col-lg-8" style="padding: 0">
-                       <input id= "signupemail" type="text" name="email" placeholder="Email">
+                       <input id= "input" type="text" name="email" placeholder="Email">
                      </div>
                      <div class="col-lg-2"></div>
                </div>
@@ -116,7 +127,7 @@
                <div class="row input-field" style="height: 45px">
                      <div class="col-lg-2"></div>
                      <div class="col-lg-8" style="padding: 0">
-                       <input id= "signuppassword" type="password" name="password" placeholder="Password">
+                       <input id= "input" type="password" name="password" placeholder="Password">
                      </div>
                      <div class="col-lg-2"></div>
                </div>
@@ -124,15 +135,15 @@
                <div class="row input-field" style="height: 45px">
                      <div class="col-lg-2"></div>
                      <div class="col-lg-8" style="padding: 0">
-                         <input id= "username" type="text" name="username" placeholder="Username">
+                         <input id= "input" type="text" name="username" placeholder="Username">
                      </div>
                      <div class="col-lg-2"></div>
                </div>
 
                <div class="row" style="height: 50px; margin-top: 7%">
                        <div class="col-lg-4"></div>
-                       <div class="col-lg-4" >
-                         <input id = "submit" type="button" value="Submit" onclick="createNewUser(document.getElementById('username').value, document.getElementById('signupemail').value, document.getElementById('signuppassword').value);">
+                       <div id="submit" class="col-lg-4" >
+                         Submit
                        </div>
                        <div class="col-lg-4"></div>
                </div>
