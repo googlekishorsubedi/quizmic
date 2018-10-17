@@ -36,8 +36,6 @@ function createGroupQUERY(groupName, groupOwnerUsername){
         });
         addToGroup(groupOwnerUsername, e.id)
     });
-
-
 }
 function createChallengeQUERY(URL, songname, artist, genre, hint, creator){
     var query = challenges.doc().set({
