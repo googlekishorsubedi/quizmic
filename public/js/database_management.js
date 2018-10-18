@@ -6,6 +6,7 @@ var username = firestore.collection("username");
 function testing(){
     //trying: p5BTzujAaddbzSjrIr6g
     //trying2: 5df5LtvXQRsFqgn0Pz8f
+    // group: ulNnplX6cQNvJhWgz345
 
     //works createUserQUERY()
     //works createGroupQUERY()
@@ -13,8 +14,15 @@ function testing(){
     //works getUserbyEmailQUERY();
     //works getUserbyUsernameQUERY();
     //works addContact()
+    //works addToGroup()
+
 }
 
+/**
+ * Create a User
+ * @param username the UID
+ * @param email the email of the user
+ */
 function createUserQUERY(username, email){
     var query = users.add({
         username: username,
@@ -31,6 +39,12 @@ function createUserQUERY(username, email){
         users.doc(e.id).collection("assignedChallenges").add({})
     })
 }
+
+/**
+ * Creates a group
+ * @param groupName name of the group
+ * @param groupOwnerUsername the ownser UID
+ */
 function createGroupQUERY(groupName, groupOwnerUsername){
     var query = groups.add({
         groupName: groupName,
@@ -53,6 +67,16 @@ function createGroupQUERY(groupName, groupOwnerUsername){
         addToGroup(groupOwnerUsername, e.id)
     });
 }
+
+/**
+ * Create a challenge
+ * @param URL the challenge URL
+ * @param songname the name of the song
+ * @param artist the artist of the song
+ * @param genre the genre of the song
+ * @param hint optional hint for the challenge
+ * @param creator the creator of the challenge UID
+ */
 function createChallengeQUERY(URL, songname, artist, genre, hint, creator){
     var query = challenges.add({
         URL: URL,
@@ -78,13 +102,18 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, creator){
 
     })
 }
+
+/**
+ * Get user by Username
+ * @param username the user username
+ */
 function getUserbyUsernameQUERY(username){
     var query = users.where("username", "==", username);
     query.get().then(function(results) {
         if(results.empty) {
             console.log("No documents found!");
         } else {
-            var user
+            var user;
             // go through all results
             results.forEach(function (doc) {
                 //user = doc.data().id;
@@ -100,6 +129,35 @@ function getUserbyUsernameQUERY(username){
     });
 
 }
+
+/**
+ * Get user by Email
+ * @param email the user email
+ */
+function getUserbyEmailQUERY(email){
+    var query = users.where("email", "==", email);
+    query.get().then(function(results) {
+        if(results.empty) {
+            console.log("No documents found!");
+        } else {
+            // go through all results
+            results.forEach(function (doc) {
+                console.log("Document data:", doc.data());
+            });
+
+            // or if you only want the first result you can also do something like this:
+            //console.log("Document data:", results.docs[0].data());
+        }
+    }).catch(function(error) {
+        console.log("Error getting documents:", error);
+    });
+}
+
+/**
+ * Add user to contactlist
+ * @param username user UID
+ * @param contactUsername contact UID
+ */
 function addContact(username, contactUsername){
     var transaction = firestore.runTransaction(t => {
         return t.get(users.doc(username))
@@ -114,7 +172,14 @@ function addContact(username, contactUsername){
         console.log('Transaction failure:', err);
     });
 }
+
+/**
+ * Add user to group
+ * @param username user to add UID
+ * @param groupID ID of the group
+ */
 function addToGroup(username, groupID){
+    // Add member to
     var transaction = firestore.runTransaction(t => {
         return t.get(groups.doc(groupID))
             .then(doc => {
@@ -127,7 +192,21 @@ function addToGroup(username, groupID){
     }).catch(err => {
         console.log('Transaction failure:', err);
     });
+
+    var transaction2 = firestore.runTransaction(t => {
+        return t.get(users.doc(username))
+            .then(doc => {
+                const belongsToGroup = doc.data().belongsToGroup;
+                belongsToGroup.push(groups.doc(groupID));
+                t.update(users.doc(username), {belongsToGroup: belongsToGroup});
+            });
+    }).then(result => {
+        console.log('Transaction success!');
+    }).catch(err => {
+        console.log('Transaction failure:', err);
+    });
 }
+
 function getUserChallengesQUERY(username){
     var query = users.ownChallenges;
     query.get().then(function(results) {
@@ -164,24 +243,6 @@ function getUserGroupsQUERY(username){
         console.log("Error getting documents:", error);
     });
 }
-function getUserAdminGroupsQUERY(username){
-    var query = users.ownGroup;
-    query.get().then(function(results) {
-        if(results.empty) {
-            console.log("No documents found!");
-        } else {
-            // go through all results
-            results.forEach(function (doc) {
-                console.log("Document data:", doc.data());
-            });
-
-            // or if you only want the first result you can also do something like this:
-            //console.log("Document data:", results.docs[0].data());
-        }
-    }).catch(function(error) {
-        console.log("Error getting documents:", error);
-    });
-}
 function getUserAssignedChallenges(username) {
     var query = users.assignedChallenges;
     query.get().then(function(results) {
@@ -200,22 +261,4 @@ function getUserAssignedChallenges(username) {
         console.log("Error getting documents:", error);
     });
 }
-function getUserbyEmailQUERY(email){
-    var query = users.where("email", "==", email);
-    query.get().then(function(results) {
-        if(results.empty) {
-            console.log("No documents found!");
-        } else {
-            // go through all results
-            results.forEach(function (doc) {
-                console.log("Document data:", doc.data());
-            });
 
-            // or if you only want the first result you can also do something like this:
-            //console.log("Document data:", results.docs[0].data());
-        }
-    }).catch(function(error) {
-        console.log("Error getting documents:", error);
-    });
-
-}
