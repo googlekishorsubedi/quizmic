@@ -1,18 +1,34 @@
 var users = firestore.collection("users");
 var groups = firestore.collection("groups");
 var challenges = firestore.collection("challenges");
+var username = firestore.collection("username");
 
+function testing(){
+    //trying: p5BTzujAaddbzSjrIr6g
+    //trying2: 5df5LtvXQRsFqgn0Pz8f
 
-function createUserQUERY(username, email, password, scores){
-    var query = users.doc(username).set({
+    //works createUserQUERY()
+    //works createGroupQUERY()
+    //works createChallengeQUERY()
+    //works getUserbyEmailQUERY();
+    //works getUserbyUsernameQUERY();
+    //works addContact()
+}
+
+function createUserQUERY(username, email){
+    var query = users.add({
+        username: username,
         email: email,
-        password: password,
-        score: scores,
+        score: 0,
         ownChallenges: [],
-        assignedChallenges:[],
         contactList: [],
-        ownGroup: [],
-        belongsToGroup: []
+        belongsToGroup: [],
+        challengesPlayed: 0
+    }).then(function (e) {
+        // Creates the reference in the username table
+        this.username.doc(username).set({emailadress: email});
+        // Add the assigned collection to the user.
+        users.doc(e.id).collection("assignedChallenges").add({})
     })
 }
 function createGroupQUERY(groupName, groupOwnerUsername){
@@ -38,15 +54,29 @@ function createGroupQUERY(groupName, groupOwnerUsername){
     });
 }
 function createChallengeQUERY(URL, songname, artist, genre, hint, creator){
-    var query = challenges.doc().set({
+    var query = challenges.add({
         URL: URL,
         songname: songname,
         artist: artist,
         genre: genre,
         hint: hint,
         creator: users.doc(creator)
-    });
-    var save = users.doc(username).set({ownChallenges: query},{ merge: true })
+    }).then(function (e) {
+        console.log(e);
+        var transaction = firestore.runTransaction(t => {
+            return t.get(users.doc(creator))
+                .then(doc => {
+                    const ownChallenges = doc.data().ownChallenges;
+                    ownChallenges.push(challenges.doc(e.id));
+                    t.update(users.doc(creator), {ownChallenges: ownChallenges});
+                });
+        }).then(result => {
+            console.log('Transaction success!');
+        }).catch(err => {
+            console.log('Transaction failure:', err);
+        });
+
+    })
 }
 function getUserbyUsernameQUERY(username){
     var query = users.where("username", "==", username);
@@ -54,10 +84,13 @@ function getUserbyUsernameQUERY(username){
         if(results.empty) {
             console.log("No documents found!");
         } else {
+            var user
             // go through all results
             results.forEach(function (doc) {
+                //user = doc.data().id;
                 console.log("Document data:", doc.data());
             });
+
 
             // or if you only want the first result you can also do something like this:
             //console.log("Document data:", results.docs[0].data());
