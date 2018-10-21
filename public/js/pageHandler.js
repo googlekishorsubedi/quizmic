@@ -2,29 +2,24 @@
 var User;
 
 firebase.auth().onAuthStateChanged(function(user){
-    console.log("authentication changed");
-    if(user){
-        printName(user);
-    }
-    var user = firebase.auth().currentUser;
-    var emailRef = firestore.collection("users").doc(user.uid);
-    emailRef.get().then(function(doc) {
-        if (doc.exists) {
-            document.getElementById("name").innerHTML = doc.data().username;
-        } else {
-            // doc.data() will be undefined in this case
-            alert("User not found");
-        }
-    }).catch(function(error) {
-        console.log("Error getting document:", error);
-    });
+    // console.log("authentication changed");
+    
+    // var user = firebase.auth().currentUser;
+    // var emailRef = firestore.collection("users").doc(user.uid);
+    // emailRef.get().then(function(doc) {
+    //     if (doc.exists) {
+    //         document.getElementById("name").innerHTML = doc.data().username;
+    //     } else {
+    //         // doc.data() will be undefined in this case
+    //         alert("User not found");
+    //     }
+    // }).catch(function(error) {
+    //     console.log("Error getting document:", error);
+    // });
 
     // var username = firebase.collection("users").doc(user.uid).get()
 })
 
-function printName(user){
-    document.getElementById("name").innerHTML = user.displayName;
-}
 
 function linkGoogleAccount()
 {
