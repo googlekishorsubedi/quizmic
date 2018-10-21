@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../css/profile.css">
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+<script src="../js/firebase.js"></script>
+<script src="../js/pageHandler.js"></script>
+<script src="../js/loginHandler.js"></script>
+  <div class="dashbox">
+    <div class="dashbuttonholder">
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='./profile.html';">Profile</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='create.html';">Create</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='play.html';">Play</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='dashboard.html';">Dash</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="signOut()">Sign Out</button>
+    </div>
+
+    <div id="dashmain">
+      <div class="mainboxes">
+        <h2>Friends</h2>
+        <form class="addfriends" action="../index.html" method="post">
+          <div class="">Add Friends:   </div>
+          <input type="search" name="search" value="search">
+          <input type="submit" name="submit" value="submit">
+        </form>
+
+        <div class="">List of friends</div>
+
+        <div id="listoffriends">
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+          <div class="friendview"></div>
+        </div>
+
+        <div class="textforinput">Friend Requests</div>
+        <div id="friendrequestsbox">
+          <form class="friendrequests" action="../index.html" method="post">
+            <div class="">User's name</div>
+            <button type="button" name="accept">accept</button>
+            <button type="button" name="decline">decline</button>
+          </form>
+          <form class="friendrequests" action="../index.html" method="post">
+            <div class="">User's name</div>
+            <button type="button" name="accept">accept</button>
+            <button type="button" name="decline">decline</button>
+          </form>
+          <form class="friendrequests" action="../index.html" method="post">
+            <div class="">User's name</div>
+            <button type="button" name="accept">accept</button>
+            <button type="button" name="decline">decline</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="mainboxes">
+        <h2>Groups</h2>
+        <p>My Groups</p>
+        <div id="mygroups">
+          <div class="mygroupsitem"></div>
+          <div class="mygroupsitem"></div>
+          <div class="mygroupsitem"></div>
+          <div class="mygroupsitem"></div>
+        </div>
+
+        <p>Invite Friend to Group</p>
+        <form id="invitetogroup" action="../index.html" method="post">
+          <div class="invitetogroupsection">
+            <div class="textforinput">Find Friend: </div>
+            <input type="search" name="friend" value="friend">
+          </div>
+          <div class="invitetogroupsection">
+            <div class="textforinput">Find Group: </div>
+            <input type="search" name="group" value="group">
+          </div>
+          <input type="submit" name="submit" value="submit">
+        </form>
+
+        <p>Create Group</p>
+        <form id="creategroup" action="../index.html" method="post">
+          <div class="creategroupsection">
+            <div class="textforinput">Name</div>
+            <input type="text" name="" value="">
+          </div>
+          <div class="creategroupsection">
+            <div class="textforinput">Description</div>
+            <textarea name="name" rows="8" cols="40"></textarea>
+          </div>
+          <input type="submit" name="submit" value="submit">
+        </form>
+      </div>
+
+      <div class="mainboxes">
+        <h2>Settings</h2>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
