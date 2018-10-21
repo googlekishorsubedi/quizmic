@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "kitomake": "kitomake",
+    "default": "kitomake"
+  }
+}

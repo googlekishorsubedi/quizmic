@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+<script src="../js/firebase.js"></script>
+<script src="../js/pageHandler.js"></script>
+<script src="../js/loginHandler.js"></script>
+  <div class="dashbox">
+    <div class="dashbuttonholder">
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='profile.html';">Profile</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='create.html';">Create</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='play.html';">Play</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='./dashboard.html';">Dash</button>
+      <button class="dashbuttons" type="button" name="button"
+              onclick="signOut()">Sign Out</button>
+    </div>
+
+
+    <div id="dashmain">
+      <div id="quickplaymake">
+
+        <!-- this is the code for the quick make of a challenge -->
+        <div class= "quickpm" id="quickmake">
+
+          <!-- this is the form field for all the information that the
+            user has to put inside of the quick make fieldset
+            which will be sent to a function that makes the challenge. -->
+          <form id="quickmakefield" action="../index.html" method="post">
+            <label class="inputs" for="">
+              <div class="textforinput">
+                URL:
+              </div>
+              <input type="url" name="url" value="url">
+            </label>
+
+            <label class="inputs" for="">
+              <div class="textforinput">
+                Artist:
+              </div>
+              <input type="text" name="artist" value="artist">
+            </label>
+
+            <div class="inputs" id="">
+              <label class="inputs" for="">
+                <input type="radio" name="artist" value="artist">
+                <div class="textforinput">
+                  public
+                </div>
+              </label>
+
+              <label class="inputs" for="">
+                <input type="radio" name="artist" value="artist">
+                <div class="textforinput">
+                  To Someone:
+                </div>
+                <input type="text" name="" value="">
+              </label>
+            </div>
+
+            <input type="submit" name="submit" value="submit">
+          </form>
+        </div>
+
+
+        <div class= "quickpm" id="quickplay">
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
+            <p>Placeholder for a quick challenge</p>
+          </div>
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
+            <p>Placeholder for a quick challenge</p>
+          </div>
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
+            <p>Placeholder for a quick challenge</p>
+          </div>
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
+            <p>Placeholder for a quick challenge</p>
+          </div>
+          <div class="quickplayitem" onclick="location.href='challenge.html';">
+            <p>Placeholder for a quick challenge</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="quickstats">
+        <div class="statistics">
+          <p>Place holder for personal statistics</p>
+        </div>
+        <div class="statistics">
+          <p>Place holder for Global statistics</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

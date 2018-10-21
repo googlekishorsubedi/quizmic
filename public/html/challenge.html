@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../css/challenge.css">
+</head>
+<body id="body">
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/pageHandler.js"></script>
+    <script src="../js/loginHandler.js"></script>
+  <!-- dashbox is just the floating box in the middle of the window, kind of like how i had it in the mocks.
+  dashbuttonholder is just the top quick buttons. -->
+  <div class="dashbox">
+    <div class="dashbuttonholder">
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='profile.html';">Profile</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='create.html';">Create</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='play.html';">Play</button>
+      <button class="dashbuttons" type="button" name="button"
+      onclick="location.href='dashboard.html';">Dash</button>
+      <button class="dashbuttons" type="button" name="button"
+              onclick="signOut()">Sign Out</button>
+    </div>
+
+    <div class="questionbox">
+      <div class="timebox">
+        <p id="timemessage">Time Remaining:   </p>
+        <p id="timeleft">   30seconds</p>
+      </div>
+
+      <form class="options">
+        <label class="optiontexts" for="option1">
+          <input type="radio" id="option1" name="option" value="">
+          <div class="option" >Option 1:</div>
+        </label>
+        <label class="optiontexts" for="option2">
+          <input type="radio" id="option2" name="option" value="">
+          <div class="option" >Option 2:</div>
+        </label>
+        <label class="optiontexts" for="option1">
+          <input type="radio" id="option2" name="option" value="">
+          <div class="option" >Option 3:</div>
+        </label>
+        <label class="optiontexts" for="option1">
+          <input type="radio" id="option2" name="option" value="">
+          <div class="option" >Option 4:</div>
+        </label>
+        <input type="submit" value="Submit or Next">
+      </form>
+
+      <div class="hintbox">
+        <button class="hintbutton" type="button" name="button">Hint</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
