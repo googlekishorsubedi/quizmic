@@ -18,7 +18,8 @@ firebase.auth().onAuthStateChanged(function(user){
     // });
 
     // var username = firebase.collection("users").doc(user.uid).get()
-})
+
+});
 
 
 function linkGoogleAccount()
