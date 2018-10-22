@@ -162,3 +162,27 @@
 [debug] [2018-10-22T18:03:26.759Z] <<< HTTP RESPONSE 200
 [info] i  hosting[kitomake]: Serving hosting files from: public
 [info] ✔  hosting[kitomake]: Local server: http://localhost:5000
+[debug] [2018-10-22T18:23:41.242Z] ----------------------------------------------------------------------
+[debug] [2018-10-22T18:23:41.243Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-10-22T18:23:41.243Z] CLI Version:   4.2.1
+[debug] [2018-10-22T18:23:41.243Z] Platform:      darwin
+[debug] [2018-10-22T18:23:41.243Z] Node Version:  v10.10.0
+[debug] [2018-10-22T18:23:41.244Z] Time:          Mon Oct 22 2018 11:23:41 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-10-22T18:23:41.244Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-22T18:23:41.254Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-22T18:23:41.254Z] > authorizing via signed-in user
+[debug] [2018-10-22T18:23:41.256Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/kitomake  
+ 
+[debug] [2018-10-22T18:23:41.644Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-22T18:23:41.645Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/kitomake  
+ 
+[debug] [2018-10-22T18:23:41.931Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/subedik/Desktop/quizmic'...
+[info] 
+[debug] [2018-10-22T18:23:41.933Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/425008773756/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-22T18:23:42.356Z] <<< HTTP RESPONSE 200
+[info] i  hosting[kitomake]: Serving hosting files from: public
+[info] ✔  hosting[kitomake]: Local server: http://localhost:5000
