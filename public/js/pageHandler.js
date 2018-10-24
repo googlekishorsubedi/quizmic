@@ -22,7 +22,7 @@ firebase.auth().onAuthStateChanged(function(user){
 });
 
 
-function linkGoogleAccount()
+function linkGoogleAccount() //Calls the firebase link google account.
 {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().currentUser.linkWithPopup(provider).then(function(result) {
@@ -38,8 +38,8 @@ function linkGoogleAccount()
     });
 }
 
-function signOut(){
-    console.log("Llama el metodo");
+function signOut(){ //Calls the firebase signout method
+    console.log("Signed Out successfully");
     firebase.auth().signOut().then(function() {
         document.location.href = "../index.html";
         // Sign-out successful.

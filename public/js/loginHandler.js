@@ -12,6 +12,11 @@ function loginWithGoogle(){
     });
 }
 
+function forgotPassword()
+{
+    document.location.href = "../html/forgotPassword.html";
+}
+
 function registerUser(name, uid, email)
 {
     firestore.collection("users").doc(uid).set({
