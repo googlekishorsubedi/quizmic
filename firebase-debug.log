@@ -1,0 +1,29 @@
+[debug] [2018-10-19T20:35:08.747Z] ----------------------------------------------------------------------
+[debug] [2018-10-19T20:35:08.749Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-10-19T20:35:08.749Z] CLI Version:   5.0.1
+[debug] [2018-10-19T20:35:08.749Z] Platform:      darwin
+[debug] [2018-10-19T20:35:08.749Z] Node Version:  v10.10.0
+[debug] [2018-10-19T20:35:08.750Z] Time:          Fri Oct 19 2018 13:35:08 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-10-19T20:35:08.750Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-19T20:35:08.783Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-19T20:35:08.784Z] > authorizing via signed-in user
+[debug] [2018-10-19T20:35:08.784Z] [iam] checking project kitomake for permissions ["firebase.projects.get"]
+[debug] [2018-10-19T20:35:08.787Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-10-19T20:35:08.787Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2018-10-19T20:35:08.937Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-19T20:35:08.959Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/kitomake:testIamPermissions  
+
+[debug] [2018-10-19T20:35:09.181Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-19T20:35:09.182Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/kitomake  
+ 
+[debug] [2018-10-19T20:35:09.574Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/tabia/quizmic'...
+[info] 
+[debug] [2018-10-19T20:35:09.576Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/425008773756/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-19T20:35:09.789Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
