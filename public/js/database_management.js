@@ -131,7 +131,7 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
         return;
     }
 
-
+ var creator = firebase.auth().currentUser.uid;
     var query = challenges.add({
         youtubeAPIid: URL,
         song: songname,
@@ -142,7 +142,7 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
         rightlyAnswered: 0,
         isPublic: isPublic,
         options: [option1, option2, option3],
-        creator: users.doc(firebase.auth().currentUser.uid),
+        creator: users.doc(creator),
         date: new Date()
     }).then(function (e) {
         console.log(e);
