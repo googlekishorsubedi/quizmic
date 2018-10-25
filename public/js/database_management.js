@@ -131,8 +131,6 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
         return;
     }
 
-    return;
-
 
     var query = challenges.add({
         youtubeAPIid: URL,
