@@ -1,55 +1,40 @@
+/* This is the code for the green box that surrounds all of the styling boxes
+in the center of the browser window. */
+.dashbox{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  background: #00ffab;
+  height: 90vh;
+  width: 90vw;
+}
 
-body{
-background: #d5c4b3ff !important;
+/* This is the code for the top portion that has the buttons to go to the other
+webpages */
+.dashbuttonholder{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 10%;
+  width: 90%;
+  background: tomato;
+  position: fixed;
+  left: 50%;
+  top: 1%;
+  transform:  translate(-50%, -1%);
 }
-#logo{
-height:70px;
-}
-#navcolor
-{
-  background: #fefff9ff !important;
-  height: 80px;
-}
-#dropdrown
-{
-  background: #fefff9ff !important;
-}
-#profilepic
-{
-  border-radius: 60%;
-  height:20% !important;
-}
+
 /* this is the individual code for each of the buttons on the dash button holder */
-.SignOut{
- width: 100px;
- background: #fefff9ff;
- border: 1px solid  #fefff9ff;
-
-}
-.createbutton{
-  font-family: 'Pacifico', cursive;
-  font-size: 25px !important;
-  color: #88B0C2 !important;
-  text-align: center !important;
-  margin-left: 550px;
-
-}
-.playbutton{
-  font-family: 'Pacifico', cursive;
-  font-size: 25px !important;
-  color: #88B0C2 !important;
-  margin-top: 50px !important;
-  margin-left: 200px;
+.dashbuttons{
+  height: 90%;
+  width: 10%;
 }
 
-#aboutus
-{
-  font-family: 'Pacifico', cursive;
-  font-size: 25px;
-  margin-left: 550px;
-  color: #88B0C2;
-  text-align: center
-}
+
 /* This is the code for the box that contains the rest of the content below the
 dash buttons */
 #dashmain{

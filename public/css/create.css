@@ -1,20 +1,19 @@
-
 /* This is the code for the green box that surrounds all of the styling boxes
 in the center of the browser window. */
-/* .dashbox{
+.dashbox{
   position: fixed;
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
-  /* transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background: #00ffab;
   height: 90vh;
-  width: 90vw; */
-/* }
+  width: 90vw;
+}
 
 /* This is the code for the top portion that has the buttons to go to the other
 webpages */
-/* .dashbuttonholder{
+.dashbuttonholder{
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -27,18 +26,18 @@ webpages */
   left: 50%;
   top: 1%;
   transform:  translate(-50%, -1%);
-} */
+}
 
 /* this is the individual code for each of the buttons on the dash button holder */
-/* .dashbuttons{
+.dashbuttons{
   height: 90%;
   width: 10%;
-} */
+}
 
 
 /* This is the code for the box that contains the rest of the content below the
 dash buttons */
-/* #dashmain{
+#dashmain{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -51,27 +50,9 @@ dash buttons */
   background: yellow;
   width: 90%;
   height: 85%;
-} */
-
-#createbox{
-  margin-top: 80px;
-  background: #fefff9ff;
-  height: 600px;
-
 }
 
-section{
-  float: left;
-  width: 75%;
-}
-
-aside{
-  float: right;
-  width: 25%;
-  margin-top: 80px;
-  padding-right: 50px;
-}
-/* #elachallengebox{
+#createchallengebox{
   width: 45%;
   height: 95%;
   background: red;
@@ -80,9 +61,20 @@ aside{
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-} */
+}
 
-/* #createchallengeform{
+#elachallengebox{
+  width: 45%;
+  height: 95%;
+  background: red;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#createchallengeform{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -90,17 +82,17 @@ aside{
   height: 85%;
   width: 95%;
   background: blue;
-} */
-/* .straightinputs{
+}
+.straightinputs{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 
   background: yellow;
-} */
+}
 
-/* #elaboxnav{
+#elaboxnav{
   width: 95%;
   height: 10%;
 
@@ -108,16 +100,16 @@ aside{
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-} */
+}
 
-/* #listofchallenges{
+#listofchallenges{
   width: 95%;
   height: 70%;
   background: blue;
-} */
+}
 
-/* #dropboxforfriends{
+#dropboxforfriends{
   width: 95%;
   height: 10%;
   background: blue;
-} */
+}
