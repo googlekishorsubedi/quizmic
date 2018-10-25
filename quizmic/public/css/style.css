@@ -1,5 +1,5 @@
 body {
-  background: url("../images/albums.jpeg") no-repeat;
+  background: url("../images/albums1.jpg") no-repeat;
   background-size: cover;
 }
 
@@ -19,15 +19,15 @@ border:1px solid black;
 
 #login{
 /* border-radius: 50%; */
-background:#efefefff;
-border: #efefefff;
+background:#fefff9ff;
+border: #fefff9ff;
 
 }
 #logosize
 {
-text-align: right;
+text-align: center;
 margin-top:17px;
-margin-right: 90px
+/* margin-right: 80px; */
 
 }
 #logo{
@@ -115,7 +115,7 @@ height:110px;
 width:inherit;
 border: 1px solid #999999;
 height: 57px;
-background: lightgray;
+background: #CDCDCD;
 
 }
 #submit{
