@@ -48,7 +48,7 @@ function registerUsername(username, email){
 function createNewUser(username, email, password)
 {
     if(username.length <6){
-        alert("Username has to have atleast 6 characters");
+        alert("Username has to have at least 6 characters");
         return;
     }
     var docRef = firestore.collection("username").doc(username);

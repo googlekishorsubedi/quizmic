@@ -1,24 +1,39 @@
-
 firestore.settings(settings);
 var users = firestore.collection("users");
 var groups = firestore.collection("groups");
 var challenges = firestore.collection("challenges");
 var username = firestore.collection("username");
 var hintVisibility = false;
+var optionVisibility = false;
 
-function testing(){
-    //trying: p5BTzujAaddbzSjrIr6g
-    //trying2: 5df5LtvXQRsFqgn0Pz8f
-    // group: ulNnplX6cQNvJhWgz345
 
-    //works createUserQUERY()
-    //works createGroupQUERY()
-    //works createChallengeQUERY()
-    //works getUserbyEmailQUERY();
-    //works getUserbyUsernameQUERY();
-    //works addContact()
-    //works addToGroup()
+function enableHint() {
+    document.getElementById("hint").value = "";
+    document.getElementById("hint").hidden = hintVisibility;
+    document.getElementById("hintname").hidden = hintVisibility;
+    hintVisibility = !hintVisibility;
 
+}
+
+function enableOptions() {
+    document.getElementById("option1").value="";
+    document.getElementById("option2").value="";
+    document.getElementById("option3").value="";
+    document.getElementById("options").hidden = optionVisibility;
+    optionVisibility = !optionVisibility;
+}
+
+function trying() {
+    createChallengeQUERY(
+        document.getElementById('url').value,
+        document.getElementById('answer').value,
+        document.getElementById('artist').value,
+        document.getElementById('genre').value,
+        document.getElementById('hint').value,
+        document.getElementById('isPublic').checked,
+        document.getElementById('option1').value,
+        document.getElementById('option2').value,
+        document.getElementById('option3').value);
 }
 
 /**
@@ -26,7 +41,7 @@ function testing(){
  * @param username the UID
  * @param email the email of the user
  */
-function createUserQUERY(username, email){
+function createUserQUERY(username, email) {
     var query = users.add({
         username: username,
         email: email,
@@ -48,12 +63,12 @@ function createUserQUERY(username, email){
  * @param groupName name of the group
  * @param groupOwnerUsername the ownser UID
  */
-function createGroupQUERY(groupName, groupOwnerUsername){
+function createGroupQUERY(groupName, groupOwnerUsername) {
     var query = groups.add({
         groupName: groupName,
         groupOwner: users.doc(groupOwnerUsername),
         members: []
-    }).then(function(e){
+    }).then(function (e) {
         // This transaction makes possible the update in the list of the user.
         var transaction = firestore.runTransaction(t => {
             return t.get(users.doc(groupOwnerUsername))
@@ -78,70 +93,47 @@ function createGroupQUERY(groupName, groupOwnerUsername){
  * @param artist the artist of the song
  * @param genre the genre of the song
  * @param hint optional hint for the challenge
- * @param creator the creator of the challenge UID
  * @param isPublic boolean value if the challenge would be shared publicly
  * @param option1 wrong option for challenge
  * @param option2 wrong option for challenge
  * @param option3 wrong option for challenge
  */
-
-function trying(){
-    createChallengeQUERY(
-        document.getElementById('url').value,
-        document.getElementById('answer').value,
-        document.getElementById('artist').value,
-        document.getElementById('genre').value,
-        document.getElementById('hint').value,
-        true,
-        document.getElementById('option1').value,
-        document.getElementById('option2').value,
-        document.getElementById('option3').value);
-}
-
-
-// createChallengeQUERY(document.getElementById('url').value,
-//     document.getElementById('answer').value,
-//     document.getElementById('artist').value,
-//     document.getElementById('genre').value,
-//     document.getElementById('hint').value,
-//     'username',
-//     true,
-//     document.getElementById('option1').value,
-//     document.getElementById('option2').value,
-//     document.getElementById('option3').value)
-
-function enableHint() {
-    document.getElementById("hint").hidden = hintVisibility;
-    document.getElementById("hintname").hidden = hintVisibility;
-    hintVisibility = !hintVisibility;
-
-}
-function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, option1, option2, option3){
-    if (URL == "" || songname == "" || artist=="" || genre=="" || option1=="" || option2=="" || option3=="") {
+function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, option1, option2, option3) {
+    console.log(URL, songname, artist, genre, hint, isPublic, option1, option2, option3);
+    if (URL == "" || songname == "" || artist == "" || genre == "") {
         window.alert("The challenge cannot be created becuase of missing data");
         return;
     }
 
-    if(!(URL.includes("https://www.youtube.com/watch?v="))) {
+    if (hintVisibility && hint == "") {
+        window.alert("You should specify a hint otherwise you can uncheck it");
+        return;
+    }
+
+    if(optionVisibility){
+        if(option1 == "" || option2 == "" || option3 == ""){
+        window.alert("You are missing options! You can always uncheck the options and let us do it for you");
+        return;
+        }
+
+        var op1 = option1.toLowerCase();
+        var op2 = option2.toLowerCase();
+        var op3 = option3.toLowerCase();
+        var answer = songname.toLowerCase();
+        if (op1 == op2 || op1 == op3 || op2 == op3 || answer == op1 || answer == op2 || answer == op3) {
+            window.alert("There are similar options, please use different options or use free from if you are out of ideas.");
+            return;
+        }
+    }
+
+    if (!(URL.includes("https://www.youtube.com/watch?v="))) {
         window.alert("The URL tou are trying to insert is not valid.");
         return;
     }
 
-    console.log(URL);
-    var op1 = option1.toLowerCase();
-    var op2 = option2.toLowerCase();
-    var op3 = option3.toLowerCase();
-    var answer = songname.toLowerCase();
-
-    if(op1 == op2 || op1 == op3 || op2 == op3 || answer == op1 || answer == op2 || answer == op3){
-        window.alert("There are similar options, please use different options or use free from if you are out of ideas.");
-        return;
-    }
-
-//|| option2.toLowerCase()== option3.toLowerCase() || option1.toLowerCase()== option3.toLowerCase() || option1.toLowerCase()== songname.toLowerCase() || option2.toLowerCase()== songname.toLowerCase() || option3.toLowerCase()== songname.toLowerCase()) {
+    return;
 
 
-    console.log("Hello");
     var query = challenges.add({
         youtubeAPIid: URL,
         song: songname,
@@ -152,7 +144,7 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
         rightlyAnswered: 0,
         isPublic: isPublic,
         options: [option1, option2, option3],
-        creator: users.doc(creator),
+        creator: users.doc(firebase.auth().currentUser.uid),
         date: new Date()
     }).then(function (e) {
         console.log(e);
@@ -176,10 +168,10 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
  * Get user by Username
  * @param username the user username
  */
-function getUserbyUsernameQUERY(username){
+function getUserbyUsernameQUERY(username) {
     var query = users.where("username", "==", username);
-    query.get().then(function(results) {
-        if(results.empty) {
+    query.get().then(function (results) {
+        if (results.empty) {
             console.log("No documents found!");
         } else {
             var user;
@@ -193,7 +185,7 @@ function getUserbyUsernameQUERY(username){
             // or if you only want the first result you can also do something like this:
             //console.log("Document data:", results.docs[0].data());
         }
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log("Error getting documents:", error);
     });
 
@@ -203,10 +195,10 @@ function getUserbyUsernameQUERY(username){
  * Get user by Email
  * @param email the user email
  */
-function getUserbyEmailQUERY(email){
+function getUserbyEmailQUERY(email) {
     var query = users.where("email", "==", email);
-    query.get().then(function(results) {
-        if(results.empty) {
+    query.get().then(function (results) {
+        if (results.empty) {
             console.log("No documents found!");
         } else {
             // go through all results
@@ -217,7 +209,7 @@ function getUserbyEmailQUERY(email){
             // or if you only want the first result you can also do something like this:
             //console.log("Document data:", results.docs[0].data());
         }
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log("Error getting documents:", error);
     });
 }
@@ -227,7 +219,7 @@ function getUserbyEmailQUERY(email){
  * @param username user UID
  * @param contactUsername contact UID
  */
-function addContact(username, contactUsername){
+function addContact(username, contactUsername) {
     var transaction = firestore.runTransaction(t => {
         return t.get(users.doc(username))
             .then(doc => {
@@ -247,7 +239,7 @@ function addContact(username, contactUsername){
  * @param username user to add UID
  * @param groupID ID of the group
  */
-function addToGroup(username, groupID){
+function addToGroup(username, groupID) {
     // Add member to
     var transaction = firestore.runTransaction(t => {
         return t.get(groups.doc(groupID))
@@ -276,10 +268,10 @@ function addToGroup(username, groupID){
     });
 }
 
-function getUserChallengesQUERY(username){
+function getUserChallengesQUERY(username) {
     var query = users.ownChallenges;
-    query.get().then(function(results) {
-        if(results.empty) {
+    query.get().then(function (results) {
+        if (results.empty) {
             console.log("No documents found!");
         } else {
             // go through all results
@@ -290,14 +282,15 @@ function getUserChallengesQUERY(username){
             // or if you only want the first result you can also do something like this:
             //console.log("Document data:", results.docs[0].data());
         }
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log("Error getting documents:", error);
     });
 }
-function getUserGroupsQUERY(username){
+
+function getUserGroupsQUERY(username) {
     var query = users.belongsToGroup;
-    query.get().then(function(results) {
-        if(results.empty) {
+    query.get().then(function (results) {
+        if (results.empty) {
             console.log("No documents found!");
         } else {
             // go through all results
@@ -308,14 +301,15 @@ function getUserGroupsQUERY(username){
             // or if you only want the first result you can also do something like this:
             //console.log("Document data:", results.docs[0].data());
         }
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log("Error getting documents:", error);
     });
 }
+
 function getUserAssignedChallenges(username) {
     var query = users.assignedChallenges;
-    query.get().then(function(results) {
-        if(results.empty) {
+    query.get().then(function (results) {
+        if (results.empty) {
             console.log("No documents found!");
         } else {
             // go through all results
@@ -326,7 +320,7 @@ function getUserAssignedChallenges(username) {
             // or if you only want the first result you can also do something like this:
             //console.log("Document data:", results.docs[0].data());
         }
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log("Error getting documents:", error);
     });
 }
