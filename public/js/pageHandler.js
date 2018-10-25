@@ -48,3 +48,4 @@ function signOut(){ //Calls the firebase signout method
     });
 
 }
+
