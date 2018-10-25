@@ -290,3 +290,31 @@
 [debug] [2018-10-22T23:41:33.932Z] <<< HTTP RESPONSE 200
 [info] i  hosting[kitomake]: Serving hosting files from: public
 [info] ✔  hosting[kitomake]: Local server: http://localhost:5000
+[debug] [2018-10-24T21:22:47.081Z] ----------------------------------------------------------------------
+[debug] [2018-10-24T21:22:47.083Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-10-24T21:22:47.083Z] CLI Version:   4.2.1
+[debug] [2018-10-24T21:22:47.083Z] Platform:      darwin
+[debug] [2018-10-24T21:22:47.083Z] Node Version:  v10.10.0
+[debug] [2018-10-24T21:22:47.087Z] Time:          Wed Oct 24 2018 14:22:47 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-10-24T21:22:47.087Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-24T21:22:47.115Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-24T21:22:47.116Z] > authorizing via signed-in user
+[debug] [2018-10-24T21:22:47.118Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-10-24T21:22:47.119Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-10-24T21:22:47.259Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-24T21:22:47.277Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/kitomake  
+ 
+[debug] [2018-10-24T21:22:47.650Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-24T21:22:47.651Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/kitomake  
+ 
+[debug] [2018-10-24T21:22:47.929Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/subedik/Desktop/quizmic'...
+[info] 
+[debug] [2018-10-24T21:22:47.931Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/425008773756/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-24T21:22:48.182Z] <<< HTTP RESPONSE 200
+[info] i  hosting[kitomake]: Serving hosting files from: public
+[info] ✔  hosting[kitomake]: Local server: http://localhost:5000
