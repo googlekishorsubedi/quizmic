@@ -16,9 +16,14 @@ function registerUser(name, uid, email)
 {
     firestore.collection("users").doc(uid).set({
         emailaddress: email,
-        username: name
-    }).then(function(){
+        username: name,
+        score: 0,
+        challengesPlayed: 0,
+        contactList: [],
+        ownChallenges: [],
 
+    }).then(function(){
+        firestore.collection("users").doc(uid).collection("assignedChallenges").add({})
     }).catch(function(error){
         alert(error);
     });
