@@ -12,27 +12,28 @@ function loginWithGoogle(){
     });
 }
 
-function forgotPassword()
-{
-    document.location.href = "../html/forgotPassword.html";
-}
-
 function registerUser(name, uid, email)
 {
     firestore.collection("users").doc(uid).set({
         emailaddress: email,
-        username: name,
-        score: 0,
-        challengesPlayed: 0,
-        contactList: [],
-        ownChallenges: [],
-
+        username: name
     }).then(function(){
-        firestore.collection("users").doc(uid).collection("assignedChallenges").add({})
+
     }).catch(function(error){
         alert(error);
     });
 
+}
+
+function forgotPassword(){
+    var emailAddress = document.getElementById("forgotEmailAddress").value;
+    firebase.auth().sendPasswordResetEmail(emailAddress).then(function() {
+        // Email sent.
+        alert("A reset email has been sent to your email.");
+      }).catch(function(error) {
+        // An error happened.
+        alert("Couldn't reset. This might occur if the email address is invalid");
+      });
 }
 
 function registerUsername(username, email){
