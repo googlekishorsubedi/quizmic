@@ -1,13 +1,18 @@
 
 body{
-background: #d5c4b3ff !important;
+/* background: #d5c4b3ff !important; */
+background-color: #eec09f !important;
 }
 #logo{
+  margin-left: 20px;
 height:70px;
 }
+
 #navcolor
 {
   background: #fefff9ff !important;
+  /* background-color: #d7dce3 !important; */
+  /* background-color: white !important; */
   height: 80px;
 }
 #dropdrown
@@ -15,9 +20,10 @@ height:70px;
   background: #fefff9ff !important;
 }
 #profilepic
-{
-  border-radius: 60%;
-  height:20% !important;
+{margin-top: 20px !important;
+  width:180px !important;
+  border-radius: 20% !important;
+  height:180px !important;
 }
 /* this is the individual code for each of the buttons on the dash button holder */
 .SignOut{
@@ -27,32 +33,43 @@ height:70px;
 
 }
 .createbutton{
-  font-family: 'Pacifico', cursive;
-  font-size: 25px !important;
-  color: #88B0C2 !important;
+  /* font-family: 'Open Sans Condensed', sans-serif; */
+  /* font-family: 'Mali', cursive !important; */
+  /* font-family: 'Pacifico', cursive; */
+  height:70px !important;
+  width: 70px !important;
+  margin-top: 0px !important;
+  margin-bottom: 15px!important;
+  font-size: 35px !important;
+  color: #113F60 !important;
   text-align: center !important;
-  margin-left: 550px;
+  margin-left: 250px;
 
 }
 .playbutton{
+  height:75px;
+  width: 75px;
+
+  /* font-family: 'Open Sans Condensed', sans-serif; */
   font-family: 'Pacifico', cursive;
-  font-size: 25px !important;
-  color: #88B0C2 !important;
-  margin-top: 50px !important;
-  margin-left: 200px;
+  font-size: 35px !important;
+  color: #113F60 !important;
+  margin-top: 5px !important;
+  margin-left: 270px;
 }
 
 #aboutus
 {
-  font-family: 'Pacifico', cursive;
-  font-size: 25px;
+  /* font-family: 'Pacifico', cursive; */
+  font-size: 8px;
   margin-left: 550px;
-  color: #88B0C2;
+  /* color: #88B0C2; */
   text-align: center
 }
+
 /* This is the code for the box that contains the rest of the content below the
 dash buttons */
-#dashmain{
+/* #dashmain{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -65,7 +82,7 @@ dash buttons */
   background: yellow;
   width: 90%;
   height: 85%;
-}
+} */
 
 /* This is the box that holds the quick play field and the quick make field
 to make a challenge auto generatively. */

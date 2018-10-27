@@ -1,65 +1,110 @@
+.createinputs{
+  width: 400px;
+  height: 50px;
+}
 
-/* This is the code for the green box that surrounds all of the styling boxes
-in the center of the browser window. */
-/* .dashbox{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  /* transform: translate(-50%, -50%);
-  background: #00ffab;
-  height: 90vh;
-  width: 90vw; */
-/* }
+.inputtext{
+  text-align: center;
+  /* font-family: 'Pacifico', cursive; */
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  color: #88B0C2;
+  margin-top: 20px;
+}
 
-/* This is the code for the top portion that has the buttons to go to the other
-webpages */
-/* .dashbuttonholder{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
+.options{
+  font-family: 'Pacifico', cursive;
+  font-size: 20px;
+  color: #88B0C2;
+  margin-top: 20px;
+  display: inline;
+}
+
+.optionsinputbox{
+margin-top: 10px !important;
+}
+
+.genrebox{
+background-color: white !important;
+margin-bottom: 20px;
+}
+#elaboxnav{
+  width: 95%;
   height: 10%;
-  width: 90%;
-  background: tomato;
-  position: fixed;
-  left: 50%;
-  top: 1%;
-  transform:  translate(-50%, -1%);
-} */
 
-/* this is the individual code for each of the buttons on the dash button holder */
-/* .dashbuttons{
-  height: 90%;
-  width: 10%;
-} */
-
-
-/* This is the code for the box that contains the rest of the content below the
-dash buttons */
-/* #dashmain{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+}
 
-  position: fixed;
-  left: 50%;
-  top: 80%;
-  transform: translate(-50%, -80%);
-  background: yellow;
-  width: 90%;
-  height: 85%;
-} */
+#hintname{
+  /* font-family: 'Pacifico', cursive; */
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  color: #88B0C2;
+}
+#hint{
+  height: 30px;
+  width: 400px;
+}
 
+#listofchallenges{
+  width: 95%;
+  height: 70%;
+  background: blue;
+}
+
+ #dropboxforfriends{
+  width: 95%;
+  height: 10%;
+  background: blue;
+}
+
+#genre{
+  height: 40px;
+text-align: center;
+  width: 400px;
+}
+option{
+
+  background-color: white !important;
+
+}
 #createbox{
+  border-radius: 15%;
   margin-top: 80px;
   background: #fefff9ff;
-  height: 600px;
+  /* background-color: white; */
+  height: 1000px;
+  border: 1px solid yellow;
+
 
 }
 
+#createchallengebutton
+{
+  width: 70px;
+  border-color: rgb(166, 166, 166);
+  background-color: rgb(248, 248, 248);
+  border-radius: 20%;
+  width: 100px;
+  padding-left: 20%;
+}
+
+#createchallengerow{
+text-align: center;
+}
+
+#createchallengeheader{
+  text-align: center;
+  margin-left: 35px;
+  font-family: 'Pacifico', cursive;
+
+  font-size: 35px;
+  color: #88B0C2;
+  margin-top: 50px;
+}
 section{
   float: left;
   width: 75%;
@@ -71,53 +116,64 @@ aside{
   margin-top: 80px;
   padding-right: 50px;
 }
-/* #elachallengebox{
-  width: 45%;
-  height: 95%;
-  background: red;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-} */
+.listofchallenges{
+  border: 1px solid yellow;
+  border-radius: 15%;
+  margin-top: 25%;
+  background: #fefff9ff;
+  /* background-color: white; */
+  height: 500px;
+}
 
-/* #createchallengeform{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 85%;
-  width: 95%;
-  background: blue;
-} */
-/* .straightinputs{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+.listofchallengescol1{
+  text-align: center;
+  margin-bottom: 10px;
+  width:50%;
+}
 
-  background: yellow;
-} */
+.listofchallengescol2{
+  margin-bottom: 10px;
+  text-align: left;
 
-/* #elaboxnav{
-  width: 95%;
-  height: 10%;
+}
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-} */
+#editbutton{
+  text-align: center;
+  /* font-family: 'Pacifico', cursive; */
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  color: #88B0C2;
+  /* margin-top: 20px; */
+  width: 50%;
+  background-color: white;
+  border-color: white;
+}
 
-/* #listofchallenges{
-  width: 95%;
-  height: 70%;
-  background: blue;
-} */
+#assignbutton{
+  text-align: center;
+  /* font-family: 'Pacifico', cursive; */
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  color: #88B0C2;
+  /* margin-top: 20px; */
+  width: 50%;
+  background-color: white;
+  border-color: white;
+}
 
-/* #dropboxforfriends{
-  width: 95%;
-  height: 10%;
-  background: blue;
-} */
+.listofchallengestitl{
+  width: 500px;
+  height: 70px;
+  margin-top: 10px;
+  text-align: center!important;
+  font-family: 'Pacifico', cursive !important;
+  /* font-family: 'Open Sans Condensed', sans-serif; */
+  font-size: 20px;
+  color: #88B0C2;
+}
+
+#indivualchallenges{
+  width: 500px;
+  height: 350px;
+}
