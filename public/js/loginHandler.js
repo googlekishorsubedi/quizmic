@@ -94,7 +94,7 @@ function loginwithEmail(email, password)
         //get request for challenge/user/ objects
         var user = firebase.auth().currentUser;
         console.log(user.uid);
-
+        sessionStorage.setItem("userID", user.uid);
         document.location.href = "../html/dashboard.html";
         // Sign-out successful.
     }).catch(function(error) {

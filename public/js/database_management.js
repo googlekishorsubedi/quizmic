@@ -80,18 +80,18 @@ function createGroupQUERY(groupName, groupOwnerUsername) {
  */
 function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, option1, option2, option3) {
     console.log(URL, songname, artist, genre, hint, isPublic, option1, option2, option3);
-    if (URL == "" || songname == "" || artist == "" || genre == "") {
+    if (URL === "" || songname === "" || artist === "" || genre === "") {
         window.alert("The challenge cannot be created becuase of missing data");
         return;
     }
 
-    if (hintVisibility && hint == "") {
+    if (hintVisibility && hint === "") {
         window.alert("You should specify a hint otherwise you can uncheck it");
         return;
     }
 
     if(optionVisibility){
-        if(option1 == "" || option2 == "" || option3 == ""){
+        if(option1 === "" || option2 === "" || option3 === ""){
         window.alert("You are missing options! You can always uncheck the options and let us do it for you");
         return;
         }
@@ -100,7 +100,7 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
         var op2 = option2.toLowerCase();
         var op3 = option3.toLowerCase();
         var answer = songname.toLowerCase();
-        if (op1 == op2 || op1 == op3 || op2 == op3 || answer == op1 || answer == op2 || answer == op3) {
+        if (op1 === op2 || op1 === op3 || op2 === op3 || answer === op1 || answer === op2 || answer === op3) {
             window.alert("There are similar options, please use different options or use free from if you are out of ideas.");
             return;
         }
@@ -248,14 +248,15 @@ function addToGroup(username, groupID) {
 }
 
 function getUserChallengesQUERY() {
-    var query = users.doc(firebase.auth().currentUser.uid);
+    var user = sessionStorage.getItem("userID");
+    var query = users.doc(user);
     var ownChallengesIDs= [];
     query.get().then(function (results) {
         if(results.exists){
             var ownChallenges = results.data().ownChallenges;
 
             ownChallenges.forEach(function (doc) {
-                ownChallengesIDs.add(doc.id)
+                ownChallengesIDs.push(doc.id)
             });
         }
         else
@@ -263,29 +264,34 @@ function getUserChallengesQUERY() {
 
         challengesArray = [];
         ownChallengesIDs.forEach(function(e){
-            challengesArray.push(getChallengeByidQUERY(e))
-    }).catch(function (error) {
-        console.log("Error getting documents:", error);
-    });
+            var query = challenges.doc(e);
+            query.get().then(function (results) {
+                if(results.exists){
+                    var info = results.data();
+                    var challen = Challenge(info.youtubeAPIid, info.song, info.artist, info.genre, info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator)
+                    challengesArray.push(challen);
+                    var div = document.createElement("div");
+                    var challengeButton = document.createElement("button");
+                    var challengeEditButton = document.createElement("button");
+                    challengeButton.innerText= e;
+                    challengeEditButton.innerText= "EDIT";
+                    div.appendChild(challengeButton);
+                    div.appendChild(challengeEditButton);
+                    document.getElementById("listofchallenges").appendChild(div);
+                }
+                else
+                    console.log("No challenge was found with that ID!");
 
-    })
+            }).catch(function (error) {
+                console.log("Error getting challenge ID:", error);
+            });
+        });
+    }).catch(function (error) {
+        console.log("Error getting user owned challenges:", error);
+    });
 }
 
-function getChallengeByidQUERY(challengeID){
-    var query = challenges.doc(challengeID);
-    query.get().then(function (results) {
-        if(results.exists){
-            var info = results.data();
-            var challenge = Challenge(info.youtubeAPIid, info.song, info.artist, info.genre, info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator)
-            return challenge;
-        }
-        else
-            console.log("No documents found!");
 
-    }).catch(function (error) {
-        console.log("Error getting documents:", error);
-    });
-}
 
 function getUserGroupsQUERY(username) {
     var query = users.belongsToGroup;
