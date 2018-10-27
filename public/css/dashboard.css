@@ -36,26 +36,26 @@ height:70px;
   /* font-family: 'Open Sans Condensed', sans-serif; */
   /* font-family: 'Mali', cursive !important; */
   /* font-family: 'Pacifico', cursive; */
-  height:70px !important;
-  width: 70px !important;
+  height:65px !important;
+  width: 65px !important;
   margin-top: 0px !important;
   margin-bottom: 15px!important;
   font-size: 35px !important;
   color: #113F60 !important;
   text-align: center !important;
-  margin-left: 250px;
+  margin-left: 250px !important;
 
 }
 .playbutton{
-  height:75px;
-  width: 75px;
+  height:70px;
+  width: 70px;
 
   /* font-family: 'Open Sans Condensed', sans-serif; */
   font-family: 'Pacifico', cursive;
   font-size: 35px !important;
   color: #113F60 !important;
   margin-top: 5px !important;
-  margin-left: 270px;
+  margin-left: 320px !important;
 }
 
 #aboutus
