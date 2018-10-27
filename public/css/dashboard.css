@@ -49,14 +49,14 @@ height:70px;
 
 }
 .playbutton{
-  height:70px;
-  width: 70px;
+  height:70px !important;
+  width: 70px !important;
   /* font-family: 'Open Sans Condensed', sans-serif; */
   font-family: 'Pacifico', cursive;
   font-size: 35px !important;
   color: #113F60 !important;
   margin-top: 5px !important;
-  margin-left: 200px !important;
+  margin-left: 280px !important;
 }
 
 #aboutus
