@@ -21,22 +21,27 @@ function createDiv(assigned, artist, points){
   var div = document.createElement("div");
   div.className = "nodebuddyholder";
 
-  var assignedBy = document.createElement("p");
-  assignedBy.className = "creatorUsername";
+  var challengeName = document.createElement("p");
+  challengeName.className = "challengeName";
 
-  var artistBy = document.createElement("p");
-  artistBy.className = "artist";
+  var assignButton = document.createElement("button");
+  assignbutton.className = "assignButton";
 
-  var pointsBy = document.createElement("p");
-  pointsBy.className = "points";
+  var editButton = document.createElement("button");
+  editButton.className = "editButton";
 
-  assignedBy.innerHTML = assigned + " ";
-  artistBy.innerHTML = artist + " ";
-  pointsBy.innerHTML = points + " ";
+  var deleteButton = document.createElement("button");
+  deleteButton.className = "deleteButton"
 
-  div.appendChild(assignedBy);
-  div.appendChild(artistBy);
-  div.appendChild(pointsBy);
+  challengeName.innerHTML = assigned + " ";
+  assignButton.innerHTML = "Assign";
+  editButton.innerHTML = "Edit";
+  deleteButton.innerHTML = "Delete";
+
+  div.appendChild(challengeName);
+  div.appendChild(assignButton);
+  div.appendChild(editButton);
+  div.appendChild(deleteButton);
 
   return div;
 }

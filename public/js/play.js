@@ -36,18 +36,18 @@ function createDiv(assigned, artist, points){
   var assignedBy = document.createElement("p");
   assignedBy.className = "creatorUsername";
 
-  var artistBy = document.createElement("p");
-  artistBy.className = "artist";
+  var challengeName = document.createElement("p");
+  challengeName.className = "challengeName";
 
   var pointsBy = document.createElement("p");
   pointsBy.className = "points";
 
-  assignedBy.innerHTML = assigned + "fdfd f ";
-  artistBy.innerHTML = artist + "fdsfs ";
-  pointsBy.innerHTML = points + "sdfdsf ";
+  assignedBy.innerHTML = assigned + "";
+  challengeName.innerHTML = "Challenge Name";
+  pointsBy.innerHTML = points + "";
 
   div.appendChild(assignedBy);
-  div.appendChild(artistBy);
+  div.appendChild(challengeName);
   div.appendChild(pointsBy);
 
   return div;
