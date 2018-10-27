@@ -63,7 +63,7 @@ margin-bottom: 20px;
 
 #genre{
   height: 40px;
-text-align: center;
+  text-align: center;
   width: 400px;
 }
 option{
@@ -145,7 +145,8 @@ aside{
   font-size: 20px;
   color: #88B0C2;
   /* margin-top: 20px; */
-  width: 50%;
+  /* width: 50%; */
+  margin-left: 100px;
   background-color: white;
   border-color: white;
 }
@@ -176,6 +177,7 @@ aside{
 #indivualchallenges{
   width: 500px;
   height: 350px;
+    color: #88B0C2;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -183,8 +185,13 @@ aside{
 }
 
 .nodebuddyholder{
-  width: 90%;
-  background: purple;
+  /* border-color: rgb(166, 166, 166) !important; */
+  border-color:#d7dce3 !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 20px;
+  border: 1px solid;
+  width: 300px;
+  background: white;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -194,4 +201,5 @@ aside{
 .nodebuddy{
   color: white;
   font-size: 20px;
+
 }
