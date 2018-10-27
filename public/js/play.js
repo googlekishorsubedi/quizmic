@@ -10,7 +10,7 @@ function playMain(){
   // more than likely however it will be returned in an array.
 
   // Change the value of length to change how many question nodes are shown.
-  var length = 7;
+  var length = 4;
 
   for(var i = 0; i < length; i++){
     var dataHolder = fakeDataQuery(i);
@@ -42,9 +42,9 @@ function createDiv(assigned, artist, points){
   var pointsBy = document.createElement("p");
   pointsBy.className = "points";
 
-  assignedBy.innerHTML = assigned + " ";
-  artistBy.innerHTML = artist + " ";
-  pointsBy.innerHTML = points + " ";
+  assignedBy.innerHTML = assigned + "fdfd f ";
+  artistBy.innerHTML = artist + "fdsfs ";
+  pointsBy.innerHTML = points + "sdfdsf ";
 
   div.appendChild(assignedBy);
   div.appendChild(artistBy);
