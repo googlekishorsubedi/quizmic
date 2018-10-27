@@ -78,3 +78,17 @@ dash buttons */
 #bypersonallyassigned{
 
 }
+
+.nodebuddyholder{
+  width: 90%;
+  background: purple;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nodebuddy{
+  color: white;
+  font-size: 20px;
+}
