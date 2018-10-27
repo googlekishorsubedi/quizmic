@@ -12,6 +12,7 @@ function loginWithGoogle(){
     });
 }
 
+
 function forgotPassword()
 {
     document.location.href = "../html/forgotPassword.html";
