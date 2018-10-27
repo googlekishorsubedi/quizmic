@@ -1,68 +1,44 @@
-/* This is the code for the green box that surrounds all of the styling boxes
-in the center of the browser window. */
-.dashbox{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-  background: #00ffab;
-  height: 90vh;
-  width: 90vw;
+.leftsidebox1{
+  margin-top: 20px;
+  margin-left: 200px;
+  width: 500px;
+  height: 400px;
+  border-radius: 25%;
+  background: #fefff9ff;
+  text-align: center;
 }
 
-/* This is the code for the top portion that has the buttons to go to the other
-webpages */
-.dashbuttonholder{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 10%;
-  width: 90%;
-  background: tomato;
-  position: fixed;
-  left: 50%;
-  top: 1%;
-  transform:  translate(-50%, -1%);
+.leftsidebox2{
+  margin-top: 20px;
+  margin-left: 200px;
+  width: 500px;
+  height: 400px;
+  border-radius: 25%;
+  background: #fefff9ff;
+  text-align: center;
 }
 
-/* this is the individual code for each of the buttons on the dash button holder */
-.dashbuttons{
-  height: 90%;
-  width: 10%;
+.rightsidebox1{
+  margin-top: 20px;
+  margin-right: 200px;
+  width: 500px;
+  height: 400px;
+  border-radius: 25%;
+  background: #fefff9ff;
+  text-align: center;
+
 }
 
+.rightsidebox2{
+  margin-top: 20px;
+  margin-right: 200px;
+  width: 500px;
+  height: 400px;
+  border-radius: 25%;
+  background: #fefff9ff;
+  text-align: center;
 
-/* This is the code for the box that contains the rest of the content below the
-dash buttons */
-#dashmain{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-
-  position: fixed;
-  left: 50%;
-  top: 80%;
-  transform: translate(-50%, -80%);
-  background: yellow;
-  width: 90%;
-  height: 85%;
 }
-
-.challengelists{
-  width: 20%;
-  height: 95%;
-  background: red;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 #bygenre{
 
 }
@@ -77,4 +53,21 @@ dash buttons */
 
 #bypersonallyassigned{
 
+}
+
+section{
+  float: left;
+}
+
+aside{
+  float: right;
+
+}
+
+.categorytext
+{
+text-align: center;
+font-family: 'Open Sans Condensed', sans-serif;
+font-size: 50px;
+color: #88B0C2;
 }

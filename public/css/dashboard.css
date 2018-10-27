@@ -18,7 +18,9 @@ height:70px;
 #dropdrown
 {
   background: #fefff9ff !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
 }
+
 #profilepic
 {margin-top: 20px !important;
   width:180px !important;

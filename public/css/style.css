@@ -1,5 +1,6 @@
 body {
-  background: url("../images/albums1.jpg") no-repeat;
+  /* background: url("../images/albums1.jpg") no-repeat; */
+  background-color: #eec09f !important;
   background-size: cover;
 }
 
@@ -10,6 +11,10 @@ body::after
 .border
 {
 border:1px solid black;
+}
+
+#forgotPassword{
+font-family: 'Open Sans Condensed', sans-serif !important;
 }
 #middlesection
 {
@@ -119,13 +124,16 @@ background: #CDCDCD;
 
 }
 #submit{
-  border: 1px solid #999999;
+  color: #88B0C2;
+  /* border: 1px solid #999999; */
+  border: #fefff9ff;
   width: inherit;
   padding-top: 10px;
-  background: #93c47dff;
+  background: white;
   height: 50px;
   font-size: 20px;
   font-family: 'Pacifico', cursive;
+
   text-align:center;
 }
 .socialsize
@@ -141,6 +149,8 @@ background: #CDCDCD;
 .nav-item {
   width: 50%;
   font-family: 'Pacifico', cursive;
+  /* font-family: 'Open Sans Condensed', sans-serif; */
+  color: #88B0C2 !important;
   font-size: 25px;
 }
 .input-field {
