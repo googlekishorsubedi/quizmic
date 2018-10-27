@@ -17,32 +17,28 @@ function forgotPassword()
     document.location.href = "../html/forgotPassword.html";
 }
 
-function registerUser(name, uid, email)
-{
-    firestore.collection("users").doc(uid).set({
-        emailaddress: email,
-        username: name,
+/**
+ * Create a User
+ * @param username the UID
+ * @param email the email of the user
+ * @param uid the uid assigned by firebase to the user.
+ */
+function createUserQUERY(username, uid, email) {
+    var query = users.doc(uid).set({
+        username: username,
+        email: email,
         score: 0,
-        challengesPlayed: 0,
-        contactList: [],
         ownChallenges: [],
-
-    }).then(function(){
-        firestore.collection("users").doc(uid).collection("assignedChallenges").add({})
-    }).catch(function(error){
-        alert(error);
-    });
-
-}
-
-function registerUsername(username, email){
-    firestore.collection("username").doc(username).set({
-        emailaddress: email
-    }).then(function(){
+        contactList: [],
+        belongsToGroup: [],
+        challengesPlayed: 0
+    }).then(function () {
+        // Creates the reference in the username table
+        this.username.doc(username).set({emailadress: email});
+        // Add the assigned collection to the user.
+        users.doc(uid).collection("assignedChallenges").add({});
         document.location.href = "../html/dashboard.html";
-    }).catch(function(error){
-        alert(error);
-    });
+    })
 }
 
 function createNewUser(username, email, password)
@@ -64,8 +60,8 @@ function createNewUser(username, email, password)
                 var user = firebase.auth().currentUser;
                 console.log('Calling register now');
                 console.log(user);
-                registerUser(username, user.uid, email);
-                registerUsername(username, email);
+                createUserQUERY(username, user.uid, email);
+                //registerUsername(username, email);
 
             }).catch(function(error) {
                 console.log("Error signing up");
@@ -82,9 +78,7 @@ function createNewUser(username, email, password)
                 else{
                     alert(errorCode);
                 }
-                // ...
             });
-            // doc.data() will be undefined in this case
 
         }
     }).catch(function(error) {

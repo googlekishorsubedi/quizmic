@@ -36,27 +36,7 @@ function trying() {
         document.getElementById('option3').value);
 }
 
-/**
- * Create a User
- * @param username the UID
- * @param email the email of the user
- */
-function createUserQUERY(username, email) {
-    var query = users.add({
-        username: username,
-        email: email,
-        score: 0,
-        ownChallenges: [],
-        contactList: [],
-        belongsToGroup: [],
-        challengesPlayed: 0
-    }).then(function (e) {
-        // Creates the reference in the username table
-        this.username.doc(username).set({emailadress: email});
-        // Add the assigned collection to the user.
-        users.doc(e.id).collection("assignedChallenges").add({})
-    })
-}
+
 
 /**
  * Creates a group
@@ -132,6 +112,7 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
     }
 
  var creator = firebase.auth().currentUser.uid;
+    console.log(creator);
     var query = challenges.add({
         youtubeAPIid: URL,
         song: songname,
@@ -266,20 +247,41 @@ function addToGroup(username, groupID) {
     });
 }
 
-function getUserChallengesQUERY(username) {
-    var query = users.ownChallenges;
+function getUserChallengesQUERY() {
+    var query = users.doc(firebase.auth().currentUser.uid);
+    var ownChallengesIDs= [];
     query.get().then(function (results) {
-        if (results.empty) {
-            console.log("No documents found!");
-        } else {
-            // go through all results
-            results.forEach(function (doc) {
-                console.log("Document data:", doc.data());
-            });
+        if(results.exists){
+            var ownChallenges = results.data().ownChallenges;
 
-            // or if you only want the first result you can also do something like this:
-            //console.log("Document data:", results.docs[0].data());
+            ownChallenges.forEach(function (doc) {
+                ownChallengesIDs.add(doc.id)
+            });
         }
+        else
+            console.log("No documents found!");
+
+        challengesArray = [];
+        ownChallengesIDs.forEach(function(e){
+            challengesArray.push(getChallengeByidQUERY(e))
+    }).catch(function (error) {
+        console.log("Error getting documents:", error);
+    });
+
+    })
+}
+
+function getChallengeByidQUERY(challengeID){
+    var query = challenges.doc(challengeID);
+    query.get().then(function (results) {
+        if(results.exists){
+            var info = results.data();
+            var challenge = Challenge(info.youtubeAPIid, info.song, info.artist, info.genre, info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator)
+            return challenge;
+        }
+        else
+            console.log("No documents found!");
+
     }).catch(function (error) {
         console.log("Error getting documents:", error);
     });
