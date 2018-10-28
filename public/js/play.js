@@ -1,4 +1,3 @@
-
 //This is the main function called by onload on the play.html
 function playMain(){
   var genre = document.getElementById('bygenre');
@@ -58,4 +57,23 @@ function createDiv(assigned, artist, points){
 //for right now it just has dummy representation
 function fakeDataQuery(howManyResults){
   return ["Assigned by ___", "Artist", "Points"];
+}
+
+// This function is to reveal the challenges when catergory is clicked
+function revealchallenges(id){
+  var challenges = document.getElementById(id).children;
+
+  if (challenges[1].style.display == "none") {
+    challenges[0].style.marginTop = "10px";
+
+    for (var i = 0; i < challenges.length; i++) {
+      challenges[i].style.display = "block";
+    }
+  } else {
+    challenges[0].style.marginTop = "45%";
+
+      for (var i = 1; i < challenges.length; i++) {
+        challenges[i].style.display = "none";
+      }
+  }
 }
