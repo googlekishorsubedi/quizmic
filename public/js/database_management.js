@@ -17,9 +17,9 @@ function enableHint() {
 }
 
 function enableOptions() {
-    document.getElementById("option1").value="";
-    document.getElementById("option2").value="";
-    document.getElementById("option3").value="";
+    document.getElementById("option1").value = "";
+    document.getElementById("option2").value = "";
+    document.getElementById("option3").value = "";
     document.getElementById("options").hidden = optionVisibility;
     optionVisibility = !optionVisibility;
 }
@@ -37,7 +37,76 @@ function trying() {
         document.getElementById('option3').value);
 }
 
+function clearCreateForm() {
+    document.getElementById('url').value = "";
+    document.getElementById('answer').value = "";
+    document.getElementById('artist').value = "";
+    document.getElementById('genre').value = "";
+    document.getElementById('isPublic').checked = false;
+    document.getElementById("option1").value = "";
+    document.getElementById("option2").value = "";
+    document.getElementById("option3").value = "";
+    document.getElementById("options").hidden = true;
+    document.getElementById("hint").value = "";
+    document.getElementById("hint").hidden = true;
+    document.getElementById("hintname").hidden = true;
+}
 
+function createButtonSections(challenge) {
+    console.log(challenge);
+    var div = document.createElement("div");
+    var challengeEditButton = document.createElement("button");
+    var challengeDeleteButton = document.createElement("button");
+    div.innerText = challenge.id;
+    challengeEditButton.innerText = "EDIT";
+    challengeDeleteButton.innerText = "DELETE";
+    challengeDeleteButton.onclick = function () {
+        deleteChallenge(challenge, div, challengeEditButton, challengeDeleteButton);
+    };
+    div.appendChild(challengeDeleteButton);
+    div.appendChild(challengeEditButton);
+    document.getElementById("listofchallenges").appendChild(div);
+}
+
+function deleteChallenge(challenge, div, editButtons, deleteButtons){
+    var confirmation = confirm("Are you sure you want to delete the challenge?");
+    if(confirmation) {
+        var user = sessionStorage.getItem("userID");
+        var transaction = firestore.runTransaction(t => {
+            return t.get(users.doc(user))
+                .then(doc => {
+                    const ownChallenges = doc.data().ownChallenges;
+                    var j = -1;
+                    for (var i = 0; i < ownChallenges.length; i++) {
+                        if (challenge.id === ownChallenges[i].id) {
+                            j = i;
+                            break;
+                        }
+                    }
+                    if (j != -1) {
+                        ownChallenges.splice(j, 1);
+
+                        t.update(users.doc(user), {ownChallenges: ownChallenges});
+
+                        challenges.doc(challenge.id).delete().then(function () {
+                            console.log("Challenge successfully deleted!");
+                            editButtons.remove();
+                            deleteButtons.remove();
+                            div.remove();
+
+                        }).catch(function (error) {
+                            console.error("Error removing challenge: ", error);
+                        });
+                    }
+
+                });
+        }).then(result => {
+            console.log('Transaction success!');
+        }).catch(err => {
+            console.log('Transaction failure:', err);
+        });
+    }
+}
 
 /**
  * Creates a group
@@ -91,10 +160,10 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
         return;
     }
 
-    if(optionVisibility){
-        if(option1 === "" || option2 === "" || option3 === ""){
-        window.alert("You are missing options! You can always uncheck the options and let us do it for you");
-        return;
+    if (optionVisibility) {
+        if (option1 === "" || option2 === "" || option3 === "") {
+            window.alert("You are missing options! You can always uncheck the options and let us do it for you");
+            return;
         }
 
         var op1 = option1.toLowerCase();
@@ -112,7 +181,7 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
         return;
     }
 
- var creator = firebase.auth().currentUser.uid;
+    var creator = firebase.auth().currentUser.uid;
     console.log(creator);
     var query = challenges.add({
         youtubeAPIid: URL,
@@ -152,17 +221,12 @@ function createChallengeQUERY(URL, songname, artist, genre, hint, isPublic, opti
             isPublic: isPublic,
             options: [option1, option2, option3],
             creator: users.doc(creator),
-            date: new Date()
+            date: new Date(),
+            id: e.id
         };
         this.challengesArray.push(challen);
-        var div = document.createElement("div");
-        var challengeButton = document.createElement("button");
-        var challengeEditButton = document.createElement("button");
-        challengeButton.innerText= e.artist;
-        challengeEditButton.innerText= "EDIT";
-        div.appendChild(challengeButton);
-        div.appendChild(challengeEditButton);
-        document.getElementById("listofchallenges").appendChild(div);
+        createButtonSections(challen);
+        clearCreateForm();
 
     })
 }
@@ -272,63 +336,43 @@ function addToGroup(username, groupID) {
 }
 
 function getUserChallengesQUERY() {
-    if (challengesArray.length != 0) {
-        challengesArray.forEach(function (e) {
-        var div = document.createElement("div");
-        var challengeButton = document.createElement("button");
-        var challengeEditButton = document.createElement("button");
-        challengeButton.innerText = e.artist;
-        challengeEditButton.innerText = "EDIT";
-        div.appendChild(challengeButton);
-        div.appendChild(challengeEditButton);
-        document.getElementById("listofchallenges").appendChild(div);
-        })
-    }
-    else {
-        var user = sessionStorage.getItem("userID");
-        var query = users.doc(user);
-        var ownChallengesIDs = [];
-        query.get().then(function (results) {
-            if (results.exists) {
-                var ownChallenges = results.data().ownChallenges;
 
-                ownChallenges.forEach(function (doc) {
-                    ownChallengesIDs.push(doc.id)
-                });
-            }
-            else
-                console.log("No documents found!");
+    var user = sessionStorage.getItem("userID");
+    var query = users.doc(user);
+    var ownChallengesIDs = [];
+    query.get().then(function (results) {
+        if (results.exists) {
+            var ownChallenges = results.data().ownChallenges;
 
-
-            ownChallengesIDs.forEach(function (e) {
-                var query = challenges.doc(e);
-                query.get().then(function (results) {
-                    if (results.exists) {
-                        var info = results.data();
-                        var challen = Challenge(info.youtubeAPIid, info.song, info.artist, info.genre, info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator)
-                        this.challengesArray.push(challen);
-                        var div = document.createElement("div");
-                        var challengeButton = document.createElement("button");
-                        var challengeEditButton = document.createElement("button");
-                        challengeButton.innerText = info.artist;
-                        challengeEditButton.innerText = "EDIT";
-                        div.appendChild(challengeButton);
-                        div.appendChild(challengeEditButton);
-                        document.getElementById("listofchallenges").appendChild(div);
-                    }
-                    else
-                        console.log("No challenge was found with that ID!");
-
-                }).catch(function (error) {
-                    console.log("Error getting challenge ID:", error);
-                });
+            ownChallenges.forEach(function (doc) {
+                ownChallengesIDs.push(doc.id)
             });
-        }).catch(function (error) {
-            console.log("Error getting user owned challenges:", error);
-        });
-    }
-}
+        }
+        else
+            console.log("No documents found!");
 
+
+        ownChallengesIDs.forEach(function (e) {
+            var query = challenges.doc(e);
+            query.get().then(function (results) {
+                if (results.exists) {
+                    var info = results.data();
+                    var challen = Challenge(info.youtubeAPIid, info.song, info.artist, info.genre, info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e)
+                    this.challengesArray.push(challen);
+                    createButtonSections(challen);
+                }
+                else
+                    console.log("No challenge was found with that ID!");
+
+            }).catch(function (error) {
+                console.log("Error getting challenge ID:", error);
+            });
+        });
+    }).catch(function (error) {
+        console.log("Error getting user owned challenges:", error);
+    });
+
+}
 
 
 function getUserGroupsQUERY(username) {

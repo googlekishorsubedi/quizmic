@@ -1,5 +1,5 @@
 
-function Challenge(youtubeID, song, artist, genre, hint, attempted, rightlyAnswered, isPublic, options, date, creator){
+function Challenge(youtubeID, song, artist, genre, hint, attempted, rightlyAnswered, isPublic, options, date, creator, id){
    return {youtubeID: youtubeID,
     song: song,
     artist: artist,
@@ -10,7 +10,8 @@ function Challenge(youtubeID, song, artist, genre, hint, attempted, rightlyAnswe
     isPublic: isPublic,
     options: options,
     creator: creator,
-    date: date}
+    date: date,
+    id: id}
 
 }
 function User(name, username, email, score, challengesPlayed){
