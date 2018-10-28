@@ -1,90 +1,82 @@
-.leftsidebox1{
-  margin-top: 20px;
-  margin-left: 200px;
-  width: 500px;
-  height: 400px;
-  border-radius: 25%;
-  background: #fefff9ff;
-  text-align: center;
-}
-
-.leftsidebox2{
-  margin-top: 20px;
-  margin-left: 200px;
-  width: 500px;
-  height: 400px;
-  border-radius: 25%;
-  background: #fefff9ff;
-  text-align: center;
-}
-
-.rightsidebox1{
-  margin-top: 20px;
-  margin-right: 200px;
-  width: 500px;
-  height: 400px;
-  border-radius: 25%;
-  background: #fefff9ff;
-  text-align: center;
+.toprow{
+  margin-top: 40px;
+  height:400px;
 
 }
-
-.rightsidebox2{
-  margin-top: 20px;
-  margin-right: 200px;
-  width: 500px;
-  height: 400px;
-  border-radius: 25%;
-  background: #fefff9ff;
-  text-align: center;
+.bottomrow{
+  margin-top: 40px;
+ /* margin-bottom: 20px; */
 
 }
-
 #bygenre{
-
+  width: 300px;
+  height:400px;
+  border-radius: 15%;
+  border: 1px solid yellow;
+  background: #fefff9ff;
+  border: 1px solid yellow;
 }
 
 #byartist{
-
+  width: 300px;
+  height:400px;
+  border-radius: 15%;
+  border: 1px solid yellow;
+  background: #fefff9ff;
+  border: 1px solid yellow;
 }
 
 #bypopular{
-
+  width: 300px;
+  height:400px;
+  border-radius: 15%;
+  border: 1px solid yellow;
+  background: #fefff9ff;
+  border: 1px solid yellow;
 }
 
 #bypersonallyassigned{
-
+  width: 300px;
+  height:400px;
+  border-radius: 15%;
+  border: 1px solid yellow;
+  background: #fefff9ff;
+  border: 1px solid yellow;
 }
 
-
+p{
+    text-align: center !important;
+  display:inline;
+}
 
 .nodebuddyholder{
-  width: 90%;
-  background: purple;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #88B0C2 !important;
+  margin-top: 20px !important;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
+  border-color: #d7dce3 !important;
+  border: 1px solid;
+  height:50px;
+  width: 375px;
+  background-color: white !important;
+  color: black;
+  /* justify-content: space-evenly;
+  align-items: center; */
 }
 
 .nodebuddy{
   color: white;
-  font-size: 20px;
+  font-size: 100px;
 }
 
-section{
-  float: left;
-}
-
-aside{
-  float: right;
-
-}
 
 .categorytext
 {
+margin-top: 10px;
 text-align: center;
-font-family: 'Open Sans Condensed', sans-serif;
-font-size: 50px;
+font-family: 'Pacifico', cursive;
+font-size: 35px;
 color: #88B0C2;
 }

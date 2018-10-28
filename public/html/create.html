@@ -90,8 +90,15 @@
            <div class="col-lg-2"></div>
            <div class="col-lg-8" >
 
-         <h1 id="createchallengeheader">Create a challenge</h1>
+         <h1 id="createchallengeheader">Create a Challenge</h1>
          <form id="createchallengeform" action="" method="post">
+
+           <div class="row" >
+              <label class="">
+                  <div class="inputtext"> Name Of Challenge: </div>
+                  <input class="createinputs" id="nameofchallenge" type="text" name="name">
+              </label>
+          </div>
 
             <div class="row" >
                <label class="">
@@ -128,38 +135,38 @@
              </label>
           </div>
 
-        <div class="row">
+        <div class="row" style="margin-left: 10%; margin-top:20px;">
              <label class="createinputs">
                  <input type="checkbox" name="optionsEnable" onclick="enableOptions()">
-                 <div class="inputtext options">Customize your Options</div>
+                 <div class="optionswrap">Customize Options</div>
              </label>
 
              <label id="options" hidden="">
-                 <label class="straightinputs" >
-                     <div class="textforinput inputtext ">Option 1:</div>
+                 <label class="" >
+                     <div class="options ">Option 1:</div>
                      <input class=""id="option1" type="text" name="option1">
                  </label>
 
                  <label class="">
-                     <div class="textforinput inputtext">Option 2:</div>
+                     <div class="options">Option 2:</div>
                      <input id="option2" type="text" name="option2">
                  </label>
 
                  <label class="">
-                     <div class="textforinput inputtext">Option 3:</div>
+                     <div class="options">Option 3:</div>
                      <input id="option3" type="text" name="option3">
                  </label>
              </label>
 
         </div>
 
-         <div class="row">
+         <div class="row" style="margin-left: 10%;">
              <label class="">
                  <input type="checkbox" name="hintsenabled" onclick="enableHint()">
-                 <div id="Enable Hints" class="inputtext options"> Enable Hints </div>
+                 <div id="Enable Hints" class="optionswrap"> Enable Hints </div>
              </label>
 
-             <label class="createinputs">
+             <label class="options">
                  <div id="hintname" class="" hidden="">Hint:</div>
                  <input class=""id="hint" type="text" hidden="" name="hint">
              </label>
@@ -175,7 +182,7 @@
          <script src="../js/database_management.js"></script>
 
          <div class="row" id="createchallengerow">
-           <button id="createchallengebutton " class="inputtext"type="button" name="button"
+           <button id="createchallengebutton" type="button" name="button"
                    onclick="trying()"> Create </button>
         </div>
 
