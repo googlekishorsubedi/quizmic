@@ -198,7 +198,7 @@ aside{
   overflow: scroll;
   width: 500px;
   height: 350px;
-    color: #88B0C2;
+  color: #88B0C2;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -223,4 +223,27 @@ aside{
   color: white;
   font-size: 20px;
 
+}
+.assignButton{
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  color: #88B0C2;
+  background-color: white;
+  border-color: white;
+
+
+}
+
+.editButton{
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  color: #88B0C2;
+  background-color: white;
+  border-color: white;
+}
+
+.deleteButton{
+
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  color: #88B0C2;
+  background-color: white;
+  border-color: white;
 }
