@@ -25,7 +25,7 @@ function createDiv(assigned, artist, points){
   challengeName.className = "challengeName";
 
   var assignButton = document.createElement("button");
-  assignbutton.className = "assignButton";
+  assignButton.className = "assignButton";
 
   var editButton = document.createElement("button");
   editButton.className = "editButton";
