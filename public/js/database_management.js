@@ -108,7 +108,6 @@ function deleteChallenge(challenge, div, editButtons, deleteButtons){
     }
 }
 
-
 /**
  * Create a challenge
  * @param URL the challenge URL
@@ -238,6 +237,9 @@ function addToGroup(username, groupID) {
     });
 }
 
+/**
+ *
+ */
 function getUserChallengesQUERY() {
 
     var user = sessionStorage.getItem("userID");
