@@ -5,7 +5,12 @@ background-color: #eec09f !important;
 }
 #logo{
   margin-left: 20px;
-height:70px;
+/* height:70px; */
+margin-top: 10px;
+font-size: 40px;
+font-family: 'Open Sans Condensed', sans-serif !important;
+color: #88B0C2;
+
 }
 
 #navcolor
@@ -17,6 +22,7 @@ height:70px;
 }
 #dropdrown
 {
+  color: black !important;
   background: #fefff9ff !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
 }
@@ -45,7 +51,7 @@ height:70px;
   font-size: 35px !important;
   color: #113F60 !important;
   text-align: center !important;
-  margin-left: 220px !important;
+  margin-left: 200px !important;
 
 }
 .playbutton{

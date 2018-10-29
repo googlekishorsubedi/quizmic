@@ -1,3 +1,13 @@
+#toptitle{
+  font-family: 'Open Sans Condensed', sans-serif;
+  /* color: #88B0C2; */
+  color: #4d4e4f;
+  margin-top: 15px !important;
+  margin-left: 35%;
+  font-size: 45px;
+
+}
+
 .toprow{
   margin-top: 40px;
   height:400px;
@@ -80,6 +90,6 @@ p{
 margin-top: 45%;
 text-align: center;
 font-family: 'Pacifico', cursive;
-font-size: 35px;
+font-size: 50px;
 color: #88B0C2;
 }

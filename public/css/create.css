@@ -1,4 +1,7 @@
 .createinputs{
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Open Sans Condensed', sans-serif;
   width: 400px;
   height: 50px;
 }
@@ -192,6 +195,7 @@ aside{
 }
 
 #indivualchallenges{
+  overflow: scroll;
   width: 500px;
   height: 350px;
     color: #88B0C2;

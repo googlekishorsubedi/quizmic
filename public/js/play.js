@@ -65,12 +65,13 @@ function revealchallenges(id){
 
   if (challenges[1].style.display == "none") {
     challenges[0].style.marginTop = "10px";
-
+      challenges[0].style.fontSize = "35px";
     for (var i = 0; i < challenges.length; i++) {
       challenges[i].style.display = "block";
     }
-  } else {
+  }else {
     challenges[0].style.marginTop = "45%";
+    challenges[0].style.fontSize = "50px";
 
       for (var i = 1; i < challenges.length; i++) {
         challenges[i].style.display = "none";
