@@ -1,67 +1,52 @@
-/* This is the code for the green box that surrounds all of the styling boxes
-in the center of the browser window. */
-.dashbox{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-  background: #00ffab;
-  height: 90vh;
-  width: 90vw;
+.friendrequestscol{
+  width: 300px;
+  margin-top: 300px;
+  height:500px;
+  border-radius: 15%;
+  background: #fefff9ff;
 }
 
-/* This is the code for the top portion that has the buttons to go to the other
-webpages */
-.dashbuttonholder{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 10%;
-  width: 90%;
-  background: tomato;
-  position: fixed;
-  left: 50%;
-  top: 1%;
-  transform:  translate(-50%, -1%);
+.friendscol{
+  margin-top: 20px;
+  height:800px;
+  border-radius: 15%;
+  background: #fefff9ff;
 }
 
-/* this is the individual code for each of the buttons on the dash button holder */
-.dashbuttons{
-  height: 90%;
-  width: 10%;
+.groupscol{
+  height: 500px;
+  border-radius: 15%;
+  background: #fefff9ff;
+  margin-top: 300px;
+}
+#friendsearch{
+  margin-top: 10px;
+  text-align: center;
+  margin-left: px;
+  width: 300px;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
-
-/* This is the code for the box that contains the rest of the content below the
-dash buttons */
-#dashmain{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-
-  position: fixed;
-  left: 50%;
-  top: 80%;
-  transform: translate(-50%, -80%);
-  background: yellow;
-  width: 90%;
-  height: 85%;
+::placeholder
+{
+  color: lightgray;
+  letter-spacing:2px;
 }
 
-.mainboxes{
-  width: 30%;
-  height: 95%;
-  background: red;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+#friendsheader{
+  margin-top: 25px;
+  text-align: center;
+font-size: 35px;
+font-family: 'Open Sans Condensed', sans-serif;
+color: #4d4e4f;
 }
 
+.listoffriendstitle{
+  text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 35px;
+  margin-top: 20px;
+}
 .addfriends{
   display: flex;
   flex-direction: row;
@@ -71,46 +56,15 @@ dash buttons */
   height: 5%;
 }
 
-#listoffriends{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  background: blue;
-  width: 90%;
-  height: 45%;
-}
 
-.friendview{
-  width: 95%;
-  height: 9%;
-  background: green;
-}
 
-#friendrequestsbox{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  background: blue;
-  width: 90%;
-  height: 15%;
-}
-
-.friendrequests{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  background: pink;
-}
 
 #mygroups{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background: blue;
+
 
   width: 90%;
   height: 20%;
@@ -119,11 +73,9 @@ dash buttons */
 .mygroupsitem{
   width: 95%;
   height: 20%;
-  background: purple;
 }
 
 #invitetogroup{
-  background: pink;
   width: 95%;
   height: 10%;
 
@@ -138,11 +90,9 @@ dash buttons */
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background: yellow;
 }
 
 #creategroup{
-  background: violet;
   width: 95%;
   height: 35%;
   display: flex;
