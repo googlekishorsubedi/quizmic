@@ -183,13 +183,7 @@ function editChallenge(challenge, div, editButtons, deleteButtons, challengeName
                         options: [opt1, opt2, opt3],
                         creator: users.doc(sessionStorage.getItem("userID")),
                         date: data.date
-                    }).then(doc => {
-
-
-
-                    }).catch(err => {
-                        console.log('Transaction failure:', err);
-                    });
+                    })
                 }).catch(err => {
                     console.log('Transaction failure:', err);
                 });
