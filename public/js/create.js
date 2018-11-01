@@ -332,7 +332,7 @@ function checkTheInputForChallenges(challengeName, URL, songname, artist, genre,
  */
 function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled) {
 
-    if(!checkTheInputForChallenges()){
+    if(!checkTheInputForChallenges(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled)){
         return;
     }
 
