@@ -99,7 +99,7 @@ function createButtonSections(challenge) {
 
 function editChallenge(challenge, div, editButtons, deleteButtons, challengeName) {
 
-    var confirmation = confirm("Are you sure you want to delete the challenge?");
+    var confirmation = confirm("Are you sure you want to edit the challenge?");
     if (confirmation) {
 
         document.getElementById('nameofchallenge').value = challenge.challengeName;
@@ -113,9 +113,9 @@ function editChallenge(challenge, div, editButtons, deleteButtons, challengeName
 
         document.getElementById("optionsEnable").checked = true;
         document.getElementById("options").hidden = false;
-        document.getElementById("option1").value = challenge.option1;
-        document.getElementById("option2").value = challenge.option2;
-        document.getElementById("option3").value = challenge.option3;
+        document.getElementById("option1").value = challenge.options[0];
+        document.getElementById("option2").value = challenge.options[1];
+        document.getElementById("option3").value = challenge.options[2];
 
         var exist = (challenge.hint === "");
         document.getElementById("hintEnable").checked = !exist;
@@ -206,7 +206,7 @@ function editChallenge(challenge, div, editButtons, deleteButtons, challengeName
 
 function deleteChallenge(challenge) {
 
-    var confirmation = confirm("Are you sure you want to edit the challenge?");
+    var confirmation = confirm("Are you sure you want to delete the challenge?");
     if (confirmation) {
         var user = sessionStorage.getItem("userID");
         var transaction = firestore.runTransaction(t => {
