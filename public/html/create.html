@@ -1,162 +1,256 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Quizmic </title>
-  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
-  <link rel="stylesheet" type="text/css" href="../css/create.css">
-  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
-  <script src="../js/firebase.js"></script>
-  <script src="../js/pageHandler.js"></script>
-  <script src="../js/loginHandler.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Quizmic </title>
+    <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../css/create.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/pageHandler.js"></script>
+    <script src="../js/model.js"></script>
+    <script src="../js/loginHandler.js"></script>
+    <script src="../js/database_management.js"></script>
+    <script src="../js/create.js"></script>
+
 </head>
 
-<body>
+<body onload="createMain()">
 
-  <header>
-    <nav id="navcolor" class="navbar navbar-expand-lg navbar-light bg-light" >
-      <a class="navbar-brand" href="./dashboard.html">
-            <!-- <img id="logo" src="../images/QuizmicLogo7.png" alt="Quizmiclogo"> -->
+<header>
+    <nav id="navcolor" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./dashboard.html">
+            <p id="logo"> Quizmic </p>
+
+            <!-- <img id="logo" src="../images/bmic.png" alt="Quizmiclogo"> -->
         </a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link createbutton" href="../html/create.html"> Create <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="playbutton"class="nav-link" href="play.html"> Play </a>
-          </li>
-          </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link createbutton" href="../html/create.html">
+                        <img class="createbutton" src="../images/create.png" alt="createicon">
+                        <span class="sr-only">(current)</span>
 
-          <li class="nav-item dropdown">
+                    </a>
+                </li>
 
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img id="profilepic" src="../images/profile.png" alt="profilepic">
-            </a>
-            <div style="background: #fefff9ff"class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="profile.html"> Friends </a>
-              <a class="dropdown-item" href="settings.html">Settings</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" onclick="signOut()">
-                  <button class="SignOut" type="button" name="button"> Sign Out </button>
+                <li class="nav-item">
+                    <a class="playbutton" class="nav-link" href="play.html">
+                        <img class="playbutton" src="../images/video.png" alt="playbutton"> </a>
+                    </a>
+                </li>
+            </ul>
+
+            <li class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <img id="profilepic" src="../images/man3.png" alt="profilepic">
                 </a>
-            </div>
+                <div style="background: #fefff9ff" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="profile.html"> Friends </a>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" onclick="signOut()">
+                        <button class="SignOut" type="button" name="button"> Sign Out</button>
+                    </a>
+                </div>
 
-          </li>
-      </div>
+            </li>
+        </div>
     </nav>
 
-  </header>
-  <div class="row" style="height:10px; background:#f08b47ff"></div>
+</header>
+
+<div class="row" style="height:2px; background:yellow"></div>
+
 
 <section>
 
-  <div class="row" >
-      <div class="col-lg-1"></div>
-      <div id="createbox"class="col-lg-10" ></div>
-      <div class="col-lg-1"></div>
-  </div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div id="createbox" class="col-lg-6">
+
+            <div id="dashmain">
+                <div id="createchallengebox">
+                    <div class="row" id="logosize">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+
+                            <h1 id="createchallengeheader">Create a Challenge</h1>
+                            <form id="createchallengeform" action="" method="post">
+
+                                <div class="row">
+                                    <label class="">
+                                        <div class="inputtext"> Name Of Challenge:</div>
+                                        <input class="createinputs" id="nameofchallenge" type="text" name="name">
+                                    </label>
+                                </div>
+
+                                <div class="row">
+                                    <label class="">
+                                        <div class="inputtext">URL:</div>
+                                        <input class="createinputs" id="url" type="url" name="url">
+                                    </label>
+                                </div>
+
+                                <div class="row">
+                                    <label class="">
+                                        <div class="inputtext">Artist:</div>
+                                        <input class="createinputs" id="artist" type="text" name="artist">
+                                    </label>
+                                </div>
+
+                                <div class="row genrebox">
+                                    <label class="createinputs">
+                                        <div class="inputtext">Genre:</div>
+                                        <select id="genre">
+                                            <option></option>
+                                            <option value="Pop">Pop</option>
+                                            <option value="Rock">Rock</option>
+                                            <option value="Classic">Classic</option>
+                                            <option value="Electronic">Electronic</option>
+                                        </select>
+
+                                    </label>
+                                </div>
+
+                                <div class="row">
+                                    <label class="">
+                                        <div class="textforinput inputtext">Answer:</div>
+                                        <input class="createinputs" id="answer" type="text" name="answer">
+                                    </label>
+                                </div>
+
+                                <div class="row" style="margin-left: 10%; margin-top:20px;">
+                                    <label class="">
+                                        <input type="checkbox" id="optionsEnable" name="optionsEnable" onclick="enableOptions()">
+                                        <div class="optionswrap">Customize Options</div>
+                                    </label>
+
+                                    <label id="options" hidden="">
+                                        <label class="">
+                                            <div class="options ">Option 1:</div>
+                                            <input class="" id="option1" type="text" name="option1">
+                                        </label>
+
+                                        <label class="">
+                                            <div class="options">Option 2:</div>
+                                            <input id="option2" type="text" name="option2">
+                                        </label>
+
+                                        <label class="">
+                                            <div class="options">Option 3:</div>
+                                            <input id="option3" type="text" name="option3">
+                                        </label>
+                                    </label>
+
+                                </div>
+
+                                <div class="row" style="margin-left: 10%;">
+                                    <label class="">
+                                        <input type="checkbox" id="hintEnable" name="hintsenabled" onclick="enableHint()">
+                                        <div id="Enable Hints" class="optionswrap"> Enable Hints</div>
+                                    </label>
+
+                                    <label class="options">
+                                        <div id="hintname" class="" hidden="">Hint:</div>
+                                        <input class="" id="hint" type="text" hidden="" name="hint">
+                                    </label>
+
+                                    <label class="inputtext">
+                                        <input id="isPublic" class="inputtext" type="checkbox" name="public">
+                                        Public
+                                    </label>
+                                </div>
+
+                            </form>
+
+                            <script src="../js/database_management.js"></script>
+
+                            <div class="row" id="createchallengerow">
+                                <button id="createchallengebutton" type="button" name="button"
+                                        onclick="trying()"> Create
+                                </button>
+                                <button id="cancelEdit" type="button" name="button" hidden=""> Cancel
+                                </button>
+                                <button id="summitEdit" type="button" name="button" hidden=""> Edit
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
 </section>
 
+<aside class="">
+    <div class="row listofchallenges ">
 
- <aside class="">
-  <div class="row" style="border:1px solid black; height:30px"></div>
+        <div class="row listofchallengestitl">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <h2> Challenges </h2>
+            </div>
+            <div class="col-lg-2"></div>
 
-  <div class="row" style="border:1px solid black; height:30px"></div>
- </aside>
-
-
-    <div id="dashmain">
-      <div id="createchallengebox">
-        <h1>Create a challenge</h1>
-        <form id="createchallengeform" action="" method="post">
-          <label class="straightinputs" for="">
-            <div class="textforinput">URL: </div>
-            <input type="url" name="url" value="">
-          </label>
-
-          <div class="straightinputs" >
-            <label class="straightinputs" for="">
-              <input type="radio" name="options" value="options">
-              <div class="textforinput"> Options</div>
-            </label>
-            <label class="straightinputs" for="">
-              <input type="radio" name="options" value="freeform">
-              <div class="textforinput"> Freeform</div>
-            </label>
-          </div>
-
-          <label class="straightinputs" for="">
-            <div class="textforinput">Answer: </div>
-            <input type="text" name="answer" value="">
-          </label>
-
-          <label class="straightinputs" for="">
-            <div class="textforinput">Option 1: </div>
-            <input type="text" name="option1" value="">
-          </label>
-
-          <label class="straightinputs" for="">
-            <div class="textforinput">Option 2: </div>
-            <input type="text" name="option2" value="">
-          </label>
-
-          <label class="straightinputs" for="">
-            <div class="textforinput">Option 3: </div>
-            <input type="text" name="otpion3" value="">
-          </label>
-
-          <label class="straightinputs" for="">
-            <input type="checkbox" name="hintsenabled" value="">
-            <div class="textforinput"> Enable Hints </div>
-          </label>
-
-          <label class="straightinputs" for="">
-            <div class="textforinput">Hint: </div>
-            <input type="url" name="url" value="">
-          </label>
-
-          <input type="submit" name="submit" value="submit">
-        </form>
-      </div>
-
-      <div id="elachallengebox">
-        <div id="elaboxnav">
-          <button class="dashbuttons" type="button" name="button"
-          onclick="">Edit</button>
-          <button class="dashbuttons" type="button" name="button"
-          onclick="">Link</button>
-          <button class="dashbuttons" type="button" name="button"
-          onclick="">Assign</button>
         </div>
 
-        <div id="listofchallenges">
-          <p>This will be populated with the list of challenges that a user owns</p>
-        </div>
-        <div id="dropboxforfriends">
-          <p>This will be populated with all the friends that a person has.</p>
-          <select class="" name="">
+        <div id="indivualchallenges" class="col-lg-13"></div>
 
-          </select>
-        </div>
-      </div>
+
+
+
 
     </div>
-  </div> 
+
+</aside>
+
+
+</div>
+</div>
+<div class="row" style="height:1200px;"></div>
+
+<footer>
+    <!-- <div class="row" style="height:10px; background:#f08b47ff"> -->
+    <div class="col-lg-4"></div>
+    <div id="aboutus" class="col-lg-4">
+        About us
+    </div>
+    <div class="col-lg-4"></div>
+    </div>
+    <div id="navcolor">
+</footer>
 
 </body>
 </html>

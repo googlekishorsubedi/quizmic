@@ -1,23 +1,37 @@
 
 body{
-background: #d5c4b3ff !important;
+/* background: #d5c4b3ff !important; */
+background-color: #eec09f !important;
 }
 #logo{
-height:70px;
+  margin-left: 20px;
+/* height:70px; */
+margin-top: 10px;
+font-size: 40px;
+font-family: 'Open Sans Condensed', sans-serif !important;
+color: #88B0C2;
+
 }
+
 #navcolor
 {
   background: #fefff9ff !important;
+  /* background-color: #d7dce3 !important; */
+  /* background-color: white !important; */
   height: 80px;
 }
 #dropdrown
 {
+  color: black !important;
   background: #fefff9ff !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
 }
+
 #profilepic
-{
-  border-radius: 60%;
-  height:20% !important;
+{margin-top: 20px !important;
+  width:180px !important;
+  border-radius: 20% !important;
+  height:180px !important;
 }
 /* this is the individual code for each of the buttons on the dash button holder */
 .SignOut{
@@ -27,44 +41,37 @@ height:70px;
 
 }
 .createbutton{
-  font-family: 'Pacifico', cursive;
-  font-size: 25px !important;
-  color: #88B0C2 !important;
+  /* font-family: 'Open Sans Condensed', sans-serif; */
+  /* font-family: 'Mali', cursive !important; */
+  /* font-family: 'Pacifico', cursive; */
+  height:65px !important;
+  width: 65px !important;
+  margin-top: 0px !important;
+  margin-bottom: 15px!important;
+  font-size: 35px !important;
+  color: #113F60 !important;
   text-align: center !important;
-  margin-left: 550px;
+  margin-left: 200px !important;
 
 }
 .playbutton{
+  height:70px !important;
+  width: 70px !important;
+  /* font-family: 'Open Sans Condensed', sans-serif; */
   font-family: 'Pacifico', cursive;
-  font-size: 25px !important;
-  color: #88B0C2 !important;
-  margin-top: 50px !important;
-  margin-left: 200px;
+  font-size: 35px !important;
+  color: #113F60 !important;
+  margin-top: 5px !important;
+  margin-left: 280px !important;
 }
 
 #aboutus
 {
-  font-family: 'Pacifico', cursive;
-  font-size: 25px;
+  /* font-family: 'Pacifico', cursive; */
+  font-size: 8px;
   margin-left: 550px;
-  color: #88B0C2;
+  /* color: #88B0C2; */
   text-align: center
-}
-/* This is the code for the box that contains the rest of the content below the
-dash buttons */
-#dashmain{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-
-  position: fixed;
-  left: 50%;
-  top: 80%;
-  transform: translate(-50%, -80%);
-  background: yellow;
-  width: 90%;
-  height: 85%;
 }
 
 /* This is the box that holds the quick play field and the quick make field
