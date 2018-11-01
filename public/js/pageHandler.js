@@ -24,7 +24,8 @@ firebase.auth().onAuthStateChanged(function(user){
 });
 
 function printName(user){
-    document.getElementById("name").innerHTML = user.displayName;
+    //TODO: this gives and error, check it.
+    //document.getElementById("name").innerHTML = user.displayName;
 }
 
 function linkGoogleAccount()

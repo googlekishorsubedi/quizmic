@@ -3,6 +3,7 @@ const settings = {/* your settings... */ timestampsInSnapshots: true};
 firestore.settings(settings);
 
 function loginWithGoogle(){
+    //TODO: This functions does not make a user with this method.
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result){
         document.location.href = "../html/dashboard.html";
