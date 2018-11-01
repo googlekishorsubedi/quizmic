@@ -13,22 +13,6 @@ function loginWithGoogle(){
     });
 }
 
-function linkGoogleAccount()
-{
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().currentUser.linkWithPopup(provider).then(function(result) {
-        // Accounts successfully linked.
-        var credential = result.credential;
-        var user = result.user;
-        alert("linking successful");
-        // ...
-      }).catch(function(error) {
-          alert("Error linking");
-        // Handle Errors here.
-        // ...
-      });
-}
-
 
 function forgotPassword()
 {
