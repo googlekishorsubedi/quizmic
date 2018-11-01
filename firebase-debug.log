@@ -1,0 +1,25 @@
+[debug] [2018-11-01T21:39:12.193Z] ----------------------------------------------------------------------
+[debug] [2018-11-01T21:39:12.194Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-11-01T21:39:12.194Z] CLI Version:   4.2.1
+[debug] [2018-11-01T21:39:12.194Z] Platform:      darwin
+[debug] [2018-11-01T21:39:12.194Z] Node Version:  v10.10.0
+[debug] [2018-11-01T21:39:12.195Z] Time:          Thu Nov 01 2018 14:39:12 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-11-01T21:39:12.195Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-01T21:39:12.206Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-01T21:39:12.207Z] > authorizing via signed-in user
+[debug] [2018-11-01T21:39:12.209Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/kitomake  
+ 
+[debug] [2018-11-01T21:39:12.514Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-01T21:39:12.515Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/kitomake  
+ 
+[debug] [2018-11-01T21:39:12.778Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/subedik/Desktop/quizmic'...
+[info] 
+[debug] [2018-11-01T21:39:12.779Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/425008773756/clients/_:getWebAppConfig  
+ 
+[debug] [2018-11-01T21:39:12.975Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5000 is not available. Trying another port...
+[info] i  hosting[kitomake]: Serving hosting files from: public
+[info] ✔  hosting[kitomake]: Local server: http://localhost:5005
