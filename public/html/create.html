@@ -147,7 +147,7 @@
 
                                 <div class="row" style="margin-left: 10%; margin-top:20px;">
                                     <label class="">
-                                        <input type="checkbox" name="optionsEnable" onclick="enableOptions()">
+                                        <input type="checkbox" id="optionsEnable" name="optionsEnable" onclick="enableOptions()">
                                         <div class="optionswrap">Customize Options</div>
                                     </label>
 
@@ -172,7 +172,7 @@
 
                                 <div class="row" style="margin-left: 10%;">
                                     <label class="">
-                                        <input type="checkbox" name="hintsenabled" onclick="enableHint()">
+                                        <input type="checkbox" id="hintEnable" name="hintsenabled" onclick="enableHint()">
                                         <div id="Enable Hints" class="optionswrap"> Enable Hints</div>
                                     </label>
 
@@ -194,6 +194,10 @@
                             <div class="row" id="createchallengerow">
                                 <button id="createchallengebutton" type="button" name="button"
                                         onclick="trying()"> Create
+                                </button>
+                                <button id="cancelEdit" type="button" name="button" hidden=""> Cancel
+                                </button>
+                                <button id="summitEdit" type="button" name="button" hidden=""> Edit
                                 </button>
                             </div>
 
