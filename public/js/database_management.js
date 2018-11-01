@@ -93,20 +93,53 @@ function getUserbyEmailQUERY(email) {
  * @param username user UID
  * @param contactUsername contact UID
  */
-function addContact(username, contactUsername) {
-    var transaction = firestore.runTransaction(t => {
-        return t.get(users.doc(username))
-            .then(doc => {
-                const contactArray = doc.data().contactList;
-                contactArray.push(users.doc(contactUsername));
-                t.update(users.doc(username), {contactList: contactArray});
+function addFriend(){
+    var friendUsername = document.getElementById("friendUsername").value;
+    var query = username.doc(friendUsername);
+
+    query.get().then(function (results) {
+        if (results.exists) {
+            //adds friendUserName to current User's contact List
+            var user = firebase.auth().currentUser;
+            var userRef = users.doc(user.uid);
+            userRef.get().then(function (results) {
+            if (results.exists) {
+                if(results.data().username == friendUsername){
+                    alert("Can't add yourself to your friend's list")
+                    return;
+                }
+                else 
+                {
+                    //check if friendusername already in the array 
+                    var contactListArray = results.data().contactList;
+                    for (i = 0; i < contactListArray.length; i++) { 
+                        if(contactListArray[i] == friendUsername)
+                        {
+                            alert("User already in your friend list");
+                            return;
+                        }
+                    }
+                    
+                    userRef.update({
+                    contactList: firebase.firestore.FieldValue.arrayUnion(friendUsername)
+                    });
+                    alert("friend added");
+                }
+            } else 
+                alert("this Username not found.");
+            }).catch(function (error) {
+            console.log("Error getting user owned challenges:", error);
             });
-    }).then(result => {
-        console.log('Transaction success!');
-    }).catch(err => {
-        console.log('Transaction failure:', err);
+
+        } else 
+            alert("Friend Username not found");
+        }).catch(function (error) {
+        console.log("Error getting user owned challenges:", error);
     });
+
 }
+
+
 
 /**
  * Creates a group

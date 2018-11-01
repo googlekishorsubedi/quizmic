@@ -18,6 +18,7 @@
   <script src="../js/firebase.js"></script>
   <script src="../js/pageHandler.js"></script>
   <script src="../js/loginHandler.js"></script>
+  <script src="../js/database_management.js"></script>
 </head>
 
 <body>
@@ -106,12 +107,10 @@
       <div class="col-lg-4 friendscol">
           <h2 id="friendsheader"> Friends </h2>
 
-          <form class="addfriends" action="../index.html" method="post">
             <div class="">Add Friends:   </div>
-            <input id="friendsearch"type="search" name="search" placeholder="Find Friends">
-            <input type="submit" name="submit" placeholder="">
-          </form>
-
+            <input type="search" id="friendUsername" placeholder="Find Friends">
+            <input type="submit" name="submit" placeholder="Submit" onclick=addFriend()>
+          
           <div class="listoffriendstitle">List of friends</div>
 
           <div id="listoffriends">
