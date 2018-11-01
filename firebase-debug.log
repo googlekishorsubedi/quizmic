@@ -52,6 +52,7 @@
 [info] i  hosting[kitomake]: Serving hosting files from: public
 [info] ✔  hosting[kitomake]: Local server: http://localhost:5000
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 [debug] [2018-11-01T20:20:04.569Z] ----------------------------------------------------------------------
 [debug] [2018-11-01T20:20:04.571Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
@@ -82,3 +83,5 @@
 [info] i  hosting[kitomake]: Serving hosting files from: public
 [info] ✔  hosting[kitomake]: Local server: http://localhost:5000
 >>>>>>> parent of f0af725... create page css fixed
+=======
+>>>>>>> parent of bf9d356... Link Your google account
