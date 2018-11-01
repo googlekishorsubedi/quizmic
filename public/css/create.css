@@ -185,7 +185,7 @@ aside{
 
 .listofchallengestitl{
   width: 500px;
-  height: 70px;
+  height: 20px;
   margin-top: 10px;
   text-align: center!important;
   font-family: 'Pacifico', cursive !important;
@@ -195,6 +195,7 @@ aside{
 }
 
 #indivualchallenges{
+  margin-top: 10px !important;
   overflow: scroll !important;
   width: 500px;
   height: 350px;
@@ -207,7 +208,7 @@ aside{
 
 .nodebuddyholder{
   /* border-color: rgb(166, 166, 166) !important; */
-  margin-top: 10px;
+  margin-top: 5px !important;
   margin-left: 15%;
   border-color:#d7dce3 !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
