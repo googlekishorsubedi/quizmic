@@ -20,10 +20,12 @@ firebase.auth().onAuthStateChanged(function(user){
     });
 
     // var username = firebase.collection("users").doc(user.uid).get()
-})
+
+});
 
 function printName(user){
-    document.getElementById("name").innerHTML = user.displayName;
+    //TODO: this gives and error, check it.
+    //document.getElementById("name").innerHTML = user.displayName;
 }
 
 function linkGoogleAccount()
@@ -52,3 +54,4 @@ function signOut(){
     });
 
 }
+

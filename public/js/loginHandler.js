@@ -3,6 +3,7 @@ const settings = {/* your settings... */ timestampsInSnapshots: true};
 firestore.settings(settings);
 
 function loginWithGoogle(){
+    //TODO: This functions does not make a user with this method.
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result){
         document.location.href = "../html/dashboard.html";
@@ -12,44 +13,56 @@ function loginWithGoogle(){
     });
 }
 
-function registerUser(name, uid, email)
+function linkGoogleAccount()
 {
-    firestore.collection("users").doc(uid).set({
-        emailaddress: email,
-        username: name
-    }).then(function(){
-
-    }).catch(function(error){
-        alert(error);
-    });
-
-}
-
-function forgotPassword(){
-    var emailAddress = document.getElementById("forgotEmailAddress").value;
-    firebase.auth().sendPasswordResetEmail(emailAddress).then(function() {
-        // Email sent.
-        alert("A reset email has been sent to your email.");
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().currentUser.linkWithPopup(provider).then(function(result) {
+        // Accounts successfully linked.
+        var credential = result.credential;
+        var user = result.user;
+        alert("linking successful");
+        // ...
       }).catch(function(error) {
-        // An error happened.
-        alert("Couldn't reset. This might occur if the email address is invalid");
+          alert("Error linking");
+        // Handle Errors here.
+        // ...
       });
 }
 
-function registerUsername(username, email){
-    firestore.collection("username").doc(username).set({
-        emailaddress: email
-    }).then(function(){
+
+function forgotPassword()
+{
+    document.location.href = "../html/forgotPassword.html";
+}
+
+/**
+ * Create a User
+ * @param username the UID
+ * @param email the email of the user
+ * @param uid the uid assigned by firebase to the user.
+ */
+function createUserQUERY(username, uid, email) {
+    var query = users.doc(uid).set({
+        username: username,
+        email: email,
+        score: 0,
+        ownChallenges: [],
+        contactList: [],
+        belongsToGroup: [],
+        challengesPlayed: 0
+    }).then(function () {
+        // Creates the reference in the username table
+        this.username.doc(username).set({emailaddress: email});
+        // Add the assigned collection to the user.
+        users.doc(uid).collection("assignedChallenges").add({});
         document.location.href = "../html/dashboard.html";
-    }).catch(function(error){
-        alert(error);
-    });
+    })
 }
 
 function createNewUser(username, email, password)
 {
     if(username.length <6){
-        alert("Username has to have atleast 6 characters");
+        alert("Username has to have at least 6 characters");
         return;
     }
     var docRef = firestore.collection("username").doc(username);
@@ -65,8 +78,8 @@ function createNewUser(username, email, password)
                 var user = firebase.auth().currentUser;
                 console.log('Calling register now');
                 console.log(user);
-                registerUser(username, user.uid, email);
-                registerUsername(username, email);
+                createUserQUERY(username, user.uid, email);
+                //registerUsername(username, email);
 
             }).catch(function(error) {
                 console.log("Error signing up");
@@ -83,9 +96,7 @@ function createNewUser(username, email, password)
                 else{
                     alert(errorCode);
                 }
-                // ...
             });
-            // doc.data() will be undefined in this case
 
         }
     }).catch(function(error) {
@@ -100,7 +111,7 @@ function loginwithEmail(email, password)
         //get request for challenge/user/ objects
         var user = firebase.auth().currentUser;
         console.log(user.uid);
-
+        sessionStorage.setItem("userID", user.uid);
         document.location.href = "../html/dashboard.html";
         // Sign-out successful.
     }).catch(function(error) {
