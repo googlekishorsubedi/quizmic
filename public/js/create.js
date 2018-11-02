@@ -69,6 +69,7 @@ function createButtonSections(challenge) {
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
 
+    
     var assignButton = document.createElement("button");
     assignButton.className = "assignButton";
 
