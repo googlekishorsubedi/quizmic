@@ -78,39 +78,15 @@
 
       <!-- <div class="col-lg-1"> </div> -->
 
-      <div class="col-lg-3 friendrequestscol">
-        <div class="textforinput">Friend Requests</div>
-
-        <div class="friendrequestsbox">
-
-          <form class="friendrequests" action="../index.html" method="post">
-            <div class="">User's name</div>
-            <button type="button" name="accept">accept</button>
-            <button type="button" name="decline">decline</button>
-          </form>
-          <form class="friendrequests" action="../index.html" method="post">
-            <div class="">User's name</div>
-            <button type="button" name="accept">accept</button>
-            <button type="button" name="decline">decline</button>
-          </form>
-          <form class="friendrequests" action="../index.html" method="post">
-            <div class="">User's name</div>
-            <button type="button" name="accept">accept</button>
-            <button type="button" name="decline">decline</button>
-          </form>
-
-            </div>
-      </div>
-
       <div class="col-lg-1"> </div>
 
-      <div class="col-lg-4 friendscol">
+      <div class="col-lg-5 friendscol">
           <h2 id="friendsheader"> Friends </h2>
 
             <div class="">Add Friends:   </div>
             <input type="search" id="friendUsername" placeholder="Find Friends">
             <input type="submit" name="submit" placeholder="Submit" onclick=addFriend()>
-          
+
           <div class="listoffriendstitle">List of friends</div>
 
           <div id="listoffriends">
@@ -126,20 +102,38 @@
             <div class="friendview"></div>
           </div>
 
+          <button class="open-button" onclick="openForm()">Open Form</button>
+
+          <div class="form-popup" id="creategroup">
+            <form action="/profile.html" class="form-container">
+              <h1>Login</h1>
+
+              <h2>Groups</h2>
+              <p>My Groups</p>
+              <div id="mygroups">
+                <div class="mygroupsitem"></div>
+                <div class="mygroupsitem"></div>
+                <div class="mygroupsitem"></div>
+                <div class="mygroupsitem"></div>
+              </div>
+
+                </form>
+         </div>
+
       </div>
 
       <div class="col-lg-1"> </div>
 
-      <div class="col-lg-3 groupscol">
+      <div class="col-lg-4 groupscol">
 
-        <h2>Groups</h2>
+        <!-- <h2>Groups</h2>
         <p>My Groups</p>
         <div id="mygroups">
           <div class="mygroupsitem"></div>
           <div class="mygroupsitem"></div>
           <div class="mygroupsitem"></div>
           <div class="mygroupsitem"></div>
-        </div>
+        </div> -->
 
         <p>Invite Friend to Group</p>
         <form id="invitetogroup" action="../index.html" method="post">
@@ -169,10 +163,20 @@
 
       </div>
 
-      <!-- <div class="col-lg-1"> </div> -->
+      <div class="col-lg-1"> </div>
 
     </div>
 
+
+    <script>
+    function openForm() {
+        document.getElementById("creategroup").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("creategroup").style.display = "none";
+    }
+    </script>
 
 
 
