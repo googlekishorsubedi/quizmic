@@ -18,6 +18,7 @@
   <script src="../js/firebase.js"></script>
   <script src="../js/pageHandler.js"></script>
   <script src="../js/loginHandler.js"></script>
+  <script src="../js/profile.js"></script>
   <script src="../js/database_management.js"></script>
 </head>
 
@@ -74,44 +75,22 @@
 
 <body>
 
+
     <div class="row">
 
       <!-- <div class="col-lg-1"> </div> -->
 
-      <div class="col-lg-3 friendrequestscol">
-        <div class="textforinput">Friend Requests</div>
-
-        <div class="friendrequestsbox">
-
-          <form class="friendrequests" action="../index.html" method="post">
-            <div class="">User's name</div>
-            <button type="button" name="accept">accept</button>
-            <button type="button" name="decline">decline</button>
-          </form>
-          <form class="friendrequests" action="../index.html" method="post">
-            <div class="">User's name</div>
-            <button type="button" name="accept">accept</button>
-            <button type="button" name="decline">decline</button>
-          </form>
-          <form class="friendrequests" action="../index.html" method="post">
-            <div class="">User's name</div>
-            <button type="button" name="accept">accept</button>
-            <button type="button" name="decline">decline</button>
-          </form>
-
-            </div>
-      </div>
-
-      <div class="col-lg-1"> </div>
+      <div class="col-lg-4"> </div>
 
       <div class="col-lg-4 friendscol">
           <h2 id="friendsheader"> Friends </h2>
+           <div class="addfriendsection">
+             <button id="addfriendsbut" class="" onclick="addfriendsbut()"> Add Friend + </button>
+             <input type="search" id="friendUsername" placeholder="Find Friends">
+             <input type="submit" id = "addfriendsubmit" name="submit" placeholder="Submit" onclick=addFriend()>
 
-            <div class="">Add Friends:   </div>
-            <input type="search" id="friendUsername" placeholder="Find Friends">
-            <input type="submit" name="submit" placeholder="Submit" onclick=addFriend()>
-          
-          <div class="listoffriendstitle">List of friends</div>
+
+           </div>
 
           <div id="listoffriends">
             <div class="friendview"></div>
@@ -126,56 +105,66 @@
             <div class="friendview"></div>
           </div>
 
-      </div>
 
-      <div class="col-lg-1"> </div>
+              <h2 id="groupsheading">Groups</h2>
+                  <button id="creategroupbut" class="" onclick="openForm()"> Create Group + </button>
+              <div id="mygroups">
+                <div class="mygroupsitem"></div>
+                <div class="mygroupsitem"></div>
+                <div class="mygroupsitem"></div>
+                <div class="mygroupsitem"></div>
+              </div>
 
-      <div class="col-lg-3 groupscol">
 
-        <h2>Groups</h2>
-        <p>My Groups</p>
-        <div id="mygroups">
-          <div class="mygroupsitem"></div>
-          <div class="mygroupsitem"></div>
-          <div class="mygroupsitem"></div>
-          <div class="mygroupsitem"></div>
-        </div>
 
-        <p>Invite Friend to Group</p>
-        <form id="invitetogroup" action="../index.html" method="post">
-          <div class="invitetogroupsection">
-            <div class="textforinput">Find Friend: </div>
-            <input type="search" name="friend" value="friend">
-          </div>
-          <div class="invitetogroupsection">
-            <div class="textforinput">Find Group: </div>
-            <input type="search" name="group" value="group">
-          </div>
-          <input type="submit" name="submit" value="submit">
-        </form>
+          <button id="invitebut" class="" onclick="invitebut()"> Invite Friend to Group + </button>
 
-        <p>Create Group</p>
-        <form id="creategroup" action="../index.html" method="post">
-          <div class="creategroupsection">
-            <div class="textforinput">Name</div>
-            <input type="text" name="" value="">
-          </div>
-          <div class="creategroupsection">
-            <div class="textforinput">Description</div>
-            <textarea name="name" rows="8" cols="40"></textarea>
-          </div>
-          <input type="submit" name="submit" value="submit">
-        </form>
+                <form id="invitetogroup" action="../index.html" method="post">
+                  <div id="findfriend"class="">
+                    <div class="textforinput">Find Friend: </div>
+                    <input type="search" name="friend" value="friend">
+                  </div>
+                  <div id="groupsearch"class="">
+                    <div id="" class="">Find Group: </div>
+                    <input type="search" name="group" value="group">
+                  </div>
+                  <input id="invitesubmit"type="submit" name="submit" value="submit">
+                </form>
+
 
       </div>
 
-      <!-- <div class="col-lg-1"> </div> -->
+      <div class="col-lg-4"> </div>
 
     </div>
 
 
 
+    <div id="myForm"class="creategroupbox">
+      <div class="creategroupcontent">
+          <button id="closeFormbut" class="" onclick="closeForm()">
+              <img id="closeForm" src="../images/closebutton.ico" alt="closebutton">
+          </button>
+
+          <p>Create Group</p>
+          <form id="creategroup" action="../index.html" method="post">
+            <div class="creategroupsection">
+              <div class="textforinput">Name</div>
+              <input type="text" name="" value="">
+            </div>
+            <div class="creategroupsection">
+              <div class="textforinput">Description</div>
+              <textarea name="name" rows="8" cols="40"></textarea>
+            </div>
+            <input type="submit" name="submit" value="submit">
+          </form>
+
+        </div>
+      </div>
+    </div>
+
 
 
 </body>
+
 </html>

@@ -82,6 +82,7 @@ function createButtonSections(challenge) {
     deleteButton.className = "deleteButton";
     deleteButton.onclick = function () {
              deleteChallenge(challenge, div, editButton, deleteButton);
+
          };
 
     challengeName.innerHTML = challenge.challengeName;
@@ -213,8 +214,10 @@ function deleteChallenge(challenge) {
                             j = i;
                             break;
                         }
+                        window.location.reload();
                     }
                     if (j !== -1) {
+
                         ownChallenges.splice(j, 1);
 
                         t.update(users.doc(user), {ownChallenges: ownChallenges});
@@ -231,12 +234,14 @@ function deleteChallenge(challenge) {
                     }
 
                 });
+
         }).then(function () {
               window.location.reload();
             console.log('Transaction success!');
         }).catch(err => {
             console.log('Transaction failure:', err);
         });
+
     }
 }
 
