@@ -63,6 +63,7 @@ function clearCreateForm() {
 
 function createButtonSections(challenge) {
     var div = document.createElement("div");
+    challenge.div = div;
     div.className = "nodebuddyholder";
 
     var challengeName = document.createElement("p");
@@ -81,9 +82,9 @@ function createButtonSections(challenge) {
     var deleteButton = document.createElement("button");
     deleteButton.className = "deleteButton";
     deleteButton.onclick = function () {
-             deleteChallenge(challenge, div, editButton, deleteButton);
+        deleteChallenge(challenge, div, editButton, deleteButton);
 
-         };
+    };
 
     challengeName.innerHTML = challenge.challengeName;
     assignButton.innerHTML = "Assign";
@@ -95,7 +96,10 @@ function createButtonSections(challenge) {
     div.appendChild(editButton);
     div.appendChild(deleteButton);
 
-    document.getElementById('indivualchallenges').appendChild(div);
+    var ediv = null;
+    if(challengesArray.length > 0)
+        ediv =challengesArray[0].div;
+    document.getElementById('indivualchallenges').insertBefore(div, ediv);
 }
 
 function editChallenge(challenge, div, editButtons, deleteButtons, challengeName) {
@@ -226,6 +230,7 @@ function deleteChallenge(challenge, div, editButtons, deleteButtons, challengeNa
                             editButtons.remove();
                             deleteButtons.remove();
                             div.remove();
+                            challengesArray.splice(challengesArray.indexOf(challenge), 1)
 
                         }).catch(function (error) {
                             console.error("Error removing challenge: ", error);
@@ -270,8 +275,9 @@ function getUserChallengesQUERY() {
                     var info = results.data();
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
                         info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
-                    this.challengesArray.push(challen);
                     createButtonSections(challen);
+                    this.challengesArray.unshift(challen);
+
                 }
                 else
                     console.log("No challenge was found with that ID!");
@@ -385,8 +391,10 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
             date: new Date(),
             id: e.id
         };
-        this.challengesArray.push(challen);
+
+        //createButtonSections(challen);
         createButtonSections(challen);
+        this.challengesArray.unshift(challen);
         clearCreateForm();
 
     })

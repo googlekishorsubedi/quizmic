@@ -13,7 +13,8 @@ function Challenge(challengeName, youtubeID, song, artist, genre, hint, attempte
     options: options,
     creator: creator,
     date: date,
-    id: id
+    id: id,
+    div: null
    }
 
 }
