@@ -232,6 +232,7 @@ function deleteChallenge(challenge) {
 
                 });
         }).then(function () {
+              window.location.reload();
             console.log('Transaction success!');
         }).catch(err => {
             console.log('Transaction failure:', err);
@@ -387,5 +388,3 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
 
     })
 }
-
-
