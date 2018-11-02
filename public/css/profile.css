@@ -1,9 +1,43 @@
-.friendrequestscol{
-  width: 300px;
-  margin-top: 300px;
-  height:500px;
-  border-radius: 15%;
+#friendUsername{
+  margin-top: 5px;
+  display: none;
+  text-align: center;
+  margin-left: 200px;
+
+}
+
+#addfriendsubmit{
+  margin-top: 5px;
+  display: none;
+  text-align: center;
+  margin-left: 230px;
   background: #fefff9ff;
+
+}
+
+#addfriendsbut{
+  background: #fefff9ff;
+  border: #fefff9ff;
+  font-size: 20px;
+  color: #88B0C2;
+
+}
+
+.addfriendsection{
+  /* border: 1px solid black; */
+  text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif;
+  height: 90px;
+}
+#listoffriends{
+  margin-left: 15px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 450px;
+  height: 20%;
 }
 
 .friendscol{
@@ -13,12 +47,6 @@
   background: #fefff9ff;
 }
 
-.groupscol{
-  height: 500px;
-  border-radius: 15%;
-  background: #fefff9ff;
-  margin-top: 300px;
-}
 #friendsearch{
   margin-top: 10px;
   text-align: center;
@@ -34,19 +62,16 @@
 }
 
 #friendsheader{
+  color: #88B0C2;
+
   margin-top: 25px;
   text-align: center;
-font-size: 35px;
-font-family: 'Open Sans Condensed', sans-serif;
-color: #4d4e4f;
+font-size: 40px;
+font-family: 'Pacifico', cursive;
+
 }
 
-.listoffriendstitle{
-  text-align: center;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 35px;
-  margin-top: 20px;
-}
+
 .addfriends{
   display: flex;
   flex-direction: row;
@@ -60,13 +85,13 @@ color: #4d4e4f;
 
 
 #mygroups{
+  margin-left: 15px;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-
-
-  width: 90%;
+  width: 450px;
   height: 20%;
 }
 
@@ -86,10 +111,11 @@ color: #4d4e4f;
 }
 
 .invitetogroupsection{
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: center; */
+  display: none;
 }
 
 #creategroup{
@@ -99,4 +125,119 @@ color: #4d4e4f;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
+}
+
+#myForm{
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0;
+  display:flex;
+  justify-content: center !important;
+  align-items: center !important;
+  display:none;
+  z-index: 9;
+}
+
+.creategroupcontent{
+  border-radius: 5%;
+  position: relative;
+  width: 500px;
+  height: 400px;
+  background-color: white;
+  text-align: center;
+}
+
+#creategroupbut{
+  margin-left: 220px;
+  text-align: center;
+  background: #fefff9ff;
+  border: #fefff9ff;
+  background: #fefff9ff;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  color: #88B0C2;
+
+
+}
+#closeFormbut{
+  background: white;
+  border: white;
+  height: 50px;
+  width: 50px;
+}
+#closeForm{
+  border: 1px solid white;
+  height: 50px;
+  width: 50px;
+}
+
+#invitebut{
+  margin-top: 10px;
+  margin-left: 195px;
+  text-align: center;
+  background: #fefff9ff;
+  border: #fefff9ff;
+  background: #fefff9ff;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  color: #88B0C2;
+
+}
+
+#invitesubmit{
+  margin-left: 40px;
+  text-align: center;
+  background: #fefff9ff;
+  background: #fefff9ff;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  display: none;
+  color: #88B0C2;
+
+}
+#findfriend{
+  display: none;
+}
+
+#groupsearch{
+  display: none;
+}
+.friendview{
+  margin-top: 5px !important;
+  margin-left: 15%;
+  border-color:#d7dce3 !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 20px;
+  border: 1px solid;
+  width: 450px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.mygroupsitem{
+  margin-top: 5px !important;
+  margin-left: 15%;
+  border-color:#d7dce3 !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 20px;
+  border: 1px solid;
+  height: 200px;
+  width: 350px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#groupsheading{
+  text-align: center;
+font-size: 40px;
+font-family: 'Pacifico', cursive;
+color: #88B0C2;
+margin-bottom: 20px;
+
 }
