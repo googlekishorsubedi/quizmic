@@ -199,7 +199,7 @@ function editChallenge(challenge, div, editButtons, deleteButtons, challengeName
     }
 }
 
-function deleteChallenge(challenge) {
+function deleteChallenge(challenge, div, editButtons, deleteButtons, challengeName) {
 
     var confirmation = confirm("Are you sure you want to delete the challenge?");
     if (confirmation) {
@@ -214,7 +214,6 @@ function deleteChallenge(challenge) {
                             j = i;
                             break;
                         }
-                        window.location.reload();
                     }
                     if (j !== -1) {
 
@@ -236,7 +235,6 @@ function deleteChallenge(challenge) {
                 });
 
         }).then(function () {
-              window.location.reload();
             console.log('Transaction success!');
         }).catch(err => {
             console.log('Transaction failure:', err);
