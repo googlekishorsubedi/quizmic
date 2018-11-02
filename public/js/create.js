@@ -68,8 +68,13 @@ function createButtonSections(challenge) {
 
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
+    challengeName.onclick = function () {
 
-    
+        document.location.href = "../html/challenge.html";
+
+    };
+
+
     var assignButton = document.createElement("button");
     assignButton.className = "assignButton";
 
