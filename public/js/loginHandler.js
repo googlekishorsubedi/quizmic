@@ -52,7 +52,7 @@ function createUserQUERY(username, uid, email) {
         challengesPlayed: 0
     }).then(function () {
         // Creates the reference in the username table
-        this.username.doc(username).set({emailaddress: email});
+        this.username.doc(username).set({emailaddress: email, uid: uid});
         // Add the assigned collection to the user.
         users.doc(uid).collection("assignedChallenges").add({});
         document.location.href = "../html/dashboard.html";

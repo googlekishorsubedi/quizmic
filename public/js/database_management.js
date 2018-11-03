@@ -139,7 +139,24 @@ function addFriend(){
 
 }
 
+function assignChallenge(challengeID, userName)
+{
+    var docRef = firestore.collection("username").doc(userName);
 
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            var userId = doc.data().uid;
+            firestore.collection("users").doc(userId).collection("assignedChallenges").doc(challengeID).set({challengeid: challengeID});
+            alert("Succesfully assigned the challenge to", userName);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such username to assign the challenge!");
+        }
+    }).catch(function(error) {
+        console.log("Error assigning the challenge", error);
+    });
+
+}
 
 /**
  * Creates a group
