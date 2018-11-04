@@ -24,7 +24,7 @@ function openassignpopup(challenge) {
   document.getElementById("openassignpopupForm").style.display = "block";
 
   document.getElementById('assignbuttoncs').onclick = function(){
-      assignChallenge(challenge.challengeName,document.getElementById('assignbuttonpop').value);
+      assignChallenge(challenge.id,document.getElementById('assignbuttonpop').value);
   }
 }
 
@@ -288,8 +288,10 @@ function getUserChallengesQUERY() {
             query.get().then(function (results) {
                 if (results.exists) {
                     var info = results.data();
+                    console.log(results.id);
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
                         info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
+                        console.log(challen);
                     createButtonSections(challen);
                     this.challengesArray.unshift(challen);
 
