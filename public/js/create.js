@@ -20,8 +20,12 @@ function enableHint() {
 
 }
 
-function openassignpopup() {
+function openassignpopup(challenge) {
   document.getElementById("openassignpopupForm").style.display = "block";
+
+  document.getElementById('assignbuttoncs').onclick = function(){
+      assignChallenge(challenge.challengeName,document.getElementById('assignbuttonpop').value);
+  }
 }
 
 function closeassignpopup() {
@@ -80,7 +84,7 @@ function createButtonSections(challenge) {
     var assignButton = document.createElement("button");
     assignButton.className = "assignButton";
     assignButton.onclick = function(){
-        openassignpopup();
+        openassignpopup(challenge);
     }
 
     var editButton = document.createElement("button");

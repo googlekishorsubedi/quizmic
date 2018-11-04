@@ -232,8 +232,6 @@ aside{
   color: #88B0C2;
   background-color: white;
   border-color: white;
-
-
 }
 
 .editButton{
@@ -304,18 +302,36 @@ aside{
   transform:  translate(-50%, -50%);
   border-radius: 5%;
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 200px;
   background-color: white;
   text-align: center;
 }
 
 #closeFormbut{
-  border: 1px solid gray;
   margin-top: 10px;
-  margin-left: 80%;
+  margin-left: 70%;
   background: white;
   border: white;
+  height: 20px;
+  width: 20px;
+}
+
+#closeForm{
+  border: 1px solid white;
   height: 50px;
   width: 50px;
+}
+
+#assignheading{
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  height: 50px;
+  font-size: 35px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #88B0C2;
+}
+
+#assignbuttoncs{
+  
 }
