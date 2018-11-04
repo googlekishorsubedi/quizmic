@@ -108,30 +108,30 @@ function addFriend(){
                     alert("Can't add yourself to your friend's list")
                     return;
                 }
-                else 
+                else
                 {
-                    //check if friendusername already in the array 
+                    //check if friendusername already in the array
                     var contactListArray = results.data().contactList;
-                    for (i = 0; i < contactListArray.length; i++) { 
+                    for (i = 0; i < contactListArray.length; i++) {
                         if(contactListArray[i] == friendUsername)
                         {
                             alert("User already in your friend list");
                             return;
                         }
                     }
-                    
+
                     userRef.update({
                     contactList: firebase.firestore.FieldValue.arrayUnion(friendUsername)
                     });
                     alert("friend added");
                 }
-            } else 
+            } else
                 alert("this Username not found.");
             }).catch(function (error) {
             console.log("Error getting user owned challenges:", error);
             });
 
-        } else 
+        } else
             alert("Friend Username not found");
         }).catch(function (error) {
         console.log("Error getting user owned challenges:", error);
@@ -223,4 +223,3 @@ function getUserAssignedChallenges(username) {
         console.log("Error getting documents:", error);
     });
 }
-
