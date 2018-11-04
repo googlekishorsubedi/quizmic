@@ -327,11 +327,24 @@ aside{
   font-family: 'Open Sans Condensed', sans-serif !important;
   height: 50px;
   font-size: 35px;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   margin-bottom: 10px;
   color: #88B0C2;
 }
 
 #assignbuttoncs{
-  
+  width: 70px;
+  border-color: #fefff9ff !important;
+  background-color: #fefff9ff !important;
+  /* margin-left: %; */
+  font-family: 'Pacifico', cursive;
+  font-size: 20px;
+  color: #88B0C2;
+}
+
+::placeholder
+{
+  text-align: center !important;
+  color: lightgray !important;
+  letter-spacing:2px !important;
 }

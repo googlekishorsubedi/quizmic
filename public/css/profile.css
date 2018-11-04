@@ -57,6 +57,7 @@
 
 ::placeholder
 {
+  text-align: center;
   color: lightgray;
   letter-spacing:2px;
 }
