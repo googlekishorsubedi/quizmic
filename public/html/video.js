@@ -1,6 +1,10 @@
 //please refer to https://developers.google.com/youtube/iframe_api_reference
 //for further documentation on functions.
-
+  var videoID = loadMainVideo();
+  function loadMainVideo(){
+    //Somehow grabs the video id from the challenge, returns it.
+    return 'M7lc1UVf-VE';
+  }
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
 
@@ -15,9 +19,9 @@
   function onYouTubeIframeAPIReady() {
 
     player = new YT.Player('player', {
-      height: '0',
-      width: '0',
-      videoId: 'M7lc1UVf-VE',
+      height: '100',
+      width: '100',
+      videoId: videoID,
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
@@ -47,7 +51,7 @@
     player.stopVideo();
   }
 
-  
+
   function checkbButton(){
     if(clicks >= 1){
       //this code correctly takes away 3 seconds from the video timer.
