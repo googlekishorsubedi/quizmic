@@ -389,6 +389,8 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
                 });
         }).then(result => {
             console.log('Transaction success!');
+            
+
         }).catch(err => {
             console.log('Transaction failure:', err);
         });

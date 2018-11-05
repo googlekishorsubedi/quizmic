@@ -146,8 +146,24 @@ function assignChallenge(challengeID, userName)
     docRef.get().then(function(doc) {
         if (doc.exists) {
             var userId = doc.data().uid;
+<<<<<<< HEAD
             firestore.collection("users").doc(userId).collection("assignedChallenges").doc(challengeID).set({challengeid: challengeID});
             window.alert("Succesfully assigned the challenge to", userName);
+=======
+            //check if it has already been assigned or not
+            var challengeRef = firestore.collection("users").doc(userId).collection("assignedChallenges").doc(challengeID); 
+
+            challengeRef.get().then(function(doc) {
+                if (doc.exists) {
+                    alert("already assigned");
+                } else {
+                    firestore.collection("users").doc(userId).collection("assignedChallenges").doc(challengeID).set({challengeid: challengeID});
+                }
+            }).catch(function(error) {
+                console.log("Error assigning the challenge", error);
+            });
+
+>>>>>>> 6e03c9b5b90d450822e11ceac75f3a05520cb211
         } else {
             // doc.data() will be undefined in this case
             console.log("No such username to assign the challenge!");
