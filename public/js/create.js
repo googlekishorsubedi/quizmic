@@ -331,6 +331,7 @@ function checkTheInputForChallenges(challengeName, URL, songname, artist, genre,
     }
     return true;
 }
+
 /**
  * Create a challenge
  * @param URL the challenge URL
