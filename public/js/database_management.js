@@ -108,30 +108,30 @@ function addFriend(){
                     alert("Can't add yourself to your friend's list")
                     return;
                 }
-                else 
+                else
                 {
-                    //check if friendusername already in the array 
+                    //check if friendusername already in the array
                     var contactListArray = results.data().contactList;
-                    for (i = 0; i < contactListArray.length; i++) { 
+                    for (i = 0; i < contactListArray.length; i++) {
                         if(contactListArray[i] == friendUsername)
                         {
                             alert("User already in your friend list");
                             return;
                         }
                     }
-                    
+
                     userRef.update({
                     contactList: firebase.firestore.FieldValue.arrayUnion(friendUsername)
                     });
                     alert("friend added");
                 }
-            } else 
+            } else
                 alert("this Username not found.");
             }).catch(function (error) {
             console.log("Error getting user owned challenges:", error);
             });
 
-        } else 
+        } else
             alert("Friend Username not found");
         }).catch(function (error) {
         console.log("Error getting user owned challenges:", error);
@@ -139,7 +139,38 @@ function addFriend(){
 
 }
 
+function assignChallenge(challengeID, userName)
+{
+    var docRef = firestore.collection("username").doc(userName);
 
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            var userId = doc.data().uid;
+            //check if it has already been assigned or not
+            var challengeRef = firestore.collection("users").doc(userId).collection("assignedChallenges").doc(challengeID);
+
+            challengeRef.get().then(function(doc) {
+                if (doc.exists) {
+                    alert("already assigned");
+                } else {
+                    firestore.collection("users").doc(userId).collection("assignedChallenges").doc(challengeID).set({challengeid: challengeID});
+                }
+            }).catch(function(error) {
+                console.log("Error assigning the challenge", error);
+            });
+
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such username to assign the challenge!");
+            window.alert('Username does not exist');
+
+        }
+    }).catch(function(error) {
+        console.log("Error assigning the challenge", error);
+        window.alert('Error assigning the challenge');
+    });
+
+}
 
 /**
  * Creates a group
@@ -206,4 +237,3 @@ function getUserAssignedChallenges(username) {
         console.log("Error getting documents:", error);
     });
 }
-

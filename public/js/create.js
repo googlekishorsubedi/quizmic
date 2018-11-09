@@ -20,6 +20,18 @@ function enableHint() {
 
 }
 
+function openassignpopup(challenge) {
+  document.getElementById("openassignpopupForm").style.display = "block";
+
+  document.getElementById('assignbuttoncs').onclick = function(){
+      assignChallenge(challenge.id,document.getElementById('assignbuttonpop').value);
+  }
+}
+
+function closeassignpopup() {
+    document.getElementById("openassignpopupForm").style.display = "none";
+}
+
 function enableOptions() {
     document.getElementById("options").hidden = !document.getElementById("optionsEnable").checked;
     document.getElementById("option1").value = "";
@@ -77,6 +89,9 @@ function createButtonSections(challenge) {
 
     var assignButton = document.createElement("button");
     assignButton.className = "assignButton";
+    assignButton.onclick = function(){
+        openassignpopup(challenge);
+    }
 
     var editButton = document.createElement("button");
     editButton.className = "editButton";
@@ -279,8 +294,10 @@ function getUserChallengesQUERY() {
             query.get().then(function (results) {
                 if (results.exists) {
                     var info = results.data();
+                    console.log(results.id);
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
                         info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
+                        console.log(challen);
                     createButtonSections(challen);
                     this.challengesArray.unshift(challen);
 
@@ -379,6 +396,8 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
                 });
         }).then(result => {
             console.log('Transaction success!');
+            
+
         }).catch(err => {
             console.log('Transaction failure:', err);
         });

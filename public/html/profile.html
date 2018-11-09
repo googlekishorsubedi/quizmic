@@ -56,6 +56,9 @@
           <img id="profilepic" src="../images/man3.png" alt="profilepic">
           </a>
           <div style="background: #fefff9ff"class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="profile.html">
+                Display UserName
+            </a>
             <a class="dropdown-item" href="profile.html"> Friends </a>
             <a class="dropdown-item" href="settings.html">Settings</a>
             <div class="dropdown-divider"></div>
@@ -85,24 +88,17 @@
       <div class="col-lg-4 friendscol">
           <h2 id="friendsheader"> Friends </h2>
            <div class="addfriendsection">
-             <button id="addfriendsbut" class="" onclick="addfriendsbut()"> Add Friend + </button>
-             <input type="search" id="friendUsername" placeholder="Find Friends">
-             <input type="submit" id = "addfriendsubmit" name="submit" placeholder="Submit" onclick=addFriend()>
-
-
+               <button id="addfriendsbut" class="" onclick="addfriendsbut()"> Add Friend + </button>
+               <input type="search" id="friendUsername" placeholder="Find Friends">
+               <input type="submit" id = "addfriendsubmit" name="submit" placeholder="Submit" onclick=addFriend()>
            </div>
 
-          <div id="listoffriends">
+          <div id="listoffriends" >
+            <div style=""class="friendview"></div>
             <div class="friendview"></div>
             <div class="friendview"></div>
             <div class="friendview"></div>
-            <div class="friendview"></div>
-            <div class="friendview"></div>
-            <div class="friendview"></div>
-            <div class="friendview"></div>
-            <div class="friendview"></div>
-            <div class="friendview"></div>
-            <div class="friendview"></div>
+
           </div>
 
 
@@ -121,11 +117,11 @@
 
                 <form id="invitetogroup" action="../index.html" method="post">
                   <div id="findfriend"class="">
-                    <div class="textforinput">Find Friend: </div>
+                    <div class="invitebut">Find Friend: </div>
                     <input type="search" name="friend" value="friend">
                   </div>
                   <div id="groupsearch"class="">
-                    <div id="" class="">Find Group: </div>
+                    <div id="" class="invitebut">Find Group: </div>
                     <input type="search" name="group" value="group">
                   </div>
                   <input id="invitesubmit"type="submit" name="submit" value="submit">
@@ -140,24 +136,39 @@
 
 
 
-    <div id="myForm"class="creategroupbox">
+    <div id="myForm"class="">
       <div class="creategroupcontent">
+        <div id="exitbuttondiv">
           <button id="closeFormbut" class="" onclick="closeForm()">
               <img id="closeForm" src="../images/closebutton.ico" alt="closebutton">
           </button>
+        </div>
 
-          <p>Create Group</p>
-          <form id="creategroup" action="../index.html" method="post">
-            <div class="creategroupsection">
+          <p id="popupheading">Create Group</p>
+
+          <div class="Nameinput">
+                <input id="nameofgroup"type="text" name="" placeholder="Name of Group">
+          </div>
+
+          <div class="Descriptioninput">
+                <textarea name="name" rows="6" cols="40"></textarea>
+          </div>
+
+          <div class="creategroupsubmit">
+            <input id="createchallengebutton"type="submit" name="Create" value="Create">
+          </div>
+
+          <!-- <form id="creategroup" action="../index.html" method="post">
+            <div class="">
               <div class="textforinput">Name</div>
               <input type="text" name="" value="">
             </div>
-            <div class="creategroupsection">
+            <div class="">
               <div class="textforinput">Description</div>
               <textarea name="name" rows="8" cols="40"></textarea>
             </div>
             <input type="submit" name="submit" value="submit">
-          </form>
+          </form> -->
 
         </div>
       </div>

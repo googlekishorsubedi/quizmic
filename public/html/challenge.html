@@ -22,11 +22,12 @@
   <script src="../js/pageHandler.js"></script>
   <script src="../js/loginHandler.js"></script>
   <script src="../js/database_management.js"></script>
-  <script src="./video.js"></script>
+  <script src="../js/video.js"></script>
 
 </head>
 
 <body >
+
 
   <header>
     <nav id="navcolor" class="navbar navbar-expand-lg navbar-light bg-light" >
@@ -63,6 +64,9 @@
             <img id="profilepic" src="../images/man3.png" alt="profilepic">
             </a>
             <div style="background: #fefff9ff"class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="profile.html">
+                  Display UserName
+              </a>
               <a class="dropdown-item" href="profile.html"> Friends </a>
               <a class="dropdown-item" href="settings.html">Settings</a>
               <div class="dropdown-divider"></div>
@@ -79,9 +83,9 @@
 
   <div class="row" style="height:2px; background:yellow"></div>
 
-        <div id="player"></div>
-        <button type="button" style="height:100px;width:100px;" onClick="onClick()">Need a hint?</button>
-        <p>Clicks: <a id="clicks">0</a></p>
+      <div id="player"></div>
+        <!-- <button type="button" style="height:100px;width:100px;" onClick="onClick()">Need a hint?</button> -->
+        <!-- <p>Clicks: <a id="clicks">0</a></p> -->
 
 
     <div class="questionbox">
@@ -111,7 +115,7 @@
       </form>
 
       <div class="hintbox">
-        <button class="hintbutton" type="button" name="button">Hint</button>
+        <button class="hintbutton" type="button" name="button" onclick="onClick()">Hint</button>
       </div>
     </div>
   </div>
