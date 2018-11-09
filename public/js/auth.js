@@ -8,6 +8,7 @@ window.onload()
 }
 
 function signOut(){
+    sessionStorage.removeItem("userID");
     console.log("Llama el metodo");
     firebase.auth().signOut().then(function() {
         document.location.href = "../index.html";
