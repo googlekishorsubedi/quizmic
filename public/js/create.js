@@ -53,11 +53,6 @@ function makeaGroup()
 
     var user = firebase.auth().currentUser;
     var potentialMembers = usernames.split(",");
-    var erroredUsernames = [];
-    //add a group to groups table, make user.uid as creator, set groupId;
-
-    //check if each username is valid, if yes, add username to the members array 
-    //also for each user, go to belongsGroup collection, and add groupId to it
 
     firestore.collection('groups').add({
             groupName: groupName,
@@ -65,36 +60,66 @@ function makeaGroup()
             members: []
         }).then(function (groupId) {
             // This transaction makes possible the update in the list of the user.
-            groupId = groupId.id;
+            var groupId = groupId.id;
             var groupRef = firestore.collection('groups').doc(groupId);
-
+            var promises = [];
             var counter= 0;
             while(counter < potentialMembers.length)
             {
                 var query = firestore.collection('username').doc(potentialMembers[counter]);
-                query.get().then(function (doc) {
-                    if (doc.exists) {
-                        console.log(doc.data());
-                        console.log(counter);
-                        groupRef.update({
-                            members: firebase.firestore.FieldValue.arrayUnion(potentialMembers[counter])
-                            });
-                    } else {
-                        erroredUsernames.push(potentialMembers[counter]);
-                    }
-                    
-                }).catch(function (error) {
-                    console.log("Error checking if the user exists:", error);
-                });
-
-                    // var userRef = firestore.collection('users').doc(getUserIdByUsername(potentialMembers[i]));
-                    // userRef.update({
-                    // belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
-                    // });
-
-                    //
-                    counter +=1;
+                promises.push(query.get());
+                counter +=1 ;
             }
+            Promise.all(promises).then( function(snapshots) {
+                successful = []
+                unsuccessful = []
+                console.log(snapshots);
+                var i = 0;
+                while(i < snapshots.length){
+                    if(snapshots[i].exists){
+                        successful.push(snapshots[i]);
+                    }
+                    else 
+                    {
+                        unsuccessful.push(snapshots[i]);
+                    }
+                    i +=1 
+                }
+                console.log(successful);
+                console.log(unsuccessful);
+                var i = 0
+                while(i < successful.length)
+                {
+                    groupRef.update({
+                                    members: firebase.firestore.FieldValue.arrayUnion(successful[i].id)
+                                    });
+
+                    userRef = firestore.collection("users").doc(successful[i].data().uid);
+
+                    userRef.update({
+                        belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
+                        });
+
+                    i +=1;
+                }
+                if(unsuccessful.length ===0){
+                    alert("Group made successfully, added all the members.")
+                }
+                else{
+                    var k = []
+                    var ctr = 0;
+                    while(ctr < unsuccessful.length){
+                        k.push(unsuccessful[ctr].id);
+                        ctr +=1 ;
+                    }
+                    alert("Group made successfully, but couldn't add " + k);
+                }
+                
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
     });
 
 }

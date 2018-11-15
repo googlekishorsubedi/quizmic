@@ -151,11 +151,12 @@
           </div>
 
           <div class="Descriptioninput">
-                <textarea name="name" rows="6" cols="40"></textarea>
+                <!-- <textarea name="name" rows="6" cols="40"> </textarea> -->
+                <input type="text" id="CheckingUsername" placeholder="Add multiple usernames in the form: id1,id2,id3 " style= "width: 450px; height:150px" /> 
           </div>
 
           <div class="creategroupsubmit">
-            <input id="createchallengebutton"type="submit" name="Create" value="Create">
+            <input id="creategroupbutton"type="submit" onclick="makeaGroup()"  name="Create" value="Create">
           </div>
 
           <!-- <form id="creategroup" action="../index.html" method="post">
