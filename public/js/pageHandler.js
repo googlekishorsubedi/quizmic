@@ -28,6 +28,7 @@ function printName(user){
     //document.getElementById("name").innerHTML = user.displayName;
 }
 
+
 function linkGoogleAccount()
 {
     var provider = new firebase.auth.GoogleAuthProvider();

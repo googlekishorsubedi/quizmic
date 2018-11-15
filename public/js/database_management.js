@@ -139,6 +139,7 @@ function addFriend(){
 
 }
 
+
 function assignChallenge(challengeID, userName)
 {
     var docRef = firestore.collection("username").doc(userName);

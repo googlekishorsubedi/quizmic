@@ -1,4 +1,11 @@
 //firestore.settings(settings);
+var firestore = firebase.firestore();
+
+// Disable deprecated features
+firestore.settings({
+  timestampsInSnapshots: true
+});
+
 var users = firestore.collection("users");
 var groups = firestore.collection("groups");
 var challenges = firestore.collection("challenges");
@@ -37,6 +44,89 @@ function enableOptions() {
     document.getElementById("option1").value = "";
     document.getElementById("option2").value = "";
     document.getElementById("option3").value = "";
+}
+
+function makeaGroup()
+{
+    var usernames = document.getElementById('checkingUsername').value;
+    var groupName = document.getElementById('checkingGroupName').value;
+
+    var user = firebase.auth().currentUser;
+    var potentialMembers = usernames.split(",");
+    var erroredUsernames = [];
+    //add a group to groups table, make user.uid as creator, set groupId;
+
+    //check if each username is valid, if yes, add username to the members array 
+    //also for each user, go to belongsGroup collection, and add groupId to it
+
+    firestore.collection('groups').add({
+            groupName: groupName,
+            groupOwner: user.uid,
+            members: []
+        }).then(function (groupId) {
+            // This transaction makes possible the update in the list of the user.
+            groupId = groupId.id;
+            var groupRef = firestore.collection('groups').doc(groupId);
+
+            var counter= 0;
+            while(counter < potentialMembers.length)
+            {
+                var query = firestore.collection('username').doc(potentialMembers[counter]);
+                query.get().then(function (doc) {
+                    if (doc.exists) {
+                        console.log(doc.data());
+                        console.log(counter);
+                        groupRef.update({
+                            members: firebase.firestore.FieldValue.arrayUnion(potentialMembers[counter])
+                            });
+                    } else {
+                        erroredUsernames.push(potentialMembers[counter]);
+                    }
+                    
+                }).catch(function (error) {
+                    console.log("Error checking if the user exists:", error);
+                });
+
+                    // var userRef = firestore.collection('users').doc(getUserIdByUsername(potentialMembers[i]));
+                    // userRef.update({
+                    // belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
+                    // });
+
+                    //
+                    counter +=1;
+            }
+    });
+
+}
+
+function checkIfUserExists(userName)
+{
+    var query = firestore.collection('username').doc(userName);
+    query.get().then(function (doc) {
+        if (doc.exists) {
+            return true;
+        } else {
+            return false;
+        }
+    }).catch(function (error) {
+        console.log("Error checking if the user exists:", error);
+    });
+}
+
+function getUserIdByUsername(userName){
+
+    var query = firestore.collection('username').doc(userName);
+   query.get().then(function (doc) {
+        if (doc.exists) {          
+            var uid = doc.data().uid;
+            return uid;
+        } else {
+            console.log("No username found");
+            return;
+        }
+    }).catch(function (error) {
+        console.log("Error getting documents:", error);
+    });
 }
 
 function trying() {
