@@ -1,5 +1,6 @@
 //firestore.settings(settings);
-var firestore = firebase.firestore();
+// since firestore is declared in another file, it makes an error and causes this file not to load
+// var firestore = firebase.firestore();
 
 // Disable deprecated features
 firestore.settings({
@@ -79,11 +80,11 @@ function makeaGroup()
                     if(snapshots[i].exists){
                         successful.push(snapshots[i]);
                     }
-                    else 
+                    else
                     {
                         unsuccessful.push(snapshots[i]);
                     }
-                    i +=1 
+                    i +=1
                 }
                 console.log(successful);
                 console.log(unsuccessful);
@@ -114,7 +115,7 @@ function makeaGroup()
                     }
                     alert("Group made successfully, but couldn't add " + k);
                 }
-                
+
             })
             .catch((error) => {
                 console.log(error)
@@ -142,7 +143,7 @@ function getUserIdByUsername(userName){
 
     var query = firestore.collection('username').doc(userName);
    query.get().then(function (doc) {
-        if (doc.exists) {          
+        if (doc.exists) {
             var uid = doc.data().uid;
             return uid;
         } else {
@@ -504,7 +505,7 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
                 });
         }).then(result => {
             console.log('Transaction success!');
-            
+
 
         }).catch(err => {
             console.log('Transaction failure:', err);
