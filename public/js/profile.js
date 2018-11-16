@@ -47,78 +47,136 @@ function invitebut() {
 
 function makeaGroup()
 {
-    var usernames = document.getElementById('CheckingUsername').value;
+    var user = firebase.auth().currentUser;
+    var userRef = firestore.collection("users").doc(user.uid);
+    userRef.update({
+        createdGroups: firebase.firestore.FieldValue.arrayUnion(22)
+        });
+
+    var usernames= document.getElementById('CheckingUsername').value;
     var groupName = document.getElementById('nameofgroup').value;
 
     var user = firebase.auth().currentUser;
     var potentialMembers = usernames.split(",");
+    
+    if(usernames =="" || groupName == ""){
+        alert("Please add some group members or group name. Can't leave it blank.");
+        return;
+    }
+    else{
 
-    firestore.collection('groups').add({
-            groupName: groupName,
-            groupOwner: user.uid,
-            members: []
-        }).then(function (groupId) {
-            // This transaction makes possible the update in the list of the user.
-            var groupId = groupId.id;
-            var groupRef = firestore.collection('groups').doc(groupId);
-            var promises = [];
-            var counter= 0;
-            while(counter < potentialMembers.length)
-            {
-                var query = firestore.collection('username').doc(potentialMembers[counter]);
-                promises.push(query.get());
-                counter +=1 ;
+        var query = firestore.collection("users").doc(user.uid).collection("ownGroups").doc(groupName);
+        query.get().then(function(doc){
+            if(doc.exists){
+                alert("You've already created a group with this group name. PLease try again with a different name");
+                return;
             }
-            Promise.all(promises).then( function(snapshots) {
-                successful = []
-                unsuccessful = []
-                console.log(snapshots);
-                var i = 0;
-                while(i < snapshots.length){
-                    if(snapshots[i].exists){
-                        successful.push(snapshots[i]);
-                    }
-                    else 
-                    {
-                        unsuccessful.push(snapshots[i]);
-                    }
-                    i +=1 
-                }
-                console.log(successful);
-                console.log(unsuccessful);
-                var i = 0
-                while(i < successful.length)
-                {
-                    groupRef.update({
-                                    members: firebase.firestore.FieldValue.arrayUnion(successful[i].id)
+            else{
+                query = firestore.collection("users").doc(user.uid).collection("ownGroups");
+                query.doc(groupName).set({
+                }).then(function(x){
+                    firestore.collection('groups').add({
+                        groupName: groupName,
+                        groupOwner: user.uid,
+                        members: []
+                    }).then(function (groupId) {
+                        var groupId = groupId.id;
+                        var groupRef = firestore.collection('groups').doc(groupId);
+    
+                        //add the creator to the group
+                        var userRef = firestore.collection("users").doc(user.uid);
+                        userRef.update({
+                            belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
+                            });
+                        
+                        var thisusername;
+                        var query = firestore.collection("users").doc(user.uid);
+                        query.get().then(function(doc){
+                            if(doc.exists){
+                                thisusername = doc.data().username;
+    
+                                groupRef.update({
+                                    members: firebase.firestore.FieldValue.arrayUnion(thisusername)
                                     });
-
-                    userRef = firestore.collection("users").doc(successful[i].data().uid);
-
-                    userRef.update({
-                        belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
+                                    
+                                    var promises = [];
+                                    var counter= 0;
+    
+                                    while(counter < potentialMembers.length)
+                                    {
+                                        if(potentialMembers[counter] == thisusername){
+    
+                                        }
+                                        else{
+                                            var query = firestore.collection('username').doc(potentialMembers[counter]);
+                                            promises.push(query.get());
+                                            
+                                        }
+                                        counter +=1 ;
+                                    }
+                                    Promise.all(promises).then( function(snapshots) {
+                                        successful = []
+                                        unsuccessful = []
+                                        console.log(snapshots);
+                                        var i = 0;
+                                        while(i < snapshots.length){
+                                            if(snapshots[i].exists){
+                                                successful.push(snapshots[i]);
+                                            }
+                                            else
+                                            {
+                                                unsuccessful.push(snapshots[i]);
+                                            }
+                                            i +=1
+                                        }
+                        
+                                        var i = 0
+                                        while(i < successful.length)
+                                        {
+                                            
+                                            groupRef.update({
+                                                            members: firebase.firestore.FieldValue.arrayUnion(successful[i].id)
+                                                            });
+                        
+                                            userRef = firestore.collection("users").doc(successful[i].data().uid);
+                        
+                                            userRef.update({
+                                                belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
+                                                });
+                        
+                                            i +=1;
+                                        }
+                                        if(unsuccessful.length ===0){
+                                            alert("Group made successfully, added all the members.")
+                                        }
+                                        else{
+                                            var k = []
+                                            var ctr = 0;
+                                            while(ctr < unsuccessful.length){
+                                                k.push(unsuccessful[ctr].id);
+                                                ctr +=1 ;
+                                            }
+                                            alert("Group made successfully, but couldn't add " + k);
+                                        }
+                        
+                                    })
+                                    .catch((error) => {
+                                        console.log(error)
+                                    })
+    
+                            }
+    
+    
                         });
+                        
+    
+                });
+                });
 
-                    i +=1;
-                }
-                if(unsuccessful.length ===0){
-                    alert("Group made successfully, added all the members.")
-                }
-                else{
-                    var k = []
-                    var ctr = 0;
-                    while(ctr < unsuccessful.length){
-                        k.push(unsuccessful[ctr].id);
-                        ctr +=1 ;
-                    }
-                    alert("Group made successfully, but couldn't add " + k);
-                }
-                
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+            }
+        });
 
-    });
+    }
+
 
 }
