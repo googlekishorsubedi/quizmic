@@ -5,7 +5,7 @@
 
 function profileMain(){
   getUserContactsQUERY();
-  // getUserGroupQUERY();
+  getUserGroupQUERY();
 }
 var contactsArray = [];
 var groupsArray = [];
@@ -46,10 +46,9 @@ function getUserGroupQUERY() {
     var ownChallengesIDs = [];
     query.get().then(function (results) {
         if (results.exists) {
-            var ownChallenges = results.data().ownChallenges;
-
+            var ownChallenges = results.data().belongsToGroup;
             ownChallenges.forEach(function (doc) {
-                ownChallengesIDs.push(doc.id)
+                ownChallengesIDs.push(doc);
             });
         }
         else
@@ -57,29 +56,57 @@ function getUserGroupQUERY() {
 
 
         ownChallengesIDs.forEach(function (e) {
-            var query = challenges.doc(e);
+            var query = groups.doc(e);
             query.get().then(function (results) {
                 if (results.exists) {
                     var info = results.data();
                     console.log(results.id);
-                    var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
-                        console.log(challen);
-                    createButtonSectionsProfile(challen);
-                    this.groupsArray.unshift(challen);
+                    var group = Group(info.groupName, results.id, info.groupOwner);
+                    createButtonSectionsGroup(group);
+                    console.log(group);
+                    this.groupsArray.unshift(group);
 
                 }
                 else
-                    console.log("No challenge was found with that ID!");
+                    console.log("No group was found with that ID!");
 
             }).catch(function (error) {
-                console.log("Error getting challenge ID:", error);
+                console.log("Error getting groups ID:", error);
             });
         });
     }).catch(function (error) {
         console.log("Error getting user owned challenges:", error);
     });
 
+}
+
+function createButtonSectionsGroup(groupModel) {
+    var div = document.createElement("div");
+    groupModel.div = div;
+    div.className = "groupview";
+
+    var contactName = document.createElement("p");
+    contactName.className = "groupName";
+
+    var deleteButton = document.createElement("button");
+    deleteButton.className = "deleteButton";
+    deleteButton.onclick = function () {
+      // delete friend and remove from the array. like this function
+
+        // deleteChallenge(challenge, div, editButton, deleteButton);
+
+    };
+
+    contactName.innerHTML = groupModel.name;
+    deleteButton.innerHTML = "Delete";
+
+    div.appendChild(contactName);
+    div.appendChild(deleteButton);
+
+    var ediv = null;
+    if(groupsArray.length > 0)
+        ediv =groupsArray[0].div;
+    document.getElementById('mygroups').insertBefore(div, ediv);
 }
 
 function createButtonSectionsContact(contactModel) {

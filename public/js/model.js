@@ -32,3 +32,12 @@ function Contact(name){
   return{name: name,
   div: null}
 }
+
+function Group(name, id, owner){
+  return{
+    name: name,
+    id:   id,
+    owner: owner,
+    div: null
+  }
+}
