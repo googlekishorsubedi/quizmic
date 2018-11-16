@@ -3,8 +3,11 @@
 
 var videoID = loadMainVideo();
 function loadMainVideo(){
+    var parsedChallenge = JSON.parse(sessionStorage.getItem("playingChallenge"));
+    var id = parsedChallenge.youtubeID.split("https://www.youtube.com/watch?v=");
+
   //Somehow grabs the video id from the challenge, returns it.
-  return 'M7lc1UVf-VE';
+  return id[1];
 }
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
@@ -44,25 +47,30 @@ function loadMainVideo(){
       setInterval(checkbButton, 100);
       setTimeout(stopVideo, 20000);
       done = true;
+
     }
   }
 
   //This function will stop the video so that the player won't be able to play longer than they are supposed to.
   function stopVideo() {
+    blockButtons();
     player.stopVideo();
   }
 
 
   function checkbButton(){
-    if(clicks >= 1){
+    if(clicks){
       //this code correctly takes away 3 seconds from the video timer.
-      setTimeout(stopVideo, 20000 - clicks*3000);
+      setTimeout(stopVideo, 20000 - 10000);
       //player.stopVideo();
     }
   }
 
-  var clicks = 0;
-  function onClick() {
-      clicks += 1;
+  var clicks = false;
+  function onClickHint() {
+      clicks = true;
+      var hint_div = document.getElementById("hint_display");
+      hint_div.innerText = playingChallenge.hint;
+      hint_div.hidden = false;
       // document.getElementById("clicks").innerHTML = clicks;
   };
