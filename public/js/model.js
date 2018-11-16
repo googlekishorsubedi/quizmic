@@ -27,3 +27,8 @@ function User(name, username, email, score, challengesPlayed){
 
 
 }
+
+function Contact(name){
+  return{name: name,
+  div: null}
+}

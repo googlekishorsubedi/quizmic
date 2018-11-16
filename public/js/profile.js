@@ -3,6 +3,115 @@
 //   document.getElementById('creategroupbox').style.display = 'flex';
 // });
 
+function profileMain(){
+  getUserContactsQUERY();
+  // getUserGroupQUERY();
+}
+var contactsArray = [];
+var groupsArray = [];
+
+function getUserContactsQUERY() {
+
+    var user = sessionStorage.getItem("userID");
+    var query = users.doc(user);
+    var ownChallengesIDs = [];
+    query.get().then(function (results) {
+        if (results.exists) {
+            var ownChallenges = results.data().contactList;
+
+            ownChallenges.forEach(function (doc) {
+                ownChallengesIDs.push(doc)
+            });
+        }
+        else
+            console.log("No documents found!");
+
+
+        ownChallengesIDs.forEach(function (e) {
+          // console.log(e);
+          var contact = Contact(e);
+          createButtonSectionsContact(contact);
+          this.contactsArray.unshift(contact);
+        });
+    }).catch(function (error) {
+        console.log("Error getting user owned challenges:", error);
+    });
+
+}
+
+function getUserGroupQUERY() {
+
+    var user = sessionStorage.getItem("userID");
+    var query = users.doc(user);
+    var ownChallengesIDs = [];
+    query.get().then(function (results) {
+        if (results.exists) {
+            var ownChallenges = results.data().ownChallenges;
+
+            ownChallenges.forEach(function (doc) {
+                ownChallengesIDs.push(doc.id)
+            });
+        }
+        else
+            console.log("No documents found!");
+
+
+        ownChallengesIDs.forEach(function (e) {
+            var query = challenges.doc(e);
+            query.get().then(function (results) {
+                if (results.exists) {
+                    var info = results.data();
+                    console.log(results.id);
+                    var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
+                        console.log(challen);
+                    createButtonSectionsProfile(challen);
+                    this.groupsArray.unshift(challen);
+
+                }
+                else
+                    console.log("No challenge was found with that ID!");
+
+            }).catch(function (error) {
+                console.log("Error getting challenge ID:", error);
+            });
+        });
+    }).catch(function (error) {
+        console.log("Error getting user owned challenges:", error);
+    });
+
+}
+
+function createButtonSectionsContact(contactModel) {
+    var div = document.createElement("div");
+    contactModel.div = div;
+    div.className = "friendview";
+
+    var contactName = document.createElement("p");
+    contactName.className = "contactName";
+
+    var deleteButton = document.createElement("button");
+    deleteButton.className = "deleteButton";
+    deleteButton.onclick = function () {
+      // delete friend and remove from the array. like this function
+
+        // deleteChallenge(challenge, div, editButton, deleteButton);
+
+    };
+
+    contactName.innerHTML = contactModel.name;
+    deleteButton.innerHTML = "Delete";
+
+    div.appendChild(contactName);
+    div.appendChild(deleteButton);
+
+    var ediv = null;
+    if(contactsArray.length > 0)
+        ediv =contactsArray[0].div;
+    document.getElementById('listoffriends').insertBefore(div, ediv);
+}
+
+
 let show_add_friends = false;
 
 function openForm() {
@@ -58,7 +167,7 @@ function makeaGroup()
 
     var user = firebase.auth().currentUser;
     var potentialMembers = usernames.split(",");
-    
+
     if(usernames =="" || groupName == ""){
         alert("Please add some group members or group name. Can't leave it blank.");
         return;
@@ -82,35 +191,35 @@ function makeaGroup()
                     }).then(function (groupId) {
                         var groupId = groupId.id;
                         var groupRef = firestore.collection('groups').doc(groupId);
-    
+
                         //add the creator to the group
                         var userRef = firestore.collection("users").doc(user.uid);
                         userRef.update({
                             belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
                             });
-                        
+
                         var thisusername;
                         var query = firestore.collection("users").doc(user.uid);
                         query.get().then(function(doc){
                             if(doc.exists){
                                 thisusername = doc.data().username;
-    
+
                                 groupRef.update({
                                     members: firebase.firestore.FieldValue.arrayUnion(thisusername)
                                     });
-                                    
+
                                     var promises = [];
                                     var counter= 0;
-    
+
                                     while(counter < potentialMembers.length)
                                     {
                                         if(potentialMembers[counter] == thisusername){
-    
+
                                         }
                                         else{
                                             var query = firestore.collection('username').doc(potentialMembers[counter]);
                                             promises.push(query.get());
-                                            
+
                                         }
                                         counter +=1 ;
                                     }
@@ -129,21 +238,21 @@ function makeaGroup()
                                             }
                                             i +=1
                                         }
-                        
+
                                         var i = 0
                                         while(i < successful.length)
                                         {
-                                            
+
                                             groupRef.update({
                                                             members: firebase.firestore.FieldValue.arrayUnion(successful[i].id)
                                                             });
-                        
+
                                             userRef = firestore.collection("users").doc(successful[i].data().uid);
-                        
+
                                             userRef.update({
                                                 belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
                                                 });
-                        
+
                                             i +=1;
                                         }
                                         if(unsuccessful.length ===0){
@@ -158,18 +267,18 @@ function makeaGroup()
                                             }
                                             alert("Group made successfully, but couldn't add " + k);
                                         }
-                        
+
                                     })
                                     .catch((error) => {
                                         console.log(error)
                                     })
-    
+
                             }
-    
-    
+
+
                         });
-                        
-    
+
+
                 });
                 });
 
