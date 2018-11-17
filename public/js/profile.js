@@ -185,9 +185,6 @@ function makeaGroup()
 {
     var user = firebase.auth().currentUser;
     var userRef = firestore.collection("users").doc(user.uid);
-    userRef.update({
-        createdGroups: firebase.firestore.FieldValue.arrayUnion(22)
-        });
 
     var usernames= document.getElementById('CheckingUsername').value;
     var groupName = document.getElementById('nameofgroup').value;
