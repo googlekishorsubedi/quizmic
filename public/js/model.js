@@ -43,6 +43,4 @@ function User(name, username, email, score, challengesPlayed){
     email: email,
     score: score,
     challengesPlayed: challengesPlayed}
-
-
 }

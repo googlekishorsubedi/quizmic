@@ -55,6 +55,8 @@ function loadMainVideo(){
   function stopVideo() {
     blockButtons();
     player.stopVideo();
+    document.location.replace("../html/create.html")
+
   }
 
 

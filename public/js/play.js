@@ -78,3 +78,56 @@ function revealchallenges(id){
       }
   }
 }
+
+function playGetChallenges() {
+
+    console.log("Hola")
+    var user = sessionStorage.getItem("userID");
+    var query = users.doc(user).collection("assignedChallenges");//.collection("assignedChallenges");
+    var ownChallengesIDs = [];
+    query.get().then(function (results){
+      results.forEach(function (hello) {
+          console.log(hello.data());
+      })
+
+    }).catch(function (err) {
+      console.log(err);
+    })
+
+
+    // query.get().then(function (results) {
+    //     if (results.exists) {
+    //         var ownChallenges = results.data().ownChallenges;
+    //
+    //         ownChallenges.forEach(function (doc) {
+    //             ownChallengesIDs.push(doc.id)
+    //         });
+    //     }
+    //     else
+    //         console.log("No documents found!");
+    //
+    //
+    //     ownChallengesIDs.forEach(function (e) {
+    //         var query = challenges.doc(e);
+    //         query.get().then(function (results) {
+    //             if (results.exists) {
+    //                 var info = results.data();
+    //                 var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+    //                     info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
+    //
+    //                 createButtonSections(challen);
+    //                 this.challengesArray.unshift(challen);
+    //
+    //             }
+    //             else
+    //                 console.log("No challenge was found with that ID!");
+    //
+    //         }).catch(function (error) {
+    //             console.log("Error getting challenge ID:", error);
+    //         });
+    //     });
+    // }).catch(function (error) {
+    //     console.log("Error getting user owned challenges:", error);
+    // });
+
+}

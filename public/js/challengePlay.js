@@ -11,8 +11,6 @@ function loadChallengePlay(){
 
     var shuffleArray = shuffle([parsedChallenge.option1, parsedChallenge.option2, parsedChallenge.option3, parsedChallenge.song]);
 
-    //todo if there is no hint hidde the button;
-
     if(parsedChallenge.hint !== ""){
         document.getElementById("hint_button").hidden = false;
         document.getElementById("hint_box_div").hidden = false;
