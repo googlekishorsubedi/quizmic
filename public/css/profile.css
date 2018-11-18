@@ -38,6 +38,7 @@
   align-items: center;
   width: 450px;
   height:150px;
+  /* border:1px solid blue; */
 }
 
 .friendscol{
@@ -45,6 +46,7 @@
   height:800px;
   border-radius: 15%;
   background: #fefff9ff;
+  border: 1px solid yellow;
 }
 
 #friendsearch{
