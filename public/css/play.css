@@ -27,6 +27,7 @@
   border: 1px solid yellow;
   background: #fefff9ff;
   border: 1px solid yellow;
+  overflow: scroll;
 }
 
 #byartist{
@@ -36,6 +37,7 @@
   border: 1px solid yellow;
   background: #fefff9ff;
   border: 1px solid yellow;
+  overflow: scroll;
 }
 
 #bypopular{
@@ -45,6 +47,7 @@
   border: 1px solid yellow;
   background: #fefff9ff;
   border: 1px solid yellow;
+  overflow: scroll;
 }
 
 #bypersonallyassigned{
@@ -54,6 +57,7 @@
   border: 1px solid yellow;
   background: #fefff9ff;
   border: 1px solid yellow;
+  overflow: scroll;
 }
 
 p{
@@ -61,29 +65,45 @@ p{
   display:inline;
 }
 
-.nodebuddyholder{
-  font-family: 'Open Sans Condensed', sans-serif;
-  color: #88B0C2 !important;
-  margin-top: 20px !important;
-  font-size: 20px;
-  text-align: center;
-  margin-top: 10px;
-  border-color: #d7dce3 !important;
-  border: 1px solid;
-  height:50px;
-  width: 375px;
-  background-color: white !important;
-  color: black;
-  display: none;
-  /* justify-content: space-evenly;
-  align-items: center; */
-}
+/*.nodebuddyholder{*/
+  /*font-family: 'Open Sans Condensed', sans-serif;*/
+  /*color: #88B0C2 !important;*/
+  /*margin-top: 20px !important;*/
+  /*font-size: 20px;*/
+  /*text-align: center;*/
+  /*margin-top: 10px;*/
+  /*border-color: #d7dce3 !important;*/
+  /*border: 1px solid;*/
+  /*height:50px;*/
+  /*width: 375px;*/
+  /*background-color: white !important;*/
+  /*color: black;*/
+  /*display: none;*/
+  /*!* justify-content: space-evenly;*/
+  /*align-items: center; *!*/
+/*}*/
 
 .nodebuddy{
   color: white;
   font-size: 100px;
 }
 
+
+.nodebuddyholder{
+  /* border-color: rgb(166, 166, 166) !important; */
+  margin-top: 5px !important;
+  margin-left: 15%;
+  border-color:#d7dce3 !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 20px;
+  border: 1px solid;
+  width: 300px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 .categorytext
 {

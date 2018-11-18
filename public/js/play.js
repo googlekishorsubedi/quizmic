@@ -1,97 +1,114 @@
+var display_assigned_challenges = [];
+var display_artist_challenges = [];
+var display_genre_challenges = [];
+var display_popular_challenges = [];
+var genre = document.getElementById('bygenre');
+var artist = document.getElementById('byartist');
+var popular = document.getElementById('bypopular');
+var personally = document.getElementById('bypersonallyassigned');
+
+
 //This is the main function called by onload on the play.html
-function playMain(){
-  var genre = document.getElementById('bygenre');
-  var artist = document.getElementById('byartist');
-  var popular = document.getElementById('bypopular');
-  var personally = document.getElementById('bypersonallyassigned');
+function playMain() {
 
-  // the purpose of this code is that it will make the divs, how fakeDataQuery gets this information is not important
-  // more than likely however it will be returned in an array.
+    genre = document.getElementById('bygenre');
+    artist = document.getElementById('byartist');
+    popular = document.getElementById('bypopular');
+    personally = document.getElementById('bypersonallyassigned');
 
-  // Change the value of length to change how many question nodes are shown.
-  var length = 4;
 
-  for(var i = 0; i < length; i++){
-    var dataHolder = fakeDataQuery(i);
-    var div1 = createDiv(dataHolder[0], dataHolder[1], i);
-    var div2 = createDiv(dataHolder[0], dataHolder[1], i);
-    var div3 = createDiv(dataHolder[0], dataHolder[1], i);
-    var div4 = createDiv(dataHolder[0], dataHolder[1], i);
+    //todo: load popular
+    //todo: load assigned
 
-    genre.appendChild(div1);
-    artist.appendChild(div2);
-    popular.appendChild(div3);
-    personally.appendChild(div4);
-  }
+    //todo:artist are loaded base on the user selection
+    //todo: genre and
+
 }
 
 // This function creates a div object from a given string of the creator of the challenge
 // the artist of the specific song, and the amount of points this challenge contains.
 // It will return the created div.
-function createDiv(assigned, artist, points){
-  var div = document.createElement("div");
-  div.className = "nodebuddyholder";
+function createDiv(challenge){
 
-  var assignedBy = document.createElement("p");
-  assignedBy.className = "creatorUsername";
+    var div = document.createElement("div");
+    div.className = "nodebuddyholder";
 
-  var challengeName = document.createElement("p");
-  challengeName.className = "challengeName";
+    var assignedBy = document.createElement("p");
+    assignedBy.className = "challengeName";
 
-  var pointsBy = document.createElement("p");
-  pointsBy.className = "points";
+    var challengeName = document.createElement("p");
+    challengeName.className = "challengeName";
 
-  assignedBy.innerHTML = assigned + "";
-  challengeName.innerHTML = "Challenge Name";
-  pointsBy.innerHTML = points + "";
+    assignedBy.innerHTML = challenge.creator;
+    challengeName.innerHTML = challenge.challengeName;
 
-  div.appendChild(assignedBy);
-  div.appendChild(challengeName);
-  div.appendChild(pointsBy);
+    div.appendChild(challengeName);
+    div.appendChild(assignedBy);
+    //if(document.getElementById('bypersonallyassigned').children == null){
+        document.getElementById("bypersonallyassigned").appendChild(div);
+    // }else{
+    //     personally.insertBefore(div, personally.children[0])
+    // }
 
-  return div;
-}
-
-//This function will call whatever actual function that Kishor or Kristalys makes
-//and it will return the results probably in a double array.
-//for right now it just has dummy representation
-function fakeDataQuery(howManyResults){
-  return ["Assigned by ___", "Artist", "Points"];
 }
 
 // This function is to reveal the challenges when catergory is clicked
-function revealchallenges(id){
-  var challenges = document.getElementById(id).children;
+function revealchallenges(id) {
+    var challenges = document.getElementById(id).children;
 
-  if (challenges[1].style.display == "none") {
-    challenges[0].style.marginTop = "10px";
-      challenges[0].style.fontSize = "35px";
-    for (var i = 0; i < challenges.length; i++) {
-      challenges[i].style.display = "block";
+    if (challenges[1].style.display == "none") {
+        challenges[0].style.marginTop = "10px";
+        challenges[0].style.fontSize = "35px";
+        for (var i = 0; i < challenges.length; i++) {
+            challenges[i].style.display = "block";
+        }
+    } else {
+        challenges[0].style.marginTop = "45%";
+        challenges[0].style.fontSize = "50px";
+
+        for (var i = 1; i < challenges.length; i++) {
+            challenges[i].style.display = "none";
+        }
     }
-  }else {
-    challenges[0].style.marginTop = "45%";
-    challenges[0].style.fontSize = "50px";
+}
 
-      for (var i = 1; i < challenges.length; i++) {
-        challenges[i].style.display = "none";
-      }
-  }
+function clickedAssigned() {
+    document.getElementById("bypersonallyassigned").removeChild(document.getElementById("bypersonallyassigned").children[0]);
+    playGetChallenges();
+
 }
 
 function playGetChallenges() {
 
-    console.log("Hola")
-    var user = sessionStorage.getItem("userID");
-    var query = users.doc(user).collection("assignedChallenges");//.collection("assignedChallenges");
-    var ownChallengesIDs = [];
-    query.get().then(function (results){
-      results.forEach(function (hello) {
-          console.log(hello.data());
-      })
+    //todo: check that the challenges has not been played before.
+    //todo: display which challenges ave already been played (i will say in the end of the list.
+
+
+    console.log("Hola");
+    var user = "ng5xNPHtwKfi8aWnIQPegINbCWD2";//sessionStorage.getItem("userID");
+    var query = users.doc(user).collection("assignedChallenges");//.where("wasPlayed", "=", false);
+    var saveIDs = [];
+    query.get().then(function (results) {
+        results.forEach(function (hello) {
+            var id = hello.data().challengeid;
+            if (id != null) {
+                var queryChallenge = challenges.doc(hello.data().challengeid);
+                queryChallenge.get().then(function (challenge) {
+                    var info = challenge.data();
+                    //todo: query the user name;
+                    var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+
+                    createDiv(challen);
+                    this.display_assigned_challenges.unshift(challen);
+                    console.log(challenge.data());
+                })
+            }
+        });
+
 
     }).catch(function (err) {
-      console.log(err);
+        console.log(err);
     })
 
 
@@ -100,7 +117,7 @@ function playGetChallenges() {
     //         var ownChallenges = results.data().ownChallenges;
     //
     //         ownChallenges.forEach(function (doc) {
-    //             ownChallengesIDs.push(doc.id)
+    //              ownChallengesIDs.push(doc.id)
     //         });
     //     }
     //     else
