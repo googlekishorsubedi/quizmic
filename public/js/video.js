@@ -44,8 +44,8 @@ function loadMainVideo(){
   var done = false;
   function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PLAYING && !done) {
-      setInterval(checkbButton, 100);
-      setTimeout(stopVideo, 20000);
+      setInterval(checkbButton, 1000);
+      setTimeout(stopVideo, 30000);
       done = true;
 
     }
@@ -61,9 +61,20 @@ function loadMainVideo(){
 
 
   function checkbButton(){
+    var time = document.getElementById("timeleft");
+    console.log(time.innerHTML);
+    if(time.innerHTML > 0){
+      time.innerHTML = (time.innerHTML - 1);
+    }
+
     if(clicks){
       //this code correctly takes away 3 seconds from the video timer.
-      setTimeout(stopVideo, 20000 - 10000);
+      setTimeout(stopVideo, 30000 - 10000);
+      if(clicks == 1){
+        time.innerHTML = (time.innerHTML - 9);
+        clicks += 1;
+        document.getElementById("hint_button").disabled = true;
+      }
       //player.stopVideo();
     }
   }
