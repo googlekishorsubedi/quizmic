@@ -22,11 +22,12 @@
   <script src="../js/pageHandler.js"></script>
   <script src="../js/loginHandler.js"></script>
   <script src="../js/database_management.js"></script>
+  <script src="../js/challengePlay.js"></script>
   <script src="../js/video.js"></script>
 
 </head>
 
-<body >
+<body onload="loadChallengePlay()">
 
 
   <header>
@@ -84,38 +85,46 @@
   <div class="row" style="height:2px; background:yellow"></div>
 
       <div id="player"></div>
-        <!-- <button type="button" style="height:100px;width:100px;" onClick="onClick()">Need a hint?</button> -->
+        <!-- <button type="button" style="height:100px;width:100px;" onClickHint="onClickHint()">Need a hint?</button> -->
         <!-- <p>Clicks: <a id="clicks">0</a></p> -->
 
 
     <div class="questionbox">
       <div class="timebox">
         <p id="timemessage">Time Remaining:   </p>
-        <p id="timeleft">   30seconds</p>
+        <p id="timeleft">   30</p>
       </div>
 
       <form class="options">
-        <label class="optiontexts" for="option1">
-          <input type="radio" id="option1" name="option" value="">
-          <div class="option" >Option 1:</div>
-        </label>
-        <label class="optiontexts" for="option2">
-          <input type="radio" id="option2" name="option" value="">
-          <div class="option" >Option 2:</div>
-        </label>
-        <label class="optiontexts" for="option1">
-          <input type="radio" id="option2" name="option" value="">
-          <div class="option" >Option 3:</div>
-        </label>
-        <label class="optiontexts" for="option1">
-          <input type="radio" id="option2" name="option" value="">
-          <div class="option" >Option 4:</div>
-        </label>
-        <input type="submit" value="Submit or Next">
+        <div>
+        <input type="radio" id="playoption1" name="option" value=""/>
+        <label class="optiontexts" id="playoption11"/>
+        </div>
+
+        <div>
+        <input type="radio" id="playoption2" name="option" value=""/>
+        <label class="optiontexts" id="playoption22"/>
+        </div>
+
+        <div>
+        <input type="radio" id="playoption3" name="option" value=""/>
+        <label class="optiontexts" id="playoption33"/>
+        </div>
+
+        <div>
+          <input type="radio" id="playoption4" name="option" value=""/>
+          <label class="optiontexts" id="playoption44"/>
+        </div>
+
+
       </form>
 
-      <div class="hintbox">
-        <button class="hintbutton" type="button" name="button" onclick="onClick()">Hint</button>
+
+      <div class="hintbox" id="hint_box_div" hidden="">
+        <button id="hint_button" class="hintbutton" type="button" name="button" hidden="" onclick="onClickHint()">Hint</button>
+      </div>
+      <div>
+      <div class="hintbox" id="hint_display" hidden=""></div>
       </div>
     </div>
   </div>

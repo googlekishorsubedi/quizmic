@@ -14,8 +14,27 @@ function Challenge(challengeName, youtubeID, song, artist, genre, hint, attempte
     creator: creator,
     date: date,
     id: id,
-    div: null
+    div: null,
    }
+
+}
+function ChallengeToParce(challenge){
+    return {
+        challengeName: challenge.challengeName.toString(),
+        youtubeID: challenge.youtubeID.toString(),
+        song: challenge.song.toString(),
+        artist: challenge.artist.toString(),
+        genre: challenge.genre.toString(),
+        hint: challenge.hint.toString(),
+        attempted: challenge.attempted.toString(),
+        rightlyAnswered: challenge.rightlyAnswered.toString(),
+        isPublic: challenge.isPublic.toString(),
+        option1: challenge.options[0].toString(),
+        option2: challenge.options[1].toString(),
+        option3: challenge.options[2].toString(),
+        creator: challenge.creator.toString(),
+        id: challenge.id.toString(),
+    }
 
 }
 function User(name, username, email, score, challengesPlayed){
@@ -24,8 +43,6 @@ function User(name, username, email, score, challengesPlayed){
     email: email,
     score: score,
     challengesPlayed: challengesPlayed}
-
-
 }
 
 function Contact(name){

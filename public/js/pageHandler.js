@@ -48,6 +48,7 @@ function linkGoogleAccount()
 function signOut(){
   sessionStorage.removeItem("userID");
     console.log("Llama el metodo");
+    sessionStorage.removeItem("userID");
     firebase.auth().signOut().then(function() {
         document.location.href = "../index.html";
         // Sign-out successful.

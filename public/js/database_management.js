@@ -154,7 +154,7 @@ function assignChallenge(challengeID, userName)
                 if (doc.exists) {
                     alert("already assigned");
                 } else {
-                    firestore.collection("users").doc(userId).collection("assignedChallenges").doc(challengeID).set({challengeid: challengeID});
+                    firestore.collection("users").doc(userId).collection("assignedChallenges").doc(challengeID).set({challengeid: challengeID, wasPlayed: false});
                 }
             }).catch(function(error) {
                 console.log("Error assigning the challenge", error);

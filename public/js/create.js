@@ -12,6 +12,7 @@ var groups = firestore.collection("groups");
 var challenges = firestore.collection("challenges");
 var username = firestore.collection("username");
 var challengesArray = [];
+var selectedchallenge;
 
 //TODO: automatically fill answers
 
@@ -118,6 +119,15 @@ function createButtonSections(challenge) {
 
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
+    challengeName.onclick = function () {
+        selectedchallenge = ChallengeToParce(challenge);
+        var stringify = JSON.stringify(selectedchallenge);
+        sessionStorage.setItem("playingChallenge", stringify);
+        document.location.assign("../html/challenge.html");
+        //document.location.replace("../html/challenge.html");
+
+    };
+
 
     var assignButton = document.createElement("button");
     assignButton.className = "assignButton";
@@ -326,10 +336,9 @@ function getUserChallengesQUERY() {
             query.get().then(function (results) {
                 if (results.exists) {
                     var info = results.data();
-                    console.log(results.id);
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
                         info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
-                        console.log(challen);
+
                     createButtonSections(challen);
                     this.challengesArray.unshift(challen);
 
@@ -380,6 +389,7 @@ function checkTheInputForChallenges(challengeName, URL, songname, artist, genre,
     }
     return true;
 }
+
 /**
  * Create a challenge
  * @param URL the challenge URL
