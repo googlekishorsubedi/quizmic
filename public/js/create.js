@@ -373,7 +373,7 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
         return;
     }
 
-//TODO: THe validation pf the youtube and make sure that you just have the id when it comes to saving the URL
+
     var creator = firebase.auth().currentUser.uid;
     var query = challenges.add({
         challengeName: challengeName,

@@ -32,8 +32,24 @@ function createDiv(challenge, todiv){
     assignedBy.innerHTML = challenge.creator.id;
     challengeName.innerHTML = challenge.challengeName;
 
+
+
     div.appendChild(challengeName);
     div.appendChild(assignedBy);
+
+    if("bypersonallyassigned" === todiv) {
+        var acceptbutton = document.createElement("button");
+        acceptbutton.className = "assignButton";
+        acceptbutton.innerText = "Accept";
+        div.appendChild(acceptbutton);
+
+
+        var declinebutton = document.createElement("button");
+        declinebutton.className = "assignButton";
+        declinebutton.innerText = "Decline";
+        div.appendChild(declinebutton);
+
+    }
     //if(document.getElementById('bypersonallyassigned').children == null){
         document.getElementById(todiv).appendChild(div);
     // }else{
@@ -54,8 +70,6 @@ function clickedPopular() {
 
 }
 function clickedGenre() {
-    //todo: choose group of final genres genre
-
     if(document.getElementById("bygenre").children[0] != null) {
         document.getElementById("bygenre").removeChild(document.getElementById("bygenre").children[0]);
     }
@@ -237,7 +251,6 @@ function playGetChallenges() {
     //todo: check that the challenges has not been played before.
     //todo: display which challenges ave already been played (i will say in the end of the list.
 
-    //todo: test it with same account.
 
     var user = sessionStorage.getItem("userID");
     var query = users.doc(user).collection("assignedChallenges");//.where("wasPlayed", "=", false);
@@ -309,6 +322,8 @@ function playGenreChallenge(genre){
 
 function playArtistChallenge(artist){
     //todo:check if the insertionis empty
+    //todo: case sensitive.
+    //todo: name, choices, right answer, user option
 
 
     var query = challenges.where("artist", "==", artist).limit(40);
