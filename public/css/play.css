@@ -91,7 +91,7 @@ p{
 
 .nodebuddyholder{
   /* border-color: rgb(166, 166, 166) !important; */
-  margin-top: 5px !important;
+  margin-top: 20px !important;
   margin-left: 15%;
   border-color:#d7dce3 !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
@@ -112,4 +112,13 @@ text-align: center;
 font-family: 'Pacifico', cursive;
 font-size: 50px;
 color: #88B0C2;
+}
+
+.textgenre
+{
+  margin-top: 10%;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  color: #88B0C2;
 }

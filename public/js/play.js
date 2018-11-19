@@ -15,11 +15,6 @@ function playMain() {
     artist = document.getElementById('byartist');
     popular = document.getElementById('bypopular');
     personally = document.getElementById('bypersonallyassigned');
-
-
-    //todo: load popular
-    //todo: load assigned
-
     //todo:artist are loaded base on the user selection
     //todo: genre and
 
@@ -28,7 +23,7 @@ function playMain() {
 // This function creates a div object from a given string of the creator of the challenge
 // the artist of the specific song, and the amount of points this challenge contains.
 // It will return the created div.
-function createDiv(challenge){
+function createDiv(challenge, todiv){
 
     var div = document.createElement("div");
     div.className = "nodebuddyholder";
@@ -39,13 +34,14 @@ function createDiv(challenge){
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
 
-    assignedBy.innerHTML = challenge.creator;
+
+    assignedBy.innerHTML = challenge.creator.id;
     challengeName.innerHTML = challenge.challengeName;
 
     div.appendChild(challengeName);
     div.appendChild(assignedBy);
     //if(document.getElementById('bypersonallyassigned').children == null){
-        document.getElementById("bypersonallyassigned").appendChild(div);
+        document.getElementById(todiv).appendChild(div);
     // }else{
     //     personally.insertBefore(div, personally.children[0])
     // }
@@ -78,16 +74,160 @@ function clickedAssigned() {
 
 }
 
+function clickedPopular() {
+    document.getElementById("bypopular").removeChild(document.getElementById("bypopular").children[0]);
+    playPopularChallenge();
+
+}
+function clickedGenre() {
+    //todo: choose final genre
+
+    if(document.getElementById("bygenre").children[0] != null) {
+        document.getElementById("bygenre").removeChild(document.getElementById("bygenre").children[0]);
+    }
+    var classic = document.createElement("div");
+    classic.className = "textgenre";
+    classic.innerText = "Classic";
+
+    var rock = document.createElement("div");
+    rock.className = "textgenre";
+    rock.innerText = "Rock";
+
+    var pop = document.createElement("div");
+    pop.className = "textgenre";
+    pop.innerText = "Pop";
+
+    var electronic = document.createElement("div");
+    electronic.className = "textgenre";
+    electronic.innerText = "Electronic";
+
+    document.getElementById("bygenre").appendChild(classic);
+    document.getElementById("bygenre").appendChild(rock);
+    document.getElementById("bygenre").appendChild(pop);
+    document.getElementById("bygenre").appendChild(electronic);
+
+
+    classic.onclick = function() {
+        document.getElementById("bygenre").removeChild(classic);
+        document.getElementById("bygenre").removeChild(pop);
+        document.getElementById("bygenre").removeChild(electronic);
+        document.getElementById("bygenre").removeChild(rock);
+
+        var button = document.createElement("div");
+        button.className = "textgenre";
+        button.innerText = "Classic";
+        button.onclick = function() {
+
+            var child = document.getElementById("bygenre");
+            console.log(child);
+            while (child.firstChild) {
+                child.removeChild(child.firstChild);
+            }
+            clickedGenre()
+
+        }
+        document.getElementById("bygenre").appendChild(button);
+
+
+
+        playGenreChallenge("Classic");
+    };
+
+    rock.onclick = function() {
+        document.getElementById("bygenre").removeChild(classic);
+        document.getElementById("bygenre").removeChild(rock);
+        document.getElementById("bygenre").removeChild(pop);
+        document.getElementById("bygenre").removeChild(electronic);
+
+
+        var button = document.createElement("div");
+        button.className = "textgenre";
+        button.innerText = "Rock";
+        button.onclick = function() {
+
+            var child = document.getElementById("bygenre");
+            console.log(child);
+            while (child.firstChild) {
+                child.removeChild(child.firstChild);
+            }
+            clickedGenre()
+
+        }
+        document.getElementById("bygenre").appendChild(button);
+
+
+
+        playGenreChallenge("Rock");
+    };
+
+    pop.onclick = function() {
+        document.getElementById("bygenre").removeChild(classic);
+        document.getElementById("bygenre").removeChild(rock);
+        document.getElementById("bygenre").removeChild(pop);
+        document.getElementById("bygenre").removeChild(electronic);
+
+
+        var button = document.createElement("div");
+        button.className = "textgenre";
+        button.innerText = "Pop";
+        button.onclick = function() {
+
+            var child = document.getElementById("bygenre");
+            console.log(child);
+            while (child.firstChild) {
+                child.removeChild(child.firstChild);
+            }
+            clickedGenre()
+
+        }
+        document.getElementById("bygenre").appendChild(button);
+
+
+
+        playGenreChallenge("Pop");
+    };
+
+    electronic.onclick = function() {
+        document.getElementById("bygenre").removeChild(classic);
+        document.getElementById("bygenre").removeChild(rock);
+        document.getElementById("bygenre").removeChild(pop);
+        document.getElementById("bygenre").removeChild(electronic);
+
+
+        var button = document.createElement("div");
+        button.className = "textgenre";
+        button.innerText = "Pop";
+        button.onclick = function() {
+
+            var child = document.getElementById("bygenre");
+            console.log(child);
+            while (child.firstChild) {
+                child.removeChild(child.firstChild);
+            }
+            clickedGenre()
+
+        }
+        document.getElementById("bygenre").appendChild(button);
+
+
+
+        playGenreChallenge("Electronic");
+    };
+
+}
+
+
+
+
 function playGetChallenges() {
 
     //todo: check that the challenges has not been played before.
     //todo: display which challenges ave already been played (i will say in the end of the list.
 
+    //todo: test it with same account.
 
-    console.log("Hola");
     var user = "ng5xNPHtwKfi8aWnIQPegINbCWD2";//sessionStorage.getItem("userID");
     var query = users.doc(user).collection("assignedChallenges");//.where("wasPlayed", "=", false);
-    var saveIDs = [];
     query.get().then(function (results) {
         results.forEach(function (hello) {
             var id = hello.data().challengeid;
@@ -96,10 +236,11 @@ function playGetChallenges() {
                 queryChallenge.get().then(function (challenge) {
                     var info = challenge.data();
                     //todo: query the user name;
+                    //todo: catchs that are left;
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
                         info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
 
-                    createDiv(challen);
+                    createDiv(challen, "bypersonallyassigned");
                     this.display_assigned_challenges.unshift(challen);
                     console.log(challenge.data());
                 })
@@ -111,40 +252,44 @@ function playGetChallenges() {
         console.log(err);
     })
 
+}
 
-    // query.get().then(function (results) {
-    //     if (results.exists) {
-    //         var ownChallenges = results.data().ownChallenges;
-    //
-    //         ownChallenges.forEach(function (doc) {
-    //              ownChallengesIDs.push(doc.id)
-    //         });
-    //     }
-    //     else
-    //         console.log("No documents found!");
-    //
-    //
-    //     ownChallengesIDs.forEach(function (e) {
-    //         var query = challenges.doc(e);
-    //         query.get().then(function (results) {
-    //             if (results.exists) {
-    //                 var info = results.data();
-    //                 var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-    //                     info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
-    //
-    //                 createButtonSections(challen);
-    //                 this.challengesArray.unshift(challen);
-    //
-    //             }
-    //             else
-    //                 console.log("No challenge was found with that ID!");
-    //
-    //         }).catch(function (error) {
-    //             console.log("Error getting challenge ID:", error);
-    //         });
-    //     });
-    // }).catch(function (error) {
-    //     console.log("Error getting user owned challenges:", error);
-    // });
+function playPopularChallenge(){
+
+    var query = challenges.where("isPublic", "==", true).orderBy("attempted", "desc")//.limit(20);
+    query.get().then(function (results) {
+        results.forEach(function (challenge) {
+                    var info = challenge.data();
+                    var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                    createDiv(challen, "bypopular");
+                    this.display_popular_challenges.unshift(challen);
+                    console.log(challenge.data());
+                })
+
+
+    }).catch(function (err) {
+        console.log(err);
+    })
+
+}
+
+function playGenreChallenge(genre){
+
+    var query = challenges.where("genre", "==", genre).limit(40);
+    query.get().then(function (results) {
+        results.forEach(function (challenge) {
+            var info = challenge.data();
+            var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+            createDiv(challen, "bygenre");
+            this.display_genre_challenges.unshift(challen);
+            console.log(challenge.data());
+        })
+
+
+    }).catch(function (err) {
+        console.log(err);
+    })
 
 }
