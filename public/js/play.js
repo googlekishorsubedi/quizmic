@@ -331,12 +331,3 @@ function playArtistChallenge(artist){
     })
 
 }
-
-
-//
-// <div class="row">
-//     <label class="">
-//     <div class="inputtext">Artist:</div>
-// <input class="createinputs" id="artist" type="text" name="artist">
-//     </label>
-//     </div>
