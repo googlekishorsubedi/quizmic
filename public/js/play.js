@@ -11,12 +11,6 @@ var personally = document.getElementById('bypersonallyassigned');
 //This is the main function called by onload on the play.html
 function playMain() {
 
-    genre = document.getElementById('bygenre');
-    artist = document.getElementById('byartist');
-    popular = document.getElementById('bypopular');
-    personally = document.getElementById('bypersonallyassigned');
-    //todo:artist are loaded base on the user selection
-    //todo: genre and
 
 }
 
@@ -48,26 +42,6 @@ function createDiv(challenge, todiv){
 
 }
 
-// This function is to reveal the challenges when catergory is clicked
-function revealchallenges(id) {
-    var challenges = document.getElementById(id).children;
-
-    if (challenges[1].style.display == "none") {
-        challenges[0].style.marginTop = "10px";
-        challenges[0].style.fontSize = "35px";
-        for (var i = 0; i < challenges.length; i++) {
-            challenges[i].style.display = "block";
-        }
-    } else {
-        challenges[0].style.marginTop = "45%";
-        challenges[0].style.fontSize = "50px";
-
-        for (var i = 1; i < challenges.length; i++) {
-            challenges[i].style.display = "none";
-        }
-    }
-}
-
 function clickedAssigned() {
     document.getElementById("bypersonallyassigned").removeChild(document.getElementById("bypersonallyassigned").children[0]);
     playGetChallenges();
@@ -80,7 +54,7 @@ function clickedPopular() {
 
 }
 function clickedGenre() {
-    //todo: choose final genre
+    //todo: choose group of final genres genre
 
     if(document.getElementById("bygenre").children[0] != null) {
         document.getElementById("bygenre").removeChild(document.getElementById("bygenre").children[0]);
@@ -125,7 +99,7 @@ function clickedGenre() {
             }
             clickedGenre()
 
-        }
+        };
         document.getElementById("bygenre").appendChild(button);
 
 
@@ -151,8 +125,7 @@ function clickedGenre() {
                 child.removeChild(child.firstChild);
             }
             clickedGenre()
-
-        }
+        };
         document.getElementById("bygenre").appendChild(button);
 
 
@@ -178,8 +151,7 @@ function clickedGenre() {
                 child.removeChild(child.firstChild);
             }
             clickedGenre()
-
-        }
+        };
         document.getElementById("bygenre").appendChild(button);
 
 
@@ -193,7 +165,6 @@ function clickedGenre() {
         document.getElementById("bygenre").removeChild(pop);
         document.getElementById("bygenre").removeChild(electronic);
 
-
         var button = document.createElement("div");
         button.className = "textgenre";
         button.innerText = "Pop";
@@ -205,17 +176,59 @@ function clickedGenre() {
                 child.removeChild(child.firstChild);
             }
             clickedGenre()
-
-        }
+        };
         document.getElementById("bygenre").appendChild(button);
-
-
-
         playGenreChallenge("Electronic");
     };
 
 }
 
+function clickedArtist() {
+
+    if(document.getElementById("byartist").children[0] != null) {
+        document.getElementById("byartist").removeChild(document.getElementById("byartist").children[0]);
+    }
+    var search_description = document.createElement("div");
+    search_description.className = "textgenre";
+    search_description.innerText = "Type an Artist:";
+
+    var input = document.createElement("input");
+    input.type = "text";
+    input.name = "Artist";
+    input.id = "artist_search";
+
+    var summitButton = document.createElement("button");
+    summitButton.innerText= "SEARCH";
+    summitButton.onclick = function() {
+        document.getElementById("byartist").removeChild(search_description);
+        document.getElementById("byartist").removeChild(input);
+        document.getElementById("byartist").removeChild(summitButton);
+        playArtistChallenge(input.value);
+
+        var button = document.createElement("div");
+        button.className = "textgenre";
+        button.innerText = input.value;
+        button.onclick = function() {
+
+            var child = document.getElementById("byartist");
+            console.log(child);
+            while (child.firstChild) {
+                child.removeChild(child.firstChild);
+            }
+            clickedArtist()
+
+        };
+        document.getElementById("byartist").appendChild(button);
+
+    };
+
+
+    document.getElementById("byartist").appendChild(search_description);
+    document.getElementById("byartist").appendChild(input);
+    document.getElementById("byartist").appendChild(summitButton);
+
+
+}
 
 
 
@@ -226,7 +239,7 @@ function playGetChallenges() {
 
     //todo: test it with same account.
 
-    var user = "ng5xNPHtwKfi8aWnIQPegINbCWD2";//sessionStorage.getItem("userID");
+    var user = sessionStorage.getItem("userID");
     var query = users.doc(user).collection("assignedChallenges");//.where("wasPlayed", "=", false);
     query.get().then(function (results) {
         results.forEach(function (hello) {
@@ -256,7 +269,7 @@ function playGetChallenges() {
 
 function playPopularChallenge(){
 
-    var query = challenges.where("isPublic", "==", true).orderBy("attempted", "desc")//.limit(20);
+    var query = challenges.where("isPublic", "==", true).orderBy("attempted", "desc");//.limit(20);
     query.get().then(function (results) {
         results.forEach(function (challenge) {
                     var info = challenge.data();
@@ -293,3 +306,37 @@ function playGenreChallenge(genre){
     })
 
 }
+
+function playArtistChallenge(artist){
+    //todo:check if the insertionis empty
+
+
+    var query = challenges.where("artist", "==", artist).limit(40);
+    query.get().then(function (results) {
+        console.log();
+        if(results.size == 0 ){
+            alert("Sorry! This artist does not exist in the database. Try another");
+        }
+
+        results.forEach(function (challenge) {
+            var info = challenge.data();
+            var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+            createDiv(challen, "byartist");
+            this.display_artist_challenges.unshift(challen);
+            console.log(challenge.data());
+        })
+    }).catch(function (err) {
+        console.log(err);
+    })
+
+}
+
+
+//
+// <div class="row">
+//     <label class="">
+//     <div class="inputtext">Artist:</div>
+// <input class="createinputs" id="artist" type="text" name="artist">
+//     </label>
+//     </div>
