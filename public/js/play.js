@@ -27,6 +27,14 @@ function createDiv(challenge, todiv){
 
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
+    challengeName.onclick = function () {
+        selectedchallenge = ChallengeToParce(challenge);
+        var stringify = JSON.stringify(selectedchallenge);
+        sessionStorage.setItem("playingChallenge", stringify);
+        document.location.assign("../html/challenge.html");
+        //document.location.replace("../html/challenge.html");
+
+    };
 
 
     assignedBy.innerHTML = challenge.creator.id;
@@ -329,7 +337,7 @@ function playArtistChallenge(artist){
     var query = challenges.where("artist", "==", artist).limit(40);
     query.get().then(function (results) {
         console.log();
-        if(results.size == 0 ){
+        if(results.size === 0 ){
             alert("Sorry! This artist does not exist in the database. Try another");
         }
 
