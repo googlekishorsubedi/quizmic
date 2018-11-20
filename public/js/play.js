@@ -28,6 +28,13 @@ function createDiv(challenge, todiv){
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
     challengeName.onclick = function () {
+        if("bypersonallyassigned" === todiv){
+            sessionStorage.setItem("playMode", "assigned");
+        }
+        if("bygenre" === todiv || "byartist" === todiv){
+            sessionStorage.setItem("playMode", "public");
+        }
+
         selectedchallenge = ChallengeToParce(challenge);
         var stringify = JSON.stringify(selectedchallenge);
         sessionStorage.setItem("playingChallenge", stringify);
@@ -272,7 +279,7 @@ function playGetChallenges() {
                     //todo: query the user name;
                     //todo: catchs that are left;
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
 
                     createDiv(challen, "bypersonallyassigned");
                     this.display_assigned_challenges.unshift(challen);
@@ -315,7 +322,7 @@ function playGenreChallenge(genre){
         results.forEach(function (challenge) {
             var info = challenge.data();
             var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
             createDiv(challen, "bygenre");
             this.display_genre_challenges.unshift(challen);
             console.log(challenge.data());
@@ -344,7 +351,7 @@ function playArtistChallenge(artist){
         results.forEach(function (challenge) {
             var info = challenge.data();
             var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
             createDiv(challen, "byartist");
             this.display_artist_challenges.unshift(challen);
             console.log(challenge.data());
