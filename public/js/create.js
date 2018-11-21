@@ -300,7 +300,7 @@ function getUserChallengesQUERY() {
                 if (results.exists) {
                     var info = results.data();
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e, e.id);
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, results, e);
 
                     createButtonSections(challen);
                     this.challengesArray.unshift(challen);
