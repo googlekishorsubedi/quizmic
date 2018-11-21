@@ -3,12 +3,13 @@ var opt1;
 var opt2;
 var opt3;
 var opt4;
+var userObj;
 
 function loadChallengePlay() {
 
+    userObj = JSON.parse(sessionStorage.getItem("userObject"));
     var parsedChallenge = JSON.parse(sessionStorage.getItem("playingChallenge"));
     playingChallenge = parsedChallenge;
-
     var shuffleArray = shuffle([parsedChallenge.option1, parsedChallenge.option2, parsedChallenge.option3, parsedChallenge.song]);
 
     if (parsedChallenge.hint !== "") {
@@ -47,96 +48,145 @@ function loadChallengePlay() {
 
 function addScoreToDataBase(wasRight, answer) {
     console.log("enters here");
-    var playMode = sessionStorage.removeItem("playMode");
-    var assign = false;
+    var playMode = sessionStorage.getItem("playMode");
+    var userid = sessionStorage.getItem("userID");
+
     if (playMode === "assigned") {
-        assign = true;
-    }
 
-    if (wasRight) {
-        var transaction = firestore.runTransaction(t => {
-            return t.get(challenges.doc(playingChallenge.id)).then(doc => {
+        if (wasRight) {
+            var transaction = firestore.runTransaction(t => {
+                return t.get(users.doc(userid).collection("assignedChallenges").doc(playingChallenge.id)).then(doc => {
 
-                var data = doc.data();
-                console.log(playingChallenge.id);
-                console.log(data);
+                    t.update(users.doc(userid).collection("assignedChallenges").doc(playingChallenge.id), {wasPlayed: true, answerGiven: answer});
 
-                t.update(challenges.doc(playingChallenge.id), {
-                    attempted: data.attempted+1,
-                    rightlyAnswered: data.rightlyAnswered+1,
-                }).then(trans => {
-                    if (assign) {
-                        var userid = sessionStorage.getItem("userID");
-                        var query = users.doc(userid).collection("assignedChallenges").where("challengeid", "==", playingChallenge.id);
-                        t.get(query).then(result => {
-                                result.forEach(c => {
-                                    t.update(c, {wasPlayed: true, answerGiven: answer}).then(last => {
-                                        document.location.replace("../html/play.html")
+                    playingChallenge.attempted++;
+                    playingChallenge.rightlyAnswered++;
+                    t.update(challenges.doc(playingChallenge.id), {attempted: playingChallenge.attempted, rightlyAnswered: playingChallenge.rightlyAnswered});
 
-                                    }).catch(err => {
-                                        console.log('Transaction failure1:', err);
-                                    })
-                                })
-                            }
-                        ).catch(err => {
-                            console.log('Transaction failure2:', err);
-                        })
-                    }
+                    userObj.challengesPlayed++;
+                    userObj.score++;
+                    t.update(users.doc(userid), {challengesPlayed: userObj.challengesPlayed , score: userObj.score});
+
+                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed);
+                    var str = UserToParce(objUser);
+                    var stringify = JSON.stringify(str);
+                    sessionStorage.setItem("userObject", stringify);
+
+                    //document.location.replace("../html/play.html")
+
                 }).catch(err => {
-                    console.log('Transaction failure3:', err);
-                })
+                    console.log('Transaction failure4:', err);
+                });
+
+            }).then(t => {
+                console.log('Transaction success!');
+
+
             }).catch(err => {
-                console.log('Transaction failure4:', err);
+                console.log('Transaction failure:', err);
             });
 
-        }).then(function () {
-            console.log('Transaction success!');
-        }).catch(err => {
-            console.log('Transaction failure:', err);
-        });
 
+        }
+        else {
+            var transaction = firestore.runTransaction(t => {
 
-    } else {
-        var transaction = firestore.runTransaction(t => {
-            return t.get(challenges.doc(playingChallenge.id)).then(doc => {
+                return t.get(users.doc(userid).collection("assignedChallenges").doc(playingChallenge.id)).then(doc => {
 
-                var data = doc.data();
+                    t.update(users.doc(userid).collection("assignedChallenges").doc(playingChallenge.id), {wasPlayed: true, answerGiven: answer});
 
-                t.update(challenges.doc(playingChallenge.id), {
-                    attempted: data.attempted+1,
-                }).then(trans => {
-                    if (assign) {
-                        var userid = sessionStorage.getItem("userID");
-                        var query = users.doc(userid).collection("assignedChallenges").where("challengeid", "==", playingChallenge.id);
-                        t.get(query).then(result => {
-                                result.forEach(c => {
-                                    t.update(c, {wasPlayed: true, answerGiven: answer}).then(last => {
-                                            document.location.replace("../html/play.html")
-                                        //todo: redirect to the page woth finished challenges if it is a assigned one
+                    playingChallenge.attempted++;
+                    t.update(challenges.doc(playingChallenge.id), {attempted: playingChallenge.attempted});
 
-                                    }).catch(err => {
-                                        console.log('Transaction failure1:', err);
-                                    })
-                                })
-                            }
-                        ).catch(err => {
-                            console.log('Transaction failure2:', err);
-                        })
-                    }
+                    userObj.challengesPlayed++;
+                    t.update(users.doc(userid), {challengesPlayed: userObj.challengesPlayed});
+
+                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed);
+                    var str = UserToParce(objUser);
+                    var stringify = JSON.stringify(str);
+                    sessionStorage.setItem("userObject", stringify);
+                    //document.location.replace("../html/play.html")
+
                 }).catch(err => {
-                    console.log('Transaction failure3:', err);
-                })
-            }).catch(err => {
-                console.log('Transaction failure4:', err);
-            });
+                    console.log('Transaction failure4:', err);
+                });
 
-        }).then(function () {
-            console.log('Transaction success!');
-        }).catch(err => {
-            console.log('Transaction failure:', err);
-        });
+            }).then(t => {
+                console.log('Transaction success!');
+
+
+            }).catch(err => {
+                console.log('Transaction failure:', err);
+            });
+        }
     }
 
+    else{
+
+        if (wasRight) {
+            var transaction = firestore.runTransaction(t => {
+                return t.get(users.doc(userid)).then(doc => {
+
+                    userObj.challengesPlayed++;
+                    userObj.score++;
+                    t.update(users.doc(userid), {challengesPlayed: userObj.challengesPlayed , score: userObj.score});
+
+                    playingChallenge.attempted++;
+                    playingChallenge.rightlyAnswered++;
+                    t.update(challenges.doc(playingChallenge.id), {attempted: playingChallenge.attempted, rightlyAnswered: playingChallenge.rightlyAnswered});
+
+
+                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed);
+                    var str = UserToParce(objUser);
+                    var stringify = JSON.stringify(str);
+                    sessionStorage.setItem("userObject", stringify);
+
+                    //document.location.replace("../html/play.html")
+
+                }).catch(err => {
+                    console.log('Transaction failure4:', err);
+                });
+
+            }).then(t => {
+                console.log('Transaction success!');
+
+
+            }).catch(err => {
+                console.log('Transaction failure:', err);
+            });
+
+
+        } else {
+            var transaction = firestore.runTransaction(t => {
+                return t.get(users.doc(userid)).then(doc => {
+
+                    userObj.challengesPlayed++;
+                    t.update(users.doc(userid), {challengesPlayed: userObj.challengesPlayed});
+
+                    playingChallenge.attempted++;
+                    t.update(challenges.doc(playingChallenge.id), {attempted: playingChallenge.attempted});
+
+                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed);
+                    var str = UserToParce(objUser);
+                    var stringify = JSON.stringify(str);
+                    sessionStorage.setItem("userObject", stringify);
+
+                    //document.location.replace("../html/play.html")
+
+                }).catch(err => {
+                    console.log('Transaction failure4:', err);
+                });
+
+            }).then(t => {
+                console.log('Transaction success!');
+
+
+            }).catch(err => {
+                console.log('Transaction failure:', err);
+            });
+        }
+
+    }
 
 }
 
@@ -151,8 +201,9 @@ function checkAnswer(answer) {
         alert("This answer is incorrect the correct one should had been: " + playingChallenge.song);
 
     var playmode = sessionStorage.getItem("playMode");
+
     if (playmode !== "own") {
-        addScoreToDataBase(true, answer);
+        addScoreToDataBase(wasItRight, answer);
     } else {
         document.location.replace("../html/create.html")
 
@@ -183,21 +234,20 @@ function shuffle(array) {
 
 function blockButtons() {
     opt1.onclick = function () {
-        alert("Time is up! SORRY!")
+        alert("Time is up! SORRY!");
+    };
 
-    }
     opt2.onclick = function () {
-        alert("Time is up! SORRY!")
+        alert("Time is up! SORRY!");
+    };
 
-    }
     opt3.onclick = function () {
-        alert("Time is up! SORRY!")
+        alert("Time is up! SORRY!");
+    };
 
-    }
     opt4.onclick = function () {
-        alert("Time is up! SORRY!")
-
-    }
+        alert("Time is up! SORRY!");
+    };
 
 
 }

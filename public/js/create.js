@@ -374,7 +374,6 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
         return;
     }
 
-
     var creator = sessionStorage.getItem("userID");
     var query = challenges.add({
         challengeName: challengeName,
