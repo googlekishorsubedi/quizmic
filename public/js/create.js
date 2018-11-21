@@ -198,7 +198,7 @@ function editChallenge(challenge, div, editButtons, deleteButtons, challengeName
 
                     var transaction = firestore.runTransaction(t => {
                         return t.get(challenges.doc(challenge.id)).then(doc => {
-                            console.log(challenge.id)
+                            console.log(challenge.id);
 
                             var data = doc.data();
                             challenge.challengeName = cname;
