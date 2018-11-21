@@ -72,7 +72,7 @@ function addScoreToDataBase(wasRight, answer) {
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
 
-                    //document.location.replace("../html/play.html")
+                    document.location.replace("../html/play.html")
 
                 }).catch(err => {
                     console.log('Transaction failure4:', err);
@@ -105,7 +105,7 @@ function addScoreToDataBase(wasRight, answer) {
                     var str = UserToParce(objUser);
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
-                    //document.location.replace("../html/play.html")
+                    document.location.replace("../html/play.html")
 
                 }).catch(err => {
                     console.log('Transaction failure4:', err);
@@ -141,7 +141,7 @@ function addScoreToDataBase(wasRight, answer) {
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
 
-                    //document.location.replace("../html/play.html")
+                    document.location.replace("../html/play.html")
 
                 }).catch(err => {
                     console.log('Transaction failure4:', err);
@@ -171,7 +171,7 @@ function addScoreToDataBase(wasRight, answer) {
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
 
-                    //document.location.replace("../html/play.html")
+                    document.location.replace("../html/play.html")
 
                 }).catch(err => {
                     console.log('Transaction failure4:', err);
@@ -208,7 +208,6 @@ function checkAnswer(answer) {
         document.location.replace("../html/create.html")
 
     }
-    //TODO: the logic of addind the points and all that stuff.
     //TODO: where ever thereis an alert change it so that the cute box appears
     //TODO: security
 
