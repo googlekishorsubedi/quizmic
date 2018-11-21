@@ -148,7 +148,147 @@ and auto generate a challenge */
 
 /* a generic statistics class for the global and personal statistics */
 .statistics{
-  width: 95%;
+  /* width: 95%;
   height: 45%;
-  background: teal;
+  background: teal; */
+  margin-top: 10px;
+  display: flex;
+  border-color:#d7dce3 !important;
+  border: 1px solid;
+  height: 60px;
+  border-radius: 5%;
+  background-color: white;
+}
+
+.individualstatsheader{
+  /* color: #88B0C2 !important; */
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  text-align: center;
+  font-size: 20px;
+  margin-left: 70px;
+  margin-top: 15px;
+  color: #4d4e4f !important;
+
+}
+
+.statisticssection{
+  width: 400px;
+  margin-left: 45px;
+  border-radius: 10%;
+  background-color: #fefff9ff;
+  height: 800px;
+  margin-top: 20px;
+  border: 1px solid yellow;
+
+}
+
+#statisticsheader{
+  /* font-family: 'Open Sans Condensed', sans-serif !important; */
+  color: #88B0C2 !important;
+  font-size: 40px;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  margin-top: 10px;
+  margin-bottom: 0;
+
+}
+.statisticspic{
+  margin-left:10px;
+  border-radius: 25%;
+  height:60px;
+  width:60px;
+}
+#friendstatheader{
+  margin-top: 10px;
+  text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 20px;
+  color: #88B0C2 !important;
+
+}
+
+#challengesheader{
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 40px;
+  margin-top: 30px;
+  text-align: center;
+  color: #4d4e4f;
+
+}
+.statisticsbox{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 275px;
+  overflow: scroll;
+}
+
+.quickchallengesbox{
+  margin-top: 80px;
+  margin-left: 175px;
+  height: 600px;
+  width: 600px;
+  /* background-image: url("../images/sound-barscp.png"); */
+  background-repeat: no-repeat;
+  /* border: 1px solid green; */
+}
+
+.quickcreatebox{
+  margin-top: 175px;
+  /* margin-left: 5px; */
+  margin-right: 20px;
+  background-color: #fefff9ff;
+  border-radius: 15%;
+  height: 600px;
+  width: 350px;
+  border: 1px solid yellow;
+}
+
+#quickchallengeheader{
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  text-align: center;
+  color: #88B0C2;
+  margin-top: 10px;
+}
+
+.quickchallenge{
+  width: 450px;
+  margin-top: 20px;
+  background-color: #fefff9ff;
+  height: 75px;
+  border-radius: 5%;
+  /* border-color:#d7dce3 !important;
+  border: 1px solid; */
+  border:1px solid yellow;
+}
+
+.createinputs2{
+  text-align: center;
+  margin-left: 70px;
+  font-size: 25px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  width: 250px;
+  height: 30px;
+}
+
+.inputtext2{
+  text-align: center;
+  /* font-family: 'Pacifico', cursive; */
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  color: #88B0C2;
+  margin-top: 15px;
+  margin-left: 60px;
+}
+
+.genrebox{
+/* background-color: white !important; */
+margin-bottom: 20px;
+}
+
+#genre{
+  height: 40px;
+  text-align: center;
+  width: 250px;
+  margin-bottom: 10px;
 }

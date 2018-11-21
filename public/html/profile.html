@@ -18,11 +18,12 @@
   <script src="../js/firebase.js"></script>
   <script src="../js/pageHandler.js"></script>
   <script src="../js/loginHandler.js"></script>
+  <script src="../js/model.js"></script>
   <script src="../js/profile.js"></script>
   <script src="../js/database_management.js"></script>
 </head>
 
-<body>
+<body onload="profileMain()"
 
 <header>
   <nav id="navcolor" class="navbar navbar-expand-lg navbar-light bg-light" >
@@ -94,10 +95,7 @@
            </div>
 
           <div id="listoffriends" >
-            <div style=""class="friendview"></div>
-            <div class="friendview"></div>
-            <div class="friendview"></div>
-            <div class="friendview"></div>
+            <!-- <div style=""class="friendview"></div> -->
 
           </div>
 
@@ -105,10 +103,7 @@
               <h2 id="groupsheading">Groups</h2>
                   <button id="creategroupbut" class="" onclick="openForm()"> Create Group + </button>
               <div id="mygroups">
-                <div class="mygroupsitem"></div>
-                <div class="mygroupsitem"></div>
-                <div class="mygroupsitem"></div>
-                <div class="mygroupsitem"></div>
+                
               </div>
 
 
@@ -151,11 +146,12 @@
           </div>
 
           <div class="Descriptioninput">
-                <textarea name="name" rows="6" cols="40"></textarea>
+                <!-- <textarea name="name" rows="6" cols="40"> </textarea> -->
+                <input type="text" id="CheckingUsername" placeholder="Add multiple usernames in the form: id1,id2,id3 " style= "width: 450px; height:150px" />
           </div>
 
           <div class="creategroupsubmit">
-            <input id="createchallengebutton"type="submit" name="Create" value="Create">
+            <input id="creategroupbutton"type="submit" onclick="makeaGroup()"  name="Create" value="Create">
           </div>
 
           <!-- <form id="creategroup" action="../index.html" method="post">

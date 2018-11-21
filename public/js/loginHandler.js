@@ -67,7 +67,7 @@ function createUserQUERY(username, uid, email) {
         ownChallenges: [],
         contactList: [],
         belongsToGroup: [],
-        challengesPlayed: 0
+        challengesPlayed: 0,
     }).then(function () {
         // Creates the reference in the username table
         if (username != '') {
@@ -75,6 +75,7 @@ function createUserQUERY(username, uid, email) {
         }
         // Add the assigned collection to the user.
         users.doc(uid).collection("assignedChallenges").add({});
+        users.doc(uid).collection("ownGroups").add({});
         document.location.href = "../html/dashboard.html";
     })
 }

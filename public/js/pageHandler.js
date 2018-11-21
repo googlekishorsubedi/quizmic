@@ -44,6 +44,7 @@ function printName(user){
     //document.getElementById("name").innerHTML = user.displayName;
 }
 
+
 function linkGoogleAccount()
 {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -61,6 +62,7 @@ function linkGoogleAccount()
 }
 
 function signOut(){
+  sessionStorage.removeItem("userID");
     console.log("Llama el metodo");
     //sessionStorage.removeItem("userID");
     sessionStorage.clear();
@@ -73,4 +75,3 @@ function signOut(){
     });
 
 }
-

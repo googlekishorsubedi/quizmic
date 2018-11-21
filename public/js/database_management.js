@@ -140,6 +140,7 @@ function addFriend(){
 
 }
 
+
 function assignChallenge(challengeID, userName)
 
 //todo: there is no confirmation that the challenge was sent to the user
