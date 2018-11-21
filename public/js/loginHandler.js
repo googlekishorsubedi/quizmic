@@ -2,7 +2,6 @@ const firestore = firebase.firestore();
 const settings = {/* your settings... */ timestampsInSnapshots: true };
 firestore.settings(settings);
 
-//todo: delete the dummy challenge that is made
 function loginWithGoogle() {
     //TODO: This functions does not make a user with this method.
     var provider = new firebase.auth.GoogleAuthProvider();

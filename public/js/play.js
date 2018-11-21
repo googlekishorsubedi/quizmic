@@ -27,13 +27,44 @@ function createDiv(challenge, todiv){
 
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
+    challengeName.onclick = function () {
+        if("bypersonallyassigned" === todiv){
+            sessionStorage.setItem("playMode", "assigned");
+        }
+        if("bygenre" === todiv || "byartist" === todiv){
+            sessionStorage.setItem("playMode", "public");
+        }
+
+        selectedchallenge = ChallengeToParce(challenge);
+        var stringify = JSON.stringify(selectedchallenge);
+        sessionStorage.setItem("playingChallenge", stringify);
+        document.location.assign("../html/challenge.html");
+        //document.location.replace("../html/challenge.html");
+
+    };
 
 
     assignedBy.innerHTML = challenge.creator.id;
     challengeName.innerHTML = challenge.challengeName;
 
+
+
     div.appendChild(challengeName);
     div.appendChild(assignedBy);
+
+    if("bypersonallyassigned" === todiv) {
+        var acceptbutton = document.createElement("button");
+        acceptbutton.className = "assignButton";
+        acceptbutton.innerText = "Accept";
+        div.appendChild(acceptbutton);
+
+
+        var declinebutton = document.createElement("button");
+        declinebutton.className = "assignButton";
+        declinebutton.innerText = "Decline";
+        div.appendChild(declinebutton);
+
+    }
     //if(document.getElementById('bypersonallyassigned').children == null){
         document.getElementById(todiv).appendChild(div);
     // }else{
@@ -54,8 +85,6 @@ function clickedPopular() {
 
 }
 function clickedGenre() {
-    //todo: choose group of final genres genre
-
     if(document.getElementById("bygenre").children[0] != null) {
         document.getElementById("bygenre").removeChild(document.getElementById("bygenre").children[0]);
     }
@@ -237,7 +266,6 @@ function playGetChallenges() {
     //todo: check that the challenges has not been played before.
     //todo: display which challenges ave already been played (i will say in the end of the list.
 
-    //todo: test it with same account.
 
     var user = sessionStorage.getItem("userID");
     var query = users.doc(user).collection("assignedChallenges");//.where("wasPlayed", "=", false);
@@ -251,7 +279,7 @@ function playGetChallenges() {
                     //todo: query the user name;
                     //todo: catchs that are left;
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
 
                     createDiv(challen, "bypersonallyassigned");
                     this.display_assigned_challenges.unshift(challen);
@@ -294,7 +322,7 @@ function playGenreChallenge(genre){
         results.forEach(function (challenge) {
             var info = challenge.data();
             var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
             createDiv(challen, "bygenre");
             this.display_genre_challenges.unshift(challen);
             console.log(challenge.data());
@@ -309,19 +337,21 @@ function playGenreChallenge(genre){
 
 function playArtistChallenge(artist){
     //todo:check if the insertionis empty
+    //todo: case sensitive.
+    //todo: name, choices, right answer, user option
 
 
     var query = challenges.where("artist", "==", artist).limit(40);
     query.get().then(function (results) {
         console.log();
-        if(results.size == 0 ){
+        if(results.size === 0 ){
             alert("Sorry! This artist does not exist in the database. Try another");
         }
 
         results.forEach(function (challenge) {
             var info = challenge.data();
             var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
             createDiv(challen, "byartist");
             this.display_artist_challenges.unshift(challen);
             console.log(challenge.data());

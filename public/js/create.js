@@ -120,6 +120,7 @@ function createButtonSections(challenge) {
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
     challengeName.onclick = function () {
+        sessionStorage.setItem("playMode", "own");
         selectedchallenge = ChallengeToParce(challenge);
         var stringify = JSON.stringify(selectedchallenge);
         sessionStorage.setItem("playingChallenge", stringify);
@@ -133,7 +134,7 @@ function createButtonSections(challenge) {
     assignButton.className = "assignButton";
     assignButton.onclick = function(){
         openassignpopup(challenge);
-    }
+    };
 
     var editButton = document.createElement("button");
     editButton.className = "editButton";
@@ -337,7 +338,7 @@ function getUserChallengesQUERY() {
                 if (results.exists) {
                     var info = results.data();
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e);
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, e, e.id);
 
                     createButtonSections(challen);
                     this.challengesArray.unshift(challen);
@@ -411,8 +412,8 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
         return;
     }
 
-//TODO: THe validation pf the youtube and make sure that you just have the id when it comes to saving the URL
-    var creator = firebase.auth().currentUser.uid;
+
+    var creator = sessionStorage.getItem("userID");
     var query = challenges.add({
         challengeName: challengeName,
         youtubeAPIid: URL,
@@ -459,7 +460,6 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
             id: e.id
         };
 
-        //createButtonSections(challen);
         createButtonSections(challen);
         this.challengesArray.unshift(challen);
         clearCreateForm();
