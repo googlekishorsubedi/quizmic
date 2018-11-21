@@ -277,9 +277,8 @@ function clickedArtist() {
 
 function playGetChallenges() {
 
-    //todo: display which challenges ave already been played (i will say in the end of the list.
-    //todo: decline button
-    //
+    //todo: display which challenges ave already been played (i will say in the end of the list. display of already played and shoudl include name, choices, right answer, user option
+
 
 
     var user = sessionStorage.getItem("userID");
@@ -291,7 +290,6 @@ function playGetChallenges() {
                 var queryChallenge = challenges.doc(hello.data().challengeid);
                 queryChallenge.get().then(function (challenge) {
                     var info = challenge.data();
-                    //todo: query the user name;
                     //todo: catchs that are left;
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
                         info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
@@ -373,9 +371,7 @@ function playGenreChallenge(genre) {
 }
 
 function playArtistChallenge(artist) {
-    //todo:check if the insertionis empty
     //todo: case sensitive.
-    //todo: name, choices, right answer, user option
 
 
     var query = challenges.where("artist", "==", artist).limit(40);

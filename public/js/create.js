@@ -7,6 +7,7 @@ var challengesArray = [];
 var selectedchallenge;
 
 //TODO: automatically fill answers
+//TODO: what happend if i erause a challenge that was assigned;
 
 function createMain() {
     getUserChallengesQUERY()
@@ -22,11 +23,11 @@ function enableHint() {
 }
 
 function openassignpopup(challenge) {
-  document.getElementById("openassignpopupForm").style.display = "block";
+    document.getElementById("openassignpopupForm").style.display = "block";
 
-  document.getElementById('assignbuttoncs').onclick = function(){
-      assignChallenge(challenge.id,document.getElementById('assignbuttonpop').value);
-  }
+    document.getElementById('assignbuttoncs').onclick = function () {
+        assignChallenge(challenge.id, document.getElementById('assignbuttonpop').value);
+    }
 }
 
 function closeassignpopup() {
@@ -94,7 +95,7 @@ function createButtonSections(challenge) {
 
     var assignButton = document.createElement("button");
     assignButton.className = "assignButton";
-    assignButton.onclick = function(){
+    assignButton.onclick = function () {
         openassignpopup(challenge);
     };
 
@@ -123,8 +124,8 @@ function createButtonSections(challenge) {
     div.appendChild(deleteButton);
 
     var ediv = null;
-    if(challengesArray.length > 0)
-        ediv =challengesArray[0].div;
+    if (challengesArray.length > 0)
+        ediv = challengesArray[0].div;
     document.getElementById('indivualchallenges').insertBefore(div, ediv);
 }
 
@@ -152,18 +153,18 @@ function editChallenge(challenge, div, editButtons, deleteButtons, challengeName
         document.getElementById("hintEnable").checked = !exist;
         document.getElementById("hint").hidden = exist;
         document.getElementById("hintname").hidden = exist;
-        if(exist)
+        if (exist)
             document.getElementById("hint").value = "";
         else
             document.getElementById("hint").value = challenge.hint;
 
-        document.getElementById("createchallengebutton").hidden =true;
+        document.getElementById("createchallengebutton").hidden = true;
         document.getElementById("cancelEdit").hidden = false;
         document.getElementById("summitEdit").hidden = false;
 
         document.getElementById("cancelEdit").onclick = function () {
             clearCreateForm();
-            document.getElementById("createchallengebutton").hidden =false;
+            document.getElementById("createchallengebutton").hidden = false;
             document.getElementById("cancelEdit").hidden = true;
             document.getElementById("summitEdit").hidden = true;
         };
@@ -181,51 +182,104 @@ function editChallenge(challenge, div, editButtons, deleteButtons, challengeName
             var opt3 = document.getElementById('option3').value;
             var optenable = document.getElementById("optionsEnable").checked;
             var hintenable = document.getElementById("hintEnable").checked;
-            if(!checkTheInputForChallenges(cname, url, song, artist, genre, hint, ispublic, opt1, opt2, opt3, optenable, hintenable)){
+            if (!checkTheInputForChallenges(cname, url, song, artist, genre, hint, ispublic, opt1, opt2, opt3, optenable, hintenable)) {
                 return;
             }
-            document.getElementById("createchallengebutton").hidden =false;
+            document.getElementById("createchallengebutton").hidden = false;
             document.getElementById("cancelEdit").hidden = true;
             document.getElementById("summitEdit").hidden = true;
-            var transaction = firestore.runTransaction(t => {
-                return t.get(challenges.doc(challenge.id)).then(doc => {
 
-                    var data = doc.data();
-                    challenge.challengeName = cname;
-                    challenge.youtubeID = url;
-                    challenge.song = song;
-                    challenge.artist = artist;
-                    challenge.genre = genre;
-                    challenge.hint = hint;
-                    challenge.isPublic = ispublic;
-                    challenge.options = [opt1, opt2, opt3];
-                    challengeName.innerText = cname;
+            if (!optenable) {
+                var query = challenges.where("genre", "==", genre);
+                query.get().then(function (results) {
+                    var selected_challenge = Math.floor(Math.random() * results.size);
+                    console.log(results.docs[selected_challenge].id);
+                    var opti = results.docs[selected_challenge].data().options;
 
-                    t.update(challenges.doc(challenge.id), {
-                        challengeName: cname,
-                        youtubeAPIid: url,
-                        song: song,
-                        artist: artist,
-                        genre: genre,
-                        hint: hint,
-                        attempted: data.attempted,
-                        rightlyAnswered: data.rightlyAnswered,
-                        isPublic: ispublic,
-                        options: [opt1, opt2, opt3],
-                        creator: users.doc(sessionStorage.getItem("userID")),
-                        date: data.date
-                    })
+                    var transaction = firestore.runTransaction(t => {
+                        return t.get(challenges.doc(challenge.id)).then(doc => {
+                            console.log(challenge.id)
+
+                            var data = doc.data();
+                            challenge.challengeName = cname;
+                            challenge.youtubeID = url;
+                            challenge.song = song;
+                            challenge.artist = artist;
+                            challenge.genre = genre;
+                            challenge.hint = hint;
+                            challenge.isPublic = ispublic;
+                            challenge.options = opti;
+                            challengeName.innerText = cname;
+
+                            t.update(challenges.doc(challenge.id), {
+                                challengeName: cname,
+                                youtubeAPIid: url,
+                                song: song,
+                                artist: artist,
+                                genre: genre,
+                                hint: hint,
+                                attempted: data.attempted,
+                                rightlyAnswered: data.rightlyAnswered,
+                                isPublic: ispublic,
+                                options: opti,
+                                creator: users.doc(sessionStorage.getItem("userID")),
+                                date: data.date
+                            })
+                        }).catch(err => {
+                            console.log('Transaction failure:', err);
+                        });
+
+                    }).then(function () {
+                        console.log('Transaction success!');
+                    }).catch(err => {
+                        console.log('Transaction failure:', err);
+                    });
+                    clearCreateForm();
+                }).catch(err => {
+                    console.log('Transaction failure:', err);
+                })
+            }
+            else {
+                var transaction = firestore.runTransaction(t => {
+                    return t.get(challenges.doc(challenge.id)).then(doc => {
+
+                        var data = doc.data();
+                        challenge.challengeName = cname;
+                        challenge.youtubeID = url;
+                        challenge.song = song;
+                        challenge.artist = artist;
+                        challenge.genre = genre;
+                        challenge.hint = hint;
+                        challenge.isPublic = ispublic;
+                        challenge.options = [opt1, opt2, opt3];
+                        challengeName.innerText = cname;
+
+                        t.update(challenges.doc(challenge.id), {
+                            challengeName: cname,
+                            youtubeAPIid: url,
+                            song: song,
+                            artist: artist,
+                            genre: genre,
+                            hint: hint,
+                            attempted: data.attempted,
+                            rightlyAnswered: data.rightlyAnswered,
+                            isPublic: ispublic,
+                            options: [opt1, opt2, opt3],
+                            creator: users.doc(sessionStorage.getItem("userID")),
+                            date: data.date
+                        })
+                    }).catch(err => {
+                        console.log('Transaction failure:', err);
+                    });
+
+                }).then(function () {
+                    console.log('Transaction success!');
                 }).catch(err => {
                     console.log('Transaction failure:', err);
                 });
-
-            }).then(function () {
-                console.log('Transaction success!');
-            }).catch(err => {
-                console.log('Transaction failure:', err);
-            });
-            clearCreateForm();
-        };
+                clearCreateForm();
+            }
+        }
     }
 }
 
@@ -319,7 +373,7 @@ function getUserChallengesQUERY() {
 
 }
 
-function checkTheInputForChallenges(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled){
+function checkTheInputForChallenges(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled) {
     if (URL === "" || songname === "" || artist === "" || genre === "" || challengeName === "") {
         window.alert("The challenge cannot be created becuase of missing data");
         return false;
@@ -370,44 +424,80 @@ function checkTheInputForChallenges(challengeName, URL, songname, artist, genre,
  */
 function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled) {
 
-    if(!checkTheInputForChallenges(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled)){
+    if (!checkTheInputForChallenges(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled)) {
         return;
     }
 
-    var creator = sessionStorage.getItem("userID");
-    var query = challenges.add({
-        challengeName: challengeName,
-        youtubeAPIid: URL,
-        song: songname,
-        artist: artist,
-        genre: genre,
-        hint: hint,
-        attempted: 0,
-        rightlyAnswered: 0,
-        isPublic: isPublic,
-        options: [option1, option2, option3],
-        creator: users.doc(creator),
-        date: new Date()
-    }).then(function (e) {
-        console.log(e);
-        var transaction = firestore.runTransaction(t => {
-            return t.get(users.doc(creator))
-                .then(doc => {
-                    const ownChallenges = doc.data().ownChallenges;
-                    ownChallenges.push(challenges.doc(e.id));
-                    t.update(users.doc(creator), {ownChallenges: ownChallenges});
+    if (!optionsEnabled) {
+        var query = challenges.where("genre", "==", genre);
+        query.get().then(function (results) {
+            var selected_challenge = Math.floor(Math.random() * results.size);
+            console.log(results.docs[selected_challenge].id);
+            var opti = results.docs[selected_challenge].data().options;
+
+            var creator = sessionStorage.getItem("userID");
+            var query = challenges.add({
+                challengeName: challengeName,
+                youtubeAPIid: URL,
+                song: songname,
+                artist: artist,
+                genre: genre,
+                hint: hint,
+                attempted: 0,
+                rightlyAnswered: 0,
+                isPublic: isPublic,
+                options: opti,
+                creator: users.doc(creator),
+                date: new Date()
+            }).then(function (e) {
+                console.log(e.id);
+                var transaction = firestore.runTransaction(t => {
+                    return t.get(users.doc(creator))
+                        .then(doc => {
+                            const ownChallenges = doc.data().ownChallenges;
+                            ownChallenges.push(challenges.doc(e.id));
+                            t.update(users.doc(creator), {ownChallenges: ownChallenges});
+                        });
+                }).then(result => {
+                    console.log('Transaction success!');
+
+
+                }).catch(err => {
+                    console.log('Transaction failure:', err);
                 });
-        }).then(result => {
-            console.log('Transaction success!');
 
+                var challen = {
+                    challengeName: challengeName,
+                    youtubeID: URL,
+                    song: songname,
+                    artist: artist,
+                    genre: genre,
+                    hint: hint,
+                    attempted: 0,
+                    rightlyAnswered: 0,
+                    isPublic: isPublic,
+                    options: opti,
+                    creator: users.doc(creator),
+                    date: new Date(),
+                    id: e.id
+                };
 
-        }).catch(err => {
-            console.log('Transaction failure:', err);
+                createButtonSections(challen);
+                this.challengesArray.unshift(challen);
+                clearCreateForm();
+
+            })
+
+        }).catch(function (err) {
+            console.log(err);
         });
+    }
+    else {
 
-        var challen = {
+        var creator = sessionStorage.getItem("userID");
+        var query = challenges.add({
             challengeName: challengeName,
-            youtubeID: URL,
+            youtubeAPIid: URL,
             song: songname,
             artist: artist,
             genre: genre,
@@ -417,13 +507,46 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
             isPublic: isPublic,
             options: [option1, option2, option3],
             creator: users.doc(creator),
-            date: new Date(),
-            id: e.id
-        };
+            date: new Date()
+        }).then(function (e) {
+            console.log(e);
+            var transaction = firestore.runTransaction(t => {
+                return t.get(users.doc(creator))
+                    .then(doc => {
+                        const ownChallenges = doc.data().ownChallenges;
+                        ownChallenges.push(challenges.doc(e.id));
+                        t.update(users.doc(creator), {ownChallenges: ownChallenges});
+                    });
+            }).then(result => {
+                console.log('Transaction success!');
 
-        createButtonSections(challen);
-        this.challengesArray.unshift(challen);
-        clearCreateForm();
 
-    })
+            }).catch(err => {
+                console.log('Transaction failure:', err);
+            });
+
+            var challen = {
+                challengeName: challengeName,
+                youtubeID: URL,
+                song: songname,
+                artist: artist,
+                genre: genre,
+                hint: hint,
+                attempted: 0,
+                rightlyAnswered: 0,
+                isPublic: isPublic,
+                options: [option1, option2, option3],
+                creator: users.doc(creator),
+                date: new Date(),
+                id: e.id
+            };
+
+            createButtonSections(challen);
+            this.challengesArray.unshift(challen);
+            clearCreateForm();
+
+        })
+
+    }
 }
+

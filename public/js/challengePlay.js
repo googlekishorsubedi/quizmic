@@ -44,7 +44,6 @@ function loadChallengePlay() {
     };
 }
 
-//todo: clear up session storage challenge, playMode and all that stuff;
 
 function addScoreToDataBase(wasRight, answer) {
     console.log("enters here");
