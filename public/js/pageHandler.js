@@ -1,5 +1,21 @@
 
-var User;
+var users = firestore.collection("users");
+var groups = firestore.collection("groups");
+var challenges = firestore.collection("challenges");
+var username = firestore.collection("username");
+
+
+function loadDashboard(){
+    var userid = sessionStorage.getItem("userID");
+    var query = users.doc(userid);
+    query.get().then(user => {
+        var data = user.data();
+        var objUser = User(data.username, data.email, data.score, data.challengesPlayed);
+        var str = UserToParce(objUser);
+        var stringify = JSON.stringify(str);
+        sessionStorage.setItem("userObject", stringify);
+    });
+}
 
 firebase.auth().onAuthStateChanged(function(user){
     console.log("authentication changed");
@@ -48,7 +64,9 @@ function linkGoogleAccount()
 function signOut(){
   sessionStorage.removeItem("userID");
     console.log("Llama el metodo");
-    sessionStorage.removeItem("userID");
+    //sessionStorage.removeItem("userID");
+    sessionStorage.clear();
+
     firebase.auth().signOut().then(function() {
         document.location.href = "../index.html";
         // Sign-out successful.

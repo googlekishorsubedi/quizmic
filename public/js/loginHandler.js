@@ -2,7 +2,6 @@ const firestore = firebase.firestore();
 const settings = {/* your settings... */ timestampsInSnapshots: true };
 firestore.settings(settings);
 
-//todo: delete the dummy challenge that is made
 function loginWithGoogle() {
     //TODO: This functions does not make a user with this method.
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -25,17 +24,14 @@ function loginWithGoogle() {
         });
 
         //if first time i.e user.uid not in users key, make a new user with the key user.uid, set all attributes except username
-        //if signing in, 
-
-
+        //if signing in,
         //
-
         //window.alert(result.user.displayName);
         //document.getElementById("UserName").innerHTML = result.user.
     });
 }
 
-
+//todo: check this function because it appears that it is duplicated.
 function linkGoogleAccount() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().currentUser.linkWithPopup(provider).then(function (result) {
@@ -156,6 +152,7 @@ function createNewUser(username, email, password) {
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
                 //register users firstname, lastname, email into usercoll
                 var user = firebase.auth().currentUser;
+                sessionStorage.setItem("userID", user.uid);
                 console.log('Calling register now');
                 console.log(user);
                 createUserQUERY(username, user.uid, email);

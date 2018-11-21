@@ -17,7 +17,7 @@ function playMain() {
 // This function creates a div object from a given string of the creator of the challenge
 // the artist of the specific song, and the amount of points this challenge contains.
 // It will return the created div.
-function createDiv(challenge, todiv){
+function createDiv(challenge, name, todiv) {
 
     var div = document.createElement("div");
     div.className = "nodebuddyholder";
@@ -27,19 +27,63 @@ function createDiv(challenge, todiv){
 
     var challengeName = document.createElement("p");
     challengeName.className = "challengeName";
+    challengeName.onclick = function () {
+        if ("bypersonallyassigned" === todiv) {
+            sessionStorage.setItem("playMode", "assigned");
+        }
+        if ("bygenre" === todiv || "byartist" === todiv) {
+            sessionStorage.setItem("playMode", "public");
+        }
+
+        selectedchallenge = ChallengeToParce(challenge);
+        var stringify = JSON.stringify(selectedchallenge);
+        sessionStorage.setItem("playingChallenge", stringify);
+        document.location.assign("../html/challenge.html");
+        //document.location.replace("../html/challenge.html");
+
+    };
 
 
-    assignedBy.innerHTML = challenge.creator.id;
+    assignedBy.innerHTML = name;
     challengeName.innerHTML = challenge.challengeName;
+
 
     div.appendChild(challengeName);
     div.appendChild(assignedBy);
+
+    if ("bypersonallyassigned" === todiv) {
+
+
+        var declinebutton = document.createElement("button");
+        declinebutton.className = "assignButton";
+        declinebutton.innerText = "Decline";
+        declinebutton.onclick = function () {
+            if (confirm("Are you sure that you want to decline this challenge?")) {
+                deleteAssignChallenge(challenge.id, div, todiv);
+            }
+        };
+
+        div.appendChild(declinebutton);
+
+    }
     //if(document.getElementById('bypersonallyassigned').children == null){
-        document.getElementById(todiv).appendChild(div);
+    document.getElementById(todiv).appendChild(div);
     // }else{
     //     personally.insertBefore(div, personally.children[0])
     // }
 
+}
+
+function deleteAssignChallenge(id, div, todiv) {
+
+    var user = sessionStorage.getItem("userID");
+    var query = users.doc(user).collection("assignedChallenges").doc(id).delete();
+    query.then(function () {
+        console.log("Document successfully deleted!");
+        document.getElementById(todiv).removeChild(div);
+    }).catch(function (error) {
+        console.error("Error removing document: ", error);
+    });
 }
 
 function clickedAssigned() {
@@ -53,10 +97,9 @@ function clickedPopular() {
     playPopularChallenge();
 
 }
-function clickedGenre() {
-    //todo: choose group of final genres genre
 
-    if(document.getElementById("bygenre").children[0] != null) {
+function clickedGenre() {
+    if (document.getElementById("bygenre").children[0] != null) {
         document.getElementById("bygenre").removeChild(document.getElementById("bygenre").children[0]);
     }
     var classic = document.createElement("div");
@@ -81,7 +124,7 @@ function clickedGenre() {
     document.getElementById("bygenre").appendChild(electronic);
 
 
-    classic.onclick = function() {
+    classic.onclick = function () {
         document.getElementById("bygenre").removeChild(classic);
         document.getElementById("bygenre").removeChild(pop);
         document.getElementById("bygenre").removeChild(electronic);
@@ -90,7 +133,7 @@ function clickedGenre() {
         var button = document.createElement("div");
         button.className = "textgenre";
         button.innerText = "Classic";
-        button.onclick = function() {
+        button.onclick = function () {
 
             var child = document.getElementById("bygenre");
             console.log(child);
@@ -103,11 +146,10 @@ function clickedGenre() {
         document.getElementById("bygenre").appendChild(button);
 
 
-
         playGenreChallenge("Classic");
     };
 
-    rock.onclick = function() {
+    rock.onclick = function () {
         document.getElementById("bygenre").removeChild(classic);
         document.getElementById("bygenre").removeChild(rock);
         document.getElementById("bygenre").removeChild(pop);
@@ -117,7 +159,7 @@ function clickedGenre() {
         var button = document.createElement("div");
         button.className = "textgenre";
         button.innerText = "Rock";
-        button.onclick = function() {
+        button.onclick = function () {
 
             var child = document.getElementById("bygenre");
             console.log(child);
@@ -127,13 +169,12 @@ function clickedGenre() {
             clickedGenre()
         };
         document.getElementById("bygenre").appendChild(button);
-
 
 
         playGenreChallenge("Rock");
     };
 
-    pop.onclick = function() {
+    pop.onclick = function () {
         document.getElementById("bygenre").removeChild(classic);
         document.getElementById("bygenre").removeChild(rock);
         document.getElementById("bygenre").removeChild(pop);
@@ -143,7 +184,7 @@ function clickedGenre() {
         var button = document.createElement("div");
         button.className = "textgenre";
         button.innerText = "Pop";
-        button.onclick = function() {
+        button.onclick = function () {
 
             var child = document.getElementById("bygenre");
             console.log(child);
@@ -155,11 +196,10 @@ function clickedGenre() {
         document.getElementById("bygenre").appendChild(button);
 
 
-
         playGenreChallenge("Pop");
     };
 
-    electronic.onclick = function() {
+    electronic.onclick = function () {
         document.getElementById("bygenre").removeChild(classic);
         document.getElementById("bygenre").removeChild(rock);
         document.getElementById("bygenre").removeChild(pop);
@@ -168,7 +208,7 @@ function clickedGenre() {
         var button = document.createElement("div");
         button.className = "textgenre";
         button.innerText = "Pop";
-        button.onclick = function() {
+        button.onclick = function () {
 
             var child = document.getElementById("bygenre");
             console.log(child);
@@ -185,7 +225,7 @@ function clickedGenre() {
 
 function clickedArtist() {
 
-    if(document.getElementById("byartist").children[0] != null) {
+    if (document.getElementById("byartist").children[0] != null) {
         document.getElementById("byartist").removeChild(document.getElementById("byartist").children[0]);
     }
     var search_description = document.createElement("div");
@@ -198,27 +238,31 @@ function clickedArtist() {
     input.id = "artist_search";
 
     var summitButton = document.createElement("button");
-    summitButton.innerText= "SEARCH";
-    summitButton.onclick = function() {
-        document.getElementById("byartist").removeChild(search_description);
-        document.getElementById("byartist").removeChild(input);
-        document.getElementById("byartist").removeChild(summitButton);
-        playArtistChallenge(input.value);
+    summitButton.innerText = "SEARCH";
+    summitButton.onclick = function () {
 
-        var button = document.createElement("div");
-        button.className = "textgenre";
-        button.innerText = input.value;
-        button.onclick = function() {
+        if (!(input.value === "" || input.value === null)) {
+            document.getElementById("byartist").removeChild(search_description);
+            document.getElementById("byartist").removeChild(input);
+            document.getElementById("byartist").removeChild(summitButton);
 
-            var child = document.getElementById("byartist");
-            console.log(child);
-            while (child.firstChild) {
-                child.removeChild(child.firstChild);
-            }
-            clickedArtist()
+            playArtistChallenge(input.value);
 
-        };
-        document.getElementById("byartist").appendChild(button);
+            var button = document.createElement("div");
+            button.className = "textgenre";
+            button.innerText = input.value;
+            button.onclick = function () {
+
+                var child = document.getElementById("byartist");
+                console.log(child);
+                while (child.firstChild) {
+                    child.removeChild(child.firstChild);
+                }
+                clickedArtist()
+
+            };
+            document.getElementById("byartist").appendChild(button);
+        }
 
     };
 
@@ -231,16 +275,14 @@ function clickedArtist() {
 }
 
 
-
 function playGetChallenges() {
 
-    //todo: check that the challenges has not been played before.
-    //todo: display which challenges ave already been played (i will say in the end of the list.
+    //todo: display which challenges ave already been played (i will say in the end of the list. display of already played and shoudl include name, choices, right answer, user option
 
-    //todo: test it with same account.
+
 
     var user = sessionStorage.getItem("userID");
-    var query = users.doc(user).collection("assignedChallenges");//.where("wasPlayed", "=", false);
+    var query = users.doc(user).collection("assignedChallenges").where("wasPlayed", "==", false);
     query.get().then(function (results) {
         results.forEach(function (hello) {
             var id = hello.data().challengeid;
@@ -248,56 +290,50 @@ function playGetChallenges() {
                 var queryChallenge = challenges.doc(hello.data().challengeid);
                 queryChallenge.get().then(function (challenge) {
                     var info = challenge.data();
-                    //todo: query the user name;
                     //todo: catchs that are left;
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
 
-                    createDiv(challen, "bypersonallyassigned");
-                    this.display_assigned_challenges.unshift(challen);
-                    console.log(challenge.data());
+                    var q = users.doc(info.creator.id);
+                    q.get().then(u => {
+                        var uname = u.data().username;
+                        createDiv(challen, uname, "bypersonallyassigned");
+                        this.display_assigned_challenges.unshift(challen);
+                        console.log(challenge.data());
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
+
+                }).catch(function (err) {
+                    console.log(err);
                 })
             }
         });
 
-
     }).catch(function (err) {
         console.log(err);
     })
 
 }
 
-function playPopularChallenge(){
+function playPopularChallenge() {
 
     var query = challenges.where("isPublic", "==", true).orderBy("attempted", "desc");//.limit(20);
-    query.get().then(function (results) {
-        results.forEach(function (challenge) {
-                    var info = challenge.data();
-                    var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
-                    createDiv(challen, "bypopular");
-                    this.display_popular_challenges.unshift(challen);
-                    console.log(challenge.data());
-                })
-
-
-    }).catch(function (err) {
-        console.log(err);
-    })
-
-}
-
-function playGenreChallenge(genre){
-
-    var query = challenges.where("genre", "==", genre).limit(40);
     query.get().then(function (results) {
         results.forEach(function (challenge) {
             var info = challenge.data();
             var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
                 info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
-            createDiv(challen, "bygenre");
-            this.display_genre_challenges.unshift(challen);
-            console.log(challenge.data());
+
+            var q = users.doc(info.creator.id);
+            q.get().then(u => {
+                var uname = u.data().username;
+                createDiv(challen, uname, "bypopular");
+                this.display_popular_challenges.unshift(challen);
+                console.log(challenge.data());
+            }).catch(function (err) {
+                console.log(err);
+            });
         })
 
 
@@ -307,24 +343,59 @@ function playGenreChallenge(genre){
 
 }
 
-function playArtistChallenge(artist){
-    //todo:check if the insertionis empty
+function playGenreChallenge(genre) {
+
+    var query = challenges.where("genre", "==", genre).limit(40);
+    query.get().then(function (results) {
+        results.forEach(function (challenge) {
+            var info = challenge.data();
+            var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
+
+            var q = users.doc(info.creator.id);
+            q.get().then(u => {
+                var uname = u.data().username;
+                createDiv(challen, uname, "bygenre");
+                this.display_genre_challenges.unshift(challen);
+                console.log(challenge.data());
+            }).catch(function (err) {
+                console.log(err);
+            });
+        })
+
+
+    }).catch(function (err) {
+        console.log(err);
+    })
+
+}
+
+function playArtistChallenge(artist) {
+    //todo: case sensitive.
 
 
     var query = challenges.where("artist", "==", artist).limit(40);
     query.get().then(function (results) {
         console.log();
-        if(results.size == 0 ){
+        if (results.size === 0) {
             alert("Sorry! This artist does not exist in the database. Try another");
         }
 
         results.forEach(function (challenge) {
             var info = challenge.data();
             var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
-            createDiv(challen, "byartist");
-            this.display_artist_challenges.unshift(challen);
-            console.log(challenge.data());
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
+
+            var q = users.doc(info.creator.id);
+            q.get().then(u => {
+                var uname = u.data().username;
+                createDiv(challen, uname, "byartist");
+                this.display_artist_challenges.unshift(challen);
+                console.log(challenge.data());
+            }).catch(function (err) {
+                console.log(err);
+            });
+
         })
     }).catch(function (err) {
         console.log(err);

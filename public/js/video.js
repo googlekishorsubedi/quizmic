@@ -55,14 +55,13 @@ function loadMainVideo(){
   function stopVideo() {
     blockButtons();
     player.stopVideo();
-    document.location.replace("../html/create.html")
+
 
   }
 
 
   function checkbButton(){
     var time = document.getElementById("timeleft");
-    console.log(time.innerHTML);
     if(time.innerHTML > 0){
       time.innerHTML = (time.innerHTML - 1);
     }
