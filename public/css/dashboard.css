@@ -257,9 +257,9 @@ and auto generate a challenge */
   background-color: #fefff9ff;
   height: 75px;
   border-radius: 5%;
-  border-color:#d7dce3 !important;
-  border: 1px solid;
-
+  /* border-color:#d7dce3 !important;
+  border: 1px solid; */
+  border:1px solid yellow;
 }
 
 .createinputs2{

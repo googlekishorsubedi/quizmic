@@ -29,6 +29,7 @@
     <script src="../js/loginHandler.js"></script>
     <script src="../js/database_management.js"></script>
     <script src="../js/create.js"></script>
+    <script src="../js/settings.js"></script>
 
 </head>
 
@@ -101,6 +102,11 @@
 
           <div class="settingsbox">
 
+            <div id="username" style="margin-top: 10px;">
+                Display Username and points
+
+            </div>
+
             <div class="googlelink">
                 <button id="linkGoogle" onclick="linkGoogleAccount()">  Link Google Account </button>
             </div>
@@ -109,11 +115,43 @@
                 <a href="linkEmailPassword.html">  Link Email Password </button>
             </div>
 
+            <div >
+                <button id="editprofilepicbutton"type="button" name="" onclick="openprofilepopup()">
+                    Edit Profile Picture
+                </button>
+            </div>
+
           </div>
+
+
     </div>
     <div class="col-lg-4"></div>
   </div>
 
+
+  <div id="profilepicpopup"class="">
+    <div class="profilepicpopupcontent">
+
+      <div id="exitbuttondiv">
+        <button id="closeFormbut" class="" onclick="closeprofilepopup()">
+            <img id="closeForm" src="../images/closebutton.ico" alt="closebutton">
+        </button>
+      </div>
+
+        <!-- <p id="assignheading">Assign a Challenge</p>
+
+        <input id="assignbuttonpop" type="text" name="assignbutton" placeholder="username">
+
+        <div class="">
+          <button id="assignbuttoncs"type="Submit" name="Assign" >
+                Assign
+           </button>
+        </div> -->
+
+
+      </div>
+    </div>
+  </div>
 
 
   <footer>
