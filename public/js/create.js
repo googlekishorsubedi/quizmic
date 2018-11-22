@@ -549,4 +549,3 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
 
     }
 }
-
