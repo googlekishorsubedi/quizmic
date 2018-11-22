@@ -323,7 +323,7 @@ function playPopularChallenge() {
         results.forEach(function (challenge) {
             var info = challenge.data();
             var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
-                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge);
+                info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
 
             var q = users.doc(info.creator.id);
             q.get().then(u => {
