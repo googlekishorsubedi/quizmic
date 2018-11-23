@@ -15,11 +15,12 @@
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
   <script src="../js/firebase.js"></script>
-  <script src="../js/pageHandler.js"></script>
+  <script src="../js/model.js"></script>
   <script src="../js/loginHandler.js"></script>
+  <script src="../js/pageHandler.js"></script>
 </head>
 
-<body>
+<body onload=loadDashboard()>
 
 <header>
   <nav id="navcolor" class="navbar navbar-expand-lg navbar-light bg-light" >
@@ -56,7 +57,7 @@
           <img id="profilepic" src="../images/man3.png" alt="profilepic">
           </a>
           <div style="background: #fefff9ff"class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="profile.html">
+            <a class="dropdown-item" id="name" href="profile.html">
                 Display UserName
             </a>
             <a class="dropdown-item" href="profile.html"> Friends </a>

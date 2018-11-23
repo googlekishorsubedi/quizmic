@@ -9,6 +9,7 @@ var username = firestore.collection("username");
  * @param username user to add UID
  * @param groupID ID of the group
  */
+
 function addToGroup(username, groupID) {
     // Add member to
     var transaction = firestore.runTransaction(t => {
@@ -141,6 +142,8 @@ function addFriend(){
 
 
 function assignChallenge(challengeID, userName)
+
+//todo: there is no confirmation that the challenge was sent to the user
 {
     var docRef = firestore.collection("username").doc(userName);
 
@@ -202,6 +205,7 @@ function createGroupQUERY(groupName, groupOwnerUsername) {
 }
 
 function getUserGroupsQUERY(username) {
+
     var query = users.belongsToGroup;
     query.get().then(function (results) {
         if (results.empty) {
@@ -221,6 +225,7 @@ function getUserGroupsQUERY(username) {
 }
 
 function getUserAssignedChallenges(username) {
+
     var query = users.assignedChallenges;
     query.get().then(function (results) {
         if (results.empty) {

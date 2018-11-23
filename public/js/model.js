@@ -16,7 +16,6 @@ function Challenge(challengeName, youtubeID, song, artist, genre, hint, attempte
         object: object,
         div: null,
     }
-
 }
 
 function ChallengeToParce(challenge) {
@@ -36,16 +35,23 @@ function ChallengeToParce(challenge) {
         creator: challenge.creator.toString(),
         id: challenge.id.toString(),
     }
-
 }
 
-function User(name, username, email, score, challengesPlayed) {
+function User(username, email, score, challengesPlayed) {
     return {
-        name: name,
         username: username,
         email: email,
         score: score,
         challengesPlayed: challengesPlayed
+    }
+}
+
+function UserToParce(user) {
+    return {
+        username: user.username.toString(),
+        email: user.email.toString(),
+        score: user.score.toString(),
+        challengesPlayed: user.challengesPlayed.toString()
     }
 }
 
