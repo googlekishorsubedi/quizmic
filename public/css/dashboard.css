@@ -235,7 +235,7 @@ and auto generate a challenge */
 .quickcreatebox{
   margin-top: 175px;
   /* margin-left: 5px; */
-  margin-right: 20px;
+  margin-right: 30px;
   background-color: #fefff9ff;
   border-radius: 15%;
   height: 600px;
@@ -269,9 +269,11 @@ and auto generate a challenge */
   font-family: 'Open Sans Condensed', sans-serif;
   width: 250px;
   height: 30px;
+  border: 1px solid purple;
 }
 
 .inputtext2{
+  border: 1px solid red;
   text-align: center;
   /* font-family: 'Pacifico', cursive; */
   font-family: 'Open Sans Condensed', sans-serif;
@@ -282,13 +284,18 @@ and auto generate a challenge */
 }
 
 .genrebox{
+  margin-right: 45%;
+  border: 1px solid green;
 /* background-color: white !important; */
-margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-#genre{
+#genre2{
+  border: 1px solid yellow;
   height: 40px;
   text-align: center;
   width: 250px;
-  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-bottom: 30px !important;
+
 }
