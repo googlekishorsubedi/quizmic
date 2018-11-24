@@ -142,7 +142,7 @@ function addFriend(){
 
 function seeStats()
 {
-    var userId = firebase.auth().currentUser.uid;
+    var userId = sessionStorage.getItem("userID");
     var thisUserGroups;
     var thisuserName;
     var userTotalScore;
@@ -175,7 +175,7 @@ function seeStats()
                 }
                 var trackdict = [];
                 var UserPromises = [];
-                for(var key in GroupvsMembersDict){ 
+                for(var key in GroupvsMembersDict){
                     //convert all GroupvsMembersDict[key] to promises.
                     var LocalUserpromises = [];
                     for(var each in GroupvsMembersDict[key]){
@@ -193,12 +193,14 @@ function seeStats()
                         to_return_array.push(findTop3(start,trackdict[each_group][0], trackdict[each_group][1], snapshot));
                         start = trackdict[each_group][0]+1
                     }
+                    //get rid of these
+                    contructStats(to_return_array);
                     return to_return_array;
                 }).catch((error) => {
                 console.log(error);
                 });
 
-                   
+
 
             }).catch((error) => {
             console.log(error);
@@ -214,6 +216,19 @@ function seeStats()
     });
 
 }
+var ugly;
+function contructStats(statsArrays){
+  console.log(to_return_array);
+  ugly = to_return_array;
+
+  if(Array.isArray(statsArrays[0])){
+    //This is a double array
+
+  }else{
+    // this is a single array
+  }
+}
+
 
 function averageScore(index, snapshot){
     if(snapshot[index].data().challengesPlayed == 0){
@@ -237,7 +252,7 @@ function findTop3(startIndex, endIndex, groupName, snapshot)
         var startIndexPlayer = snapshot[startIndex].data().username;
 
         if( startIndexScore  >= top3score){
-            
+
             if(startIndexScore >= top2score){
 
                 if(startIndexScore  >= top1score){
@@ -251,7 +266,7 @@ function findTop3(startIndex, endIndex, groupName, snapshot)
                     top1player = startIndexPlayer;
                 }
                 else{
-                    
+
                     top3score = top2score;
                     top3player = top2player;
 
