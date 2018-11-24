@@ -183,6 +183,7 @@ and auto generate a challenge */
 }
 
 #statisticsheader{
+  border: 1px solid magenta;
   /* font-family: 'Open Sans Condensed', sans-serif !important; */
   color: #88B0C2 !important;
   font-size: 40px;
@@ -199,6 +200,7 @@ and auto generate a challenge */
   width:60px;
 }
 #friendstatheader{
+  border: 1px solid red;
   margin-top: 10px;
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif !important;
@@ -220,6 +222,8 @@ and auto generate a challenge */
   margin-right: 10px;
   height: 275px;
   overflow: scroll;
+  display: inline;
+  border: 1px solid green;
 }
 
 .quickchallengesbox{
