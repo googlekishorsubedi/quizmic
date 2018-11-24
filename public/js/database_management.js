@@ -98,8 +98,8 @@ function addFriend(){
     var friendUsername = document.getElementById("friendUsername").value;
     var query = username.doc(friendUsername);
 
-    query.get().then(function (results) {
-        if (results.exists) {
+    query.get().then(function (doc) {
+        if (doc.exists) {
             //adds friendUserName to current User's contact List
             var user = firebase.auth().currentUser;
             var userRef = users.doc(user.uid);
@@ -122,7 +122,7 @@ function addFriend(){
                     }
 
                     userRef.update({
-                    contactList: firebase.firestore.FieldValue.arrayUnion(friendUsername)
+                    contactList: firebase.firestore.FieldValue.arrayUnion(doc.data().uid)
                     });
                     alert("friend added");
                 }
@@ -138,6 +138,34 @@ function addFriend(){
         console.log("Error getting user owned challenges:", error);
     });
 
+}
+
+function StatsofFriends(){
+    var user = firebase.auth().currentUser;
+    var query = firestore.collection("users").doc(user.uid);
+    query.get().then(function(doc){
+
+        if(doc.exists){
+            var contactList = doc.data().contactList;
+            var promises = [];
+            var ctr = 0;
+            while(ctr < contactList.length){
+                var query = firestore.collection("users").doc(contactList[ctr]);
+                promises.push(query.get());
+                ctr +=1;
+            }
+            Promise.all(promises).then(function(snapshot){
+                snapshot.push(doc);
+                arr = findTop3(0, snapshot.length-1, "ContactList", snapshot);
+                return arr;
+
+            }).catch(function(error){
+            console.log("error");
+    })
+        }
+    }).catch(function(error){
+        console.log("error");
+    })
 }
 
 function seeStats()
@@ -188,17 +216,22 @@ function seeStats()
                 Promise.all(UserPromises).then(function(snapshot){
                     var start = 0 ;
                     to_return_array = []
+                    if(userTotalChallengesPlayed != 0){
+                        to_return_array.push(userTotalScore/userTotalChallengesPlayed);
+                    }
+                    else{
+                        to_return_array.push(0);
+                    }
+    
                     for(var each_group in trackdict){ //[2,hack], [6,hack2]...
                         //find top3 from snapshot[0] to snapshot[each_group[0]]
                         to_return_array.push(findTop3(start,trackdict[each_group][0], trackdict[each_group][1], snapshot));
                         start = trackdict[each_group][0]+1
                     }
-                    return to_return_array;
+                    console.log(to_return_array);
                 }).catch((error) => {
                 console.log(error);
                 });
-
-                   
 
             }).catch((error) => {
             console.log(error);
