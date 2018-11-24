@@ -140,6 +140,136 @@ function addFriend(){
 
 }
 
+function seeStats()
+{
+    var userId = firebase.auth().currentUser.uid;
+    var thisUserGroups;
+    var thisuserName;
+    var userTotalScore;
+    var userTotalChallengesPlayed;
+    //query users table and set both of those variables
+    firestore.collection("users").doc(userId).get().then(function(doc){
+        if(doc.exists){
+            thisuserName = doc.data().username;
+            userTotalScore = doc.data().score;
+            userTotalChallengesPlayed = doc.data().challengesPlayed;
+            thisUserGroups = doc.data().belongsToGroup;
+
+            var promises = [];
+            var counter = 0;
+            while(counter < thisUserGroups.length)
+            {
+                var query = firestore.collection("groups").doc(thisUserGroups[counter]);
+                promises.push(query.get());
+                counter +=1;
+            }
+            var GroupvsMembersDict = {};
+
+            Promise.all(promises).then(function(snapshot){
+                var i = 0;
+                while(i < snapshot.length){
+                    if(snapshot[i].exists){
+                        GroupvsMembersDict[snapshot[i].data().groupName] = snapshot[i].data().members;
+                    }
+                    i +=1;
+                }
+                var trackdict = [];
+                var UserPromises = [];
+                for(var key in GroupvsMembersDict){ 
+                    //convert all GroupvsMembersDict[key] to promises.
+                    var LocalUserpromises = [];
+                    for(var each in GroupvsMembersDict[key]){
+                        var query = firestore.collection("users").doc(GroupvsMembersDict[key][each]);
+                        UserPromises.push(query.get());
+                    }
+                    trackdict.push( [UserPromises.length-1, key] );
+                }
+
+                Promise.all(UserPromises).then(function(snapshot){
+                    var start = 0 ;
+                    to_return_array = []
+                    for(var each_group in trackdict){ //[2,hack], [6,hack2]...
+                        //find top3 from snapshot[0] to snapshot[each_group[0]]
+                        to_return_array.push(findTop3(start,trackdict[each_group][0], trackdict[each_group][1], snapshot));
+                        start = trackdict[each_group][0]+1
+                    }
+                    return to_return_array;
+                }).catch((error) => {
+                console.log(error);
+                });
+
+                   
+
+            }).catch((error) => {
+            console.log(error);
+            });
+
+        }
+        else
+        {
+            console.log("Cannot query this user's object")
+        }
+    }).catch(function(error){
+        console.log("No such username to assign the challenge!");
+    });
+
+}
+
+function averageScore(index, snapshot){
+    if(snapshot[index].data().challengesPlayed == 0){
+        return 0;
+    }
+    else{
+        return snapshot[index].data().score/snapshot[index].data().challengesPlayed;
+    }
+}
+function findTop3(startIndex, endIndex, groupName, snapshot)
+{
+    var top1score = 0;
+    var top1player = "";
+    var top2score = 0;
+    var top2player = "";
+    var top3score = 0;
+    var top3player = "";
+
+    while(startIndex <= endIndex){
+        var startIndexScore = averageScore(startIndex, snapshot);
+        var startIndexPlayer = snapshot[startIndex].data().username;
+
+        if( startIndexScore  >= top3score){
+            
+            if(startIndexScore >= top2score){
+
+                if(startIndexScore  >= top1score){
+                    top3score = top2score;
+                    top3player = top2player;
+
+                    top2score = top1score;
+                    top2player = top1player;
+
+                    top1score = startIndexScore ;
+                    top1player = startIndexPlayer;
+                }
+                else{
+                    
+                    top3score = top2score;
+                    top3player = top2player;
+
+                    top2score = startIndexScore ;
+                    top2player = startIndexPlayer;
+
+                }
+
+            }
+            else{
+                top3score = startIndexScore ;
+                top3player = startIndexPlayer;
+            }
+        }
+        startIndex +=1 ;
+    }
+    return [groupName, top1score, top1player, top2score, top2player, top3score, top3player];
+}
 
 function assignChallenge(challengeID, userName)
 
