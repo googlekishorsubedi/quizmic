@@ -141,8 +141,9 @@ function addFriend(){
 }
 
 function StatsofFriends(){
-    var user = firebase.auth().currentUser;
-    var query = firestore.collection("users").doc(user.uid);
+  sessionStorage.getItem("userID");
+    var user = sessionStorage.getItem("userID");
+    var query = firestore.collection("users").doc(user);
     query.get().then(function(doc){
 
         if(doc.exists){
@@ -157,6 +158,7 @@ function StatsofFriends(){
             Promise.all(promises).then(function(snapshot){
                 snapshot.push(doc);
                 arr = findTop3(0, snapshot.length-1, "ContactList", snapshot);
+                constructFriendsStats(arr);
                 return arr;
 
             }).catch(function(error){
@@ -170,7 +172,7 @@ function StatsofFriends(){
 
 function seeStats()
 {
-    var userId = firebase.auth().currentUser.uid;
+    var userId = sessionStorage.getItem("userID");
     var thisUserGroups;
     var thisuserName;
     var userTotalScore;
@@ -222,7 +224,8 @@ function seeStats()
                         to_return_array.push(findTop3(start,trackdict[each_group][0], trackdict[each_group][1], snapshot));
                         start = trackdict[each_group][0]+1;
                     }
-                    console.log(to_return_array);
+                    contructStats(to_return_array);
+                    return to_return_array;
                 }).catch((error) => {
                 console.log(error);
                 });
@@ -240,6 +243,39 @@ function seeStats()
         console.log("No such username to assign the challenge!");
     });
 
+}
+function constructFriendsStats(statsArrays){
+  var friendsbox = document.getElementById("friendsstatisticsbox");
+  var div = document.createElement("div");
+  div.className = "flex-container statistics statisticsbox";
+
+  if(statsArrays[2] == ""){
+    //has no friends
+    return;
+  }
+  else if (statsArrays[4] == "") {
+    //has 1 friend
+    var div1 = personDivMaker(statsArrays[1], statsArrays[2]);
+    div.appendChild(div1);
+  }
+  else if (statsArrays[6] == ""){
+    //has 2 friends
+    var div1 = personDivMaker(statsArrays[1], statsArrays[2]);
+    var div2 = personDivMaker(statsArrays[3], statsArrays[4]);
+    div.appendChild(div1);
+    div.appendChild(div2);
+  }else{
+    //has 3 or more friends
+      var div1 = personDivMaker(statsArrays[1], statsArrays[2]);
+      var div2 = personDivMaker(statsArrays[3], statsArrays[4]);
+      var div3 = personDivMaker(statsArrays[5], statsArrays[6]);
+      div.appendChild(div1);
+      div.appendChild(div2);
+      div.appendChild(div3);
+  }
+
+
+    friendsbox.appendChild(div);
 }
 var ugly;
 function contructStats(statsArrays){

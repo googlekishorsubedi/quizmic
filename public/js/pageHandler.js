@@ -18,6 +18,7 @@ function loadDashboard(){
     });
 
     var stats = seeStats();
+    StatsofFriends();
 }
 
 firebase.auth().onAuthStateChanged(function(user){
