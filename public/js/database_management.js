@@ -216,13 +216,7 @@ function seeStats()
                 Promise.all(UserPromises).then(function(snapshot){
                     var start = 0 ;
                     to_return_array = []
-                    if(userTotalChallengesPlayed != 0){
-                        to_return_array.push(userTotalScore/userTotalChallengesPlayed);
-                    }
-                    else{
-                        to_return_array.push(0);
-                    }
-    
+                    var counter = 0;    
                     for(var each_group in trackdict){ //[2,hack], [6,hack2]...
                         //find top3 from snapshot[0] to snapshot[each_group[0]]
                         to_return_array.push(findTop3(start,trackdict[each_group][0], trackdict[each_group][1], snapshot));
