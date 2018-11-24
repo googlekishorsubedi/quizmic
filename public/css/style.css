@@ -15,6 +15,7 @@ border:1px solid black;
 
 #forgotPassword{
 font-family: 'Open Sans Condensed', sans-serif !important;
+margin-left: 15px;
 }
 #middlesection
 {
@@ -37,16 +38,35 @@ margin-top:17px;
 }
 #logo{
 height:110px;
+font-family: 'Open Sans Condensed', sans-serif !important;
+text-align: center;
 }
 
-#arch
-{
-  margin-left: 40px;
-  margin-right: 0;
+.logoheading{
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  /* margin-left: 60px; */
+  font-size: 40px;
+  margin-top: 40px;
+  text-align: center;
+  margin-left: 76px !important;
+  height: 20px;
+  width: 50px;
+  color: #4d4e4f;
+
+}
+.logoname{
+  text-align: center;
+  padding-top: 15%;
+  display: flex;
+  margin-left: 70px !important;
+  width: 300px !important;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 #signUp
 {
+  color: #4d4e4f !important;
+
   padding-top: 10px;
   height: 60px;
   border:1px solid black;
@@ -58,6 +78,7 @@ height:110px;
 
 #logIn
 {
+  color: #4d4e4f !important;
   padding-top: 10px;
   font-family: 'Pacifico', cursive;
   height: 60px;
@@ -136,11 +157,22 @@ background: #CDCDCD;
 
   text-align:center;
 }
+
+submit:hover{
+    color: #fefff9ff;
+}
+
+
 .socialsize
 {
   height:45px;
   width:45px;
 }
+
+socialsize:hover{
+  opacity: 0.5 !important;
+}
+
 ::placeholder
 {
   text-align: center;

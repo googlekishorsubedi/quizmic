@@ -209,12 +209,12 @@ aside{
 .nodebuddyholder{
   /* border-color: rgb(166, 166, 166) !important; */
   margin-top: 5px !important;
-  margin-left: 15%;
+  /* margin-left: 15%; */
   border-color:#d7dce3 !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 20px;
   border: 1px solid;
-  width: 300px;
+  width: 250px !important;
   height: 75px;
   background: white;
   display: flex;
