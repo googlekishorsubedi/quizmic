@@ -229,7 +229,7 @@ function makeaGroup()
                                 thisusername = doc.data().username;
 
                                 groupRef.update({
-                                    members: firebase.firestore.FieldValue.arrayUnion(thisusername)
+                                    members: firebase.firestore.FieldValue.arrayUnion(user.uid)
                                     });
 
                                     var promises = [];
@@ -268,7 +268,7 @@ function makeaGroup()
                                         {
 
                                             groupRef.update({
-                                                            members: firebase.firestore.FieldValue.arrayUnion(successful[i].id)
+                                                            members: firebase.firestore.FieldValue.arrayUnion(successful[i].data().uid)
                                                             });
 
                                             userRef = firestore.collection("users").doc(successful[i].data().uid);

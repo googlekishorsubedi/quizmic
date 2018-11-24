@@ -18,6 +18,7 @@
   <script src="../js/model.js"></script>
   <script src="../js/loginHandler.js"></script>
   <script src="../js/pageHandler.js"></script>
+  <script src="../js/database_management.js"></script>
 </head>
 
 <body onload=loadDashboard()>
@@ -86,72 +87,13 @@
           <p id="friendstatheader"> Friends Leaderboard </p>
 
 
-        <div class="statisticsbox">
-          <div class="flex-container statistics">
-
-            <div class="statisticspic">
-              <img class="statisticspic"src="../avatarphotos/brownhair.png" alt="brownhairboy">
-
-            </div>
-            <div class="individualstatsheader">
-                <p > Username </p>
-            </div>
-            <div class="individualstatsheader">
-                6 points
-            </div>
-          </div>
-
-
-          <div class="flex-container statistics">
-
-            <div class="statisticspic">
-              <img class="statisticspic"src="../avatarphotos/braidgirl.png" alt="braigirl">
-
-            </div>
-            <div class="individualstatsheader">
-                <p > Username </p>
-            </div>
-            <div class="individualstatsheader">
-                6 points
-            </div>
-          </div>
-
+        <div class="statisticsbox" id="friendsstatisticsbox">
         </div>
 
 
-            <p id="friendstatheader"> Global Leaderboard </p>
+            <p id="friendstatheader"> Group Leaderboard </p>
 
-            <div class="statisticsbox">
-              <div class="flex-container statistics">
-
-                <div class="statisticspic">
-                  <img class="statisticspic"src="../avatarphotos/blackhair.png" alt="blackhairgitl">
-
-                </div>
-
-                <div class="individualstatsheader">
-                    <p > Username </p>
-                </div>
-                <div class="individualstatsheader">
-                    6 points
-                </div>
-              </div>
-
-              <div class="flex-container statistics">
-
-                <div class="statisticspic">
-                  <img class="statisticspic"src="../avatarphotos/bangs.png" alt="bangsgirl">
-
-                </div>
-                <div class="individualstatsheader">
-                    <p > Username </p>
-                </div>
-                <div class="individualstatsheader">
-                    6 points
-                </div>
-              </div>
-
-
+            <div class="statisticsbox" id="groupsstatisticsbox">
             </div>
 
       </div>
@@ -159,7 +101,7 @@
 
 
       <div class="col-lg-6" background = "../images/playbutt.png">
-        <p id="challengesheader"> Challenges </p>
+        <p id="challengesheader" onclick="StatsofFriends()"> Challenges </p>
 
         <div class="quickchallengesbox" background = "../images/playbutt.png">
 
