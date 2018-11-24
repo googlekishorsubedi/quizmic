@@ -4,6 +4,7 @@ var groups = firestore.collection("groups");
 var challenges = firestore.collection("challenges");
 var username = firestore.collection("username");
 
+var stats;
 
 function loadDashboard(){
     var userid = sessionStorage.getItem("userID");
@@ -15,6 +16,9 @@ function loadDashboard(){
         var stringify = JSON.stringify(str);
         sessionStorage.setItem("userObject", stringify);
     });
+
+    var stats = seeStats();
+    StatsofFriends();
 }
 
 firebase.auth().onAuthStateChanged(function(user){
