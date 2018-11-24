@@ -218,15 +218,87 @@ function seeStats()
 }
 var ugly;
 function contructStats(statsArrays){
-  console.log(to_return_array);
   ugly = to_return_array;
+  // var friendsbox = document.getElementById("friendsstatisticsbox")
+  var groupsbox = document.getElementById("groupsstatisticsbox")
 
   if(Array.isArray(statsArrays[0])){
     //This is a double array
+    for(var array in statsArrays){
+      var div = constructStatsView(statsArrays[array]);
+      groupsbox.appendChild(div);
+    }
 
   }else{
     // this is a single array
+    var div = constructStatsView(statsArrays);
+    groupsbox.appendChild(div);
   }
+}
+
+function constructStatsView(group3) {
+  if(group3[2] == ""){
+    return;
+  }
+  var div = document.createElement("div");
+  div.className = "flex-container statistics statisticsbox";
+
+  var thisgroupName = document.createElement("p");
+  thisgroupName.className = "groupName";
+  thisgroupName.innerHTML = group3[0];
+  div.appendChild(thisgroupName);
+
+  if(group3[4] == ""){
+    // There is only two people
+    var div1 = personDivMaker(group3[1], group3[2]);
+    var div2 = personDivMaker(group3[3], group3[4]);
+    div.appendChild(div1);
+    div.appendChild(div2);
+  }else{
+    // there is three people
+    var div1 = personDivMaker(group3[1], group3[2]);
+    var div2 = personDivMaker(group3[3], group3[4]);
+    var div3 = personDivMaker(group3[5], group3[6]);
+    div.appendChild(div1);
+    div.appendChild(div2);
+    div.appendChild(div3);
+  }
+  return div;
+    // var ediv = null;
+    // document.getElementById('indivualchallenges').insertBefore(div, ediv);
+}
+
+function personDivMaker(name, score){
+  var person1div = document.createElement("div");
+  person1div.className = "flex-container statistics";
+
+  var div1 = document.createElement("div");
+  div1.className = "statisticspic";
+  var person1pic = document.createElement("img");
+  person1pic.className = "statisticspic";
+  // Will actually need to call a method that finds a users associated photo.
+  person1pic.src = "../avatarphotos/brownhair.png"
+  // person1pic.alt = "../avatarphotos/brownhairboy.png"
+  div1.appendChild(person1pic);
+
+  var div2 = document.createElement("div");
+  div2.className = "individualstatsheader";
+  var person1name = document.createElement("p");
+  person1name.innerHTML = name;
+  div2.appendChild(person1name);
+
+
+  var div3 = document.createElement("div");
+  div3.className = "individualstatsheader";
+  var person1score = document.createElement("p");
+  person1score.innerHTML = score;
+  div3.appendChild(person1score);
+
+  person1div.appendChild(div1);
+  person1div.appendChild(div3);
+  person1div.appendChild(div2);
+
+  return person1div;
 }
 
 
