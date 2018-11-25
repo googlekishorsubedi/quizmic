@@ -345,13 +345,14 @@ function personDivMaker(name, score){
   var div2 = document.createElement("div");
   div2.className = "individualstatsheader";
   var person1name = document.createElement("p");
-  person1name.innerHTML = name;
+  person1name.innerHTML = Math.round(name);
   div2.appendChild(person1name);
 
 
   var div3 = document.createElement("div");
   div3.className = "individualstatsheader";
   var person1score = document.createElement("p");
+  console.log(name);
   person1score.innerHTML = score;
   div3.appendChild(person1score);
 
