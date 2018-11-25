@@ -41,6 +41,23 @@ function enableOptions() {
     document.getElementById("option3").value = "";
 }
 
+
+function quickChallenge(){
+    createChallengeQUERY(
+        document.getElementById('nameofchallenge2').value,
+        document.getElementById('url2').value,
+        document.getElementById('answer2').value,
+        document.getElementById('artist2').value,
+        document.getElementById('genre2').value,
+        "",
+        true,
+        "",
+        "",
+        "",
+        false,
+        false);
+
+}
 function trying() {
     createChallengeQUERY(
         document.getElementById('nameofchallenge').value,
@@ -58,21 +75,36 @@ function trying() {
 }
 
 function clearCreateForm() {
-    document.getElementById('nameofchallenge').value = "";
-    document.getElementById('url').value = "";
-    document.getElementById('answer').value = "";
-    document.getElementById('artist').value = "";
-    document.getElementById('genre').value = "";
-    document.getElementById('isPublic').checked = false;
-    document.getElementById("optionsEnable").checked = false;
-    document.getElementById("option1").value = "";
-    document.getElementById("option2").value = "";
-    document.getElementById("option3").value = "";
-    document.getElementById("options").hidden = true;
-    document.getElementById("hintEnable").checked = false;
-    document.getElementById("hint").value = "";
-    document.getElementById("hint").hidden = true;
-    document.getElementById("hintname").hidden = true;
+    try {
+        document.getElementById('nameofchallenge').value = "";
+        document.getElementById('url').value = "";
+        document.getElementById('answer').value = "";
+        document.getElementById('artist').value = "";
+        document.getElementById('genre').value = "";
+        document.getElementById('isPublic').checked = false;
+        document.getElementById("optionsEnable").checked = false;
+        document.getElementById("option1").value = "";
+        document.getElementById("option2").value = "";
+        document.getElementById("option3").value = "";
+        document.getElementById("options").hidden = true;
+        document.getElementById("hintEnable").checked = false;
+        document.getElementById("hint").value = "";
+        document.getElementById("hint").hidden = true;
+        document.getElementById("hintname").hidden = true;
+    }catch (e) {
+        
+    }
+    
+    try {
+        document.getElementById('nameofchallenge2').value = "";
+        document.getElementById('url2').value= "";
+        document.getElementById('answer2').value = "";
+        document.getElementById('artist2').value = "";
+        document.getElementById('genre2').value = "";
+    }catch (e) {
+        
+    }
+        
 }
 
 function createButtonSections(challenge) {
@@ -481,11 +513,15 @@ function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint,
                     date: new Date(),
                     id: e.id
                 };
+                try {
+                    createButtonSections(challen);
+                    this.challengesArray.unshift(challen);
 
-                createButtonSections(challen);
-                this.challengesArray.unshift(challen);
+                }catch (e) {
+                    //do nothing
+
+                }
                 clearCreateForm();
-
             })
 
         }).catch(function (err) {
