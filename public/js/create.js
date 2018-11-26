@@ -9,6 +9,23 @@ var selectedchallenge;
 //TODO: automatically fill answers
 //TODO: what happend if i erause a challenge that was assigned;
 
+
+function completedchallenges(){
+
+    var challenge = document.getElementById('indivualchallenges');
+
+    if(challenge.style.display == 'block')
+    {
+      challenge.style.display = 'none'
+      document.getElementsByClassName('completedchallenges').style.display = 'block'
+    }
+    else {
+      challenge.style.display = 'block'
+      document.getElementsByClassName('completechallenges').style.display = 'none'
+    }
+
+}
+
 function createMain() {
     getUserChallengesQUERY()
 
@@ -92,9 +109,9 @@ function clearCreateForm() {
         document.getElementById("hint").hidden = true;
         document.getElementById("hintname").hidden = true;
     }catch (e) {
-        
+
     }
-    
+
     try {
         document.getElementById('nameofchallenge2').value = "";
         document.getElementById('url2').value= "";
@@ -102,9 +119,9 @@ function clearCreateForm() {
         document.getElementById('artist2').value = "";
         document.getElementById('genre2').value = "";
     }catch (e) {
-        
+
     }
-        
+
 }
 
 function createButtonSections(challenge) {

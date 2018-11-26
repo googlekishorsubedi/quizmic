@@ -200,27 +200,42 @@ aside{
   width: 500px;
   height: 350px;
   color: #88B0C2;
+  display: block;
   /* display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center; */
 }
 
+  #completechallenges{
+    margin-top: 10px !important;
+    overflow: scroll !important;
+    width: 500px;
+    height: 350px;
+    color: #88B0C2;
+    display: none;
+    border: 1px solid green !important;
+
+  }
+
+
 .nodebuddyholder{
   /* border-color: rgb(166, 166, 166) !important; */
   margin-top: 5px !important;
-  /* margin-left: 15%; */
+  margin-left: 15%;
   border-color:#d7dce3 !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 20px;
   border: 1px solid;
-  width: 250px !important;
+  width: 300px !important;
   height: 75px;
   background: white;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  cursor: pointer;
+
 }
 
 .nodebuddy{
@@ -348,4 +363,12 @@ aside{
   text-align: center !important;
   color: lightgray !important;
   letter-spacing:2px !important;
+}
+
+#completedchallenges{
+  margin-left: 30%;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  color: #88B0C2;
+  font-size: 20px;
+  cursor: pointer;
 }

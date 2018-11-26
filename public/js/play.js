@@ -14,6 +14,8 @@ function playMain() {
 
 }
 
+
+
 // This function creates a div object from a given string of the creator of the challenge
 // the artist of the specific song, and the amount of points this challenge contains.
 // It will return the created div.
