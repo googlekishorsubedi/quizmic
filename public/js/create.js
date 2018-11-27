@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     var userObj = JSON.parse(sessionStorage.getItem("userObject"));
     document.getElementById("profilepic").src = userObj.img;
-    document.getElementById("editprofilepic").src = userObj.img;
+    // document.getElementById("editprofilepic").src = userObj.img;
 
 });
 var users = firestore.collection("users");
