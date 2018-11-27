@@ -19,7 +19,6 @@ function createMain() {
 
 }
 
-//TODO: automatically fill answers
 //TODO: what happend if i erause a challenge that was assigned;
 
 

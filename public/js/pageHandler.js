@@ -28,9 +28,7 @@ function loadDashboard(){
 
 firebase.auth().onAuthStateChanged(function(user){
     console.log("authentication changed");
-    if(user){
-        printName(user);
-    }
+
     var user = firebase.auth().currentUser;
     var emailRef = firestore.collection("users").doc(user.uid);
     emailRef.get().then(function(doc) {
@@ -47,28 +45,6 @@ firebase.auth().onAuthStateChanged(function(user){
     // var username = firebase.collection("users").doc(user.uid).get()
 
 });
-
-function printName(user){
-    //TODO: this gives and error, check it.
-    //document.getElementById("name").innerHTML = user.displayName;
-}
-
-
-function linkGoogleAccount()
-{
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().currentUser.linkWithPopup(provider).then(function(result) {
-        // Accounts successfully linked.
-        var credential = result.credential;
-        var user = result.user;
-        alert("linking successful");
-        // ...
-    }).catch(function(error) {
-        alert("Error linking");
-        // Handle Errors here.
-        // ...
-    });
-}
 
 function signOut(){
   sessionStorage.removeItem("userID");
@@ -96,14 +72,13 @@ function getQuickChallenges() {
                 var queryChallenge = challenges.doc(hello.data().challengeid);
                 queryChallenge.get().then(function (challenge) {
                     var info = challenge.data();
-                    //todo: catchs that are left;
                     var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
                         info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
 
                     var q = users.doc(info.creator.id);
                     q.get().then(u => {
                         var uname = u.data().username;
-                        var pic = u.data().img//TODO: PIC STUFF GOES IN HERE;
+                        var pic = u.data().img;
                         console.log(pic);
                         if(pic === undefined) {
                             createDivQuickChallenge(challen, uname, "../avatarphotos/beardman.png");

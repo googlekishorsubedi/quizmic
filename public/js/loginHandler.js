@@ -3,7 +3,6 @@ const settings = {/* your settings... */ timestampsInSnapshots: true };
 firestore.settings(settings);
 
 function loginWithGoogle() {
-    //TODO: This functions does not make a user with this method.
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function (result) {
         var user = firebase.auth().currentUser;
@@ -32,7 +31,6 @@ function loginWithGoogle() {
     });
 }
 
-//todo: check this function because it appears that it is duplicated.
 function linkGoogleAccount() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().currentUser.linkWithPopup(provider).then(function (result) {
@@ -47,9 +45,6 @@ function linkGoogleAccount() {
         // ...
     });
 }
-
-
-
 function forgotPassword() {
     document.location.href = "../html/forgotPassword.html";
 }
