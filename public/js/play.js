@@ -280,10 +280,6 @@ function clickedArtist() {
 
 function playGetChallenges() {
 
-    //todo: display which challenges ave already been played (i will say in the end of the list. display of already played and shoudl include name, choices, right answer, user option
-
-
-
     var user = sessionStorage.getItem("userID");
     var query = users.doc(user).collection("assignedChallenges").where("wasPlayed", "==", false);
     query.get().then(function (results) {

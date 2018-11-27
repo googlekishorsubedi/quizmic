@@ -213,8 +213,34 @@ and auto generate a challenge */
   border-radius: 25%;
   height:60px;
   width:60px;
+  overflow: visible;
+}
+.statisticspic2{
+  margin-left:10px;
+  border-radius: 25%;
+  height: auto;
+  width: auto;
+  overflow: visible;
 }
 #friendstatheader{
+  /* border: 1px solid red; */
+  margin-top: 10px;
+  text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 20px;
+  color: #88B0C2 !important;
+
+}
+#friendstatheader1{
+  /* border: 1px solid red; */
+  margin-top: 10px;
+  text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 20px;
+  color: #88B0C2 !important;
+
+}
+#friendstatheader1{
   /* border: 1px solid red; */
   margin-top: 10px;
   text-align: center;
@@ -342,3 +368,27 @@ createchallengebuttonquick:hover
   opacity: 0.5;
   cursor: pointer;
 }
+
+.indivualchallenges{
+  margin-top: 10px !important;
+  overflow: scroll !important;
+  width: 500px;
+  height: 350px;
+  color: #88B0C2;
+  display: block;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center; */
+}
+
+.individualstatsheader1{
+  /* color: #88B0C2 !important; */
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  text-align: left;
+  font-size: 25px;
+  margin-left: 100px;
+  margin-top: -45px;
+  color: #4d4e4f !important;
+}
+

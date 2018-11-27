@@ -10,24 +10,76 @@ var selectedchallenge;
 //TODO: what happend if i erause a challenge that was assigned;
 
 
-function completedchallenges(){
+function getCompletedChallenges(){
 
-    var challenge = document.getElementById('indivualchallenges');
+    var user = sessionStorage.getItem("userID");
+    var query = users.doc(user).collection("assignedChallenges").where("wasPlayed", "==", true);
+    query.get().then(function (results) {
+        results.forEach(function (hello) {
+            var id = hello.data().challengeid;
+            if (id != null) {
+                var queryChallenge = challenges.doc(hello.data().challengeid);
+                queryChallenge.get().then(function (challenge) {
+                    var info = challenge.data();
+                    var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
 
-    if(challenge.style.display == 'block')
-    {
-      challenge.style.display = 'none'
-      document.getElementsByClassName('completedchallenges').style.display = 'block'
-    }
-    else {
-      challenge.style.display = 'block'
-      document.getElementsByClassName('completechallenges').style.display = 'none'
-    }
+                    var q = users.doc(info.creator.id);
+                    q.get().then(u => {
+                        var uname = u.data().username;
+                        createChallengeSectionForplayedChallenges(challen, uname, id.answerGiven);
+                        console.log(challenge.data());
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
+
+                }).catch(function (err) {
+                    console.log(err);
+                })
+            }
+        });
+
+    }).catch(function (err) {
+        console.log(err);
+    })
+
+
+}
+function createChallengeSectionForplayedChallenges(challenge, user, answerGiven) {
+    var div = document.createElement("div");
+    challenge.div = div;
+    div.className = "nodebuddyholder";
+
+    var challengeName = document.createElement("p");
+    challengeName.className = "challengeName";
+    challengeName.onclick = function () {
+        alert("Your answer was: " + answerGiven + "\n Correct answer: " + challenge.song )
+
+    };
+
+
+    var userd = document.createElement("p");
+    userd.className = "challengeName";
+    userd.onclick = function () {
+        alert("Your answer was: " + answerGiven + "\n Correct answer: " + challenge.song )
+    };
+
+
+    challengeName.innerHTML = challenge.challengeName;
+    userd.innerHTML = user;
+
+    div.appendChild(challengeName);
+    div.appendChild(userd);
+
+    console.log("ndodbvoenr");
+    document.getElementById('completechallenges').appendChild(div);
 
 }
 
+
 function createMain() {
-    getUserChallengesQUERY()
+    getUserChallengesQUERY();
+    getCompletedChallenges();
 
 }
 
@@ -123,6 +175,7 @@ function clearCreateForm() {
     }
 
 }
+
 
 function createButtonSections(challenge) {
     var div = document.createElement("div");
@@ -472,6 +525,7 @@ function checkTheInputForChallenges(challengeName, URL, songname, artist, genre,
  * @param hintEnabled the user gave the hint
  */
 function createChallengeQUERY(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled) {
+
 
     if (!checkTheInputForChallenges(challengeName, URL, songname, artist, genre, hint, isPublic, option1, option2, option3, optionsEnabled, hintEnabled)) {
         return;

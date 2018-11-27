@@ -19,6 +19,7 @@ function loadDashboard(){
 
     var stats = seeStats();
     StatsofFriends();
+    getQuickChallenges()
 }
 
 firebase.auth().onAuthStateChanged(function(user){
@@ -77,5 +78,91 @@ function signOut(){
     }).catch(function(error) {
         // An error happened.
     });
+
+}
+
+function getQuickChallenges() {
+
+    var user = sessionStorage.getItem("userID");
+    var query = users.doc(user).collection("assignedChallenges").where("wasPlayed", "==", false);
+    query.get().then(function (results) {
+        results.forEach(function (hello) {
+            var id = hello.data().challengeid;
+            if (id != null) {
+                var queryChallenge = challenges.doc(hello.data().challengeid);
+                queryChallenge.get().then(function (challenge) {
+                    var info = challenge.data();
+                    //todo: catchs that are left;
+                    var challen = Challenge(info.challengeName, info.youtubeAPIid, info.song, info.artist, info.genre,
+                        info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
+
+                    var q = users.doc(info.creator.id);
+                    q.get().then(u => {
+                        var uname = u.data().username;
+                        var pic = u.data().img//TODO: PIC STUFF GOES IN HERE;
+                        console.log(pic);
+                        if(pic === undefined) {
+                            createDivQuickChallenge(challen, uname, "../avatarphotos/beardman.png");
+                        }else{
+                            createDivQuickChallenge(challen, uname, pic);
+                        }
+                        console.log(challenge.data());
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
+
+                }).catch(function (err) {
+                    console.log(err);
+                })
+            }
+        });
+
+    }).catch(function (err) {
+        console.log(err);
+    })
+
+}
+
+
+function createDivQuickChallenge(challenge, name, imgu) {
+
+    var div = document.createElement("div");
+    div.className = "quickchallenge";
+
+    var subdivimg = document.createElement("div");
+    subdivimg.className = "statisticspic";
+
+
+    var subdivtext = document.createElement("div");
+    subdivtext.className = "individualstatsheader1";
+
+
+    var img = document.createElement("img");
+    img.className = "statisticspic";
+    img.src = imgu;
+
+
+    var challengeName = document.createElement("p");
+    challengeName.className = "challengeName";
+    challengeName.onclick = function () {
+
+        sessionStorage.setItem("playMode", "assigned");
+        selectedchallenge = ChallengeToParce(challenge);
+        var stringify = JSON.stringify(selectedchallenge);
+        sessionStorage.setItem("playingChallenge", stringify);
+        document.location.assign("../html/challenge.html");
+        //document.location.replace("../html/challenge.html");
+    };
+
+
+    challengeName.innerHTML = challenge.challengeName + " by User: " + name;
+
+
+    subdivimg.appendChild(img);
+    subdivtext.appendChild(challengeName);
+    div.appendChild(subdivimg);
+    div.appendChild(subdivtext);
+
+    document.getElementById("quickchallengelist").appendChild(div);
 
 }

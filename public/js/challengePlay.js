@@ -49,6 +49,7 @@ function addScoreToDataBase(wasRight, answer) {
     console.log("enters here");
     var playMode = sessionStorage.getItem("playMode");
     var userid = sessionStorage.getItem("userID");
+    console.log(userid + " " + playMode + " " + playingChallenge.id);
 
     if (playMode === "assigned") {
 
@@ -71,7 +72,7 @@ function addScoreToDataBase(wasRight, answer) {
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
 
-                    document.location.replace("../html/play.html")
+
 
                 }).catch(err => {
                     console.log('Transaction failure4:', err);
@@ -79,6 +80,7 @@ function addScoreToDataBase(wasRight, answer) {
 
             }).then(t => {
                 console.log('Transaction success!');
+                document.location.replace("../html/play.html")
 
 
             }).catch(err => {
@@ -104,7 +106,7 @@ function addScoreToDataBase(wasRight, answer) {
                     var str = UserToParce(objUser);
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
-                    document.location.replace("../html/play.html")
+
 
                 }).catch(err => {
                     console.log('Transaction failure4:', err);
@@ -112,6 +114,7 @@ function addScoreToDataBase(wasRight, answer) {
 
             }).then(t => {
                 console.log('Transaction success!');
+                document.location.replace("../html/play.html")
 
 
             }).catch(err => {
@@ -140,14 +143,14 @@ function addScoreToDataBase(wasRight, answer) {
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
 
-                    document.location.replace("../html/play.html")
-
                 }).catch(err => {
                     console.log('Transaction failure4:', err);
                 });
 
             }).then(t => {
                 console.log('Transaction success!');
+                document.location.replace("../html/play.html")
+
 
 
             }).catch(err => {
@@ -170,7 +173,7 @@ function addScoreToDataBase(wasRight, answer) {
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
 
-                    document.location.replace("../html/play.html")
+
 
                 }).catch(err => {
                     console.log('Transaction failure4:', err);
@@ -178,6 +181,7 @@ function addScoreToDataBase(wasRight, answer) {
 
             }).then(t => {
                 console.log('Transaction success!');
+                document.location.replace("../html/play.html")
 
 
             }).catch(err => {
