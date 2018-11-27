@@ -12,7 +12,6 @@ var username = firestore.collection("username");
 var challengesArray = [];
 var selectedchallenge;
 
-
 function createMain() {
     getUserChallengesQUERY();
     getCompletedChallenges();
