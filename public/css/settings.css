@@ -28,15 +28,13 @@
   height:20px;
   margin-top: 20px;
   color: #4d4e4f !important;
-  border: 1px solid yellow;
 }
 .googlelink{
   text-align: center;
   height: 30px;
   width: 160px;
-  margin-left: 35% !important;
+  /* margin-left: 35% !important; */
   margin-top: 30px !important;
-  border: 1px solid blue;
   font-size: 15px;
   color: #4d4e4f !important;
   background-color: #fefff9ff !important;
@@ -46,6 +44,8 @@
   margin-top: 20px;
   padding: 20px;
   background-color: #fefff9ff !important;
+  color: #4d4e4f !important;
+  
 
 }
 
@@ -68,8 +68,8 @@
   transform:  translate(-50%, -50%);
   border-radius: 5%;
   position: relative;
-  width: 400px;
-  height: 200px;
+  width: 450px;
+  height: 500px;
   background-color: white;
   text-align: center;
 }
@@ -87,4 +87,16 @@
   border: 1px solid white;
   height: 50px;
   width: 50px;
+}
+
+.profilepicsetting{
+  margin: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 25%;
+  cursor: pointer;
+}
+
+.profilepicsetting:hover{
+  opacity: 0.7;
 }

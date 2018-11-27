@@ -2,7 +2,9 @@
 body{
 /* background: #d5c4b3ff !important; */
 background-color: #eec09f !important;
+/* background-color: #E8E8E8 !important; */
 }
+
 #logo{
   margin-left: 20px;
 /* height:70px; */
@@ -54,6 +56,11 @@ color: #88B0C2;
   margin-left: 200px !important;
 
 }
+
+.createbutton:hover{
+  opacity: 0.7;
+}
+
 .playbutton{
   height:70px !important;
   width: 70px !important;
@@ -65,6 +72,9 @@ color: #88B0C2;
   margin-left: 280px !important;
 }
 
+.playbutton:hover{
+  opacity: 0.7;
+}
 #aboutus
 {
   /* font-family: 'Pacifico', cursive; */
@@ -96,7 +106,7 @@ the quick play fields */
 
 /* This is the code for the quick make box */
 #quickmake{
-  background: green;
+  /* background: green; */
 }
 
 /* this is the code for the actual field where a user would put the url
@@ -131,14 +141,14 @@ and auto generate a challenge */
 .quickplayitem{
   width: 95%;
   height: 17%;
-  background: purple;
+  /* background: purple; */
 }
 
 /* this is the code for the box that contains the quick statistics */
 #quickstats{
   width: 35%;
   height: 90%;
-  background: red;
+  /* background: red; */
 
   display: flex;
   flex-direction: column;
@@ -148,9 +158,6 @@ and auto generate a challenge */
 
 /* a generic statistics class for the global and personal statistics */
 .statistics{
-  /* width: 95%;
-  height: 45%;
-  background: teal; */
   margin-top: 10px;
   display: flex;
   border-color:#d7dce3 !important;
@@ -160,6 +167,15 @@ and auto generate a challenge */
   background-color: white;
 }
 
+#friendsstatisticsbox{
+  width: 350px;
+  margin-top: 0;
+}
+
+#groupsstatisticsbox{
+  width: 350px;
+  margin-top: 0;
+}
 .individualstatsheader{
   /* color: #88B0C2 !important; */
   font-family: 'Open Sans Condensed', sans-serif !important;
@@ -168,7 +184,6 @@ and auto generate a challenge */
   margin-left: 70px;
   margin-top: 15px;
   color: #4d4e4f !important;
-
 }
 
 .statisticssection{
@@ -183,7 +198,7 @@ and auto generate a challenge */
 }
 
 #statisticsheader{
-  border: 1px solid magenta;
+  /* border: 1px solid magenta; */
   /* font-family: 'Open Sans Condensed', sans-serif !important; */
   color: #88B0C2 !important;
   font-size: 40px;
@@ -200,7 +215,7 @@ and auto generate a challenge */
   width:60px;
 }
 #friendstatheader{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin-top: 10px;
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif !important;
@@ -218,12 +233,13 @@ and auto generate a challenge */
 
 }
 .statisticsbox{
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 25px !important;
+  /* margin-right: 10px; */
   height: 275px;
-  overflow: scroll;
+  width: 350px;
+  overflow: scroll !important;
   display: inline;
-  border: 1px solid green;
+  text-align: center;
 }
 
 .quickchallengesbox{

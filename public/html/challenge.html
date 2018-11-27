@@ -85,49 +85,58 @@
 
   <div class="row" style="height:2px; background:yellow"></div>
 
-      <div id="player"></div>
-        <!-- <button type="button" style="height:100px;width:100px;" onClickHint="onClickHint()">Need a hint?</button> -->
-        <!-- <p>Clicks: <a id="clicks">0</a></p> -->
 
+      <h1> Pick the Correct Song Choice </h1>
 
-    <div class="questionbox">
-      <div class="timebox">
-        <p id="timemessage">Time Remaining:   </p>
-        <p id="timeleft">   30</p>
+      <div id="player"> </div>
+
+      <div class="row">
+          <div class="col-lg-4">
+              <form class="options">
+                <div>
+                <input type="radio" id="playoption1" name="option" value=""/>
+                <label class="optiontexts" id="playoption11"/>
+                </div>
+
+                <div>
+                <input type="radio" id="playoption2" name="option" value=""/>
+                <label class="optiontexts" id="playoption22"/>
+                </div>
+
+                <div>
+                <input type="radio" id="playoption3" name="option" value=""/>
+                <label class="optiontexts" id="playoption33"/>
+                </div>
+
+                <div>
+                  <input type="radio" id="playoption4" name="option" value=""/>
+                  <label class="optiontexts" id="playoption44"/>
+                </div>
+              </form>
+
+          </div>
+          <div class="col-lg-4">
+              <img id="microphoneimg"src="../images/singing.png" alt="singing picture">
+          </div>
+
+          <div class="col-lg-4">
+              <div class="timebox">
+                <p  class="blinking" id="timeleft"> 30</p>
+              </div>
+          </div>
       </div>
-
-      <form class="options">
-        <div>
-        <input type="radio" id="playoption1" name="option" value=""/>
-        <label class="optiontexts" id="playoption11"/>
-        </div>
-
-        <div>
-        <input type="radio" id="playoption2" name="option" value=""/>
-        <label class="optiontexts" id="playoption22"/>
-        </div>
-
-        <div>
-        <input type="radio" id="playoption3" name="option" value=""/>
-        <label class="optiontexts" id="playoption33"/>
-        </div>
-
-        <div>
-          <input type="radio" id="playoption4" name="option" value=""/>
-          <label class="optiontexts" id="playoption44"/>
-        </div>
-
-
-      </form>
 
 
       <div class="hintbox" id="hint_box_div" hidden="">
         <button id="hint_button" class="hintbutton" type="button" name="button" hidden="" onclick="onClickHint()">Hint</button>
       </div>
+
       <div>
       <div class="hintbox" id="hint_display" hidden=""></div>
       </div>
-    </div>
+
+
+
   </div>
 </body>
 </html>
