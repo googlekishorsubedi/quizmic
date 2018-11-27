@@ -8,6 +8,7 @@ var popular = document.getElementById('bypopular');
 var personally = document.getElementById('bypersonallyassigned');
 
 
+
 //This is the main function called by onload on the play.html
 function playMain() {
 
