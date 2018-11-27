@@ -344,7 +344,7 @@ function playPopularChallenge() {
 
 function playGenreChallenge(genre) {
 
-    var query = challenges.where("genre", "==", genre).limit(40);
+    var query = challenges.where("genre", "==", genre).where("isPublic", "==", true).limit(40);
     query.get().then(function (results) {
         results.forEach(function (challenge) {
             var info = challenge.data();
@@ -376,7 +376,7 @@ function playArtistChallenge(artist) {
     //todo: case sensitive.
 
 
-    var query = challenges.where("artist", "==", artist).limit(40);
+    var query = challenges.where("artist", "==", artist).where("isPublic", "==", true).limit(40);
     query.get().then(function (results) {
         console.log();
         if (results.size === 0) {
