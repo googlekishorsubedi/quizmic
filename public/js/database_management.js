@@ -332,6 +332,8 @@ function constructStatsView(group3) {
 }
 
 function personDivMaker(name, score){
+
+
   var person1div = document.createElement("div");
   person1div.className = "flex-container statistics";
 
@@ -343,6 +345,26 @@ function personDivMaker(name, score){
   person1pic.src = "../avatarphotos/brownhair.png"
   // person1pic.alt = "../avatarphotos/brownhairboy.png"
   div1.appendChild(person1pic);
+
+  var query = firestore.collection("username").doc(score);
+  var img;
+  query.get().then(function(doc){
+
+      if(doc.exists){
+          var id = doc.data().uid;
+          console.log(id)
+          query = firestore.collection("users").doc(id);
+          query.get().then(function(doc){
+              if(doc.exists){
+                  person1pic.src = doc.data().img;
+              }
+          }).catch(function(error){
+              console.log("error");
+          });
+      }
+  }).catch(function(error){
+      console.log("error");
+  });
 
   var div2 = document.createElement("div");
   div2.className = "individualstatsheader";
