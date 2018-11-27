@@ -37,12 +37,13 @@ function ChallengeToParce(challenge) {
     }
 }
 
-function User(username, email, score, challengesPlayed) {
+function User(username, email, score, challengesPlayed, img) {
     return {
         username: username,
         email: email,
         score: score,
-        challengesPlayed: challengesPlayed
+        challengesPlayed: challengesPlayed,
+        img:img
     }
 }
 
@@ -51,7 +52,8 @@ function UserToParce(user) {
         username: user.username.toString(),
         email: user.email.toString(),
         score: user.score.toString(),
-        challengesPlayed: user.challengesPlayed.toString()
+        challengesPlayed: user.challengesPlayed.toString(),
+        img: user.img.toString()
     }
 }
 

@@ -6,12 +6,16 @@ var genre = document.getElementById('bygenre');
 var artist = document.getElementById('byartist');
 var popular = document.getElementById('bypopular');
 var personally = document.getElementById('bypersonallyassigned');
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    var userObj = JSON.parse(sessionStorage.getItem("userObject"));
+    document.getElementById("profilepic").src = userObj.img;
+});
 
 
 
 //This is the main function called by onload on the play.html
 function playMain() {
-
 
 }
 

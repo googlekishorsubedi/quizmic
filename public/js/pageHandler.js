@@ -3,20 +3,24 @@ var users = firestore.collection("users");
 var groups = firestore.collection("groups");
 var challenges = firestore.collection("challenges");
 var username = firestore.collection("username");
+document.addEventListener("DOMContentLoaded", function(event) {
+    var userid = sessionStorage.getItem("userID");
+    var query = users.doc(userid);
+    query.get().then(user => {
+
+        var data = user.data();
+        var objUser = User(data.username, data.email, data.score, data.challengesPlayed, data.img);
+        var str = UserToParce(objUser);
+        var stringify = JSON.stringify(str);
+        sessionStorage.setItem("userObject", stringify);
+        document.getElementById("profilepic").src = data.img;
+
+    });
+});
 
 var stats;
 
 function loadDashboard(){
-    var userid = sessionStorage.getItem("userID");
-    var query = users.doc(userid);
-    query.get().then(user => {
-        var data = user.data();
-        var objUser = User(data.username, data.email, data.score, data.challengesPlayed);
-        var str = UserToParce(objUser);
-        var stringify = JSON.stringify(str);
-        sessionStorage.setItem("userObject", stringify);
-    });
-
     var stats = seeStats();
     StatsofFriends();
     getQuickChallenges()

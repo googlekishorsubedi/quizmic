@@ -1,10 +1,23 @@
 //firestore.settings(settings);
+document.addEventListener("DOMContentLoaded", function(event) {
+    var userObj = JSON.parse(sessionStorage.getItem("userObject"));
+    document.getElementById("profilepic").src = userObj.img;
+    document.getElementById("editprofilepic").src = userObj.img;
+
+});
 var users = firestore.collection("users");
 var groups = firestore.collection("groups");
 var challenges = firestore.collection("challenges");
 var username = firestore.collection("username");
 var challengesArray = [];
 var selectedchallenge;
+
+
+function createMain() {
+    getUserChallengesQUERY();
+    getCompletedChallenges();
+
+}
 
 //TODO: automatically fill answers
 //TODO: what happend if i erause a challenge that was assigned;
@@ -76,12 +89,6 @@ function createChallengeSectionForplayedChallenges(challenge, user, answerGiven)
 
 }
 
-
-function createMain() {
-    getUserChallengesQUERY();
-    getCompletedChallenges();
-
-}
 
 function enableHint() {
     var show = !document.getElementById("hintEnable").checked;

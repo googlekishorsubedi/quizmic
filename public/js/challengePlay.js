@@ -8,6 +8,7 @@ var userObj;
 function loadChallengePlay() {
 
     userObj = JSON.parse(sessionStorage.getItem("userObject"));
+    document.getElementById("profilepic").src = userObj.img;
     var parsedChallenge = JSON.parse(sessionStorage.getItem("playingChallenge"));
     playingChallenge = parsedChallenge;
     var shuffleArray = shuffle([parsedChallenge.option1, parsedChallenge.option2, parsedChallenge.option3, parsedChallenge.song]);
@@ -67,7 +68,7 @@ function addScoreToDataBase(wasRight, answer) {
                     userObj.score++;
                     t.update(users.doc(userid), {challengesPlayed: userObj.challengesPlayed , score: userObj.score});
 
-                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed);
+                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed, userObj.img);
                     var str = UserToParce(objUser);
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
@@ -102,7 +103,7 @@ function addScoreToDataBase(wasRight, answer) {
                     userObj.challengesPlayed++;
                     t.update(users.doc(userid), {challengesPlayed: userObj.challengesPlayed});
 
-                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed);
+                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed, userObj.img);
                     var str = UserToParce(objUser);
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
@@ -138,7 +139,7 @@ function addScoreToDataBase(wasRight, answer) {
                     t.update(challenges.doc(playingChallenge.id), {attempted: playingChallenge.attempted, rightlyAnswered: playingChallenge.rightlyAnswered});
 
 
-                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed);
+                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed, userObj.img);
                     var str = UserToParce(objUser);
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
@@ -168,7 +169,7 @@ function addScoreToDataBase(wasRight, answer) {
                     playingChallenge.attempted++;
                     t.update(challenges.doc(playingChallenge.id), {attempted: playingChallenge.attempted});
 
-                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed);
+                    var objUser = User(userObj.username, userObj.email, userObj.score, userObj.challengesPlayed, userObj.img);
                     var str = UserToParce(objUser);
                     var stringify = JSON.stringify(str);
                     sessionStorage.setItem("userObject", stringify);
