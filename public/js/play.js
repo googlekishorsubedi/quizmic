@@ -207,7 +207,7 @@ function clickedGenre() {
 
         var button = document.createElement("div");
         button.className = "textgenre";
-        button.innerText = "Pop";
+        button.innerText = "Electronic";
         button.onclick = function () {
 
             var child = document.getElementById("bygenre");
@@ -353,6 +353,7 @@ function playGenreChallenge(genre) {
                 info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
 
             var q = users.doc(info.creator.id);
+            try{
             q.get().then(u => {
                 var uname = u.data().username;
                 createDiv(challen, uname, "bygenre");
@@ -360,7 +361,9 @@ function playGenreChallenge(genre) {
                 console.log(challenge.data());
             }).catch(function (err) {
                 console.log(err);
-            });
+            });} catch (e) {
+                //Nothing
+            }
         })
 
 
