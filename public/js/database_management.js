@@ -292,12 +292,20 @@ function contructStats(statsArrays){
 
   }else{
     // this is a single array
-    var div = constructStatsView(statsArrays);
-    groupsbox.appendChild(div);
+    if (!Array.isArray(array) || !array.length) {
+    // array does not exist, is not an array, or is empty
+    }else{
+      var div = constructStatsView(statsArrays);
+      groupsbox.appendChild(div);
+    }
   }
 }
 
 function constructStatsView(group3) {
+  console.log(group3)
+  if (!Array.isArray(array) || !array.length) {
+  return;
+}
   if(group3[2] == ""){
     return;
   }
