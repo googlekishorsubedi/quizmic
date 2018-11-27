@@ -1,8 +1,13 @@
 //firestore.settings(settings);
 document.addEventListener("DOMContentLoaded", function(event) {
     var userObj = JSON.parse(sessionStorage.getItem("userObject"));
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    if(page == "settings.html"){
+      document.getElementById("editprofilepic").src = userObj.img;
+    }
     document.getElementById("profilepic").src = userObj.img;
-    // document.getElementById("editprofilepic").src = userObj.img;
+
 
 });
 var users = firestore.collection("users");
