@@ -63,7 +63,6 @@ function getUserGroupQUERY() {
                     console.log(results.id);
                     var group = Group(info.groupName, results.id, info.groupOwner);
                     createButtonSectionsGroup(group);
-                    console.log(group);
                     this.groupsArray.unshift(group);
 
                 }
@@ -83,7 +82,7 @@ function getUserGroupQUERY() {
 function createButtonSectionsGroup(groupModel) {
     var div = document.createElement("div");
     groupModel.div = div;
-    div.className = "groupview";
+    div.className = "friendview groupview";
 
     var contactName = document.createElement("p");
     contactName.className = "groupName";
@@ -125,8 +124,17 @@ function createButtonSectionsContact(contactModel) {
         // deleteChallenge(challenge, div, editButton, deleteButton);
 
     };
+    var query = firestore.collection("users").doc(contactModel.name);
+    query.get().then(function(doc){
 
-    contactName.innerHTML = contactModel.name;
+        if(doc.exists){
+            var id = doc.data().username;
+            contactName.innerHTML = id;
+
+        }
+    }).catch(function(error){
+        console.log("error");
+    });
     deleteButton.innerHTML = "Delete";
 
     div.appendChild(contactName);

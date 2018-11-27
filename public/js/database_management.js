@@ -369,7 +369,7 @@ function personDivMaker(name, score){
   var div2 = document.createElement("div");
   div2.className = "individualstatsheader";
   var person1name = document.createElement("p");
-  person1name.innerHTML = Math.round(name);
+  person1name.innerHTML = Math.round(name*100);
   div2.appendChild(person1name);
 
 
