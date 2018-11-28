@@ -72,8 +72,10 @@ function getUserContactsQUERY() {
             console.log("No documents found!");
 
 
+            if (!Array.isArray(ownChallengesIDs) || !ownChallengesIDs.length) {
+               needFriends();
+            }
         ownChallengesIDs.forEach(function (e) {
-          // console.log(e);
           var contact = Contact(e);
           createButtonSectionsContact(contact);
           this.contactsArray.unshift(contact);
@@ -99,7 +101,9 @@ function getUserGroupQUERY() {
         else
             console.log("No documents found!");
 
-
+        if (!Array.isArray(ownChallengesIDs) || !ownChallengesIDs.length) {
+           needGroups();
+        }
         ownChallengesIDs.forEach(function (e) {
             var query = groups.doc(e);
             query.get().then(function (results) {
@@ -121,6 +125,22 @@ function getUserGroupQUERY() {
         console.log("Error getting user owned challenges:", error);
     });
 
+}
+
+function needGroups(){
+  var div = document.createElement("div");
+  div.className = "friendview groupview";
+
+  var contactName = document.createElement("p");
+  contactName.className = "contactName";
+  contactName.innerHTML = "No Groups yet? Make your own.";
+
+  div.appendChild(contactName);
+
+  var ediv = null;
+  if(groupsArray.length > 0)
+      ediv =groupsArray[0].div;
+  document.getElementById('mygroups').insertBefore(div, ediv);
 }
 
 function createButtonSectionsGroup(groupModel) {
@@ -179,6 +199,23 @@ function createButtonSectionsContact(contactModel) {
 
     div.appendChild(contactName);
     div.appendChild(deleteButton);
+
+    var ediv = null;
+    if(contactsArray.length > 0)
+        ediv =contactsArray[0].div;
+    document.getElementById('listoffriends').insertBefore(div, ediv);
+}
+
+function needFriends() {
+    var div = document.createElement("div");
+    div.className = "friendview";
+
+    var contactName = document.createElement("p");
+    contactName.className = "contactName";
+
+    contactName.innerHTML = "No Contacts? Add some now."
+
+    div.appendChild(contactName);
 
     var ediv = null;
     if(contactsArray.length > 0)
