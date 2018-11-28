@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if(page == "settings.html"){
       document.getElementById("editprofilepic").src = userObj.img;
     }
-    document.getElementById("profilepic").src = userObj.img;
+    // document.getElementById("profilepic").src = userObj.img;
 
 
 });

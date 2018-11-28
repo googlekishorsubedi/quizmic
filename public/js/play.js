@@ -9,7 +9,7 @@ var personally = document.getElementById('bypersonallyassigned');
 document.addEventListener("DOMContentLoaded", function(event) {
 
     var userObj = JSON.parse(sessionStorage.getItem("userObject"));
-    document.getElementById("profilepic").src = userObj.img;
+    // document.getElementById("profilepic").src = userObj.img;
 });
 
 
