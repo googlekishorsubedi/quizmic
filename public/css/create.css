@@ -145,6 +145,14 @@ aside{
   /* background-color: white; */
   height: 500px;
 }
+.listofplayedchallenges{
+  border: 1px solid yellow;
+  border-radius: 15%;
+  margin-top: 25%;
+  background: #fefff9ff;
+  /* background-color: white; */
+  height: 350px;
+}
 
 .listofchallengescol1{
   text-align: center;
@@ -211,10 +219,10 @@ aside{
     margin-top: 10px !important;
     overflow: scroll !important;
     width: 500px;
-    height: 350px;
+    height: 100px;
     color: #88B0C2;
-    display: none;
-    border: 1px solid green !important;
+    display: block;
+
 
   }
 

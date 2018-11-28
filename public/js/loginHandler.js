@@ -3,7 +3,6 @@ const settings = {/* your settings... */ timestampsInSnapshots: true };
 firestore.settings(settings);
 
 function loginWithGoogle() {
-    //TODO: This functions does not make a user with this method.
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function (result) {
         var user = firebase.auth().currentUser;
@@ -17,6 +16,7 @@ function loginWithGoogle() {
                 document.location.href = "../html/dashboard.html";
             } else {
                 // create new user in the users table
+                //todo: the username in here should be the username of the email;
                 createUserQUERY("", uid, email);
             }
         }).catch(function (error) {
@@ -31,7 +31,6 @@ function loginWithGoogle() {
     });
 }
 
-//todo: check this function because it appears that it is duplicated.
 function linkGoogleAccount() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().currentUser.linkWithPopup(provider).then(function (result) {
@@ -46,9 +45,6 @@ function linkGoogleAccount() {
         // ...
     });
 }
-
-
-
 function forgotPassword() {
     document.location.href = "../html/forgotPassword.html";
 }
@@ -60,6 +56,15 @@ function forgotPassword() {
  * @param uid the uid assigned by firebase to the user.
  */
 function createUserQUERY(username, uid, email) {
+    var imgs =["../avatarphotos/bangs.png",
+        "../avatarphotos/beardman.png",
+        "../avatarphotos/blackhair.png",
+        "../avatarphotos/braidgirl.png",
+        "../avatarphotos/brownhair.png",
+        "../avatarphotos/grandpa.png",
+        "../avatarphotos/shadesman.png",
+        "../avatarphotos/shorthair.png"];
+    var selected = Math.floor(Math.random() * imgs.length);
     var query = users.doc(uid).set({
         username: username,
         email: email,
@@ -68,6 +73,7 @@ function createUserQUERY(username, uid, email) {
         contactList: [],
         belongsToGroup: [],
         challengesPlayed: 0,
+        img: imgs[selected]
     }).then(function () {
         // Creates the reference in the username table
         if (username != '') {

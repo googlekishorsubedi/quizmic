@@ -291,9 +291,8 @@ function contructStats(statsArrays){
     }
 
   }else{
-    // this is a single array
-    var div = constructStatsView(statsArrays);
-    groupsbox.appendChild(div);
+      var div = constructStatsView(statsArrays);
+      groupsbox.appendChild(div);
   }
 }
 
@@ -312,11 +311,14 @@ function constructStatsView(group3) {
   if(group3[4] == ""){
     // There is only two people
     var div1 = personDivMaker(group3[1], group3[2]);
+    div.appendChild(div1);
+  }else if (group3[6] == ""){
+    // there is three people
+    var div1 = personDivMaker(group3[1], group3[2]);
     var div2 = personDivMaker(group3[3], group3[4]);
     div.appendChild(div1);
     div.appendChild(div2);
-  }else{
-    // there is three people
+  }else {
     var div1 = personDivMaker(group3[1], group3[2]);
     var div2 = personDivMaker(group3[3], group3[4]);
     var div3 = personDivMaker(group3[5], group3[6]);

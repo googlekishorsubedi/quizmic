@@ -6,11 +6,16 @@ var genre = document.getElementById('bygenre');
 var artist = document.getElementById('byartist');
 var popular = document.getElementById('bypopular');
 var personally = document.getElementById('bypersonallyassigned');
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    var userObj = JSON.parse(sessionStorage.getItem("userObject"));
+    document.getElementById("profilepic").src = userObj.img;
+});
+
 
 
 //This is the main function called by onload on the play.html
 function playMain() {
-
 
 }
 
@@ -209,7 +214,7 @@ function clickedGenre() {
 
         var button = document.createElement("div");
         button.className = "textgenre";
-        button.innerText = "Pop";
+        button.innerText = "Electronic";
         button.onclick = function () {
 
             var child = document.getElementById("bygenre");
@@ -279,10 +284,6 @@ function clickedArtist() {
 
 function playGetChallenges() {
 
-    //todo: display which challenges ave already been played (i will say in the end of the list. display of already played and shoudl include name, choices, right answer, user option
-
-
-
     var user = sessionStorage.getItem("userID");
     var query = users.doc(user).collection("assignedChallenges").where("wasPlayed", "==", false);
     query.get().then(function (results) {
@@ -347,7 +348,7 @@ function playPopularChallenge() {
 
 function playGenreChallenge(genre) {
 
-    var query = challenges.where("genre", "==", genre).limit(40);
+    var query = challenges.where("genre", "==", genre).where("isPublic", "==", true).limit(40);
     query.get().then(function (results) {
         results.forEach(function (challenge) {
             var info = challenge.data();
@@ -355,6 +356,7 @@ function playGenreChallenge(genre) {
                 info.hint, info.attempted, info.rightlyAnswered, info.isPublic, info.options, info.date, info.creator, challenge, challenge.id);
 
             var q = users.doc(info.creator.id);
+            try{
             q.get().then(u => {
                 var uname = u.data().username;
                 createDiv(challen, uname, "bygenre");
@@ -362,7 +364,9 @@ function playGenreChallenge(genre) {
                 console.log(challenge.data());
             }).catch(function (err) {
                 console.log(err);
-            });
+            });} catch (e) {
+                //Nothing
+            }
         })
 
 
@@ -376,7 +380,7 @@ function playArtistChallenge(artist) {
     //todo: case sensitive.
 
 
-    var query = challenges.where("artist", "==", artist).limit(40);
+    var query = challenges.where("artist", "==", artist).where("isPublic", "==", true).limit(40);
     query.get().then(function (results) {
         console.log();
         if (results.size === 0) {
