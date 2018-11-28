@@ -352,7 +352,6 @@ function personDivMaker(name, score){
 
       if(doc.exists){
           var id = doc.data().uid;
-          console.log(id)
           query = firestore.collection("users").doc(id);
           query.get().then(function(doc){
               if(doc.exists){
@@ -376,7 +375,6 @@ function personDivMaker(name, score){
   var div3 = document.createElement("div");
   div3.className = "individualstatsheader";
   var person1score = document.createElement("p");
-  console.log(name);
   person1score.innerHTML = score;
   div3.appendChild(person1score);
 

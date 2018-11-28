@@ -10,6 +10,51 @@ function profileMain(){
 var contactsArray = [];
 var groupsArray = [];
 
+function removeFriend(friendId){
+    var userId = firebase.auth().currentUser.uid;
+    var userDoc = firestore.collection("users").doc(userId);
+    userDoc.update(
+        {"contactList": firebase.firestore.FieldValue.arrayRemove(friendId)}
+    ).catch(function(error) {
+        alert("Error removing friend from your contactList: ", error);
+    });
+}
+
+function leaveGroup(groupId){
+    var userId = firebase.auth().currentUser.uid;
+
+    var userDoc = firestore.collection("users").doc(userId);
+    userDoc.update(
+        {"belongsToGroup": firebase.firestore.FieldValue.arrayRemove(groupId)}
+    ).catch(function(error) {
+        alert("Error removing yourself from the group ", error);
+    });
+
+
+    var groupDoc = firestore.collection("groups").doc(groupId);
+    groupDoc.update(
+        {"members": firebase.firestore.FieldValue.arrayRemove(userId)}
+    ).catch(function(error) {
+        alert("Error removing yourself from the group", error);
+    });
+
+    groupDoc.get().then(function(doc){
+        if(doc.exists){
+            var membersArray = doc.data().members;
+            if(membersArray.length ==0){
+                //delete the doc itself
+                firestore.collection("groups").doc(groupId).delete().then(function() {
+                    console.log("Group successfully deleted as there were no members!");
+                }).catch(function(error) {
+                    console.error("Error removing document: ", error);
+                });
+            }
+
+        }
+    })
+
+}
+
 function getUserContactsQUERY() {
 
     var user = sessionStorage.getItem("userID");
@@ -60,7 +105,6 @@ function getUserGroupQUERY() {
             query.get().then(function (results) {
                 if (results.exists) {
                     var info = results.data();
-                    console.log(results.id);
                     var group = Group(info.groupName, results.id, info.groupOwner);
                     createButtonSectionsGroup(group);
                     this.groupsArray.unshift(group);
@@ -90,14 +134,11 @@ function createButtonSectionsGroup(groupModel) {
     var deleteButton = document.createElement("button");
     deleteButton.className = "deleteButton";
     deleteButton.onclick = function () {
-      // delete friend and remove from the array. like this function
-
-        // deleteChallenge(challenge, div, editButton, deleteButton);
-
+        leaveGroup(groupModel.id);
+        //make the div disapear right away
     };
-
     contactName.innerHTML = groupModel.name;
-    deleteButton.innerHTML = "Delete";
+    deleteButton.innerHTML = "Leave";
 
     div.appendChild(contactName);
     div.appendChild(deleteButton);
@@ -119,10 +160,9 @@ function createButtonSectionsContact(contactModel) {
     var deleteButton = document.createElement("button");
     deleteButton.className = "deleteButton";
     deleteButton.onclick = function () {
-      // delete friend and remove from the array. like this function
+        removeFriend(contactModel.name);
 
-        // deleteChallenge(challenge, div, editButton, deleteButton);
-
+        //add code to remove the div right away
     };
     var query = firestore.collection("users").doc(contactModel.name);
     query.get().then(function(doc){
