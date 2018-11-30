@@ -10,6 +10,11 @@ body{
   text-align: center;
 }
 
+#hint_display{
+  margin-top: 0;
+  background: yellow;
+  font-size: 20px;
+}
 .questionbox{
   position: fixed;
   left: 50%;
@@ -41,14 +46,15 @@ body{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-left: 100px;
+  margin-left: 80px;
   margin-top: 150px;
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 350px;
   /* background: orange; */
-  background: white;
+  /* background: white; */
   border-radius: 25%;
 }
+
 
 .optiontexts{
   display: flex;
@@ -58,14 +64,21 @@ body{
   color: #4d4e4f;
 }
 
+.optiontexts:hover{
+  opacity: 0.7;
+}
 .hintbox{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 10%;
-  width: 90%;
-  background: orange;
+  height: 50px;
+  width: 100px;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  margin-top: 40px;
+  margin-left: 220px;
+  background: white;
+  border-radius: 5%;
 }
 
 #timeleft{
@@ -89,4 +102,25 @@ h1{
   text-align: center;
   margin-top: 10px !important;
 
+}
+.optionsdiv{
+  margin-top: 10px;
+}
+.optionsdiv:hover{
+  cursor: pointer;
+}
+.optionsrow{
+    background: white;
+    width:300px;
+    border-radius: 5%;
+}
+#hint_button{
+  font-size: 20px;
+  background: white;
+  border: white;
+
+}
+#hint_button:hover{
+opacity: 0.7;
+  cursor: pointer;
 }

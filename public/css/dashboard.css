@@ -307,6 +307,9 @@ and auto generate a challenge */
   border:1px solid yellow;
 }
 
+.quickchallenge:hover{
+  cursor: pointer;
+}
 .createinputs2{
   text-align: center;
   margin-left: 70px;
