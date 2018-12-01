@@ -9,7 +9,6 @@ var username = firestore.collection("username");
  * @param username user to add UID
  * @param groupID ID of the group
  */
-
 function addToGroup(username, groupID) {
     // Add member to
     var transaction = firestore.runTransaction(t => {
@@ -105,26 +104,25 @@ function addFriend(){
             var userRef = users.doc(user.uid);
             userRef.get().then(function (results) {
             if (results.exists) {
-                if(results.data().username == friendUsername){
-                    alert("Can't add yourself to your friend's list")
-                    return;
+                if(results.data().username === friendUsername){
+                    alert("Can't add yourself to your friend's list");
                 }
                 else
                 {
                     //check if friendusername already in the array
                     var contactListArray = results.data().contactList;
                     for (i = 0; i < contactListArray.length; i++) {
-                        if(contactListArray[i] == friendUsername)
+                        if(contactListArray[i] === friendUsername)
                         {
                             alert("User already in your friend list");
-                            return;
                         }
                     }
 
                     userRef.update({
                     contactList: firebase.firestore.FieldValue.arrayUnion(doc.data().uid)
                     });
-                    alert("friend added");
+                    createButtonSectionsContact(Contact(friendUsername));
+
                 }
             } else
                 alert("this Username not found.");

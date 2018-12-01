@@ -14,17 +14,21 @@ function profileMain(){
 var contactsArray = [];
 var groupsArray = [];
 
-function removeFriend(friendId){
+function removeFriend(friendId, div){
     var userId = firebase.auth().currentUser.uid;
     var userDoc = firestore.collection("users").doc(userId);
     userDoc.update(
         {"contactList": firebase.firestore.FieldValue.arrayRemove(friendId)}
-    ).catch(function(error) {
+    ).then(r => {
+        document.getElementById('listoffriends').removeChild(div)
+    }).catch(function(error) {
         alert("Error removing friend from your contactList: ", error);
     });
+
+
 }
 
-function leaveGroup(groupId){
+function leaveGroup(groupId, div){
     var userId = firebase.auth().currentUser.uid;
 
     var userDoc = firestore.collection("users").doc(userId);
@@ -41,6 +45,8 @@ function leaveGroup(groupId){
     ).catch(function(error) {
         alert("Error removing yourself from the group", error);
     });
+    document.getElementById('mygroups').removeChild(div);
+
 
     groupDoc.get().then(function(doc){
         if(doc.exists){
@@ -80,9 +86,19 @@ function getUserContactsQUERY() {
                needFriends();
             }
         ownChallengesIDs.forEach(function (e) {
-          var contact = Contact(e);
-          createButtonSectionsContact(contact);
-          this.contactsArray.unshift(contact);
+            var query = firestore.collection("users").doc(e);
+            query.get().then(function(doc){
+
+                if(doc.exists){
+                    var contact = Contact(doc.data().username, e);
+                    createButtonSectionsContact(contact);
+                    this.contactsArray.unshift(contact);
+
+                }
+            }).catch(function(error){
+                console.log("error");
+            });
+
         });
     }).catch(function (error) {
         console.log("Error getting user owned challenges:", error);
@@ -158,7 +174,7 @@ function createButtonSectionsGroup(groupModel) {
     var deleteButton = document.createElement("button");
     deleteButton.className = "deleteButton";
     deleteButton.onclick = function () {
-        leaveGroup(groupModel.id);
+        leaveGroup(groupModel.id, div);
         //make the div disapear right away
     };
     contactName.innerHTML = groupModel.name;
@@ -174,31 +190,25 @@ function createButtonSectionsGroup(groupModel) {
 }
 
 function createButtonSectionsContact(contactModel) {
+    if(document.getElementById('dummyfriend') != null){
+        document.getElementById('listoffriends').removeChild(document.getElementById('dummyfriend'));
+    }
     var div = document.createElement("div");
     contactModel.div = div;
     div.className = "friendview";
 
     var contactName = document.createElement("p");
     contactName.className = "contactName";
+    contactName.innerHTML = contactModel.name;
 
     var deleteButton = document.createElement("button");
     deleteButton.className = "deleteButton";
     deleteButton.onclick = function () {
-        removeFriend(contactModel.name);
+
+        removeFriend(contactModel.id, div);
 
         //add code to remove the div right away
     };
-    var query = firestore.collection("users").doc(contactModel.name);
-    query.get().then(function(doc){
-
-        if(doc.exists){
-            //var id = doc.data().username;
-            contactName.innerHTML = doc.data().username;
-
-        }
-    }).catch(function(error){
-        console.log("error");
-    });
     deleteButton.innerHTML = "Delete";
 
     div.appendChild(contactName);
@@ -208,11 +218,13 @@ function createButtonSectionsContact(contactModel) {
     if(contactsArray.length > 0)
         ediv =contactsArray[0].div;
     document.getElementById('listoffriends').insertBefore(div, ediv);
+
 }
 
 function needFriends() {
     var div = document.createElement("div");
     div.className = "friendview";
+    div.id = "dummyfriend";
 
     var contactName = document.createElement("p");
     contactName.className = "contactName";
@@ -367,7 +379,7 @@ function makeaGroup()
                                         }
                                         if(unsuccessful.length ===0){
                                             alert("Group made successfully, added all the members.");
-                                            createButtonSectionsGroup()
+                                            createButtonSectionsGroup(Group(groupName, groupName, user.uid))
                                         }
                                         else{
                                             var k = [];

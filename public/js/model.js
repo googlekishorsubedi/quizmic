@@ -57,8 +57,9 @@ function UserToParce(user) {
     }
 }
 
-function Contact(name){
+function Contact(name, id){
   return{name: name,
+      id: id,
   div: null}
 }
 
