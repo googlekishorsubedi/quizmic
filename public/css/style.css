@@ -36,6 +36,7 @@ margin-top:17px;
 /* margin-right: 80px; */
 
 }
+
 #logo{
 height:110px;
 font-family: 'Open Sans Condensed', sans-serif !important;
@@ -158,8 +159,8 @@ background: #CDCDCD;
   text-align:center;
 }
 
-submit:hover{
-    color: #fefff9ff;
+.submit:hover{
+    opacity: 0.7;
 }
 
 
@@ -169,7 +170,7 @@ submit:hover{
   width:45px;
 }
 
-socialsize:hover{
+.socialsize:hover{
   opacity: 0.5 !important;
 }
 

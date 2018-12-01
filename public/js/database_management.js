@@ -332,6 +332,8 @@ function constructStatsView(group3) {
 }
 
 function personDivMaker(name, score){
+
+
   var person1div = document.createElement("div");
   person1div.className = "flex-container statistics";
 
@@ -344,17 +346,35 @@ function personDivMaker(name, score){
   // person1pic.alt = "../avatarphotos/brownhairboy.png"
   div1.appendChild(person1pic);
 
+  var query = firestore.collection("username").doc(score);
+  var img;
+  query.get().then(function(doc){
+
+      if(doc.exists){
+          var id = doc.data().uid;
+          query = firestore.collection("users").doc(id);
+          query.get().then(function(doc){
+              if(doc.exists){
+                  person1pic.src = doc.data().img;
+              }
+          }).catch(function(error){
+              console.log("error");
+          });
+      }
+  }).catch(function(error){
+      console.log("error");
+  });
+
   var div2 = document.createElement("div");
   div2.className = "individualstatsheader";
   var person1name = document.createElement("p");
-  person1name.innerHTML = Math.round(name);
+  person1name.innerHTML = Math.round(name*100);
   div2.appendChild(person1name);
 
 
   var div3 = document.createElement("div");
   div3.className = "individualstatsheader";
   var person1score = document.createElement("p");
-  console.log(name);
   person1score.innerHTML = score;
   div3.appendChild(person1score);
 
