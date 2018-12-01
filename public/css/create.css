@@ -151,7 +151,7 @@ aside{
   margin-top: 25%;
   background: #fefff9ff;
   /* background-color: white; */
-  height: 350px;
+  height: 400px;
 }
 
 .listofchallengescol1{
@@ -219,7 +219,7 @@ aside{
     margin-top: 10px !important;
     overflow: scroll !important;
     width: 500px;
-    height: 100px;
+    height: 250px;
     color: #88B0C2;
     display: block;
 

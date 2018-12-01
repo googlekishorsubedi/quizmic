@@ -7,19 +7,19 @@ var artist = document.getElementById('byartist');
 var popular = document.getElementById('bypopular');
 var personally = document.getElementById('bypersonallyassigned');
 document.addEventListener("DOMContentLoaded", function(event) {
-
     var userObj = JSON.parse(sessionStorage.getItem("userObject"));
-    // document.getElementById("profilepic").src = userObj.img;
+    document.getElementById("profilepic").src = userObj.img;
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    if(page === "settings.html"){
+        document.getElementById("editprofilepic").src = userObj.img;
+    }
 });
-
-
 
 //This is the main function called by onload on the play.html
 function playMain() {
 
 }
-
-
 
 // This function creates a div object from a given string of the creator of the challenge
 // the artist of the specific song, and the amount of points this challenge contains.

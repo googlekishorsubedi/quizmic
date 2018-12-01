@@ -1,14 +1,12 @@
 //firestore.settings(settings);
 document.addEventListener("DOMContentLoaded", function(event) {
     var userObj = JSON.parse(sessionStorage.getItem("userObject"));
+    document.getElementById("profilepic").src = userObj.img;
     var path = window.location.pathname;
     var page = path.split("/").pop();
-    if(page == "settings.html"){
+    if(page === "settings.html"){
       document.getElementById("editprofilepic").src = userObj.img;
     }
-    // document.getElementById("profilepic").src = userObj.img;
-
-
 });
 var users = firestore.collection("users");
 var groups = firestore.collection("groups");
@@ -44,7 +42,11 @@ function getCompletedChallenges(){
                     var q = users.doc(info.creator.id);
                     q.get().then(u => {
                         var uname = u.data().username;
-                        createChallengeSectionForplayedChallenges(challen, uname, id.answerGiven);
+                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
+                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
+                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
+                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
+                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
                         console.log(challenge.data());
                     }).catch(function (err) {
                         console.log(err);

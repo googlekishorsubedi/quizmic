@@ -1,8 +1,12 @@
-
-// document.getElementById('creategroupbut').addEventListener('click', function(){
-//   document.getElementById('creategroupbox').style.display = 'flex';
-// });
-
+document.addEventListener("DOMContentLoaded", function(event) {
+    var userObj = JSON.parse(sessionStorage.getItem("userObject"));
+    document.getElementById("profilepic").src = userObj.img;
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    if(page === "settings.html"){
+        document.getElementById("editprofilepic").src = userObj.img;
+    }
+});
 function profileMain(){
   getUserContactsQUERY();
   getUserGroupQUERY();
@@ -41,7 +45,7 @@ function leaveGroup(groupId){
     groupDoc.get().then(function(doc){
         if(doc.exists){
             var membersArray = doc.data().members;
-            if(membersArray.length ==0){
+            if(membersArray.length === 0){
                 //delete the doc itself
                 firestore.collection("groups").doc(groupId).delete().then(function() {
                     console.log("Group successfully deleted as there were no members!");
@@ -188,8 +192,8 @@ function createButtonSectionsContact(contactModel) {
     query.get().then(function(doc){
 
         if(doc.exists){
-            var id = doc.data().username;
-            contactName.innerHTML = id;
+            //var id = doc.data().username;
+            contactName.innerHTML = doc.data().username;
 
         }
     }).catch(function(error){
@@ -213,7 +217,7 @@ function needFriends() {
     var contactName = document.createElement("p");
     contactName.className = "contactName";
 
-    contactName.innerHTML = "No Contacts? Add some now."
+    contactName.innerHTML = "No Contacts? Add some now.";
 
     div.appendChild(contactName);
 
@@ -222,7 +226,6 @@ function needFriends() {
         ediv =contactsArray[0].div;
     document.getElementById('listoffriends').insertBefore(div, ediv);
 }
-
 
 let show_add_friends = false;
 
@@ -274,12 +277,11 @@ function makeaGroup()
     var usernames= document.getElementById('CheckingUsername').value;
     var groupName = document.getElementById('nameofgroup').value;
 
-    var user = firebase.auth().currentUser;
+    //var user = firebase.auth().currentUser;
     var potentialMembers = usernames.split(",");
 
-    if(usernames =="" || groupName == ""){
+    if(usernames === "" || groupName === ""){
         alert("Please add some group members or group name. Can't leave it blank.");
-        return;
     }
     else{
 
@@ -287,7 +289,6 @@ function makeaGroup()
         query.get().then(function(doc){
             if(doc.exists){
                 alert("You've already created a group with this group name. PLease try again with a different name");
-                return;
             }
             else{
                 query = firestore.collection("users").doc(user.uid).collection("ownGroups");
@@ -298,13 +299,13 @@ function makeaGroup()
                         groupOwner: user.uid,
                         members: []
                     }).then(function (groupId) {
-                        var groupId = groupId.id;
-                        var groupRef = firestore.collection('groups').doc(groupId);
+                        var groupid = groupId.id;
+                        var groupRef = firestore.collection('groups').doc(groupid);
 
                         //add the creator to the group
                         var userRef = firestore.collection("users").doc(user.uid);
                         userRef.update({
-                            belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
+                            belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupid)
                             });
 
                         var thisusername;
@@ -322,7 +323,7 @@ function makeaGroup()
 
                                     while(counter < potentialMembers.length)
                                     {
-                                        if(potentialMembers[counter] == thisusername){
+                                        if(potentialMembers[counter] === thisusername){
 
                                         }
                                         else{
@@ -333,8 +334,8 @@ function makeaGroup()
                                         counter +=1 ;
                                     }
                                     Promise.all(promises).then( function(snapshots) {
-                                        successful = []
-                                        unsuccessful = []
+                                        successful = [];
+                                        unsuccessful = [];
                                         console.log(snapshots);
                                         var i = 0;
                                         while(i < snapshots.length){
@@ -348,7 +349,7 @@ function makeaGroup()
                                             i +=1
                                         }
 
-                                        var i = 0
+                                        i = 0;
                                         while(i < successful.length)
                                         {
 
@@ -359,7 +360,7 @@ function makeaGroup()
                                             userRef = firestore.collection("users").doc(successful[i].data().uid);
 
                                             userRef.update({
-                                                belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupId)
+                                                belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupid)
                                                 });
 
                                             i +=1;
