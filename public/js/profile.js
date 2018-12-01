@@ -280,10 +280,11 @@ function makeaGroup()
                                             i +=1;
                                         }
                                         if(unsuccessful.length ===0){
-                                            alert("Group made successfully, added all the members.")
+                                            alert("Group made successfully, added all the members.");
+                                            createButtonSectionsGroup()
                                         }
                                         else{
-                                            var k = []
+                                            var k = [];
                                             var ctr = 0;
                                             while(ctr < unsuccessful.length){
                                                 k.push(unsuccessful[ctr].id);

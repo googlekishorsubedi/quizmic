@@ -17,7 +17,9 @@ function loginWithGoogle() {
             } else {
                 // create new user in the users table
                 //todo: the username in here should be the username of the email;
-                createUserQUERY("", uid, email);
+                sessionStorage.setItem("userID", uid);
+                createUserQUERY(email, uid, email);
+
             }
         }).catch(function (error) {
             console.log("Error getting document:", error);
@@ -82,7 +84,8 @@ function createUserQUERY(username, uid, email) {
         // Add the assigned collection to the user.
         users.doc(uid).collection("assignedChallenges").add({});
         users.doc(uid).collection("ownGroups").add({});
-        document.location.href = "../html/dashboard.html";
+        //document.location.href = "../html/dashboard.html";
+
     })
 }
 
