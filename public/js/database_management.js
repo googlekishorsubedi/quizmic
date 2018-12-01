@@ -289,9 +289,27 @@ function contructStats(statsArrays){
     }
 
   }else{
+    if (!Array.isArray(statsArrays) || !statsArrays.length) {
+       // needAGroup();
+       console.log(statsArrays);
+       groupsbox.appendChild(needAGroup());
+    }else{
       var div = constructStatsView(statsArrays);
       groupsbox.appendChild(div);
+    }
   }
+}
+
+function needAGroup(){
+
+    var div = document.createElement("div");
+    div.className = "flex-container statistics statisticsbox";
+
+    var thisgroupName = document.createElement("p");
+    thisgroupName.className = "groupName";
+    thisgroupName.innerHTML = "Join a Group to see stats!";
+    div.appendChild(thisgroupName);
+    return div;
 }
 
 function constructStatsView(group3) {
