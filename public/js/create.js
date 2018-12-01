@@ -43,11 +43,6 @@ function getCompletedChallenges(){
                     q.get().then(u => {
                         var uname = u.data().username;
                         createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
-                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
-                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
-                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
-                        createChallengeSectionForplayedChallenges(challen, uname, hello.data().answerGiven);
-                        console.log(challenge.data());
                     }).catch(function (err) {
                         console.log(err);
                     });
@@ -89,8 +84,6 @@ function createChallengeSectionForplayedChallenges(challenge, user, answerGiven)
 
     div.appendChild(challengeName);
     div.appendChild(userd);
-
-    console.log("ndodbvoenr");
     document.getElementById('completechallenges').appendChild(div);
 
 }

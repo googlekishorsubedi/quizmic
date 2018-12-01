@@ -238,18 +238,22 @@ function shuffle(array) {
 function blockButtons() {
     opt1.onclick = function () {
         alert("Time is up! SORRY!");
+        checkAnswer("");
     };
 
     opt2.onclick = function () {
         alert("Time is up! SORRY!");
+        checkAnswer("");
     };
 
     opt3.onclick = function () {
         alert("Time is up! SORRY!");
+        checkAnswer("");
     };
 
     opt4.onclick = function () {
         alert("Time is up! SORRY!");
+        checkAnswer("");
     };
 
 

@@ -333,7 +333,6 @@ function playPopularChallenge() {
                 var uname = u.data().username;
                 createDiv(challen, uname, "bypopular");
                 this.display_popular_challenges.unshift(challen);
-                console.log(challenge.data());
             }).catch(function (err) {
                 console.log(err);
             });
@@ -361,7 +360,6 @@ function playGenreChallenge(genre) {
                 var uname = u.data().username;
                 createDiv(challen, uname, "bygenre");
                 this.display_genre_challenges.unshift(challen);
-                console.log(challenge.data());
             }).catch(function (err) {
                 console.log(err);
             });} catch (e) {
@@ -397,7 +395,6 @@ function playArtistChallenge(artist) {
                 var uname = u.data().username;
                 createDiv(challen, uname, "byartist");
                 this.display_artist_challenges.unshift(challen);
-                console.log(challenge.data());
             }).catch(function (err) {
                 console.log(err);
             });

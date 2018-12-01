@@ -74,6 +74,11 @@ function loadMainVideo(){
         clicks += 1;
         document.getElementById("hint_button").disabled = true;
       }
+      if(time.innerHTML <= 0){
+        time.innerHTML = 0;
+        setTimeout(stopVideo, 0);
+        checkAnswer("");
+      }
       //player.stopVideo();
     }
   }
