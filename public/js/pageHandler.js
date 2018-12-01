@@ -23,7 +23,9 @@ var stats;
 function loadDashboard(){
     var stats = seeStats();
     StatsofFriends();
-    getQuickChallenges()
+    getQuickChallenges();
+
+
 }
 
 firebase.auth().onAuthStateChanged(function(user){

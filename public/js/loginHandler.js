@@ -13,10 +13,10 @@ function loginWithGoogle() {
         userRef.get().then(function (doc) {
             if (doc.exists) {
                 //the user is signing in, jus
+                sessionStorage.setItem("userID", uid);
                 document.location.href = "../html/dashboard.html";
             } else {
                 // create new user in the users table
-                //todo: the username in here should be the username of the email;
                 sessionStorage.setItem("userID", uid);
                 createUserQUERY(email, uid, email);
 
@@ -85,6 +85,7 @@ function createUserQUERY(username, uid, email) {
         users.doc(uid).collection("assignedChallenges").add({});
         users.doc(uid).collection("ownGroups").add({});
         //document.location.href = "../html/dashboard.html";
+        document.location.href = "../html/dashboard.html";
 
     })
 }
