@@ -90,7 +90,8 @@ function getUserContactsQUERY() {
             query.get().then(function(doc){
 
                 if(doc.exists){
-                    var contact = Contact(doc.data().username, e);
+                  console.log(doc.data())
+                    var contact = Contact(doc.data().username, e, doc.data().img);
                     createButtonSectionsContact(contact);
                     this.contactsArray.unshift(contact);
 
@@ -197,6 +198,10 @@ function createButtonSectionsContact(contactModel) {
     contactModel.div = div;
     div.className = "friendview";
 
+    var picture = document.createElement("img");
+    picture.className = "picture statisticspic";
+    picture.src = contactModel.pic;
+
     var contactName = document.createElement("p");
     contactName.className = "contactName";
     contactName.innerHTML = contactModel.name;
@@ -211,6 +216,7 @@ function createButtonSectionsContact(contactModel) {
     };
     deleteButton.innerHTML = "Delete";
 
+    div.appendChild(picture);
     div.appendChild(contactName);
     div.appendChild(deleteButton);
 

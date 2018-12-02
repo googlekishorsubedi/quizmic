@@ -57,10 +57,11 @@ function UserToParce(user) {
     }
 }
 
-function Contact(name, id){
+function Contact(name, id, picture){
   return{name: name,
       id: id,
-  div: null}
+  div: null,
+pic: picture}
 }
 
 function Group(name, id, owner){
