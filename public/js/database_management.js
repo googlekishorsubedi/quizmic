@@ -104,6 +104,7 @@ function addFriend(){
             var userRef = users.doc(user.uid);
             userRef.get().then(function (results) {
             if (results.exists) {
+              console.log(user.uid)
                 if(results.data().username === friendUsername){
                     alert("Can't add yourself to your friend's list");
                 }
@@ -121,7 +122,7 @@ function addFriend(){
                     userRef.update({
                     contactList: firebase.firestore.FieldValue.arrayUnion(doc.data().uid)
                     });
-                    createButtonSectionsContact(Contact(friendUsername));
+                    createButtonSectionsContact(Contact(friendUsername, doc.data().uid, results.data().img));
 
                 }
             } else
