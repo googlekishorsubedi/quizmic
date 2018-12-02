@@ -64,6 +64,11 @@ function signOut(){
 }
 
 function getQuickChallenges() {
+  var empty = document.getElementById('quickchallengelist');
+  if(empty.childNodes.length > 1){}
+  else{
+    empty.appendChild(needAChallenge());
+  }
 
     var user = sessionStorage.getItem("userID");
     var query = users.doc(user).collection("assignedChallenges").where("wasPlayed", "==", false);
@@ -81,13 +86,17 @@ function getQuickChallenges() {
                     q.get().then(u => {
                         var uname = u.data().username;
                         var pic = u.data().img;
-                        console.log(pic);
+
+                          if(document.getElementById("removeme")){
+                            var em = document.getElementById('quickchallengelist');
+                            document.getElementById("removeme").parentNode.removeChild(document.getElementById("removeme"));
+                          }
+
                         if(pic === undefined) {
                             createDivQuickChallenge(challen, uname, "../avatarphotos/beardman.png");
                         }else{
                             createDivQuickChallenge(challen, uname, pic);
                         }
-                        console.log(challenge.data());
                     }).catch(function (err) {
                         console.log(err);
                     });
@@ -97,11 +106,29 @@ function getQuickChallenges() {
                 })
             }
         });
-
     }).catch(function (err) {
         console.log(err);
     })
+}
 
+function needAChallenge(){
+
+    var div = document.createElement("div");
+    div.className = "quickchallenge";
+    div.id = "removeme"
+
+
+    var subdivtext = document.createElement("div");
+    subdivtext.className = "individualstatsheader1";
+
+
+    var challengeName = document.createElement("p");
+    challengeName.className = "challengeName";
+    challengeName.innerHTML = "No personally assigned Challenges yet"
+
+    subdivtext.appendChild(challengeName);
+    div.appendChild(subdivtext);
+    return div;
 }
 
 
