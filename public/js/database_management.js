@@ -113,7 +113,7 @@ function addFriend(){
                     //check if friendusername already in the array
                     var contactListArray = results.data().contactList;
                     for (i = 0; i < contactListArray.length; i++) {
-                        if(contactListArray[i] === friendUsername)
+                        if(contactListArray[i] === doc.data().uid)
                         {
                             alert("User already in your friend list");
                         }
