@@ -23,12 +23,18 @@ margin-left: 15px;
   margin-top: 80px;
 }
 
+
 #login{
 /* border-radius: 50%; */
 background:#fefff9ff;
 border: #fefff9ff;
-
+/* background: #f4511e; */
 }
+
+#login:hover{
+  cursor: pointer;
+}
+
 #logosize
 {
 text-align: center;
@@ -91,6 +97,7 @@ text-align: center;
 }
 #loginusername
 {
+  border-color:#d7dce3 !important;
   padding: 0;
   width:inherit;
   border:1px solid #999999;
@@ -101,6 +108,7 @@ text-align: center;
 
 #loginpassword
 {
+  border-color:#d7dce3 !important;
   padding: 0;
   width:inherit;
   border:1px solid #999999;
@@ -111,6 +119,7 @@ text-align: center;
 
 #signupemail
 {
+  border-color:#d7dce3 !important;
   padding: 0;
   width:inherit;
   border:1px solid #999999;
@@ -121,6 +130,7 @@ text-align: center;
 
 #signuppassword
 {
+  border-color:#d7dce3 !important;
   padding: 0;
   width:inherit;
   border:1px solid #999999;
@@ -130,6 +140,7 @@ text-align: center;
 }
 #username
 {
+  border-color:#d7dce3 !important;
   padding: 0;
   width:inherit;
   border:1px solid #999999;
@@ -140,10 +151,13 @@ text-align: center;
 #tabs
 {
 width:inherit;
-border: 1px solid #999999;
-height: 57px;
-background: #CDCDCD;
-
+color: white !important;
+/* border: 1px solid #999999; */
+border-color:1px solid #d7dce3 !important;
+height: 56px;
+border: 50%;
+/* background:#DCDCDC rgb(220,220,220) !important; */
+background: #cdcdcd;
 }
 #submit{
   color: #88B0C2;
@@ -159,8 +173,9 @@ background: #CDCDCD;
   text-align:center;
 }
 
-.submit:hover{
+#submit:hover{
     opacity: 0.7;
+    cursor: pointer;
 }
 
 
@@ -188,4 +203,13 @@ background: #CDCDCD;
 }
 .input-field {
   margin-bottom: 5%;
+}
+.nav-tabs .nav-link.active {
+  color: #88B0C2!important;
+  font-weight: bold !important;
+}
+
+a{
+  color: #88B0C2!important;
+
 }
