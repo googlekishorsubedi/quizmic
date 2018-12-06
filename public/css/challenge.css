@@ -1,25 +1,27 @@
-body{
+body {
   background-color: #E8E8E8 !important;
   /* background-image: url('../images/singing.png'); */
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
 }
-#microphoneimg{
+
+#microphoneimg {
   margin-top: 10px;
   text-align: center;
 }
 
-#hint_display{
+#hint_display {
   margin-top: 0;
   background: yellow;
   font-size: 20px;
 }
-.questionbox{
+
+.questionbox {
   position: fixed;
   left: 50%;
   top: 70%;
-  transform:  translate(-50%, -70%);
+  transform: translate(-50%, -70%);
   height: 80%;
   width: 40%;
   display: flex;
@@ -29,7 +31,7 @@ body{
   border: 1px solid green;
 }
 
-.timebox{
+.timebox {
   margin-left: 60%;
   text-align: center;
   margin-top: 475px;
@@ -41,7 +43,7 @@ body{
   color: #4d4e4f !important;
 }
 
-.options{
+.options {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -55,8 +57,7 @@ body{
   border-radius: 25%;
 }
 
-
-.optiontexts{
+.optiontexts {
   display: flex;
   flex-direction: row;
   font-family: 'Open Sans Condensed', sans-serif !important;
@@ -64,10 +65,11 @@ body{
   color: #4d4e4f;
 }
 
-.optiontexts:hover{
+.optiontexts:hover {
   opacity: 0.7;
 }
-.hintbox{
+
+.hintbox {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -81,46 +83,65 @@ body{
   border-radius: 5%;
 }
 
-#timeleft{
+#timeleft {
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 100px;
 }
 
-.blinking{
-    animation:blinkingText 0.8s infinite;
+.blinking {
+  animation: blinkingText 0.8s infinite;
 }
-@keyframes blinkingText{
-    0%{     color: #000;    }
-    49%{    color: transparent; }
-    50%{    color: transparent; }
-    99%{    color:transparent;  }
-    100%{   color: #000;    }
+
+@keyframes blinkingText {
+  0% {
+    color: #000;
+  }
+
+  49% {
+    color: transparent;
+  }
+
+  50% {
+    color: transparent;
+  }
+
+  99% {
+    color: transparent;
+  }
+
+  100% {
+    color: #000;
+  }
 }
-h1{
+
+h1 {
   font-family: 'Open Sans Condensed', sans-serif !important;
   color: #4d4e4f !important;
   text-align: center;
   margin-top: 10px !important;
-
 }
-.optionsdiv{
+
+.optionsdiv {
   margin-top: 10px;
 }
-.optionsdiv:hover{
+
+.optionsdiv:hover {
   cursor: pointer;
 }
-.optionsrow{
-    background: white;
-    width:300px;
-    border-radius: 5%;
+
+.optionsrow {
+  background: white;
+  width: 300px;
+  border-radius: 5%;
 }
-#hint_button{
+
+#hint_button {
   font-size: 20px;
   background: white;
   border: white;
-
 }
-#hint_button:hover{
-opacity: 0.7;
+
+#hint_button:hover {
+  opacity: 0.7;
   cursor: pointer;
 }

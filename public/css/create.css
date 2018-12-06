@@ -1,4 +1,4 @@
-.createinputs{
+.createinputs {
   text-align: center;
   font-size: 25px;
   font-family: 'Open Sans Condensed', sans-serif;
@@ -6,7 +6,7 @@
   height: 50px;
 }
 
-.inputtext{
+.inputtext {
   text-align: center;
   /* font-family: 'Pacifico', cursive; */
   font-family: 'Open Sans Condensed', sans-serif;
@@ -15,17 +15,16 @@
   margin-top: 15px;
 }
 
-.optionswrap{
+.optionswrap {
   width: 400px;
   font-family: 'Pacifico', cursive !important;
   font-size: 20px;
   color: #88B0C2;
   margin-top: px !important;
   display: inline;
-
 }
 
-.options{
+.options {
   width: 450px;
   font-family: 'Open Sans Condensed', sans-serif;
   /* font-family: 'Pacifico', cursive; */
@@ -35,70 +34,66 @@
   display: inline;
 }
 
-.optionsinputbox{
-margin-top: 10px !important;
+.optionsinputbox {
+  margin-top: 10px !important;
 }
 
-.genrebox{
-background-color: white !important;
-margin-bottom: 20px;
+.genrebox {
+  background-color: white !important;
+  margin-bottom: 20px;
 }
-#elaboxnav{
+
+#elaboxnav {
   width: 95%;
   height: 10%;
-
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
 
-#hintname{
+#hintname {
   /* font-family: 'Pacifico', cursive; */
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 20px;
   color: #88B0C2;
 }
-#hint{
+
+#hint {
   height: 30px;
   width: 300px;
 }
 
 /*#listofchallenges{*/
-  /*width: 95%;*/
-  /*height: 70%;*/
-  /*background: blue;*/
+/*width: 95%;*/
+/*height: 70%;*/
+/*background: blue;*/
 /*}*/
-
- /*#dropboxforfriends{*/
-  /*width: 95%;*/
-  /*height: 10%;*/
-  /*background: blue;*/
+/*#dropboxforfriends{*/
+/*width: 95%;*/
+/*height: 10%;*/
+/*background: blue;*/
 /*}*/
-
-#genre{
+#genre {
   height: 40px;
   text-align: center;
   width: 400px;
 }
-option{
 
+option {
   background-color: white !important;
-
 }
-#createbox{
+
+#createbox {
   border-radius: 15%;
   margin-top: 80px;
   background: #fefff9ff;
   /* background-color: white; */
   height: 1000px;
   border: 1px solid yellow;
-
-
 }
 
-#createchallengebutton
-{
+#createchallengebutton {
   width: 100px;
   /* border-color: rgb(166, 166, 166);
   background-color: rgb(248, 248, 248); */
@@ -112,32 +107,32 @@ option{
   color: #88B0C2;
 }
 
-#createchallengerow{
-text-align: center;
+#createchallengerow {
+  text-align: center;
 }
 
-#createchallengeheader{
+#createchallengeheader {
   text-align: center;
   margin-left: 35px;
   font-family: 'Pacifico', cursive;
-
   font-size: 35px;
   color: #88B0C2;
   margin-top: 25px;
 }
-section{
+
+section {
   float: left;
   width: 75%;
 }
 
-aside{
+aside {
   float: right;
   width: 25%;
   margin-top: 80px;
   padding-right: 50px;
 }
 
-.listofchallenges{
+.listofchallenges {
   border: 1px solid yellow;
   border-radius: 15%;
   margin-top: 25%;
@@ -145,7 +140,8 @@ aside{
   /* background-color: white; */
   height: 500px;
 }
-.listofplayedchallenges{
+
+.listofplayedchallenges {
   border: 1px solid yellow;
   border-radius: 15%;
   margin-top: 25%;
@@ -154,19 +150,18 @@ aside{
   height: 400px;
 }
 
-.listofchallengescol1{
+.listofchallengescol1 {
   text-align: center;
   /* margin-bottom: 10px; */
-  width:50%;
+  width: 50%;
 }
 
-.listofchallengescol2{
+.listofchallengescol2 {
   margin-bottom: 10px;
   text-align: left;
-
 }
 
-#editbutton{
+#editbutton {
   text-align: center;
   /* font-family: 'Pacifico', cursive; */
   font-family: 'Open Sans Condensed', sans-serif;
@@ -179,7 +174,7 @@ aside{
   border-color: white;
 }
 
-#assignbutton{
+#assignbutton {
   text-align: center;
   /* font-family: 'Pacifico', cursive; */
   font-family: 'Open Sans Condensed', sans-serif;
@@ -191,18 +186,18 @@ aside{
   border-color: white;
 }
 
-.listofchallengestitl{
+.listofchallengestitl {
   width: 500px;
   height: 20px;
   margin-top: 10px;
-  text-align: center!important;
+  text-align: center !important;
   font-family: 'Pacifico', cursive !important;
   /* font-family: 'Open Sans Condensed', sans-serif; */
   font-size: 25px;
   color: #88B0C2;
 }
 
-#indivualchallenges{
+#indivualchallenges {
   margin-top: 10px !important;
   overflow: scroll !important;
   width: 500px;
@@ -215,23 +210,20 @@ aside{
   align-items: center; */
 }
 
-  #completechallenges{
-    margin-top: 10px !important;
-    overflow: scroll !important;
-    width: 500px;
-    height: 250px;
-    color: #88B0C2;
-    display: block;
+#completechallenges {
+  margin-top: 10px !important;
+  overflow: scroll !important;
+  width: 500px;
+  height: 250px;
+  color: #88B0C2;
+  display: block;
+}
 
-
-  }
-
-
-.nodebuddyholder{
+.nodebuddyholder {
   /* border-color: rgb(166, 166, 166) !important; */
   margin-top: 5px !important;
   margin-left: 15%;
-  border-color:#d7dce3 !important;
+  border-color: #d7dce3 !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 20px;
   border: 1px solid;
@@ -243,38 +235,35 @@ aside{
   justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
-
 }
 
-.nodebuddy{
+.nodebuddy {
   color: white;
   font-size: 20px;
-
 }
-.assignButton{
+
+.assignButton {
   font-family: 'Open Sans Condensed', sans-serif !important;
   color: #88B0C2;
   background-color: white;
   border-color: white;
 }
 
-.editButton{
+.editButton {
   font-family: 'Open Sans Condensed', sans-serif !important;
   color: #88B0C2;
   background-color: white;
   border-color: white;
 }
 
-.deleteButton{
-
+.deleteButton {
   font-family: 'Open Sans Condensed', sans-serif !important;
   color: #88B0C2;
   background-color: white;
   border-color: white;
 }
 
-#cancelEdit
-{
+#cancelEdit {
   width: 100px;
   /* margin-right: 300px; */
   /* border-color: rgb(166, 166, 166);
@@ -288,8 +277,8 @@ aside{
   font-size: 30px;
   color: #88B0C2;
 }
-#summitEdit
-{
+
+#summitEdit {
   width: 100px;
   /* border-color: rgb(166, 166, 166);
   background-color: rgb(248, 248, 248); */
@@ -302,28 +291,28 @@ aside{
   font-size: 30px;
   color: #88B0C2;
 }
-.challengeName
-{
+
+.challengeName {
   margin-top: 15px;
 }
 
-#openassignpopupForm{
-  width:100%;
-  height:100%;
-  background-color: rgba(0,0,0,0.4);
+#openassignpopupForm {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   top: 0;
-  display:flex;
+  display: flex;
   justify-content: center !important;
   align-items: center !important;
-  display:none;
+  display: none;
 }
 
-.assignpopupcontent{
+.assignpopupcontent {
   position: fixed;
-  top:50%;
+  top: 50%;
   left: 50%;
-  transform:  translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   border-radius: 5%;
   position: relative;
   width: 400px;
@@ -332,7 +321,7 @@ aside{
   text-align: center;
 }
 
-#closeFormbut{
+#closeFormbut {
   margin-top: 10px;
   margin-left: 70%;
   background: white;
@@ -341,13 +330,13 @@ aside{
   width: 20px;
 }
 
-#closeForm{
+#closeForm {
   border: 1px solid white;
   height: 50px;
   width: 50px;
 }
 
-#assignheading{
+#assignheading {
   font-family: 'Open Sans Condensed', sans-serif !important;
   height: 50px;
   font-size: 35px;
@@ -356,7 +345,7 @@ aside{
   color: #88B0C2;
 }
 
-#assignbuttoncs{
+#assignbuttoncs {
   width: 70px;
   border-color: #fefff9ff !important;
   background-color: #fefff9ff !important;
@@ -366,14 +355,13 @@ aside{
   color: #88B0C2;
 }
 
-::placeholder
-{
+::placeholder {
   text-align: center !important;
   color: lightgray !important;
-  letter-spacing:2px !important;
+  letter-spacing: 2px !important;
 }
 
-#completedchallenges{
+#completedchallenges {
   margin-left: 30%;
   font-family: 'Open Sans Condensed', sans-serif !important;
   color: #88B0C2;

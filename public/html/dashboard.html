@@ -1,195 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Quizmic </title>
-    <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
-    <script src="../js/firebase.js"></script>
-    <script src="../js/loginHandler.js"></script>
-    <script src="../js/model.js"></script>
-    <script src="../js/play.js"></script>
-    <script src="../js/pageHandler.js"></script>
-    <script src="../js/create.js"></script>
-    <script src="../js/database_management.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Quizmic </title>
+  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+  <script src="../js/firebase.js"></script>
+  <script src="../js/loginHandler.js"></script>
+  <script src="../js/model.js"></script>
+  <script src="../js/play.js"></script>
+  <script src="../js/pageHandler.js"></script>
+  <script src="../js/create.js"></script>
+  <script src="../js/database_management.js"></script>
 </head>
 
 <body onload=loadDashboard()>
 
-<header>
+  <header>
     <nav id="navcolor" class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="./dashboard.html">
-            <p id="logo"> Quizmic </p>
-            <!-- <img id="logo" src="../images/bmic.png" alt="Quizmiclogo"> -->
-        </a>
+      <a class="navbar-brand" href="./dashboard.html">
+        <p id="logo"> Quizmic </p>
+        <!-- <img id="logo" src="../images/bmic.png" alt="Quizmiclogo"> -->
+      </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <!-- <button id="linkGoogle" onclick="linkGoogleAccount()">   Link Google Account </button>
+      <!-- <button id="linkGoogle" onclick="linkGoogleAccount()">   Link Google Account </button>
         <a href="linkEmailPassword.html">  Link Email Password </button> -->
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link createbutton" href="create.html">
-                        <img class="createbutton" src="../images/create.png" alt="createicon">
-                    </a>
-                </li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link createbutton" href="create.html">
+              <img class="createbutton" src="../images/create.png" alt="createicon">
+            </a>
+          </li>
 
-                <li class="nav-item">
-                    <a class="playbutton" class="nav-link" href="play.html">
-                        <img class="playbutton" src="../images/video.png" alt="playbutton"> </a>
+          <li class="nav-item">
+            <a class="playbutton" class="nav-link" href="play.html">
+              <img class="playbutton" src="../images/video.png" alt="playbutton"> </a>
 
-                </li>
-            </ul>
+          </li>
+        </ul>
 
-            <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
 
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <img id="profilepic" alt="profilepic">
-                </a>
-                <div style="background: #fefff9ff" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" id="name" href="profile.html">
-                        Display UserName
-                    </a>
-                    <a class="dropdown-item" href="profile.html"> Friends </a>
-                    <a class="dropdown-item" href="settings.html">Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" onclick="signOut()">
-                        <button class="SignOut" type="button" name="button"> Sign Out</button>
-                    </a>
-                </div>
-
-            </li>
-        </div>
-    </nav>
-
-</header>
-
-<div class="row" style="height:2px; background:yellow"></div>
-
-
-<div class="row" style="height:1000px;">
-    <div class="col-lg-3">
-        <div class="statisticssection">
-
-            <p id="statisticsheader"> Statistics </p>
-            <p id="friendstatheader"> Friends Leaderboard </p>
-
-          <div class="statisticsbox row ">
-              <div class="" id="friendsstatisticsbox"></div>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img id="profilepic" alt="profilepic">
+          </a>
+          <div style="background: #fefff9ff" class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" id="name" href="profile.html">
+              Display UserName
+            </a>
+            <a class="dropdown-item" href="profile.html"> Friends </a>
+            <a class="dropdown-item" href="settings.html">Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" onclick="signOut()">
+              <button class="SignOut" type="button" name="button"> Sign Out</button>
+            </a>
           </div>
 
-            <p id="friendstatheader1"> Group Leaderboard </p>
+        </li>
+      </div>
+    </nav>
 
-            <div class="statisticsbox row">
-              <div class="" id="groupsstatisticsbox"></div>
-            </div>
+  </header>
 
+  <div class="row" style="height:2px; background:yellow"></div>
+
+
+  <div class="row" style="height:1000px;">
+    <div class="col-lg-3">
+      <div class="statisticssection">
+
+        <p id="statisticsheader"> Statistics </p>
+        <p id="friendstatheader"> Friends Leaderboard </p>
+
+        <div class="statisticsbox row ">
+          <div class="" id="friendsstatisticsbox"></div>
         </div>
+
+        <p id="friendstatheader1"> Group Leaderboard </p>
+
+        <div class="statisticsbox row">
+          <div class="" id="groupsstatisticsbox"></div>
+        </div>
+
+      </div>
     </div>
 
 
     <div class="col-lg-6" background="../images/playbutt.png">
-        <p id="challengesheader" > Challenges </p>
+      <p id="challengesheader"> Challenges </p>
 
-        <div id="quickchallengelist" class="quickchallengesbox" background="../images/playbutt.png">
+      <div id="quickchallengelist" class="quickchallengesbox" background="../images/playbutt.png">
 
-        </div>
+      </div>
 
 
     </div>
 
     <div class="col-lg-3">
 
-        <div class="quickcreatebox">
-            <p id="quickchallengeheader"> Quick Create</p>
+      <div class="quickcreatebox">
+        <p id="quickchallengeheader"> Quick Create</p>
 
-            <div class="row">
-                <label class="">
-                    <div class="inputtext2"> Name Of Challenge:</div>
-                    <input class="createinputs2" id="nameofchallenge2" type="text" name="name">
-                </label>
-            </div>
-
-            <div class="row">
-                <label class="">
-                    <div class="inputtext2"> URL:</div>
-                    <input class="createinputs2" id="url2" type="url" name="url">
-                </label>
-            </div>
-
-            <div class="row">
-                <label class="">
-                    <div class="inputtext2">Artist:</div>
-                    <input class="createinputs2" id="artist2" type="text" name="artist">
-                </label>
-            </div>
-
-            <div class="row genrebox2">
-                <label class="createinputs2">
-                    <div class="genreheading2">Genre:</div>
-                    <select id="genre2">
-                        <option></option>
-                        <option value="Pop">Pop</option>
-                        <option value="Rock">Rock</option>
-                        <option value="Classic">Classic</option>
-                        <option value="Electronic">Electronic</option>
-                    </select>
-
-                </label>
-            </div>
-
-            <div class="row">
-                <label class="">
-                    <div class="textforinput inputtext2">Answer:</div>
-                    <input class="createinputs2" id="answer2" type="text" name="answer">
-                </label>
-            </div>
-
-            <div class="row">
-                <button id="createchallengebuttonquick" type="button" name="button"
-                        onclick="quickChallenge()"> Create
-                </button>
-            </div>
+        <div class="row">
+          <label class="">
+            <div class="inputtext2"> Name Of Challenge:</div>
+            <input class="createinputs2" id="nameofchallenge2" type="text" name="name">
+          </label>
         </div>
 
+        <div class="row">
+          <label class="">
+            <div class="inputtext2"> URL:</div>
+            <input class="createinputs2" id="url2" type="url" name="url">
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="">
+            <div class="inputtext2">Artist:</div>
+            <input class="createinputs2" id="artist2" type="text" name="artist">
+          </label>
+        </div>
+
+        <div class="row genrebox2">
+          <label class="createinputs2">
+            <div class="genreheading2">Genre:</div>
+            <select id="genre2">
+              <option></option>
+              <option value="Pop">Pop</option>
+              <option value="Rock">Rock</option>
+              <option value="Classic">Classic</option>
+              <option value="Electronic">Electronic</option>
+            </select>
+
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="">
+            <div class="textforinput inputtext2">Answer:</div>
+            <input class="createinputs2" id="answer2" type="text" name="answer">
+          </label>
+        </div>
+
+        <div class="row">
+          <button id="createchallengebuttonquick" type="button" name="button" onclick="quickChallenge()"> Create
+          </button>
+        </div>
+      </div>
+
     </div>
-</div>
+  </div>
 
 
-<footer>
+  <footer>
     <!-- <div class="row" style="height:10px; background:#f08b47ff"> -->
     <div class="col-lg-4"></div>
     <div id="aboutus" class="col-lg-4">
-        <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a
-                href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a
-                href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC
-            3.0 BY</a></div>
+      <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+          target="_blank">CC
+          3.0 BY</a></div>
     </div>
     <div class="col-lg-4"></div>
     </div>
     <div id="navcolor">
-</footer>
+  </footer>
 </body>
+
 </html>

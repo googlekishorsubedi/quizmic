@@ -1,67 +1,65 @@
-body{
-/* background: #d5c4b3ff !important; */
-background-color: #eec09f !important;
-/* background-color: #E8E8E8 !important; */
+body {
+  /* background: #d5c4b3ff !important; */
+  background-color: #eec09f !important;
+  /* background-color: #E8E8E8 !important; */
 }
 
-#logo{
+#logo {
   margin-left: 20px;
-/* height:70px; */
-margin-top: 10px;
-font-size: 40px;
-font-family: 'Open Sans Condensed', sans-serif !important;
-color: #88B0C2;
-
+  /* height:70px; */
+  margin-top: 10px;
+  font-size: 40px;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  color: #88B0C2;
 }
 
-#navcolor
-{
+#navcolor {
   background: #fefff9ff !important;
   /* background-color: #d7dce3 !important; */
   /* background-color: white !important; */
   height: 80px;
 }
-#dropdrown
-{
+
+#dropdrown {
   color: black !important;
   background: #fefff9ff !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
 }
 
-#profilepic
-{margin-top: 20px !important;
-  width:180px !important;
+#profilepic {
+  margin-top: 20px !important;
+  width: 180px !important;
   border-radius: 20% !important;
-  height:180px !important;
+  height: 180px !important;
 }
-/* this is the individual code for each of the buttons on the dash button holder */
-.SignOut{
- width: 100px;
- background: #fefff9ff;
- border: 1px solid  #fefff9ff;
 
+/* this is the individual code for each of the buttons on the dash button holder */
+.SignOut {
+  width: 100px;
+  background: #fefff9ff;
+  border: 1px solid #fefff9ff;
 }
-.createbutton{
+
+.createbutton {
   /* font-family: 'Open Sans Condensed', sans-serif; */
   /* font-family: 'Mali', cursive !important; */
   /* font-family: 'Pacifico', cursive; */
-  height:65px !important;
+  height: 65px !important;
   width: 65px !important;
   margin-top: 0px !important;
-  margin-bottom: 15px!important;
+  margin-bottom: 15px !important;
   font-size: 35px !important;
   color: #113F60 !important;
   text-align: center !important;
   margin-left: 200px !important;
-
 }
 
-.createbutton:hover{
+.createbutton:hover {
   opacity: 0.7;
 }
 
-.playbutton{
-  height:70px !important;
+.playbutton {
+  height: 70px !important;
   width: 70px !important;
   /* font-family: 'Open Sans Condensed', sans-serif; */
   font-family: 'Pacifico', cursive;
@@ -71,11 +69,11 @@ color: #88B0C2;
   margin-left: 280px !important;
 }
 
-.playbutton:hover{
+.playbutton:hover {
   opacity: 0.7;
 }
-#aboutus
-{
+
+#aboutus {
   /* font-family: 'Pacifico', cursive; */
   font-size: 8px;
   margin-left: 550px;
@@ -85,11 +83,10 @@ color: #88B0C2;
 
 /* This is the box that holds the quick play field and the quick make field
 to make a challenge auto generatively. */
-#quickplaymake{
+#quickplaymake {
   width: 60%;
   height: 90%;
   background: orange;
-
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -98,19 +95,19 @@ to make a challenge auto generatively. */
 
 /* this is the code that applies to both the quick make and
 the quick play fields */
-.quickpm{
+.quickpm {
   width: 90%;
   height: 47%;
 }
 
 /* This is the code for the quick make box */
-#quickmake{
+#quickmake {
   /* background: green; */
 }
 
 /* this is the code for the actual field where a user would put the url
 and auto generate a challenge */
-#quickmakefield{
+#quickmakefield {
   height: 100%;
   width: 100%;
   display: flex;
@@ -120,7 +117,7 @@ and auto generate a challenge */
 }
 
 /* a generic class to apply to all of the inputs in the field. this is temporary */
-.inputs{
+.inputs {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -128,7 +125,7 @@ and auto generate a challenge */
 }
 
 /* this is the code for the quick play box */
-#quickplay{
+#quickplay {
   background: blue;
   display: flex;
   flex-direction: column;
@@ -137,18 +134,17 @@ and auto generate a challenge */
 }
 
 /* a generic placeholder class for the play items */
-.quickplayitem{
+.quickplayitem {
   width: 95%;
   height: 17%;
   /* background: purple; */
 }
 
 /* this is the code for the box that contains the quick statistics */
-#quickstats{
+#quickstats {
   width: 35%;
   height: 90%;
   /* background: red; */
-
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -156,26 +152,27 @@ and auto generate a challenge */
 }
 
 /* a generic statistics class for the global and personal statistics */
-.statistics{
+.statistics {
   margin-top: 10px;
   display: flex;
-  border-color:#d7dce3 !important;
+  border-color: #d7dce3 !important;
   border: 1px solid;
   height: 60px;
   border-radius: 5%;
   background-color: white;
 }
 
-#friendsstatisticsbox{
+#friendsstatisticsbox {
   width: 350px;
   margin-top: 0;
 }
 
-#groupsstatisticsbox{
+#groupsstatisticsbox {
   width: 350px;
   margin-top: 0;
 }
-.individualstatsheader{
+
+.individualstatsheader {
   /* color: #88B0C2 !important; */
   font-family: 'Open Sans Condensed', sans-serif !important;
   text-align: center;
@@ -185,7 +182,7 @@ and auto generate a challenge */
   color: #4d4e4f !important;
 }
 
-.statisticssection{
+.statisticssection {
   width: 400px;
   margin-left: 45px;
   border-radius: 10%;
@@ -193,10 +190,9 @@ and auto generate a challenge */
   height: 800px;
   margin-top: 20px;
   border: 1px solid yellow;
-
 }
 
-#statisticsheader{
+#statisticsheader {
   /* border: 1px solid magenta; */
   /* font-family: 'Open Sans Condensed', sans-serif !important; */
   color: #88B0C2 !important;
@@ -205,59 +201,60 @@ and auto generate a challenge */
   font-family: 'Pacifico', cursive;
   margin-top: 10px;
   margin-bottom: 0;
-
 }
-.statisticspic{
-  margin-left:10px;
+
+.statisticspic {
+  margin-left: 10px;
   border-radius: 25%;
-  height:60px;
-  width:60px;
+  height: 60px;
+  width: 60px;
   overflow: visible;
 }
-.statisticspic2{
-  margin-left:10px;
+
+.statisticspic2 {
+  margin-left: 10px;
   border-radius: 25%;
   height: auto;
   width: auto;
   overflow: visible;
 }
-#friendstatheader{
+
+#friendstatheader {
   /* border: 1px solid red; */
   margin-top: 10px;
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 25px;
   color: #88B0C2 !important;
-
 }
-#friendstatheader1{
+
+#friendstatheader1 {
   /* border: 1px solid red; */
   margin-top: 10px;
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 25px;
   color: #88B0C2 !important;
-
 }
-#friendstatheader1{
+
+#friendstatheader1 {
   /* border: 1px solid red; */
   margin-top: 10px;
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 25px;
   color: #88B0C2 !important;
-
 }
 
-#challengesheader{
+#challengesheader {
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 40px;
   margin-top: 30px;
   text-align: center;
   color: #4d4e4f;
-
 }
-.statisticsbox{
+
+.statisticsbox {
   margin-left: 25px !important;
   /* margin-right: 10px; */
   height: 275px;
@@ -267,7 +264,7 @@ and auto generate a challenge */
   text-align: center;
 }
 
-.quickchallengesbox{
+.quickchallengesbox {
   margin-top: 80px;
   margin-left: 175px;
   height: 600px;
@@ -277,7 +274,7 @@ and auto generate a challenge */
   /* border: 1px solid green; */
 }
 
-.quickcreatebox{
+.quickcreatebox {
   margin-top: 175px;
   /* margin-left: 5px; */
   margin-right: 30px;
@@ -288,7 +285,7 @@ and auto generate a challenge */
   border: 1px solid yellow;
 }
 
-#quickchallengeheader{
+#quickchallengeheader {
   font-family: 'Pacifico', cursive;
   font-size: 30px;
   text-align: center;
@@ -296,7 +293,7 @@ and auto generate a challenge */
   margin-top: 10px;
 }
 
-.quickchallenge{
+.quickchallenge {
   width: 450px;
   margin-top: 20px;
   background-color: #fefff9ff;
@@ -304,13 +301,14 @@ and auto generate a challenge */
   border-radius: 5%;
   /* border-color:#d7dce3 !important;
   border: 1px solid; */
-  border:1px solid yellow;
+  border: 1px solid yellow;
 }
 
-.quickchallenge:hover{
+.quickchallenge:hover {
   cursor: pointer;
 }
-.createinputs2{
+
+.createinputs2 {
   text-align: center;
   margin-left: 70px;
   font-size: 25px;
@@ -319,12 +317,12 @@ and auto generate a challenge */
   height: 30px;
 }
 
-.genreheading2{
+.genreheading2 {
   color: #88B0C2;
   font-size: 20px;
 }
 
-.inputtext2{
+.inputtext2 {
   text-align: center;
   /* font-family: 'Pacifico', cursive; */
   font-family: 'Open Sans Condensed', sans-serif;
@@ -334,24 +332,22 @@ and auto generate a challenge */
   margin-left: 60px;
 }
 
-.genrebox2{
+.genrebox2 {
   margin-right: 50px;
   padding-right: 20px;
-/* background-color: white !important; */
+  /* background-color: white !important; */
   margin-bottom: 40px;
 }
 
-#genre2{
+#genre2 {
   height: 40px;
   text-align: center;
   width: 250px;
   margin-left: 0px;
   margin-bottom: 30px !important;
-
 }
 
-#createchallengebuttonquick
-{
+#createchallengebuttonquick {
   width: 100px;
   /* border-color: rgb(166, 166, 166);
   background-color: rgb(248, 248, 248); */
@@ -365,13 +361,12 @@ and auto generate a challenge */
   color: #88B0C2;
 }
 
-createchallengebuttonquick:hover
-{
+createchallengebuttonquick:hover {
   opacity: 0.5;
   cursor: pointer;
 }
 
-.indivualchallenges{
+.indivualchallenges {
   margin-top: 10px !important;
   overflow: scroll !important;
   width: 500px;
@@ -384,7 +379,7 @@ createchallengebuttonquick:hover
   align-items: center; */
 }
 
-.individualstatsheader1{
+.individualstatsheader1 {
   /* color: #88B0C2 !important; */
   font-family: 'Open Sans Condensed', sans-serif !important;
   text-align: left;
@@ -393,10 +388,10 @@ createchallengebuttonquick:hover
   margin-top: -45px;
   color: #4d4e4f !important;
 }
-.groupName{
+
+.groupName {
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 25px;
   /* font-weight: bold; */
   /* color: #88B0C2; */
-
 }

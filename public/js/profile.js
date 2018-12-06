@@ -1,154 +1,152 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    var userObj = JSON.parse(sessionStorage.getItem("userObject"));
-    document.getElementById("profilepic").src = userObj.img;
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
-    if(page === "settings.html"){
-        document.getElementById("editprofilepic").src = userObj.img;
-    }
+  var userObj = JSON.parse(sessionStorage.getItem("userObject"));
+  document.getElementById("profilepic").src = userObj.img;
+  var path = window.location.pathname;
+  var page = path.split("/").pop();
+  if (page === "settings.html") {
+    document.getElementById("editprofilepic").src = userObj.img;
+  }
 });
-function profileMain(){
+
+function profileMain() {
   getUserContactsQUERY();
   getUserGroupQUERY();
 }
 var contactsArray = [];
 var groupsArray = [];
 
-function removeFriend(friendId, div){
-    var userId = firebase.auth().currentUser.uid;
-    var userDoc = firestore.collection("users").doc(userId);
-    userDoc.update(
-        {"contactList": firebase.firestore.FieldValue.arrayRemove(friendId)}
-    ).then(r => {
-        document.getElementById('listoffriends').removeChild(div)
-    }).catch(function(error) {
-        alert("Error removing friend from your contactList: ", error);
-    });
+function removeFriend(friendId, div) {
+  var userId = firebase.auth().currentUser.uid;
+  var userDoc = firestore.collection("users").doc(userId);
+  userDoc.update({
+    "contactList": firebase.firestore.FieldValue.arrayRemove(friendId)
+  }).then(r => {
+    document.getElementById('listoffriends').removeChild(div)
+  }).catch(function(error) {
+    alert("Error removing friend from your contactList: ", error);
+  });
 
 
 }
 
-function leaveGroup(groupId, div){
-    var userId = firebase.auth().currentUser.uid;
+function leaveGroup(groupId, div) {
+  var userId = firebase.auth().currentUser.uid;
 
-    var userDoc = firestore.collection("users").doc(userId);
-    userDoc.update(
-        {"belongsToGroup": firebase.firestore.FieldValue.arrayRemove(groupId)}
-    ).catch(function(error) {
-        alert("Error removing yourself from the group ", error);
-    });
-
-
-    var groupDoc = firestore.collection("groups").doc(groupId);
-    groupDoc.update(
-        {"members": firebase.firestore.FieldValue.arrayRemove(userId)}
-    ).catch(function(error) {
-        alert("Error removing yourself from the group", error);
-    });
-    document.getElementById('mygroups').removeChild(div);
+  var userDoc = firestore.collection("users").doc(userId);
+  userDoc.update({
+    "belongsToGroup": firebase.firestore.FieldValue.arrayRemove(groupId)
+  }).catch(function(error) {
+    alert("Error removing yourself from the group ", error);
+  });
 
 
-    groupDoc.get().then(function(doc){
-        if(doc.exists){
-            var membersArray = doc.data().members;
-            if(membersArray.length === 0){
-                //delete the doc itself
-                firestore.collection("groups").doc(groupId).delete().then(function() {
-                    console.log("Group successfully deleted as there were no members!");
-                }).catch(function(error) {
-                    console.error("Error removing document: ", error);
-                });
-            }
+  var groupDoc = firestore.collection("groups").doc(groupId);
+  groupDoc.update({
+    "members": firebase.firestore.FieldValue.arrayRemove(userId)
+  }).catch(function(error) {
+    alert("Error removing yourself from the group", error);
+  });
+  document.getElementById('mygroups').removeChild(div);
 
-        }
-    })
+
+  groupDoc.get().then(function(doc) {
+    if (doc.exists) {
+      var membersArray = doc.data().members;
+      if (membersArray.length === 0) {
+        //delete the doc itself
+        firestore.collection("groups").doc(groupId).delete().then(function() {
+          console.log("Group successfully deleted as there were no members!");
+        }).catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+      }
+
+    }
+  })
 
 }
 
 function getUserContactsQUERY() {
 
-    var user = sessionStorage.getItem("userID");
-    var query = users.doc(user);
-    var ownChallengesIDs = [];
-    query.get().then(function (results) {
-        if (results.exists) {
-            var ownChallenges = results.data().contactList;
+  var user = sessionStorage.getItem("userID");
+  var query = users.doc(user);
+  var ownChallengesIDs = [];
+  query.get().then(function(results) {
+    if (results.exists) {
+      var ownChallenges = results.data().contactList;
 
-            ownChallenges.forEach(function (doc) {
-                ownChallengesIDs.push(doc)
-            });
+      ownChallenges.forEach(function(doc) {
+        ownChallengesIDs.push(doc)
+      });
+    } else
+      console.log("No documents found!");
+
+
+    if (!Array.isArray(ownChallengesIDs) || !ownChallengesIDs.length) {
+      needFriends();
+    }
+    ownChallengesIDs.forEach(function(e) {
+      var query = firestore.collection("users").doc(e);
+      query.get().then(function(doc) {
+
+        if (doc.exists) {
+          console.log(doc.data())
+          var contact = Contact(doc.data().username, e, doc.data().img);
+          createButtonSectionsContact(contact);
+          this.contactsArray.unshift(contact);
+
         }
-        else
-            console.log("No documents found!");
+      }).catch(function(error) {
+        console.log("error");
+      });
 
-
-            if (!Array.isArray(ownChallengesIDs) || !ownChallengesIDs.length) {
-               needFriends();
-            }
-        ownChallengesIDs.forEach(function (e) {
-            var query = firestore.collection("users").doc(e);
-            query.get().then(function(doc){
-
-                if(doc.exists){
-                  console.log(doc.data())
-                    var contact = Contact(doc.data().username, e, doc.data().img);
-                    createButtonSectionsContact(contact);
-                    this.contactsArray.unshift(contact);
-
-                }
-            }).catch(function(error){
-                console.log("error");
-            });
-
-        });
-    }).catch(function (error) {
-        console.log("Error getting user owned challenges:", error);
     });
+  }).catch(function(error) {
+    console.log("Error getting user owned challenges:", error);
+  });
 
 }
 
 function getUserGroupQUERY() {
 
-    var user = sessionStorage.getItem("userID");
-    var query = users.doc(user);
-    var ownChallengesIDs = [];
-    query.get().then(function (results) {
+  var user = sessionStorage.getItem("userID");
+  var query = users.doc(user);
+  var ownChallengesIDs = [];
+  query.get().then(function(results) {
+    if (results.exists) {
+      var ownChallenges = results.data().belongsToGroup;
+      ownChallenges.forEach(function(doc) {
+        ownChallengesIDs.push(doc);
+      });
+    } else
+      console.log("No documents found!");
+
+    if (!Array.isArray(ownChallengesIDs) || !ownChallengesIDs.length) {
+      needGroups();
+    }
+    ownChallengesIDs.forEach(function(e) {
+      var query = groups.doc(e);
+      query.get().then(function(results) {
         if (results.exists) {
-            var ownChallenges = results.data().belongsToGroup;
-            ownChallenges.forEach(function (doc) {
-                ownChallengesIDs.push(doc);
-            });
-        }
-        else
-            console.log("No documents found!");
+          var info = results.data();
+          var group = Group(info.groupName, results.id, info.groupOwner);
+          createButtonSectionsGroup(group);
+          this.groupsArray.unshift(group);
 
-        if (!Array.isArray(ownChallengesIDs) || !ownChallengesIDs.length) {
-           needGroups();
-        }
-        ownChallengesIDs.forEach(function (e) {
-            var query = groups.doc(e);
-            query.get().then(function (results) {
-                if (results.exists) {
-                    var info = results.data();
-                    var group = Group(info.groupName, results.id, info.groupOwner);
-                    createButtonSectionsGroup(group);
-                    this.groupsArray.unshift(group);
+        } else
+          console.log("No group was found with that ID!");
 
-                }
-                else
-                    console.log("No group was found with that ID!");
-
-            }).catch(function (error) {
-                console.log("Error getting groups ID:", error);
-            });
-        });
-    }).catch(function (error) {
-        console.log("Error getting user owned challenges:", error);
+      }).catch(function(error) {
+        console.log("Error getting groups ID:", error);
+      });
     });
+  }).catch(function(error) {
+    console.log("Error getting user owned challenges:", error);
+  });
 
 }
 
-function needGroups(){
+function needGroups() {
   var div = document.createElement("div");
   div.className = "friendview groupview";
 
@@ -159,90 +157,90 @@ function needGroups(){
   div.appendChild(contactName);
 
   var ediv = null;
-  if(groupsArray.length > 0)
-      ediv =groupsArray[0].div;
+  if (groupsArray.length > 0)
+    ediv = groupsArray[0].div;
   document.getElementById('mygroups').insertBefore(div, ediv);
 }
 
 function createButtonSectionsGroup(groupModel) {
-    var div = document.createElement("div");
-    groupModel.div = div;
-    div.className = "friendview groupview";
+  var div = document.createElement("div");
+  groupModel.div = div;
+  div.className = "friendview groupview";
 
-    var contactName = document.createElement("p");
-    contactName.className = "groupName";
+  var contactName = document.createElement("p");
+  contactName.className = "groupName";
 
-    var deleteButton = document.createElement("button");
-    deleteButton.className = "deleteButton";
-    deleteButton.onclick = function () {
-        leaveGroup(groupModel.id, div);
-        //make the div disapear right away
-    };
-    contactName.innerHTML = groupModel.name;
-    deleteButton.innerHTML = "Leave";
+  var deleteButton = document.createElement("button");
+  deleteButton.className = "deleteButton";
+  deleteButton.onclick = function() {
+    leaveGroup(groupModel.id, div);
+    //make the div disapear right away
+  };
+  contactName.innerHTML = groupModel.name;
+  deleteButton.innerHTML = "Leave";
 
-    div.appendChild(contactName);
-    div.appendChild(deleteButton);
+  div.appendChild(contactName);
+  div.appendChild(deleteButton);
 
-    var ediv = null;
-    if(groupsArray.length > 0)
-        ediv =groupsArray[0].div;
-    document.getElementById('mygroups').insertBefore(div, ediv);
+  var ediv = null;
+  if (groupsArray.length > 0)
+    ediv = groupsArray[0].div;
+  document.getElementById('mygroups').insertBefore(div, ediv);
 }
 
 function createButtonSectionsContact(contactModel) {
-    if(document.getElementById('dummyfriend') != null){
-        document.getElementById('listoffriends').removeChild(document.getElementById('dummyfriend'));
-    }
-    var div = document.createElement("div");
-    contactModel.div = div;
-    div.className = "friendview";
+  if (document.getElementById('dummyfriend') != null) {
+    document.getElementById('listoffriends').removeChild(document.getElementById('dummyfriend'));
+  }
+  var div = document.createElement("div");
+  contactModel.div = div;
+  div.className = "friendview";
 
-    var picture = document.createElement("img");
-    picture.className = "picture statisticspic";
-    picture.src = contactModel.pic;
+  var picture = document.createElement("img");
+  picture.className = "picture statisticspic";
+  picture.src = contactModel.pic;
 
-    var contactName = document.createElement("p");
-    contactName.className = "contactName";
-    contactName.innerHTML = contactModel.name;
+  var contactName = document.createElement("p");
+  contactName.className = "contactName";
+  contactName.innerHTML = contactModel.name;
 
-    var deleteButton = document.createElement("button");
-    deleteButton.className = "deleteButton";
-    deleteButton.onclick = function () {
+  var deleteButton = document.createElement("button");
+  deleteButton.className = "deleteButton";
+  deleteButton.onclick = function() {
 
-        removeFriend(contactModel.id, div);
+    removeFriend(contactModel.id, div);
 
-        //add code to remove the div right away
-    };
-    deleteButton.innerHTML = "Delete";
+    //add code to remove the div right away
+  };
+  deleteButton.innerHTML = "Delete";
 
-    div.appendChild(picture);
-    div.appendChild(contactName);
-    div.appendChild(deleteButton);
+  div.appendChild(picture);
+  div.appendChild(contactName);
+  div.appendChild(deleteButton);
 
-    var ediv = null;
-    if(contactsArray.length > 0)
-        ediv =contactsArray[0].div;
-    document.getElementById('listoffriends').insertBefore(div, ediv);
+  var ediv = null;
+  if (contactsArray.length > 0)
+    ediv = contactsArray[0].div;
+  document.getElementById('listoffriends').insertBefore(div, ediv);
 
 }
 
 function needFriends() {
-    var div = document.createElement("div");
-    div.className = "friendview";
-    div.id = "dummyfriend";
+  var div = document.createElement("div");
+  div.className = "friendview";
+  div.id = "dummyfriend";
 
-    var contactName = document.createElement("p");
-    contactName.className = "contactName";
+  var contactName = document.createElement("p");
+  contactName.className = "contactName";
 
-    contactName.innerHTML = "No Contacts? Add some now.";
+  contactName.innerHTML = "No Contacts? Add some now.";
 
-    div.appendChild(contactName);
+  div.appendChild(contactName);
 
-    var ediv = null;
-    if(contactsArray.length > 0)
-        ediv =contactsArray[0].div;
-    document.getElementById('listoffriends').insertBefore(div, ediv);
+  var ediv = null;
+  if (contactsArray.length > 0)
+    ediv = contactsArray[0].div;
+  document.getElementById('listoffriends').insertBefore(div, ediv);
 }
 
 let show_add_friends = false;
@@ -252,11 +250,11 @@ function openForm() {
 }
 
 function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+  document.getElementById("myForm").style.display = "none";
 }
 
 function addfriendsbut() {
-  if (show_add_friends){
+  if (show_add_friends) {
     // hide in
     document.getElementById("friendUsername").style.display = "none";
     document.getElementById("addfriendsubmit").style.display = "none";
@@ -270,7 +268,7 @@ function addfriendsbut() {
 }
 
 function invitebut() {
-  if (show_add_friends){
+  if (show_add_friends) {
     // hide in
     document.getElementById("findfriend").style.display = "none";
     document.getElementById("groupsearch").style.display = "none";
@@ -287,134 +285,124 @@ function invitebut() {
 
 }
 
-function makeaGroup()
-{
-    var user = firebase.auth().currentUser;
-    var userRef = firestore.collection("users").doc(user.uid);
+function makeaGroup() {
+  var user = firebase.auth().currentUser;
+  var userRef = firestore.collection("users").doc(user.uid);
 
-    var usernames= document.getElementById('CheckingUsername').value;
-    var groupName = document.getElementById('nameofgroup').value;
+  var usernames = document.getElementById('CheckingUsername').value;
+  var groupName = document.getElementById('nameofgroup').value;
 
-    //var user = firebase.auth().currentUser;
-    var potentialMembers = usernames.split(",");
+  //var user = firebase.auth().currentUser;
+  var potentialMembers = usernames.split(",");
 
-    if(usernames === "" || groupName === ""){
-        alert("Please add some group members or group name. Can't leave it blank.");
-    }
-    else{
+  if (usernames === "" || groupName === "") {
+    alert("Please add some group members or group name. Can't leave it blank.");
+  } else {
 
-        var query = firestore.collection("users").doc(user.uid).collection("ownGroups").doc(groupName);
-        query.get().then(function(doc){
-            if(doc.exists){
-                alert("You've already created a group with this group name. PLease try again with a different name");
-            }
-            else{
-                query = firestore.collection("users").doc(user.uid).collection("ownGroups");
-                query.doc(groupName).set({
-                }).then(function(x){
-                    firestore.collection('groups').add({
-                        groupName: groupName,
-                        groupOwner: user.uid,
-                        members: []
-                    }).then(function (groupId) {
-                        var groupid = groupId.id;
-                        var groupRef = firestore.collection('groups').doc(groupid);
+    var query = firestore.collection("users").doc(user.uid).collection("ownGroups").doc(groupName);
+    query.get().then(function(doc) {
+      if (doc.exists) {
+        alert("You've already created a group with this group name. PLease try again with a different name");
+      } else {
+        query = firestore.collection("users").doc(user.uid).collection("ownGroups");
+        query.doc(groupName).set({}).then(function(x) {
+          firestore.collection('groups').add({
+            groupName: groupName,
+            groupOwner: user.uid,
+            members: []
+          }).then(function(groupId) {
+            var groupid = groupId.id;
+            var groupRef = firestore.collection('groups').doc(groupid);
 
-                        //add the creator to the group
-                        var userRef = firestore.collection("users").doc(user.uid);
-                        userRef.update({
-                            belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupid)
-                            });
+            //add the creator to the group
+            var userRef = firestore.collection("users").doc(user.uid);
+            userRef.update({
+              belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupid)
+            });
 
-                        var thisusername;
-                        var query = firestore.collection("users").doc(user.uid);
-                        query.get().then(function(doc){
-                            if(doc.exists){
-                                thisusername = doc.data().username;
+            var thisusername;
+            var query = firestore.collection("users").doc(user.uid);
+            query.get().then(function(doc) {
+              if (doc.exists) {
+                thisusername = doc.data().username;
 
-                                groupRef.update({
-                                    members: firebase.firestore.FieldValue.arrayUnion(user.uid)
-                                    });
-
-                                    var promises = [];
-                                    var counter= 0;
-
-                                    while(counter < potentialMembers.length)
-                                    {
-                                        if(potentialMembers[counter] === thisusername){
-
-                                        }
-                                        else{
-                                            var query = firestore.collection('username').doc(potentialMembers[counter]);
-                                            promises.push(query.get());
-
-                                        }
-                                        counter +=1 ;
-                                    }
-                                    Promise.all(promises).then( function(snapshots) {
-                                        successful = [];
-                                        unsuccessful = [];
-                                        console.log(snapshots);
-                                        var i = 0;
-                                        while(i < snapshots.length){
-                                            if(snapshots[i].exists){
-                                                successful.push(snapshots[i]);
-                                            }
-                                            else
-                                            {
-                                                unsuccessful.push(snapshots[i]);
-                                            }
-                                            i +=1
-                                        }
-
-                                        i = 0;
-                                        while(i < successful.length)
-                                        {
-
-                                            groupRef.update({
-                                                            members: firebase.firestore.FieldValue.arrayUnion(successful[i].data().uid)
-                                                            });
-
-                                            userRef = firestore.collection("users").doc(successful[i].data().uid);
-
-                                            userRef.update({
-                                                belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupid)
-                                                });
-
-                                            i +=1;
-                                        }
-                                        if(unsuccessful.length ===0){
-                                            alert("Group made successfully, added all the members.");
-                                            createButtonSectionsGroup(Group(groupName, groupName, user.uid))
-                                        }
-                                        else{
-                                            var k = [];
-                                            var ctr = 0;
-                                            while(ctr < unsuccessful.length){
-                                                k.push(unsuccessful[ctr].id);
-                                                ctr +=1 ;
-                                            }
-                                            alert("Group made successfully, but couldn't add " + k);
-                                        }
-
-                                    })
-                                    .catch((error) => {
-                                        console.log(error)
-                                    })
-
-                            }
-
-
-                        });
-
-
-                });
+                groupRef.update({
+                  members: firebase.firestore.FieldValue.arrayUnion(user.uid)
                 });
 
-            }
+                var promises = [];
+                var counter = 0;
+
+                while (counter < potentialMembers.length) {
+                  if (potentialMembers[counter] === thisusername) {
+
+                  } else {
+                    var query = firestore.collection('username').doc(potentialMembers[counter]);
+                    promises.push(query.get());
+
+                  }
+                  counter += 1;
+                }
+                Promise.all(promises).then(function(snapshots) {
+                    successful = [];
+                    unsuccessful = [];
+                    console.log(snapshots);
+                    var i = 0;
+                    while (i < snapshots.length) {
+                      if (snapshots[i].exists) {
+                        successful.push(snapshots[i]);
+                      } else {
+                        unsuccessful.push(snapshots[i]);
+                      }
+                      i += 1
+                    }
+
+                    i = 0;
+                    while (i < successful.length) {
+
+                      groupRef.update({
+                        members: firebase.firestore.FieldValue.arrayUnion(successful[i].data().uid)
+                      });
+
+                      userRef = firestore.collection("users").doc(successful[i].data().uid);
+
+                      userRef.update({
+                        belongsToGroup: firebase.firestore.FieldValue.arrayUnion(groupid)
+                      });
+
+                      i += 1;
+                    }
+                    if (unsuccessful.length === 0) {
+                      alert("Group made successfully, added all the members.");
+                      createButtonSectionsGroup(Group(groupName, groupName, user.uid))
+                    } else {
+                      var k = [];
+                      var ctr = 0;
+                      while (ctr < unsuccessful.length) {
+                        k.push(unsuccessful[ctr].id);
+                        ctr += 1;
+                      }
+                      alert("Group made successfully, but couldn't add " + k);
+                    }
+
+                  })
+                  .catch((error) => {
+                    console.log(error)
+                  })
+
+              }
+
+
+            });
+
+
+          });
         });
 
-    }
+      }
+    });
+
+  }
 
 
 }

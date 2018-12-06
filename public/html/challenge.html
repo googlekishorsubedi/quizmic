@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,11 +32,11 @@
 
 
   <header>
-    <nav id="navcolor" class="navbar navbar-expand-lg navbar-light bg-light" >
+    <nav id="navcolor" class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="./dashboard.html">
-            <p id="logo"> Quizmic </p>
-             <!-- <img id="logo" src="../images/bmic.png" alt="Quizmiclogo"> -->
-        </a>
+        <p id="logo"> Quizmic </p>
+        <!-- <img id="logo" src="../images/bmic.png" alt="Quizmiclogo"> -->
+      </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,38 +46,38 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link createbutton" href="../html/create.html">
-                <img class="createbutton"src="../images/create.png" alt="createicon">
-               <span class="sr-only">(current)</span>
+              <img class="createbutton" src="../images/create.png" alt="createicon">
+              <span class="sr-only">(current)</span>
 
-             </a>
-          </li>
-
-          <li class="nav-item" >
-            <a class="playbutton"class="nav-link" href="play.html">
-                <img class="playbutton"src="../images/video.png" alt="playbutton"> </a>
-             </a>
-          </li>
-          </ul>
-
-
-          <li class="nav-item dropdown">
-
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img id="profilepic" src="../images/man3.png" alt="profilepic">
             </a>
-            <div style="background: #fefff9ff"class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item"  id="name" href="profile.html">
-                  Display UserName
-              </a>
-              <a class="dropdown-item" href="profile.html"> Friends </a>
-              <a class="dropdown-item" href="settings.html">Settings</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" onclick="signOut()">
-                  <button class="SignOut" type="button" name="button"> Sign Out </button>
-                </a>
-            </div>
-
           </li>
+
+          <li class="nav-item">
+            <a class="playbutton" class="nav-link" href="play.html">
+              <img class="playbutton" src="../images/video.png" alt="playbutton"> </a>
+            </a>
+          </li>
+        </ul>
+
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img id="profilepic" src="../images/man3.png" alt="profilepic">
+          </a>
+          <div style="background: #fefff9ff" class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" id="name" href="profile.html">
+              Display UserName
+            </a>
+            <a class="dropdown-item" href="profile.html"> Friends </a>
+            <a class="dropdown-item" href="settings.html">Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" onclick="signOut()">
+              <button class="SignOut" type="button" name="button"> Sign Out </button>
+            </a>
+          </div>
+
+        </li>
       </div>
     </nav>
 
@@ -86,91 +86,92 @@
   <div class="row" style="height:2px; background:yellow"></div>
 
 
-      <h1> Pick the Correct Song Choice </h1>
+  <h1> Pick the Correct Song Choice </h1>
 
-      <div id="player"> </div>
+  <div id="player"> </div>
 
-      <div class="row">
-          <div class="col-lg-4 ">
-              <form class="options">
-                <div class="row optionsrow" >
-                    <div class="col-lg-2 optionsdiv" >
-                      <input type="radio" id="playoption1" name="option" value=""/>
-                    </div>
-
-                    <div class="col-lg-10" style="display:flex">
-                      <label class="optiontexts" id="playoption11"/>
-                    </div>
-                </div>
-
-
-                <div class="row optionsrow">
-                    <div class="col-lg-2 optionsdiv">
-                        <input type="radio" id="playoption2" name="option" value=""/>
-                    </div>
-
-                    <div class="col-lg-10 ">
-                        <label class="optiontexts" id="playoption22"/>
-                    </div>
-                </div>
-
-                <div class="row optionsrow">
-                      <div class="col-lg-2 optionsdiv">
-                        <input type="radio" id="playoption3" name="option" value=""/>
-                      </div>
-
-                      <div class="col-lg-10">
-                        <label class="optiontexts" id="playoption33"/>
-                      </div>
-                </div>
-
-                <div class="row optionsrow">
-
-                    <div class="col-lg-2">
-                      <input type="radio" id="playoption4" name="option" value=""/>
-                    </div>
-
-                    <div class="col-lg-10">
-                      <label class="optiontexts" id="playoption44"/>
-                    </div>
-
-                </div>
-              </form>
-
-
-
-          </div>
-          <div class="col-lg-4">
-              <img id="microphoneimg"src="../images/singing.png" alt="singing picture">
-
-              <div class="hintbox" id="hint_box_div" hidden="">
-                <button id="hint_button" class="hintbutton" type="button" name="button" hidden="" onclick="onClickHint()">Hint</button>
-              </div>
-
-              <div>
-              <div class="hintbox" id="hint_display" hidden=""></div>
-              </div>
-
+  <div class="row">
+    <div class="col-lg-4 ">
+      <form class="options">
+        <div class="row optionsrow">
+          <div class="col-lg-2 optionsdiv">
+            <input type="radio" id="playoption1" name="option" value="" />
           </div>
 
-          <div class="col-lg-4">
-              <div class="timebox">
-                <p  class="blinking" id="timeleft"> 30</p>
-              </div>
+          <div class="col-lg-10" style="display:flex">
+            <label class="optiontexts" id="playoption11" />
           </div>
-      </div>
+        </div>
 
+
+        <div class="row optionsrow">
+          <div class="col-lg-2 optionsdiv">
+            <input type="radio" id="playoption2" name="option" value="" />
+          </div>
+
+          <div class="col-lg-10 ">
+            <label class="optiontexts" id="playoption22" />
+          </div>
+        </div>
+
+        <div class="row optionsrow">
+          <div class="col-lg-2 optionsdiv">
+            <input type="radio" id="playoption3" name="option" value="" />
+          </div>
+
+          <div class="col-lg-10">
+            <label class="optiontexts" id="playoption33" />
+          </div>
+        </div>
+
+        <div class="row optionsrow">
+
+          <div class="col-lg-2">
+            <input type="radio" id="playoption4" name="option" value="" />
+          </div>
+
+          <div class="col-lg-10">
+            <label class="optiontexts" id="playoption44" />
+          </div>
+
+        </div>
+      </form>
+
+
+
+    </div>
+    <div class="col-lg-4">
+      <img id="microphoneimg" src="../images/singing.png" alt="singing picture">
 
       <div class="hintbox" id="hint_box_div" hidden="">
-        <button id="hint_button" class="hintbutton" type="button" name="button" hidden="" onclick="onClickHint()"> Need a Hint?</button>
+        <button id="hint_button" class="hintbutton" type="button" name="button" hidden="" onclick="onClickHint()">Hint</button>
       </div>
 
       <div>
-      <div class="" id="hint_display" hidden=""></div>
+        <div class="hintbox" id="hint_display" hidden=""></div>
       </div>
+
+    </div>
+
+    <div class="col-lg-4">
+      <div class="timebox">
+        <p class="blinking" id="timeleft"> 30</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="hintbox" id="hint_box_div" hidden="">
+    <button id="hint_button" class="hintbutton" type="button" name="button" hidden="" onclick="onClickHint()"> Need a Hint?</button>
+  </div>
+
+  <div>
+    <div class="" id="hint_display" hidden=""></div>
+  </div>
 
 
 
   </div>
 </body>
+
 </html>

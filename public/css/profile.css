@@ -1,4 +1,4 @@
-#friendUsername{
+#friendUsername {
   margin-top: 3px;
   display: none;
   text-align: center;
@@ -6,34 +6,35 @@
   font-size: 20px;
 }
 
-#addfriendsubmit{
+#addfriendsubmit {
   margin-top: 8px;
   display: none;
   text-align: center;
   margin-left: 235px;
   background: #fefff9ff;
   margin-bottom: 10px;
-
 }
-#addfriendsubmit:hover{
+
+#addfriendsubmit:hover {
   opacity: 0.5;
 }
-#addfriendsbut{
+
+#addfriendsbut {
   background: #fefff9ff;
   border: #fefff9ff;
   font-size: 20px;
   color: #88B0C2;
   text-align: center;
-
 }
 
-.addfriendsection{
+.addfriendsection {
   /* border: 1px solid black; */
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif;
   height: 90px;
 }
-#listoffriends{
+
+#listoffriends {
   text-align: center;
   margin-left: 30px;
   margin-top: 25px;
@@ -43,19 +44,19 @@
   justify-content: space-evenly;
   align-items: center; */
   width: 450px;
-  height:200px;
+  height: 200px;
   /* border:1px solid blue; */
 }
 
-.friendscol{
+.friendscol {
   margin-top: 20px;
-  height:750px;
+  height: 750px;
   border-radius: 15%;
   background: #fefff9ff;
   border: 1px solid yellow;
 }
 
-#friendsearch{
+#friendsearch {
   margin-top: 10px;
   text-align: center;
   margin-left: px;
@@ -63,25 +64,21 @@
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
-::placeholder
-{
+::placeholder {
   text-align: center;
   color: lightgray;
-  letter-spacing:2px;
+  letter-spacing: 2px;
 }
 
-#friendsheader{
+#friendsheader {
   color: #88B0C2;
-
   margin-top: 25px;
   text-align: center;
-font-size: 40px;
-font-family: 'Pacifico', cursive;
-
+  font-size: 40px;
+  font-family: 'Pacifico', cursive;
 }
 
-
-.addfriends{
+.addfriends {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -90,10 +87,7 @@ font-family: 'Pacifico', cursive;
   height: 5%;
 }
 
-
-
-
-#mygroups{
+#mygroups {
   margin-left: 15px;
   overflow: scroll;
   display: flex;
@@ -104,12 +98,12 @@ font-family: 'Pacifico', cursive;
   height: 20%;
 }
 
-.mygroupsitem{
+.mygroupsitem {
   width: 95%;
   height: 20%;
 }
 
-#invitetogroup{
+#invitetogroup {
   margin-left: 25px;
   width: 95%;
   height: 30%;
@@ -119,7 +113,7 @@ font-family: 'Pacifico', cursive;
   align-items: center;
 }
 
-.invitetogroupsection{
+.invitetogroupsection {
   /* display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -127,7 +121,7 @@ font-family: 'Pacifico', cursive;
   display: none;
 }
 
-#creategroup{
+#creategroup {
   width: 95%;
   height: 35%;
   display: flex;
@@ -136,24 +130,23 @@ font-family: 'Pacifico', cursive;
   align-items: flex-start;
 }
 
-#myForm{
-  width:100%;
-  height:100%;
-  background-color: rgba(0,0,0,0.4);
+#myForm {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   top: 0;
-  display:flex;
+  display: flex;
   justify-content: center !important;
   align-items: center !important;
-  display:none;
-
+  display: none;
 }
 
-.creategroupcontent{
+.creategroupcontent {
   position: fixed;
-  top:50%;
+  top: 50%;
   left: 50%;
-  transform:  translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   border-radius: 5%;
   position: relative;
   width: 500px;
@@ -162,7 +155,7 @@ font-family: 'Pacifico', cursive;
   text-align: center;
 }
 
-#creategroupbut{
+#creategroupbut {
   margin-left: 220px;
   text-align: center;
   background: #fefff9ff !important;
@@ -171,10 +164,9 @@ font-family: 'Pacifico', cursive;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 20px;
   color: #88B0C2;
-
-
 }
-#closeFormbut{
+
+#closeFormbut {
   border: 1px solid gray;
   margin-top: 10px;
   margin-left: 80%;
@@ -183,14 +175,14 @@ font-family: 'Pacifico', cursive;
   height: 50px;
   width: 50px;
 }
-#closeForm{
+
+#closeForm {
   border: 1px solid white;
   height: 50px;
   width: 50px;
 }
 
-
-#invitebut{
+#invitebut {
   margin-top: 10px;
   margin-left: 195px;
   margin-bottom: 20px;
@@ -201,10 +193,9 @@ font-family: 'Pacifico', cursive;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 20px;
   color: #88B0C2;
-
 }
 
-#invitesubmit{
+#invitesubmit {
   margin-left: 5px;
   text-align: center;
   background: #fefff9ff;
@@ -213,19 +204,20 @@ font-family: 'Pacifico', cursive;
   font-size: 20px;
   display: none;
   color: #88B0C2;
-
 }
-#findfriend{
+
+#findfriend {
   display: none;
 }
 
-#groupsearch{
+#groupsearch {
   display: none;
 }
-.friendview{
+
+.friendview {
   margin-top: 5px !important;
   margin-left: 15%;
-  border-color:#d7dce3 !important;
+  border-color: #d7dce3 !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 20px;
   height: 200px;
@@ -237,10 +229,11 @@ font-family: 'Pacifico', cursive;
   justify-content: space-evenly;
   align-items: center;
 }
-.mygroupsitem{
+
+.mygroupsitem {
   margin-top: 5px !important;
   margin-left: 15%;
-  border-color:#d7dce3 !important;
+  border-color: #d7dce3 !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
   font-size: 20px;
   border: 1px solid;
@@ -252,27 +245,26 @@ font-family: 'Pacifico', cursive;
   justify-content: space-evenly;
   align-items: center;
 }
-#groupsheading{
+
+#groupsheading {
   text-align: center;
   margin-top: 10px;
-font-size: 40px;
-font-family: 'Pacifico', cursive;
-color: #88B0C2;
-margin-bottom: 20px;
-
+  font-size: 40px;
+  font-family: 'Pacifico', cursive;
+  color: #88B0C2;
+  margin-bottom: 20px;
 }
 
-#popupheading{
+#popupheading {
   font-family: 'Open Sans Condensed', sans-serif !important;
   height: 50px;
   font-size: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
   color: #88B0C2;
-
 }
 
-#nameofgroup{
+#nameofgroup {
   font-family: 'Open Sans Condensed', sans-serif !important;
   margin-top: 10px;
   width: 300px;
@@ -282,8 +274,7 @@ margin-bottom: 20px;
   font-size: 25;
 }
 
-#createcbutton
-{
+#createcbutton {
   width: 100px;
   border-color: #fefff9ff !important;
   background-color: #fefff9ff !important;
@@ -292,23 +283,25 @@ margin-bottom: 20px;
   font-size: 30px;
   color: #88B0C2;
 }
-#createcbutton:hover{
+
+#createcbutton:hover {
   opacity: 0.7;
 }
-.Descriptioninput{
-  border-color:#d7dce3 !important;
+
+.Descriptioninput {
+  border-color: #d7dce3 !important;
 }
 
-.contactName{
+.contactName {
   margin-top: 10px;
 }
 
-.friendview{
+.friendview {
   overflow: scroll !important;
   height: 60px !important;
 }
 
-.deleteButton{
+.deleteButton {
   background-color: white;
   border-color: white;
   font-size: 20px;
@@ -316,7 +309,7 @@ margin-bottom: 20px;
   text-align: center;
 }
 
-.groupName{
-  font-size:25px;
+.groupName {
+  font-size: 25px;
   margin-top: 10px;
 }

@@ -2,92 +2,96 @@
 //for further documentation on functions.
 
 var videoID = loadMainVideo();
-function loadMainVideo(){
-    var parsedChallenge = JSON.parse(sessionStorage.getItem("playingChallenge"));
-    var id = parsedChallenge.youtubeID.split("https://www.youtube.com/watch?v=");
+
+function loadMainVideo() {
+  var parsedChallenge = JSON.parse(sessionStorage.getItem("playingChallenge"));
+  var id = parsedChallenge.youtubeID.split("https://www.youtube.com/watch?v=");
 
   //Somehow grabs the video id from the challenge, returns it.
   return id[1];
 }
-  // 2. This code loads the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
+// 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
 
-  tag.src = "https://www.youtube.com/iframe_api";
-  tag.allow = "autoplay";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+tag.src = "https://www.youtube.com/iframe_api";
+tag.allow = "autoplay";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
-  var player;
-  function onYouTubeIframeAPIReady() {
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+var player;
 
-    player = new YT.Player('player', {
-      height: '0',
-      width: '0',
-      videoId: videoID,
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
+function onYouTubeIframeAPIReady() {
 
-  // 4. The API will call this function when the video player is ready.
-  function onPlayerReady(event) {
-    event.target.playVideo();
-  }
-
-  // 5. The API calls this function when the player's state changes.
-  //    The function indicates that when playing a video (state=1),
-  //    the player should play for six seconds and then stop.
-  var done = false;
-  function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-      setInterval(checkbButton, 1000);
-      setTimeout(stopVideo, 30000);
-      done = true;
-
+  player = new YT.Player('player', {
+    height: '0',
+    width: '0',
+    videoId: videoID,
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
     }
+  });
+}
+
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+// 5. The API calls this function when the player's state changes.
+//    The function indicates that when playing a video (state=1),
+//    the player should play for six seconds and then stop.
+var done = false;
+
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING && !done) {
+    setInterval(checkbButton, 1000);
+    setTimeout(stopVideo, 30000);
+    done = true;
+
+  }
+}
+
+//This function will stop the video so that the player won't be able to play longer than they are supposed to.
+function stopVideo() {
+  blockButtons();
+  player.stopVideo();
+
+
+}
+
+
+function checkbButton() {
+  var time = document.getElementById("timeleft");
+  if (time.innerHTML > 0) {
+    time.innerHTML = (time.innerHTML - 1);
   }
 
-  //This function will stop the video so that the player won't be able to play longer than they are supposed to.
-  function stopVideo() {
-    blockButtons();
-    player.stopVideo();
-
-
-  }
-
-
-  function checkbButton(){
-    var time = document.getElementById("timeleft");
-    if(time.innerHTML > 0){
-      time.innerHTML = (time.innerHTML - 1);
+  if (clicks) {
+    //this code correctly takes away 3 seconds from the video timer.
+    setTimeout(stopVideo, 30000 - 10000);
+    if (clicks == 1) {
+      time.innerHTML = (time.innerHTML - 9);
+      clicks += 1;
+      document.getElementById("hint_button").disabled = true;
     }
-
-    if(clicks){
-      //this code correctly takes away 3 seconds from the video timer.
-      setTimeout(stopVideo, 30000 - 10000);
-      if(clicks == 1){
-        time.innerHTML = (time.innerHTML - 9);
-        clicks += 1;
-        document.getElementById("hint_button").disabled = true;
-      }
-      if(time.innerHTML <= 0){
-        time.innerHTML = 0;
-        setTimeout(stopVideo, 0);
-        checkAnswer("");
-      }
-      //player.stopVideo();
+    if (time.innerHTML <= 0) {
+      time.innerHTML = 0;
+      setTimeout(stopVideo, 0);
+      checkAnswer("");
     }
+    //player.stopVideo();
   }
+}
 
-  var clicks = false;
-  function onClickHint() {
-      clicks = true;
-      var hint_div = document.getElementById("hint_display");
-      hint_div.innerText = playingChallenge.hint;
-      hint_div.hidden = false;
-      // document.getElementById("clicks").innerHTML = clicks;
-  };
+var clicks = false;
+
+function onClickHint() {
+  clicks = true;
+  var hint_div = document.getElementById("hint_display");
+  hint_div.innerText = playingChallenge.hint;
+  hint_div.hidden = false;
+  // document.getElementById("clicks").innerHTML = clicks;
+};
